@@ -77,7 +77,7 @@
 
 	function play() {
 	  var head = document.getElementById('title');
-	  var history = (0, _gen2.default)('Idealclover').history;
+	  var history = (0, _gen2.default)('LingC').history;
 	  isRunning = true;
 	  var i = 0;
 	  history.forEach(function (text, i) {
