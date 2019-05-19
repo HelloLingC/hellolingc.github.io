@@ -96,15 +96,18 @@
 
 
 
-  <meta name="keywords" content="咸鱼不咸,LingC">
+  <meta name="description" content="关于本站关于LingC">
+<meta name="keywords" content="咸鱼不咸,LingC">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
 <meta property="og:url" content="https://hellolingc.coding.me/about/index.html">
 <meta property="og:site_name" content="咸鱼不咸">
+<meta property="og:description" content="关于本站关于LingC">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-05-19T00:55:45.663Z">
+<meta property="og:updated_time" content="2019-05-19T04:12:01.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
+<meta name="twitter:description" content="关于本站关于LingC">
 
 
 
@@ -375,7 +378,7 @@
       <div class="post-body">
         
         
-          
+          <h1 id="关于本站"><a href="#关于本站" class="headerlink" title="关于本站"></a>关于本站</h1><h1 id="关于LingC"><a href="#关于LingC" class="headerlink" title="关于LingC"></a>关于LingC</h1>
         
       </div>
       
@@ -394,6 +397,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -417,8 +424,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -492,6 +508,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于本站"><span class="nav-number">1.</span> <span class="nav-text">关于本站</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于LingC"><span class="nav-number">2.</span> <span class="nav-text">关于LingC</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -643,6 +676,36 @@
   
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'fRb3lknR4bP5vBIJ0D26GCXc-gzGzoHsz',
+    appKey: 'HrvfqVx6akfQQkYv1y4x1c5V',
+    placeholder: 'Write down your idea :)',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
 
 
   
