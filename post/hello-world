@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 121 个字)
+                    1 分钟 即可读完 (大约 121 个字)
                 </span>
                 
                 
@@ -399,7 +399,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            链接
+            友链
         </h3>
         <ul class="menu-list">
         
@@ -477,6 +477,12 @@
         
         <article class="media">
             
+            <a href="/post/使用Hexo" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
+                </p>
+            </a>
+            
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time></div>
@@ -489,6 +495,12 @@
         </article>
         
         <article class="media">
+            
+            <a href="/post/hello-world" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
             
             <div class="media-content">
                 <div class="content">
@@ -569,6 +581,12 @@
         
         <article class="media">
             
+            <a href="/post/使用Hexo" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
+                </p>
+            </a>
+            
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time></div>
@@ -581,6 +599,12 @@
         </article>
         
         <article class="media">
+            
+            <a href="/post/hello-world" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
             
             <div class="media-content">
                 <div class="content">

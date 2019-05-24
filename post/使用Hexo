@@ -15,12 +15,12 @@
 <meta property="og:site_name" content="咸鱼不咸">
 <meta property="og:description" content="Text">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://hellolingc.coding.me/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-24T13:52:51.890Z">
+<meta property="og:image" content="https://hellolingc.coding.me/thumbnail/1.jpg">
+<meta property="og:updated_time" content="2019-05-24T14:29:41.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo">
 <meta name="twitter:description" content="Text">
-<meta name="twitter:image" content="https://hellolingc.coding.me/images/og_image.png">
+<meta name="twitter:image" content="https://hellolingc.coding.me/thumbnail/1.jpg">
 
 
 
@@ -141,6 +141,12 @@
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -155,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 1 个字)
+                    几秒 即可读完 (大约 1 个字)
                 </span>
                 
                 
@@ -404,7 +410,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            链接
+            友链
         </h3>
         <ul class="menu-list">
         
@@ -482,6 +488,12 @@
         
         <article class="media">
             
+            <a href="/post/使用Hexo" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
+                </p>
+            </a>
+            
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time></div>
@@ -494,6 +506,12 @@
         </article>
         
         <article class="media">
+            
+            <a href="/post/hello-world" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
             
             <div class="media-content">
                 <div class="content">
@@ -574,6 +592,12 @@
         
         <article class="media">
             
+            <a href="/post/使用Hexo" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
+                </p>
+            </a>
+            
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time></div>
@@ -586,6 +610,12 @@
         </article>
         
         <article class="media">
+            
+            <a href="/post/hello-world" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
             
             <div class="media-content">
                 <div class="content">
