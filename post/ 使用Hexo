@@ -2,24 +2,24 @@
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>links - 咸鱼不咸</title>
+<title>使用Hexo - 咸鱼不咸</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="这是LingC的小窝~">
-<meta name="keywords" content="咸鱼不咸,LingC">
-<meta property="og:type" content="website">
-<meta property="og:title" content="links">
-<meta property="og:url" content="https://hellolingc.coding.me/links/index.html">
+    <meta name="description" content="Text">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Hexo">
+<meta property="og:url" content="https://hellolingc.coding.me/post/ 使用Hexo">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="这是LingC的小窝~">
+<meta property="og:description" content="Text">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://hellolingc.coding.me/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-19T13:37:35.413Z">
+<meta property="og:updated_time" content="2019-05-24T13:52:51.890Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="links">
-<meta name="twitter:description" content="这是LingC的小窝~">
+<meta name="twitter:title" content="使用Hexo">
+<meta name="twitter:description" content="Text">
 <meta name="twitter:image" content="https://hellolingc.coding.me/images/og_image.png">
 
 
@@ -94,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="links" height="28">
+                <img src="/images/logo.png" alt="使用Hexo" height="28">
             
             </a>
         </div>
@@ -143,13 +143,42 @@
     
     <div class="card-content article ">
         
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/其他/">其他</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 1 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                links
+                使用Hexo
             
         </h1>
         <div class="content">
-            
+            <p>Text</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/hexo/">hexo</a>
+                </div>
+            </div>
         </div>
         
         
@@ -217,6 +246,20 @@
 </div>
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/post/ hello-world">
+                <span class="level-item">Hello World</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
@@ -615,7 +658,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="links" height="28">
+                    <img src="/images/logo.png" alt="使用Hexo" height="28">
                 
                 </a>
                 <p class="is-size-7">
