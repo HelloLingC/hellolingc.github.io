@@ -362,7 +362,7 @@
             
             <a class="level-item button is-white is-marginless" target="_blank" title="Email" href="mailto:lingc@lcblog.cn">
                 
-                <i class="fab fa-mail"></i>
+                <i class="fab fa-envelope"></i>
                 
             </a>
             
