@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[使用Hexo]]></title>
-    <url>%2F%2Fpost%2F%20%E4%BD%BF%E7%94%A8Hexo</url>
+    <url>%2F%2Fpost%2F%E4%BD%BF%E7%94%A8Hexo</url>
     <content type="text"><![CDATA[Text]]></content>
       <categories>
         <category>其他</category>
@@ -13,7 +13,7 @@
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <url>%2F%2Fpost%2F%20hello-world</url>
+    <url>%2F%2Fpost%2Fhello-world</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
 </search>
