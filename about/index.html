@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="关于本站咸鱼不咸创建于 2018.1.20 现托管于 Coding Pages （2019.5.25） 由 Hexo 驱动，使用 Icarus 主题 评论系统：Valine &amp;amp; Valine Admin 关于LingC">
+    <meta name="description" content="关于本站咸鱼不咸创建于 2018.1.20 现托管于 Coding Pages （2019.5.25） 由 Hexo 驱动，使用 Icarus 主题 评论系统：Valine &amp;amp; Valine Admin 本站所有文章（除页面）采用 知识共享署名-相同方式共享 4.0 国际许可协议 进行许可 关于LingC">
 <meta name="keywords" content="咸鱼不咸,LingC">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
 <meta property="og:url" content="https://lcblog.cn/about/index.html">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="关于本站咸鱼不咸创建于 2018.1.20 现托管于 Coding Pages （2019.5.25） 由 Hexo 驱动，使用 Icarus 主题 评论系统：Valine &amp;amp; Valine Admin 关于LingC">
+<meta property="og:description" content="关于本站咸鱼不咸创建于 2018.1.20 现托管于 Coding Pages （2019.5.25） 由 Hexo 驱动，使用 Icarus 主题 评论系统：Valine &amp;amp; Valine Admin 本站所有文章（除页面）采用 知识共享署名-相同方式共享 4.0 国际许可协议 进行许可 关于LingC">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-25T03:11:40.571Z">
+<meta property="og:updated_time" content="2019-05-25T05:28:44.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
-<meta name="twitter:description" content="关于本站咸鱼不咸创建于 2018.1.20 现托管于 Coding Pages （2019.5.25） 由 Hexo 驱动，使用 Icarus 主题 评论系统：Valine &amp;amp; Valine Admin 关于LingC">
+<meta name="twitter:description" content="关于本站咸鱼不咸创建于 2018.1.20 现托管于 Coding Pages （2019.5.25） 由 Hexo 驱动，使用 Icarus 主题 评论系统：Valine &amp;amp; Valine Admin 本站所有文章（除页面）采用 知识共享署名-相同方式共享 4.0 国际许可协议 进行许可 关于LingC">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
@@ -167,6 +167,7 @@ var _hmt = _hmt || [];
 <p>现托管于 <a href="https://coding.me" target="_blank" rel="noopener">Coding Pages</a> （2019.5.25）</p>
 <p>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动，使用 <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a> 主题</p>
 <p>评论系统：<a href="https://valine.js.org/" target="_blank" rel="noopener">Valine</a> &amp; <a href="https://github.com/DesertsP/Valine-Admin" target="_blank" rel="noopener">Valine Admin</a></p>
+<p>本站所有文章（除页面）采用 <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</p>
 <h1 id="关于LingC"><a href="#关于LingC" class="headerlink" title="关于LingC"></a>关于LingC</h1>
         </div>
         
@@ -879,6 +880,46 @@ var _hmt = _hmt || [];
                 <p class="is-size-7">
                 &copy; 2019 LingC&nbsp;
                 Hosted by <a href="https://coding.me/" target="_blank">Coding Pages</a> | Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+						
+						<script>
+    function secondToDate(second) {
+        if (!second) {
+            return 0;
+        }
+        var time = new Array(0, 0, 0, 0, 0);
+        if (second >= 365 * 24 * 3600) {
+            time[0] = parseInt(second / (365 * 24 * 3600));
+            second %= 365 * 24 * 3600;
+        }
+        if (second >= 24 * 3600) {
+            time[1] = parseInt(second / (24 * 3600));
+            second %= 24 * 3600;
+        }
+        if (second >= 3600) {
+            time[2] = parseInt(second / 3600);
+            second %= 3600;
+        }
+        if (second >= 60) {
+            time[3] = parseInt(second / 60);
+            second %= 60;
+        }
+        if (second > 0) {
+            time[4] = second;
+        }
+        return time;
+    }</script>
+<script type="text/javascript" language="javascript">
+    function setTime() {
+        var create_time = Math.round(new Date(Date.UTC(2018, 01, 20, 16, 15, 30)).getTime() / 1000);
+        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+        currentTime = secondToDate((timestamp - create_time));
+        currentTimeHtml = '咸鱼不咸已经运行了：' + currentTime[0] + '年 ' + currentTime[1] + '天 '
+                + currentTime[2] + '时 ' + currentTime[3] + '分 ' + currentTime[4]
+                + '秒';
+        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+    }    setInterval(setTime, 1000);
+</script>
+
                 
                 </p>
             </div>
