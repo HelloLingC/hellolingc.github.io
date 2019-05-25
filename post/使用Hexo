@@ -187,7 +187,6 @@ var _hmt = _hmt || [];
             <p>Text</p>
 
         </div>
-		
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
@@ -197,11 +196,12 @@ var _hmt = _hmt || [];
                 </div>
             </div>
         </div>
-		
         
         
         
-		
+    </div>
+</div>
+
 
 
 <div class="card">
@@ -254,18 +254,6 @@ var _hmt = _hmt || [];
 
                 
         </div>
-		
-		<h3 class="menu-label has-text-centered">广告：</h3>
-		
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- A -->
-		<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3260379761234749" data-ad-slot="1735093939" data-ad-format="auto" data-full-width-responsive="true"></ins>
-		<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-		
-    </div>
-</div>
     </div>
 </div>
 
