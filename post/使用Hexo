@@ -964,9 +964,10 @@ var _hmt = _hmt || [];
         document.getElementById("htmer_time").innerHTML = currentTimeHtml;
     }    setInterval(setTime, 1000);
 </script>
+<span id="htmer_time">
 
                 
-                </p>
+                </span></p>
             </div>
             <div class="level-end">
             
