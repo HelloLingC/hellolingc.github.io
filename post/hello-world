@@ -184,11 +184,6 @@ var _hmt = _hmt || [];
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- A -->
-		<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3260379761234749" data-ad-slot="1735093939" data-ad-format="auto" data-full-width-responsive="true"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
         </div>
         
         
@@ -249,6 +244,15 @@ var _hmt = _hmt || [];
                 
         </div>
 		
+		<h3 class="menu-label has-text-centered">广告：</h3>
+		
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- A -->
+		<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3260379761234749" data-ad-slot="1735093939" data-ad-format="auto" data-full-width-responsive="true"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		
     </div>
 </div>
 
@@ -290,7 +294,7 @@ var _hmt = _hmt || [];
 
     </div>
 </div>
-</div></div>
+</div>
                 
 
 
