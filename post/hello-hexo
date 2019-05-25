@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="Text">
+    <meta name="description" content="咸鱼不咸从今天（2019.5.25）开始使用Hexo啦 用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用 之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客… 之前的 咕咕咕 事故导致博客失去了许多朋友QAQ 这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333">
 <meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Hexo">
-<meta property="og:url" content="https://lcblog.cn/post/使用Hexo">
+<meta property="og:url" content="https://lcblog.cn/post/hello-hexo">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="Text">
+<meta property="og:description" content="咸鱼不咸从今天（2019.5.25）开始使用Hexo啦 用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用 之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客… 之前的 咕咕咕 事故导致博客失去了许多朋友QAQ 这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/thumbnail/1.jpg">
-<meta property="og:updated_time" content="2019-05-24T14:29:41.882Z">
+<meta property="og:updated_time" content="2019-05-25T06:51:10.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo">
-<meta name="twitter:description" content="Text">
+<meta name="twitter:description" content="咸鱼不咸从今天（2019.5.25）开始使用Hexo啦 用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用 之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客… 之前的 咕咕咕 事故导致博客失去了许多朋友QAQ 这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333">
 <meta name="twitter:image" content="https://lcblog.cn/thumbnail/1.jpg">
 
 
@@ -171,7 +171,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 即可读完 (大约 1 个字)
+                    1 分钟 即可读完 (大约 138 个字)
                 </span>
                 
                 
@@ -184,7 +184,11 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <p>Text</p>
+            <p>咸鱼不咸从今天（2019.5.25）开始使用<a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>啦</p>
+<p>用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用</p>
+<p>之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客…</p>
+<p>之前的 咕咕咕 事故导致博客失去了许多朋友QAQ</p>
+<p>这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333</p>
 
         </div>
         
@@ -331,7 +335,7 @@ var _hmt = _hmt || [];
                     
                     
                     <p class="is-size-6 is-block">
-                        老板！这条鱼再加点盐！
+                        你若盛开，清风自来
                     </p>
                     
                     
@@ -713,7 +717,7 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/post/使用Hexo" class="media-left">
+            <a href="/post/hello-hexo" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
                 </p>
@@ -722,7 +726,7 @@ var _hmt = _hmt || [];
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time></div>
-                    <a href="/post/使用Hexo" class="has-link-black-ter is-size-6">使用Hexo</a>
+                    <a href="/post/hello-hexo" class="has-link-black-ter is-size-6">使用Hexo</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/其他/">其他</a>
                     </p>
@@ -817,7 +821,7 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/post/使用Hexo" class="media-left">
+            <a href="/post/hello-hexo" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
                 </p>
@@ -826,7 +830,7 @@ var _hmt = _hmt || [];
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time></div>
-                    <a href="/post/使用Hexo" class="has-link-black-ter is-size-6">使用Hexo</a>
+                    <a href="/post/hello-hexo" class="has-link-black-ter is-size-6">使用Hexo</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/其他/">其他</a>
                     </p>

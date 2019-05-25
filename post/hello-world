@@ -262,7 +262,7 @@ var _hmt = _hmt || [];
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/post/使用Hexo">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/post/hello-hexo">
                 <i class="level-item fas fa-chevron-left"></i>
                 <span class="level-item">使用Hexo</span>
             </a>
@@ -320,7 +320,7 @@ var _hmt = _hmt || [];
                     
                     
                     <p class="is-size-6 is-block">
-                        老板！这条鱼再加点盐！
+                        你若盛开，清风自来
                     </p>
                     
                     
@@ -702,7 +702,7 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/post/使用Hexo" class="media-left">
+            <a href="/post/hello-hexo" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
                 </p>
@@ -711,7 +711,7 @@ var _hmt = _hmt || [];
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time></div>
-                    <a href="/post/使用Hexo" class="has-link-black-ter is-size-6">使用Hexo</a>
+                    <a href="/post/hello-hexo" class="has-link-black-ter is-size-6">使用Hexo</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/其他/">其他</a>
                     </p>
@@ -806,7 +806,7 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/post/使用Hexo" class="media-left">
+            <a href="/post/hello-hexo" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/thumbnail/1.jpg" alt="使用Hexo">
                 </p>
@@ -815,7 +815,7 @@ var _hmt = _hmt || [];
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T13:49:36.000Z">2019-05-24</time></div>
-                    <a href="/post/使用Hexo" class="has-link-black-ter is-size-6">使用Hexo</a>
+                    <a href="/post/hello-hexo" class="has-link-black-ter is-size-6">使用Hexo</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/其他/">其他</a>
                     </p>
