@@ -4,6 +4,8 @@
     <meta charset="utf-8">
 <title>Hello World - 咸鱼不咸</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
 
 
 
@@ -185,15 +187,19 @@ var _hmt = _hmt || [];
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
         </div>
+        
+        
+        
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- A -->
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3260379761234749" data-ad-slot="1735093939" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-        
-        
-        
+
+<amp-auto-ads type="adsense" data-ad-client="ca-pub-3260379761234749">
+</amp-auto-ads>
+
     </div>
 </div>
 
