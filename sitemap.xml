@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hellolingc.coding.me/post/%E4%BD%BF%E7%94%A8Hexo</loc>
+    <loc>https://lcblog.cn/about/index.html</loc>
+    
+    <lastmod>2019-05-25T03:11:40.571Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lcblog.cn/post/%E4%BD%BF%E7%94%A8Hexo</loc>
     
     <lastmod>2019-05-24T14:29:41.882Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hellolingc.coding.me/about/index.html</loc>
-    
-    <lastmod>2019-05-24T12:22:52.064Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hellolingc.coding.me/tags/index.html</loc>
+    <loc>https://lcblog.cn/tags/index.html</loc>
     
     <lastmod>2019-05-19T13:38:23.339Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hellolingc.coding.me/categories/index.html</loc>
+    <loc>https://lcblog.cn/categories/index.html</loc>
     
     <lastmod>2019-05-19T13:38:01.100Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hellolingc.coding.me/links/index.html</loc>
+    <loc>https://lcblog.cn/links/index.html</loc>
     
     <lastmod>2019-05-19T13:37:35.413Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hellolingc.coding.me/post/hello-world</loc>
+    <loc>https://lcblog.cn/post/hello-world</loc>
     
     <lastmod>2019-05-19T00:23:35.381Z</lastmod>
     

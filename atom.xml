@@ -5,9 +5,9 @@
   <subtitle>老板！这条鱼再加点盐！</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://hellolingc.coding.me/"/>
+  <link href="https://lcblog.cn/"/>
   <updated>2019-05-24T14:29:41.882Z</updated>
-  <id>https://hellolingc.coding.me/</id>
+  <id>https://lcblog.cn/</id>
   
   <author>
     <name>LingC</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>使用Hexo</title>
-    <link href="https://hellolingc.coding.me//post/%E4%BD%BF%E7%94%A8Hexo"/>
-    <id>https://hellolingc.coding.me//post/使用Hexo</id>
+    <link href="https://lcblog.cn//post/%E4%BD%BF%E7%94%A8Hexo"/>
+    <id>https://lcblog.cn//post/使用Hexo</id>
     <published>2019-05-24T13:49:36.000Z</published>
     <updated>2019-05-24T14:29:41.882Z</updated>
     
@@ -35,17 +35,17 @@
     
     </summary>
     
-      <category term="其他" scheme="https://hellolingc.coding.me/categories/%E5%85%B6%E4%BB%96/"/>
+      <category term="其他" scheme="https://lcblog.cn/categories/%E5%85%B6%E4%BB%96/"/>
     
     
-      <category term="hexo" scheme="https://hellolingc.coding.me/tags/hexo/"/>
+      <category term="hexo" scheme="https://lcblog.cn/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://hellolingc.coding.me//post/hello-world"/>
-    <id>https://hellolingc.coding.me//post/hello-world</id>
+    <link href="https://lcblog.cn//post/hello-world"/>
+    <id>https://lcblog.cn//post/hello-world</id>
     <published>2019-05-19T00:23:35.381Z</published>
     <updated>2019-05-19T00:23:35.381Z</updated>
     
