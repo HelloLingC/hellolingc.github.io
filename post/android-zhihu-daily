@@ -2,7 +2,7 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>android-zhihu-daily - 咸鱼不咸</title>
+<title>知乎日报的坑 - 咸鱼不咸</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -10,15 +10,15 @@
     <meta name="description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程 架构用的是MVP，也就是Model, View, Presenter 感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦 最开始当然是疯">
 <meta name="keywords" content="android, 开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android-zhihu-daily">
+<meta property="og:title" content="知乎日报的坑">
 <meta property="og:url" content="https://lcblog.cn/post/android-zhihu-daily">
 <meta property="og:site_name" content="咸鱼不咸">
 <meta property="og:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程 架构用的是MVP，也就是Model, View, Presenter 感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦 最开始当然是疯">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-04T12:33:17.516Z">
+<meta property="og:updated_time" content="2019-07-04T12:40:55.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="android-zhihu-daily">
+<meta name="twitter:title" content="知乎日报的坑">
 <meta name="twitter:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程 架构用的是MVP，也就是Model, View, Presenter 感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦 最开始当然是疯">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
@@ -119,7 +119,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="android-zhihu-daily" height="28">
+                <img src="/images/logo.png" alt="知乎日报的坑" height="28">
             
             </a>
         </div>
@@ -188,7 +188,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 即可读完 (大约 1210 个字)
+                    8 分钟 即可读完 (大约 1198 个字)
                 </span>
                 
                 
@@ -197,7 +197,7 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                android-zhihu-daily
+                知乎日报的坑
             
         </h1>
         <div class="content">
@@ -247,10 +247,10 @@ var _hmt = _hmt || [];
 <p>最后给你们放几张应用截图吧！</p>
 <p>现在他只完成了简单的加载和查看</p>
 <p>只完成了六分之一吧，甚至更少（哭哭）</p>
-<p><img src="/post/android-zhihu-dail/7/4/android-zhihu-daily/1.png" alt="1"></p>
-<p><img src="/post/android-zhihu-dail/7/4/android-zhihu-daily/2.png" alt></p>
-<p><img src="/post/android-zhihu-dail/7/4/android-zhihu-daily/3.png" alt></p>
-<p><img src="/post/android-zhihu-dail/7/4/android-zhihu-daily/1.png" alt></p>
+<p><img src="/post/android-zhihu-dail/1.png" alt="1"></p>
+<p><img src="/post/android-zhihu-dail/2.png" alt></p>
+<p><img src="/post/android-zhihu-dail/3.png" alt></p>
+<p><img src="/post/android-zhihu-dail/4.png" alt></p>
 
         </div>
         
@@ -831,14 +831,14 @@ var _hmt = _hmt || [];
             
             <a href="/post/android-zhihu-daily" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="android-zhihu-daily">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="知乎日报的坑">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-04T12:34:10.000Z">2019-07-04</time></div>
-                    <a href="/post/android-zhihu-daily" class="has-link-black-ter is-size-6">android-zhihu-daily</a>
+                    <a href="/post/android-zhihu-daily" class="has-link-black-ter is-size-6">知乎日报的坑</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/开发/">开发</a>
                     </p>
@@ -972,14 +972,14 @@ var _hmt = _hmt || [];
             
             <a href="/post/android-zhihu-daily" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="android-zhihu-daily">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="知乎日报的坑">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-04T12:34:10.000Z">2019-07-04</time></div>
-                    <a href="/post/android-zhihu-daily" class="has-link-black-ter is-size-6">android-zhihu-daily</a>
+                    <a href="/post/android-zhihu-daily" class="has-link-black-ter is-size-6">知乎日报的坑</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/开发/">开发</a>
                     </p>
@@ -1103,7 +1103,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="android-zhihu-daily" height="28">
+                    <img src="/images/logo.png" alt="知乎日报的坑" height="28">
                 
                 </a>
                 <p class="is-size-7">
