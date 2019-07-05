@@ -16,7 +16,7 @@
 <meta property="og:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程 架构用的是MVP，也就是Model, View, Presenter 感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦 最开始当然是疯">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-04T13:44:25.362Z">
+<meta property="og:updated_time" content="2019-07-05T07:14:22.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知乎日报的坑">
 <meta name="twitter:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程 架构用的是MVP，也就是Model, View, Presenter 感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦 最开始当然是疯">
@@ -188,7 +188,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 即可读完 (大约 1226 个字)
+                    8 分钟 即可读完 (大约 1178 个字)
                 </span>
                 
                 
@@ -244,13 +244,9 @@ var _hmt = _hmt || [];
 <p>这其中不难发现 Android客户端 与负责 Web 的开发人员之间的合作，这很常见（当然也可能是一位全栈工程师吧）</p>
 <p>Tips: 如果WebView</p>
 <p>但我还没感受过这种合作呢，哭惹</p>
-<p>最后给你们放几张应用截图吧！</p>
-<p>现在他只完成了简单的加载和查看</p>
-<p>只完成了六分之一吧，甚至更少（哭哭）</p>
-<img src="/post/android-zhihu-dail/android-zhihu-daily/1.png" title="This is an example image">
-<img src="/post/android-zhihu-dail/android-zhihu-daily/2.png" title="This is an example image">
-<img src="/post/android-zhihu-dail/android-zhihu-daily/3.png" title="This is an example image">
-<img src="/post/android-zhihu-dail/android-zhihu-daily/4.png" title="This is an example image">
+<p>现在完成了简单的加载和查看</p>
+<p>只做完了六分之一吧，甚至更少（哭哭）</p>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
