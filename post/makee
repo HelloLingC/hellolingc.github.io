@@ -2,24 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>messages - 咸鱼不咸</title>
+<title>makee - 咸鱼不咸</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="有什么想对LingC说的都可以来这里留言( ～’ω’)～  友链申请条件：  网站成立天数 &amp;gt;= 30 day 网站内容不能太水啦(*´д`)  原则上不添加论坛/资源收集等其他形式的网站 如果你跟我是朋友，以上条件均可忽视 如果你是小姐姐（不带把），请和我私聊以上条件均可忽视  如果你满足以上条件，请在本页下留言！本站信息站名：咸鱼不咸 头像：https://lcblog.cn/icon/">
-<meta name="keywords" content="咸鱼不咸,LingC,咸鱼博客,咸鱼">
-<meta property="og:type" content="website">
-<meta property="og:title" content="messages">
-<meta property="og:url" content="https://lcblog.cn/messages/index.html">
+    <meta name="description" content="什么是 Make ？它是由 LingC 所创造的简单解释型脚本语言，十分容易上手，用于开发 Android 应用。 什么是 Makee ?Makee 是基于 AndroLua+ 的 Android 开发工具，它可以将 Make 语言翻译为 Lua 编译成 Android可安装文件（.apk）。">
+<meta name="keywords" content="android开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="makee">
+<meta property="og:url" content="https://lcblog.cn/post/makee">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="有什么想对LingC说的都可以来这里留言( ～’ω’)～  友链申请条件：  网站成立天数 &amp;gt;= 30 day 网站内容不能太水啦(*´д`)  原则上不添加论坛/资源收集等其他形式的网站 如果你跟我是朋友，以上条件均可忽视 如果你是小姐姐（不带把），请和我私聊以上条件均可忽视  如果你满足以上条件，请在本页下留言！本站信息站名：咸鱼不咸 头像：https://lcblog.cn/icon/">
+<meta property="og:description" content="什么是 Make ？它是由 LingC 所创造的简单解释型脚本语言，十分容易上手，用于开发 Android 应用。 什么是 Makee ?Makee 是基于 AndroLua+ 的 Android 开发工具，它可以将 Make 语言翻译为 Lua 编译成 Android可安装文件（.apk）。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-25T11:18:59.677Z">
+<meta property="og:updated_time" content="2019-08-03T02:44:18.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="messages">
-<meta name="twitter:description" content="有什么想对LingC说的都可以来这里留言( ～’ω’)～  友链申请条件：  网站成立天数 &amp;gt;= 30 day 网站内容不能太水啦(*´д`)  原则上不添加论坛/资源收集等其他形式的网站 如果你跟我是朋友，以上条件均可忽视 如果你是小姐姐（不带把），请和我私聊以上条件均可忽视  如果你满足以上条件，请在本页下留言！本站信息站名：咸鱼不咸 头像：https://lcblog.cn/icon/">
+<meta name="twitter:title" content="makee">
+<meta name="twitter:description" content="什么是 Make ？它是由 LingC 所创造的简单解释型脚本语言，十分容易上手，用于开发 Android 应用。 什么是 Makee ?Makee 是基于 AndroLua+ 的 Android 开发工具，它可以将 Make 语言翻译为 Lua 编译成 Android可安装文件（.apk）。">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
@@ -118,7 +118,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="messages" height="28">
+                <img src="/images/logo.png" alt="makee" height="28">
             
             </a>
         </div>
@@ -138,7 +138,7 @@ var _hmt = _hmt || [];
                 
                 <a class="navbar-item" href="/donate">捐赠列表</a>
                 
-                <a class="navbar-item is-active" href="/messages">留言</a>
+                <a class="navbar-item" href="/messages">留言</a>
                 
                 <a class="navbar-item" href="/about">关于</a>
                 
@@ -155,6 +155,10 @@ var _hmt = _hmt || [];
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
@@ -173,26 +177,39 @@ var _hmt = _hmt || [];
     
     <div class="card-content article ">
         
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-03T01:55:52.000Z">2019-08-03</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    几秒 即可读完 (大约 78 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                messages
+                makee
             
         </h1>
         <div class="content">
-            <p>有什么想对LingC说的都可以来这里留言( ～’ω’)～ </p>
-<h2 id="友链申请"><a href="#友链申请" class="headerlink" title="友链申请"></a>友链申请</h2><p>条件：</p>
-<ol>
-<li>网站成立天数 &gt;= 30 day</li>
-<li>网站内容不能太水啦(*´д`) </li>
-<li>原则上不添加论坛/资源收集等其他形式的网站</li>
-<li>如果你跟我是朋友，以上条件均可忽视</li>
-<li>如果你是小姐姐（不带把），<del>请和我私聊</del>以上条件均可忽视</li>
-</ol>
-<h5 id="如果你满足以上条件，请在本页下留言！"><a href="#如果你满足以上条件，请在本页下留言！" class="headerlink" title="如果你满足以上条件，请在本页下留言！"></a>如果你满足以上条件，请在本页下留言！</h5><h2 id="本站信息"><a href="#本站信息" class="headerlink" title="本站信息"></a>本站信息</h2><p>站名：咸鱼不咸</p>
-<p>头像：<a href="https://lcblog.cn/icon/icon.jpg">https://lcblog.cn/icon/icon.jpg</a> or <a href="mailto:61677516@qq.com" target="_blank" rel="noopener">61677516@qq.com</a>(Gravatar)</p>
-<p>网址：<a href="https://lcblog.cn">https://lcblog.cn</a></p>
-<p>介绍：老板！这条鱼再加点盐！</p>
+            <h1 id="什么是-Make-？"><a href="#什么是-Make-？" class="headerlink" title="什么是 Make ？"></a>什么是 Make ？</h1><p>它是由 LingC 所创造的简单解释型脚本语言，十分容易上手，用于开发 Android 应用。</p>
+<h1 id="什么是-Makee"><a href="#什么是-Makee" class="headerlink" title="什么是 Makee ?"></a>什么是 Makee ?</h1><p>Makee 是基于 AndroLua+ 的 Android 开发工具，它可以将 Make 语言翻译为 Lua 编译成 Android可安装文件（.apk）。</p>
 
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/android开发/">android开发</a>
+                </div>
+            </div>
         </div>
         
         
@@ -266,6 +283,20 @@ var _hmt = _hmt || [];
 </div>
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/post/android-zhihu-daily">
+                <span class="level-item">知乎日报的坑</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
@@ -403,6 +434,25 @@ var _hmt = _hmt || [];
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是-Make-？">
+        <span class="has-mr-6">1</span>
+        <span>什么是 Make ？</span>
+        </a></li><li>
+        <a class="is-flex" href="#什么是-Makee">
+        <span class="has-mr-6">2</span>
+        <span>什么是 Makee ?</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -1075,7 +1125,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="messages" height="28">
+                    <img src="/images/logo.png" alt="makee" height="28">
                 
                 </a>
                 <p class="is-size-7">

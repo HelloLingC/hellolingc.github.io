@@ -335,9 +335,9 @@ var _hmt = _hmt || [];
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/post/how-to-diss-qinlili">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/post/makee">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">如何评价琴梨梨</span>
+                <span class="level-item">makee</span>
             </a>
         </div>
         
@@ -439,7 +439,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        3
                     </p>
                 </div>
             </div>
@@ -826,7 +826,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/android-开发/" style="font-size: 10px;">android, 开发</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        <a href="/tags/android-开发/" style="font-size: 10px;">android, 开发</a> <a href="/tags/android开发/" style="font-size: 10px;">android开发</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
     </div>
 </div>
 
@@ -843,16 +843,16 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/post/how-to-diss-qinlili" class="media-left">
+            <a href="/post/makee" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="如何评价琴梨梨">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="makee">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T08:25:59.000Z">2019-08-01</time></div>
-                    <a href="/post/how-to-diss-qinlili" class="has-link-black-ter is-size-6">如何评价琴梨梨</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-03T01:55:52.000Z">2019-08-03</time></div>
+                    <a href="/post/makee" class="has-link-black-ter is-size-6">makee</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -978,6 +978,13 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/android-开发/">
                         <span class="tag">android, 开发</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/android开发/">
+                        <span class="tag">android开发</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1014,16 +1021,16 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/post/how-to-diss-qinlili" class="media-left">
+            <a href="/post/makee" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="如何评价琴梨梨">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="makee">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-01T08:25:59.000Z">2019-08-01</time></div>
-                    <a href="/post/how-to-diss-qinlili" class="has-link-black-ter is-size-6">如何评价琴梨梨</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-03T01:55:52.000Z">2019-08-03</time></div>
+                    <a href="/post/makee" class="has-link-black-ter is-size-6">makee</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1149,6 +1156,13 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/android-开发/">
                         <span class="tag">android, 开发</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/android开发/">
+                        <span class="tag">android开发</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
