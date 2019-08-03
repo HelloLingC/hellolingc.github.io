@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lcblog.cn/"/>
-  <updated>2019-08-03T02:44:18.833Z</updated>
+  <updated>2019-07-05T07:21:40.747Z</updated>
   <id>https://lcblog.cn/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>makee</title>
-    <link href="https://lcblog.cn//post/makee"/>
-    <id>https://lcblog.cn//post/makee</id>
-    <published>2019-08-03T01:55:52.000Z</published>
-    <updated>2019-08-03T02:44:18.833Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="什么是-Make-？"><a href="#什么是-Make-？" class="headerlink" title="什么是 Make ？"></a>什么是 Make ？</h1><p>它是由 LingC 所创造的简单解释型脚本语言，十分容易上手，用于开发 Android 应用。</p><h1 id="什么是-Makee"><a href="#什么是-Makee" class="headerlink" title="什么是 Makee ?"></a>什么是 Makee ?</h1><p>Makee 是基于 AndroLua+ 的 Android 开发工具，它可以将 Make 语言翻译为 Lua 编译成 Android可安装文件（.apk）。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;什么是-Make-？&quot;&gt;&lt;a href=&quot;#什么是-Make-？&quot; class=&quot;headerlink&quot; title=&quot;什么是 Make ？&quot;&gt;&lt;/a&gt;什么是 Make ？&lt;/h1&gt;&lt;p&gt;它是由 LingC 所创造的简单解释型脚本语言，十分容易上手，用于开发 An
-      
-    
-    </summary>
-    
-    
-      <category term="android开发" scheme="https://lcblog.cn/tags/android%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
   
   <entry>
     <title>知乎日报的坑</title>
