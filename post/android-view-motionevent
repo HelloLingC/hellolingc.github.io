@@ -8,19 +8,19 @@
 
 
 
-    <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
+    <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 &amp;lt; !– more –&amp;gt;  简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。">
 <meta name="keywords" content="Android开发, 代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android笔记#1 View的事件分发机制解析">
 <meta property="og:url" content="https://lcblog.cn/post/android-view-motionevent">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
+<meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 &amp;lt; !– more –&amp;gt;  简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-14T06:40:07.870Z">
+<meta property="og:updated_time" content="2019-08-14T07:23:24.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记#1 View的事件分发机制解析">
-<meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
+<meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 &amp;lt; !– more –&amp;gt;  简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
@@ -192,7 +192,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    18 分钟 即可读完 (大约 2702 个字)
+                    18 分钟 即可读完 (大约 2703 个字)
                 </span>
                 
                 
@@ -207,6 +207,7 @@ var _hmt = _hmt || [];
         <div class="content">
             <h1 id="咕咕咕"><a href="#咕咕咕" class="headerlink" title="咕咕咕"></a>咕咕咕</h1><p>基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。</p>
 <p>很久以前的 Android 开发笔记太鸡儿水了。</p>
+<p>&lt; !– more –&gt; </p>
 <h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p>众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。</p>
 <p>一个事件的传递顺序：Activity - &gt; Window -&gt; DecorView - &gt; RootView (你所设置的 View)</p>
 <p>ViewGroup 是继承自 View 的，这点也是基础中的基础了。</p>
