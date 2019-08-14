@@ -17,7 +17,7 @@
 <meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-14T07:51:08.631Z">
+<meta property="og:updated_time" content="2019-08-14T09:20:13.443Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记#1 View的事件分发机制解析">
 <meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
@@ -192,7 +192,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    18 分钟 即可读完 (大约 2732 个字)
+                    18 分钟 即可读完 (大约 2729 个字)
                 </span>
                 
                 
@@ -256,7 +256,7 @@ var _hmt = _hmt || [];
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Dispatch to touch targets.</span></span><br><span class="line"><span class="hljs-keyword">if</span> (mFirstTouchTarget == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">    <span class="hljs-comment">// No touch targets so treat this as an ordinary view.</span></span><br><span class="line">    handled = dispatchTransformedTouchEvent(ev, canceled, <span class="hljs-keyword">null</span>, TouchTarget.ALL_POINTER_IDS)   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>调用了 dispatchTransformedTouchEven 并在参数 child 传入了 null，回顾我们上面贴出来的 dispatchTransformedTouchEven 方法的代码，我们可以看到如果为 child == null则会调用 ViewGroup  自己的 dispatchTouchEvent。</p>
 <p>ViewGroup 的源码解析到此也差不多了。</p>
-<h1 id="View-源码解析"><a href="#View-源码解析" class="headerlink" title="View 源码解析"></a>View 源码解析</h1><p>接着看它的一段 dispatchTouchEvent 代码：</p>
+<h2 id="View-源码解析"><a href="#View-源码解析" class="headerlink" title="View 源码解析"></a>View 源码解析</h2><p>接着看它的一段 dispatchTouchEvent 代码：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">dispatchTouchEvent</span><span class="hljs-params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">boolean</span> result = <span class="hljs-keyword">false</span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-keyword">if</span> (onFilterTouchEventForSecurity(event)) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> ((mViewFlags &amp; ENABLED_MASK) == ENABLED &amp;&amp; handleScrollBarDragging(event)) &#123;</span><br><span class="line">            result = <span class="hljs-keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListenerInfo li = mListenerInfo;</span><br><span class="line">        <span class="hljs-keyword">if</span> (li != <span class="hljs-keyword">null</span> &amp;&amp; li.mOnTouchListener != <span class="hljs-keyword">null</span></span><br><span class="line">                &amp;&amp; (mViewFlags &amp; ENABLED_MASK) == ENABLED</span><br><span class="line">                &amp;&amp; li.mOnTouchListener.onTouch(<span class="hljs-keyword">this</span>, event)) &#123;</span><br><span class="line">            result = <span class="hljs-keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (!result &amp;&amp; onTouchEvent(event)) &#123;</span><br><span class="line">            result = <span class="hljs-keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里的 View 只处理自己的事件，不会再向下传递事件了。</p>
 <p>我们看向中间第二个 if ，我们可以看到如果设置了 OnTouchListener，且 onTouch 方法返回了 true，那么 onTouchEvent 就不会执行，证明了前面所说的 OnTouchListener 优先级高于 OnClickListener。</p>
@@ -269,8 +269,7 @@ var _hmt = _hmt || [];
 <p>还没结束，我们再看一看 setOnClickListener 方法</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setOnClickListener</span><span class="hljs-params">(OnClickListener l)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (!isClickable) &#123;</span><br><span class="line">        setClickable(<span class="hljs-keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    getListenerInfo.mOnClickListener = l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到在设置 View 的 OnClickListener会自动改变 View 的 clickable 属性，而 setOnLongClickListener 也是一样的。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总结：</p>
-<ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
 <li>事件分发机制就是点击事件的分发，在手指接触屏幕后产生的同一个事件序列都是点击事件。</li>
 <li>点击事件的传递顺序是由外向内。</li>
 <li>正常情况下一个事件序列只能被一个 View 拦截且消耗。</li>
@@ -512,13 +511,13 @@ var _hmt = _hmt || [];
         <a class="is-flex" href="#ViewGroup-源码解析">
         <span class="has-mr-6">3.1</span>
         <span>ViewGroup 源码解析</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#View-源码解析">
-        <span class="has-mr-6">4</span>
-        <span>View 源码解析</span>
         </a></li><li>
+        <a class="is-flex" href="#View-源码解析">
+        <span class="has-mr-6">3.2</span>
+        <span>View 源码解析</span>
+        </a></li></ul></li><li>
         <a class="is-flex" href="#总结">
-        <span class="has-mr-6">5</span>
+        <span class="has-mr-6">4</span>
         <span>总结</span>
         </a></li></ul>
         </div>
