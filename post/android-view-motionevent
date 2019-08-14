@@ -8,19 +8,19 @@
 
 
 
-    <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。">
+    <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
 <meta name="keywords" content="Android开发, 代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android笔记#1 View的事件分发机制解析">
 <meta property="og:url" content="https://lcblog.cn/post/android-view-motionevent">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。">
+<meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-14T07:26:41.862Z">
+<meta property="og:updated_time" content="2019-08-14T07:27:53.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记#1 View的事件分发机制解析">
-<meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。">
+<meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
@@ -207,10 +207,10 @@ var _hmt = _hmt || [];
         <div class="content">
             <h1 id="咕咕咕"><a href="#咕咕咕" class="headerlink" title="咕咕咕"></a>咕咕咕</h1><p>基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。</p>
 <p>很久以前的 Android 开发笔记太鸡儿水了。</p>
-<a id="more"></a> 
 <h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p>众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。</p>
 <p>一个事件的传递顺序：Activity - &gt; Window -&gt; DecorView - &gt; RootView (你所设置的 View)</p>
 <p>ViewGroup 是继承自 View 的，这点也是基础中的基础了。</p>
+<a id="more"></a> 
 <p>事件的分发过程主要由以下三个方法来完成：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">dispatchTouchEvent</span><span class="hljs-params">(MotionEvent ev)</span></span>;</span><br><span class="line"><span class="hljs-comment">// 如果事件传到此 View 那么该方法一定会被调用</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onInterceptTouchEvent</span><span class="hljs-params">(MotionEvent event)</span></span>;</span><br><span class="line"><span class="hljs-comment">// 用来判断 View 是否拦截此事件，如果拦截那么在这事件序列中此方法不会再被调用</span></span><br></pre></td></tr></table></figure>

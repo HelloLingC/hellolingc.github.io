@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lcblog.cn/post/android-zhihu-daily</loc>
+    
+    <lastmod>2019-08-14T07:28:08.307Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lcblog.cn/post/android-view-motionevent</loc>
     
-    <lastmod>2019-08-14T07:26:41.862Z</lastmod>
+    <lastmod>2019-08-14T07:27:53.544Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>https://lcblog.cn/donate/index.html</loc>
     
     <lastmod>2019-08-02T10:53:14.638Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lcblog.cn/post/android-zhihu-daily</loc>
-    
-    <lastmod>2019-07-05T07:21:40.747Z</lastmod>
     
   </url>
   

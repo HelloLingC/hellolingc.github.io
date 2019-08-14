@@ -8,19 +8,19 @@
 
 
 
-    <meta name="description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程 架构用的是MVP，也就是Model, View, Presenter 感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦 最开始当然是疯">
+    <meta name="description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
 <meta name="keywords" content="android, 开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知乎日报的坑">
 <meta property="og:url" content="https://lcblog.cn/post/android-zhihu-daily">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程 架构用的是MVP，也就是Model, View, Presenter 感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦 最开始当然是疯">
+<meta property="og:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-05T07:21:40.747Z">
+<meta property="og:updated_time" content="2019-08-14T07:28:08.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知乎日报的坑">
-<meta name="twitter:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程 架构用的是MVP，也就是Model, View, Presenter 感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦 最开始当然是疯">
+<meta name="twitter:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
@@ -192,7 +192,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 即可读完 (大约 1180 个字)
+                    8 分钟 即可读完 (大约 1181 个字)
                 </span>
                 
                 
@@ -211,6 +211,7 @@ var _hmt = _hmt || [];
 <p>昨天我开始写一个第三方的知乎日报客户端</p>
 <p>因为太无聊了，就随便搞搞吧。<a href="https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90" target="_blank" rel="noopener">用的是这个API</a></p>
 <p>简单说一下之前遇到的问题吧，以及开发的过程</p>
+<a id="more"></a> 
 <h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>用的是MVP，也就是Model, View, Presenter</p>
 <p>感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦</p>
 <p>最开始当然是疯狂写写写写接口，创建Activity</p>
