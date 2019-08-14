@@ -8,19 +8,19 @@
 
 
 
-    <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
+    <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
 <meta name="keywords" content="Android开发, 代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android笔记#1 View的事件分发机制解析">
 <meta property="og:url" content="https://lcblog.cn/post/android-view-motionevent">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
+<meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-14T07:27:53.544Z">
+<meta property="og:updated_time" content="2019-08-14T07:50:08.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记#1 View的事件分发机制解析">
-<meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。 一个事件的传递顺序：Activity">
+<meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
@@ -36,7 +36,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/github.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/idea.css">
 
 
     
@@ -192,7 +192,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    18 分钟 即可读完 (大约 2724 个字)
+                    18 分钟 即可读完 (大约 2733 个字)
                 </span>
                 
                 
@@ -207,7 +207,7 @@ var _hmt = _hmt || [];
         <div class="content">
             <h1 id="咕咕咕"><a href="#咕咕咕" class="headerlink" title="咕咕咕"></a>咕咕咕</h1><p>基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。</p>
 <p>很久以前的 Android 开发笔记太鸡儿水了。</p>
-<h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p>众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。</p>
+<h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p>众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。</p>
 <p>一个事件的传递顺序：Activity - &gt; Window -&gt; DecorView - &gt; RootView (你所设置的 View)</p>
 <p>ViewGroup 是继承自 View 的，这点也是基础中的基础了。</p>
 <a id="more"></a> 
@@ -218,10 +218,10 @@ var _hmt = _hmt || [];
 <p>下面我们附上一段伪代码来阐述三个方法的关系：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">dispatchTouchEvent</span><span class="hljs-params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">boolean</span> consume = <span class="hljs-keyword">false</span>;</span><br><span class="line">    <span class="hljs-comment">// onInterceptTouchEvent判断是否拦截此事件</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (onInterceptTouchEvent(ev)) &#123;</span><br><span class="line">        <span class="hljs-comment">// 拦截的话，则调用 onTouchEvent 处理事件，返回是否消耗此事件</span></span><br><span class="line">        consume = onTouchEvent(ev);</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-comment">// 不拦截交给子类 View</span></span><br><span class="line">        consume = child.dispatchTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-comment">// 此方法的返回值为是否拦截此事件。</span></span><br><span class="line">    <span class="hljs-keyword">return</span> consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意调用  dispatchTouchEvent 时往往第一个是 ACTION_DOWN 事件，请搞清“拦截”和“消耗”两个概念，onInterceptTouchEvent 返回的是是否拦截，onTouchEvent 返回的是是否消耗。</p>
-<p>如果 onInterceptTouchEveny 返回 true ，但 onTouchEvent 返回 false，即代表拦截但不消耗事件，如果这个事件是 ACTION_DOWN，那么同一事件序列的其他事件将不会再交给此 View 了，这时会调用上一级的 onTouchEvent，如果还是 false ，那么就调用上一级的上一级的 onTouchEvent，如果都是 false,那么最终会交给 Activity 处理。</p>
+<p>如果 onInterceptTouchEvent 返回 true ，但 onTouchEvent 返回 false，即代表拦截但不消耗事件，如果这个事件是 ACTION_DOWN，那么同一事件序列的其他事件将不会再交给此 View 了，这时会调用上一级的 onTouchEvent，如果还是 false ，那么就调用上一级的上一级的 onTouchEvent，如果都是 false，那么最终会交给 Activity 处理。</p>
 <p>onTouchEvent 的返回值是取决于 View 的 clickable 和 longClickable 属性的，只要其中一个为 true，那么 onTouchEvent 就会返回 true，与 enable 属性无关。</p>
 <p>如果 View 不消耗除 ACTION_DOWN 以外的事件，那么父 View 的 onTouchEvent 不会被调用，并且此 View 仍然可以接收到事件，不消耗的事件将直接交给 Activity 处理。</p>
-<p>Android 源码中 ViewGroup 的 onInterceptTouchEven 默认会返回 false，而 View 则没有这个方法，会直接调用 onTouchEvent。</p>
+<p>Android 源码中 ViewGroup 的 onInterceptTouchEvent 默认会返回 false，而 View 则没有这个方法，会直接调用 onTouchEvent。</p>
 <p>如果一个 View 设置了 OnTouchListener 那么里面的 onTouch 方法则会被回调，我们都知道 onTouch 会返回一个 boolean ，onTouchEvent 方法是否被调用是取决于这个 boolean 的，如果返回 false，那么 onTouchEvent  则会被调用，我们经常设置的 OnClickListener 是在 onTouchEvent 中的。</p>
 <p>从上面可以看出， onTouchListener 的优先级高于 onTouchEvent，而 OnClickListener 则是优先级最低的。</p>
 <p>在网上翻到了一张图，总结得挺好</p>
