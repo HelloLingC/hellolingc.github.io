@@ -8,19 +8,19 @@
 
 
 
-    <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 &amp;lt; !– more –&amp;gt;  简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。">
+    <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。">
 <meta name="keywords" content="Android开发, 代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android笔记#1 View的事件分发机制解析">
 <meta property="og:url" content="https://lcblog.cn/post/android-view-motionevent">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 &amp;lt; !– more –&amp;gt;  简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。">
+<meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-14T07:23:24.018Z">
+<meta property="og:updated_time" content="2019-08-14T07:26:41.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记#1 View的事件分发机制解析">
-<meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 &amp;lt; !– more –&amp;gt;  简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。">
+<meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
@@ -192,7 +192,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    18 分钟 即可读完 (大约 2703 个字)
+                    18 分钟 即可读完 (大约 2724 个字)
                 </span>
                 
                 
@@ -207,7 +207,7 @@ var _hmt = _hmt || [];
         <div class="content">
             <h1 id="咕咕咕"><a href="#咕咕咕" class="headerlink" title="咕咕咕"></a>咕咕咕</h1><p>基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。</p>
 <p>很久以前的 Android 开发笔记太鸡儿水了。</p>
-<p>&lt; !– more –&gt; </p>
+<a id="more"></a> 
 <h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p>众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN(按下) 开始，多个 MotionEvent.MOVE(移动) 和一个 MotionEvent.ACTION_UP 结束。</p>
 <p>一个事件的传递顺序：Activity - &gt; Window -&gt; DecorView - &gt; RootView (你所设置的 View)</p>
 <p>ViewGroup 是继承自 View 的，这点也是基础中的基础了。</p>
@@ -225,7 +225,7 @@ var _hmt = _hmt || [];
 <p>如果一个 View 设置了 OnTouchListener 那么里面的 onTouch 方法则会被回调，我们都知道 onTouch 会返回一个 boolean ，onTouchEvent 方法是否被调用是取决于这个 boolean 的，如果返回 false，那么 onTouchEvent  则会被调用，我们经常设置的 OnClickListener 是在 onTouchEvent 中的。</p>
 <p>从上面可以看出， onTouchListener 的优先级高于 onTouchEvent，而 OnClickListener 则是优先级最低的。</p>
 <p>在网上翻到了一张图，总结得挺好</p>
-<p><img src alt="总结"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2435754-a09ab44cb25be80d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/972/format/webp" alt="总结"></p>
 <h1 id="Android-源码分析"><a href="#Android-源码分析" class="headerlink" title="Android 源码分析"></a>Android 源码分析</h1><p>事件最开始会调用到 Activity 的 dispatchTouchEvent 方法：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">dispatchTouchEvent</span><span class="hljs-params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (ev.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">            onUserInteraction();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span> (getWindow().superDispatchTouchEvent(ev)) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> onTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>事件开始交给 Activity 所属的 Window 进行分发，Window 的实现类是 PhoneWindow ，我们继续来看 PhoneWindow#superDispatchTouchEvent：</p>
