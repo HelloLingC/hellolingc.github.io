@@ -9,7 +9,7 @@
 
 
     <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
-<meta name="keywords" content="Android开发, 代码">
+<meta name="keywords" content="Android开发,代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android笔记#1 View的事件分发机制解析">
 <meta property="og:url" content="https://lcblog.cn/post/android-view-motionevent">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-14T09:20:13.443Z">
+<meta property="og:updated_time" content="2019-08-18T08:26:27.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记#1 View的事件分发机制解析">
 <meta name="twitter:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
@@ -286,7 +286,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Android开发-代码/">Android开发, 代码</a>
+                    <a class="has-link-grey -link" href="/tags/Android开发/">Android开发</a>, <a class="has-link-grey -link" href="/tags/代码/">代码</a>
                 </div>
             </div>
         </div>
@@ -440,7 +440,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        4
                     </p>
                 </div>
             </div>
@@ -831,7 +831,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Android-开发/" style="font-size: 10px;">Android,开发</a> <a href="/tags/Android开发-代码/" style="font-size: 10px;">Android开发, 代码</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        <a href="/tags/Android-开发/" style="font-size: 10px;">Android,开发</a> <a href="/tags/Android开发/" style="font-size: 10px;">Android开发</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 10px;">代码</a>
     </div>
 </div>
 
@@ -988,8 +988,8 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发, 代码</span>
+                    <a class="tags has-addons" href="/tags/Android开发/">
+                        <span class="tag">Android开发</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -997,6 +997,13 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/hexo/">
                         <span class="tag">hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/代码/">
+                        <span class="tag">代码</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1166,8 +1173,8 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发, 代码</span>
+                    <a class="tags has-addons" href="/tags/Android开发/">
+                        <span class="tag">Android开发</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1175,6 +1182,13 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/hexo/">
                         <span class="tag">hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/代码/">
+                        <span class="tag">代码</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
