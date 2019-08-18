@@ -9,7 +9,7 @@
 
 
     <meta name="description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
-<meta name="keywords" content="android, 开发">
+<meta name="keywords" content="Android,开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知乎日报的坑">
 <meta property="og:url" content="https://lcblog.cn/post/android-zhihu-daily">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-14T07:28:08.307Z">
+<meta property="og:updated_time" content="2019-08-18T08:22:56.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知乎日报的坑">
 <meta name="twitter:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
@@ -185,7 +185,7 @@ var _hmt = _hmt || [];
                 <time class="level-item has-text-grey" datetime="2019-07-04T12:34:10.000Z">2019-07-04</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/开发/">开发</a>
+                <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                 </div>
                 
                 
@@ -258,7 +258,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/android-开发/">android, 开发</a>
+                    <a class="has-link-grey -link" href="/tags/Android-开发/">Android,开发</a>
                 </div>
             </div>
         </div>
@@ -360,7 +360,7 @@ var _hmt = _hmt || [];
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
     
         
 <div class="card widget">
@@ -409,7 +409,7 @@ var _hmt = _hmt || [];
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        2
                     </p>
                 </div>
             </div>
@@ -784,20 +784,12 @@ var _hmt = _hmt || [];
                 <span class="level-item">代码</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/其他/">
             <span class="level-start">
                 <span class="level-item">其他</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/开发/">
-            <span class="level-start">
-                <span class="level-item">开发</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -814,13 +806,13 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Android开发-代码/" style="font-size: 10px;">Android开发, 代码</a> <a href="/tags/android-开发/" style="font-size: 10px;">android, 开发</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        <a href="/tags/Android-开发/" style="font-size: 10px;">Android,开发</a> <a href="/tags/Android开发-代码/" style="font-size: 10px;">Android开发, 代码</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
     </div>
 </div>
 
     
     
-        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        <div class="column-right-shadow is-hidden-widescreen ">
         
             
 <div class="card widget">
@@ -861,7 +853,7 @@ var _hmt = _hmt || [];
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-04T12:34:10.000Z">2019-07-04</time></div>
                     <a href="/post/android-zhihu-daily" class="has-link-black-ter is-size-6">知乎日报的坑</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/开发/">开发</a>
+                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                     </p>
                 </div>
             </div>
@@ -964,15 +956,15 @@ var _hmt = _hmt || [];
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发, 代码</span>
+                    <a class="tags has-addons" href="/tags/Android-开发/">
+                        <span class="tag">Android,开发</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/android-开发/">
-                        <span class="tag">android, 开发</span>
+                    <a class="tags has-addons" href="/tags/Android开发-代码/">
+                        <span class="tag">Android开发, 代码</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -998,7 +990,7 @@ var _hmt = _hmt || [];
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
     
         
 <div class="card widget">
@@ -1039,7 +1031,7 @@ var _hmt = _hmt || [];
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-04T12:34:10.000Z">2019-07-04</time></div>
                     <a href="/post/android-zhihu-daily" class="has-link-black-ter is-size-6">知乎日报的坑</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/开发/">开发</a>
+                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                     </p>
                 </div>
             </div>
@@ -1142,15 +1134,15 @@ var _hmt = _hmt || [];
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发, 代码</span>
+                    <a class="tags has-addons" href="/tags/Android-开发/">
+                        <span class="tag">Android,开发</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/android-开发/">
-                        <span class="tag">android, 开发</span>
+                    <a class="tags has-addons" href="/tags/Android开发-代码/">
+                        <span class="tag">Android开发, 代码</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
