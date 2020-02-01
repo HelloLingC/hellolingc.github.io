@@ -1,3 +1,3 @@
+https://lcblog.cn/post/android-activity-monitor
 https://lcblog.cn/post/android-view-motionevent
 https://lcblog.cn/post/android-zhihu-daily
-https://lcblog.cn/post/hello-hexo
