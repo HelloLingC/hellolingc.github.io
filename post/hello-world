@@ -337,7 +337,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        6
                     </p>
                 </div>
             </div>
@@ -691,7 +691,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">代码</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/其他/">
@@ -713,7 +713,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Android开发/" style="font-size: 20px;">Android开发</a> <a href="/tags/Android开发-代码/" style="font-size: 10px;">Android开发,代码</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 20px;">代码</a>
+        <a href="/tags/Android开发/" style="font-size: 20px;">Android开发</a> <a href="/tags/Android开发-代码/" style="font-size: 20px;">Android开发, 代码</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 20px;">代码</a>
     </div>
 </div>
 
@@ -730,6 +730,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/post/android-shizuku-theory" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizku源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-02T11:24:10.000Z">2020-02-02</time></div>
+                    <a href="/post/android-shizuku-theory" class="has-link-black-ter is-size-6">Android Shizku源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/android-activity-monitor" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Android 监听第三方Activity的一举一动">
@@ -738,7 +757,7 @@ var _hmt = _hmt || [];
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-30T10:39:25.000Z">2020-01-30</time></div>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T10:39:25.000Z">2020-02-01</time></div>
                     <a href="/post/android-activity-monitor" class="has-link-black-ter is-size-6">Android 监听第三方Activity的一举一动</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
@@ -804,25 +823,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/hello-world" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T00:23:35.381Z">2019-05-19</time></div>
-                    <a href="/post/hello-world" class="has-link-black-ter is-size-6">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -836,12 +836,12 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
+            <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
-                    <span class="level-item">一月 2020</span>
+                    <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -901,8 +901,8 @@ var _hmt = _hmt || [];
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发,代码</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag">Android开发, 代码</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -945,6 +945,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/post/android-shizuku-theory" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizku源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-02T11:24:10.000Z">2020-02-02</time></div>
+                    <a href="/post/android-shizuku-theory" class="has-link-black-ter is-size-6">Android Shizku源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/android-activity-monitor" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Android 监听第三方Activity的一举一动">
@@ -953,7 +972,7 @@ var _hmt = _hmt || [];
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-30T10:39:25.000Z">2020-01-30</time></div>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T10:39:25.000Z">2020-02-01</time></div>
                     <a href="/post/android-activity-monitor" class="has-link-black-ter is-size-6">Android 监听第三方Activity的一举一动</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
@@ -1019,25 +1038,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/hello-world" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T00:23:35.381Z">2019-05-19</time></div>
-                    <a href="/post/hello-world" class="has-link-black-ter is-size-6">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1051,12 +1051,12 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
+            <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
-                    <span class="level-item">一月 2020</span>
+                    <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1116,8 +1116,8 @@ var _hmt = _hmt || [];
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发,代码</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag">Android开发, 代码</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

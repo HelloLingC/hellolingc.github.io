@@ -16,7 +16,7 @@
 <meta property="og:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-18T08:27:58.231Z">
+<meta property="og:updated_time" content="2020-02-02T11:34:18.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知乎日报的坑">
 <meta name="twitter:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
@@ -191,7 +191,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 即可读完 (大约 1181 个字)
+                    8 分钟 即可读完 (大约 1183 个字)
                 </span>
                 
                 
@@ -250,6 +250,7 @@ var _hmt = _hmt || [];
 <p>但我还没感受过这种合作呢，哭惹</p>
 <p>现在完成了简单的加载和查看</p>
 <p>只做完了六分之一吧，甚至更少（哭哭）</p>
+<p><img src="1.png" alt="1.png"></p>
 
         </div>
         
@@ -398,7 +399,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        6
                     </p>
                 </div>
             </div>
@@ -783,7 +784,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">代码</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/其他/">
@@ -805,7 +806,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Android开发/" style="font-size: 20px;">Android开发</a> <a href="/tags/Android开发-代码/" style="font-size: 10px;">Android开发,代码</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 20px;">代码</a>
+        <a href="/tags/Android开发/" style="font-size: 20px;">Android开发</a> <a href="/tags/Android开发-代码/" style="font-size: 20px;">Android开发, 代码</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 20px;">代码</a>
     </div>
 </div>
 
@@ -822,6 +823,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/post/android-shizuku-theory" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizku源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-02T11:24:10.000Z">2020-02-02</time></div>
+                    <a href="/post/android-shizuku-theory" class="has-link-black-ter is-size-6">Android Shizku源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/android-activity-monitor" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Android 监听第三方Activity的一举一动">
@@ -830,7 +850,7 @@ var _hmt = _hmt || [];
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-30T10:39:25.000Z">2020-01-30</time></div>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T10:39:25.000Z">2020-02-01</time></div>
                     <a href="/post/android-activity-monitor" class="has-link-black-ter is-size-6">Android 监听第三方Activity的一举一动</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
@@ -896,25 +916,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/hello-world" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T00:23:35.381Z">2019-05-19</time></div>
-                    <a href="/post/hello-world" class="has-link-black-ter is-size-6">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -928,12 +929,12 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
+            <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
-                    <span class="level-item">一月 2020</span>
+                    <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -993,8 +994,8 @@ var _hmt = _hmt || [];
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发,代码</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag">Android开发, 代码</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1037,6 +1038,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/post/android-shizuku-theory" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizku源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-02T11:24:10.000Z">2020-02-02</time></div>
+                    <a href="/post/android-shizuku-theory" class="has-link-black-ter is-size-6">Android Shizku源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/android-activity-monitor" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Android 监听第三方Activity的一举一动">
@@ -1045,7 +1065,7 @@ var _hmt = _hmt || [];
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-30T10:39:25.000Z">2020-01-30</time></div>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T10:39:25.000Z">2020-02-01</time></div>
                     <a href="/post/android-activity-monitor" class="has-link-black-ter is-size-6">Android 监听第三方Activity的一举一动</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
@@ -1111,25 +1131,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/hello-world" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T00:23:35.381Z">2019-05-19</time></div>
-                    <a href="/post/hello-world" class="has-link-black-ter is-size-6">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1143,12 +1144,12 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
+            <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
-                    <span class="level-item">一月 2020</span>
+                    <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1208,8 +1209,8 @@ var _hmt = _hmt || [];
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发,代码</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag">Android开发, 代码</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
