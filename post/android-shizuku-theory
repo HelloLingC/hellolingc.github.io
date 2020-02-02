@@ -8,7 +8,7 @@
 
 
     <meta name="description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服务进程发送 binder 至应用进程 应用">
-<meta name="keywords" content="Android开发, 代码">
+<meta name="keywords" content="Android开发,代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Shizku源码分析">
 <meta property="og:url" content="https://lcblog.cn/post/android-shizuku-theory">
@@ -16,7 +16,7 @@
 <meta property="og:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服务进程发送 binder 至应用进程 应用">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2020-02-02T11:53:02.800Z">
+<meta property="og:updated_time" content="2020-02-02T11:55:25.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Shizku源码分析">
 <meta name="twitter:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服务进程发送 binder 至应用进程 应用">
@@ -276,7 +276,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Android开发-代码/">Android开发, 代码</a>
+                    <a class="has-link-grey -link" href="/tags/Android开发/">Android开发</a>, <a class="has-link-grey -link" href="/tags/代码/">代码</a>
                 </div>
             </div>
         </div>
@@ -430,7 +430,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        3
                     </p>
                 </div>
             </div>
@@ -825,7 +825,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Android开发/" style="font-size: 20px;">Android开发</a> <a href="/tags/Android开发-代码/" style="font-size: 20px;">Android开发, 代码</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 20px;">代码</a>
+        <a href="/tags/Android开发/" style="font-size: 20px;">Android开发</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 20px;">代码</a>
     </div>
 </div>
 
@@ -1007,14 +1007,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Android开发/">
                         <span class="tag">Android开发</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发, 代码</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1028,7 +1021,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/代码/">
                         <span class="tag">代码</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1222,14 +1215,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Android开发/">
                         <span class="tag">Android开发</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Android开发-代码/">
-                        <span class="tag">Android开发, 代码</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1243,7 +1229,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/代码/">
                         <span class="tag">代码</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
