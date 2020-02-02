@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：https://lcblog.cn/post/android-activity-monitor 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 正文ShizukuBinderWrapper首先我们看，在开发时调用 Shizuku 的代码： 1private static f">
+    <meta name="description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服务进程发送 binder 至应用进程 应用">
 <meta name="keywords" content="Android开发, 代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Shizku源码分析">
 <meta property="og:url" content="https://lcblog.cn/post/android-shizuku-theory">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：https://lcblog.cn/post/android-activity-monitor 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 正文ShizukuBinderWrapper首先我们看，在开发时调用 Shizuku 的代码： 1private static f">
+<meta property="og:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服务进程发送 binder 至应用进程 应用">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2020-02-02T11:24:58.662Z">
+<meta property="og:updated_time" content="2020-02-02T11:53:02.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Shizku源码分析">
-<meta name="twitter:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：https://lcblog.cn/post/android-activity-monitor 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 正文ShizukuBinderWrapper首先我们看，在开发时调用 Shizuku 的代码： 1private static f">
+<meta name="twitter:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad 看，最后还是用 as 看源码好点吧。 Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服务进程发送 binder 至应用进程 应用">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
@@ -191,7 +191,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    13 分钟 即可读完 (大约 2021 个字)
+                    14 分钟 即可读完 (大约 2108 个字)
                 </span>
                 
                 
@@ -204,9 +204,17 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇文章我使用了 Shizuku 去调用系统API：<a href="https://lcblog.cn/post/android-activity-monitor">https://lcblog.cn/post/android-activity-monitor</a></p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇文章我使用了 Shizuku 去调用系统API：<a href="https://lcblog.cn/post/android-activity-monitor">文章链接</a></p>
 <p>这次就来看看 Shizuku 的源码是怎么写的。</p>
 <p>最开始我用 Notepad 看，最后还是用 as 看源码好点吧。</p>
+<h2 id="Shizuku-是什么？"><a href="#Shizuku-是什么？" class="headerlink" title="Shizuku 是什么？"></a>Shizuku 是什么？</h2><blockquote>
+<p>Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。</p>
+<ol>
+<li>应用进程启动时 Shizuku 服务进程发送 binder 至应用进程</li>
+<li>应用通过该 binder 与 Shizuku 服务进程交互，Shizuku 服务进程通过 binder 与 system server 交互</li>
+</ol>
+</blockquote>
+<a id="more"></a>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="ShizukuBinderWrapper"><a href="#ShizukuBinderWrapper" class="headerlink" title="ShizukuBinderWrapper"></a>ShizukuBinderWrapper</h2><p>首先我们看，在开发时调用 Shizuku 的代码：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> IPackageManager PACKAGE_MANAGER = IPackageManager.Stub.asInterface(<span class="hljs-keyword">new</span> ShizukuBinderWrapper(SystemServiceHelper.getSystemService(<span class="hljs-string">"package"</span>)));</span><br></pre></td></tr></table></figure>
 <p>它使我们能随意调用 Android 系统中 IPackageManager 内的方法，也就是系统隐藏的API（有 @hide 标签的方法）</p>
@@ -481,7 +489,11 @@ var _hmt = _hmt || [];
         <a class="is-flex" href="#前言">
         <span class="has-mr-6">1</span>
         <span>前言</span>
-        </a></li><li>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Shizuku-是什么？">
+        <span class="has-mr-6">1.1</span>
+        <span>Shizuku 是什么？</span>
+        </a></li></ul></li><li>
         <a class="is-flex" href="#正文">
         <span class="has-mr-6">2</span>
         <span>正文</span>
