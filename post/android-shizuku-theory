@@ -2,31 +2,31 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Android Shizku源码分析 - 咸鱼不咸</title>
+<title>Android Shizuku源码分析 - 咸鱼不咸</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服">
+    <meta name="description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
 <meta name="keywords" content="Android开发,代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Shizku源码分析">
+<meta property="og:title" content="Android Shizuku源码分析">
 <meta property="og:url" content="https://lcblog.cn/post/android-shizuku-theory">
 <meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服">
+<meta property="og:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2020-02-02T16:17:32.380Z">
+<meta property="og:updated_time" content="2020-02-03T10:12:37.899Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Shizku源码分析">
-<meta name="twitter:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。  应用进程启动时 Shizuku 服">
+<meta name="twitter:title" content="Android Shizuku源码分析">
+<meta name="twitter:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
 
 
 
 
-<link rel="alternative" href="https://lcblog.cn/atom.xml" title="Android Shizku源码分析" type="application/atom+xml">
+<link rel="alternative" href="https://lcblog.cn/atom.xml" title="Android Shizuku源码分析" type="application/atom+xml">
 
 
 
@@ -120,7 +120,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="Android Shizku源码分析" height="28">
+                <img src="/images/logo.png" alt="Android Shizuku源码分析" height="28">
             
             </a>
         </div>
@@ -191,7 +191,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    14 分钟 即可读完 (大约 2155 个字)
+                    15 分钟 即可读完 (大约 2245 个字)
                 </span>
                 
                 
@@ -200,13 +200,15 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Android Shizku源码分析
+                Android Shizuku源码分析
             
         </h1>
         <div class="content">
             <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇文章我使用了 Shizuku 去调用系统API：<a href="https://lcblog.cn/post/android-activity-monitor">文章链接</a></p>
 <p>这次就来看看 Shizuku 的源码是怎么写的。</p>
 <p>最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。</p>
+<p><a href="https://shizuku.rikka.app/" target="_blank" rel="noopener">官方文档</a></p>
+<p><a href="https://www.coolapk.com/apk/moe.shizuku.privileged.api" target="_blank" rel="noopener">酷安下载 ShizukuManager</a></p>
 <p><a href="https://github.com/RikkaApps/Shizuku" target="_blank" rel="noopener">Watch it on GitHub</a></p>
 <h2 id="Shizuku-是什么？"><a href="#Shizuku-是什么？" class="headerlink" title="Shizuku 是什么？"></a>Shizuku 是什么？</h2><blockquote>
 <p>Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。</p>
@@ -269,7 +271,8 @@ var _hmt = _hmt || [];
 <p>这个 IContentProviderHelper 的 call 方法会跨进程调用 ShizukuBinderReceiveProvider 这个 ContentProvider 的 call 方法：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-meta">@Nullable</span></span><br><span class="line"> <span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> Bundle <span class="hljs-title">call</span><span class="hljs-params">(@NonNull String method, @Nullable String arg, @Nullable Bundle extras)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (extras == <span class="hljs-keyword">null</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">        Bundle reply = <span class="hljs-keyword">new</span> Bundle();</span><br><span class="line">        extras.setClassLoader(BinderContainer.class.getClassLoader());</span><br><span class="line">        <span class="hljs-keyword">switch</span> (method) &#123;</span><br><span class="line">            <span class="hljs-keyword">case</span> METHOD_SEND_BINDER: &#123;</span><br><span class="line">                <span class="hljs-keyword">if</span> (ShizukuService.pingBinder()) &#123;</span><br><span class="line">                    Log.i(<span class="hljs-string">"ShizukuClient"</span>, <span class="hljs-string">"ShizukuBinderReceiveProvider started when already a binder alive"</span>);</span><br><span class="line">                    <span class="hljs-keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                BinderContainer container = extras.getParcelable(ShizukuApiConstants.EXTRA_BINDER);</span><br><span class="line">                <span class="hljs-keyword">if</span> (container != <span class="hljs-keyword">null</span> &amp;&amp; container.binder != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                    Log.i(<span class="hljs-string">"ShizukuClient"</span>, <span class="hljs-string">"binder received"</span>);</span><br><span class="line">                    <span class="hljs-comment">// 调用 ShizukuService 的 setBinder 静态方法将静态变量 mService 设置成之前在 app_process 进程启动的 ShizukuService 的 Binder</span></span><br><span class="line">                    ShizukuService.setBinder(container.binder);</span><br><span class="line">                    <span class="hljs-comment">//noinspection ConstantConditions</span></span><br><span class="line">                    Intent intent = <span class="hljs-keyword">new</span> Intent(ShizukuMultiProcessHelper.ACTION_BINDER_RECEIVED)</span><br><span class="line">                            .putExtra(ShizukuApiConstants.EXTRA_BINDER, container)</span><br><span class="line">                            .setPackage(getContext().getPackageName());</span><br><span class="line">                    getContext().sendBroadcast(intent);</span><br><span class="line">                &#125;</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> reply;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中调用了 ShizukuService 的 setBinder 方法，将 IShuzukuService 传进去了。</p>
-<h1 id="末语"><a href="#末语" class="headerlink" title="末语"></a>末语</h1><p>Shizuku 内还有好多 dalao操作，我都没有去看，只把重要的一部分写了下来。</p>
+<h1 id="末语"><a href="#末语" class="headerlink" title="末语"></a>末语</h1><p>写这篇文章的时候苦于手机没有 root ，我还是开着 VMOS 分析 ShizukuManager 的那个 start.sh。。。手机 data 分区需要解密，但我 data 分区有重要文件不想格式化，我也不懂备份就一直</p>
+<p>Shizuku 内还有好多 dalao操作，我都没有去看，只把重要的一部分写了下来。</p>
 <p>果然只有 dalao才能这样操作，我还是继续躺着吧。</p>
 <p>Orz</p>
 
@@ -847,14 +850,14 @@ var _hmt = _hmt || [];
             
             <a href="/post/android-shizuku-theory" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizku源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-02T11:24:10.000Z">2020-02-02</time></div>
-                    <a href="/post/android-shizuku-theory" class="has-link-black-ter is-size-6">Android Shizku源码分析</a>
+                    <a href="/post/android-shizuku-theory" class="has-link-black-ter is-size-6">Android Shizuku源码分析</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                     </p>
@@ -1055,14 +1058,14 @@ var _hmt = _hmt || [];
             
             <a href="/post/android-shizuku-theory" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizku源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-02T11:24:10.000Z">2020-02-02</time></div>
-                    <a href="/post/android-shizuku-theory" class="has-link-black-ter is-size-6">Android Shizku源码分析</a>
+                    <a href="/post/android-shizuku-theory" class="has-link-black-ter is-size-6">Android Shizuku源码分析</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                     </p>
@@ -1253,7 +1256,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="Android Shizku源码分析" height="28">
+                    <img src="/images/logo.png" alt="Android Shizuku源码分析" height="28">
                 
                 </a>
                 <p class="is-size-7">
