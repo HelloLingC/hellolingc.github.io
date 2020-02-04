@@ -345,7 +345,7 @@ var _hmt = _hmt || [];
         <div class="level-start">
             <a class="level level-item has-link-grey  article-nav-prev" href="/post/android-shizuku-theory2">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Android Shizuku源码分析</span>
+                <span class="level-item">Android Shizuku源码分析 第二篇</span>
             </a>
         </div>
         
@@ -861,14 +861,14 @@ var _hmt = _hmt || [];
             
             <a href="/post/android-shizuku-theory2" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析 第二篇">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-04T03:43:10.000Z">2020-02-04</time></div>
-                    <a href="/post/android-shizuku-theory2" class="has-link-black-ter is-size-6">Android Shizuku源码分析</a>
+                    <a href="/post/android-shizuku-theory2" class="has-link-black-ter is-size-6">Android Shizuku源码分析 第二篇</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                     </p>
@@ -1069,14 +1069,14 @@ var _hmt = _hmt || [];
             
             <a href="/post/android-shizuku-theory2" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析 第二篇">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-04T03:43:10.000Z">2020-02-04</time></div>
-                    <a href="/post/android-shizuku-theory2" class="has-link-black-ter is-size-6">Android Shizuku源码分析</a>
+                    <a href="/post/android-shizuku-theory2" class="has-link-black-ter is-size-6">Android Shizuku源码分析 第二篇</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                     </p>

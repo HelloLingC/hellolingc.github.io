@@ -2,7 +2,7 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Android Shizuku源码分析 - 咸鱼不咸</title>
+<title>Android Shizuku源码分析 第二篇 - 咸鱼不咸</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -10,15 +10,15 @@
     <meta name="description" content="又是前言上一篇的 Shizuku 源码分析，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。 我们接下来要更深入分析，去 Na">
 <meta name="keywords" content="Android开发,代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Shizuku源码分析">
+<meta property="og:title" content="Android Shizuku源码分析 第二篇">
 <meta property="og:url" content="https://lcblog.cn/post/android-shizuku-theory2">
 <meta property="og:site_name" content="咸鱼不咸">
 <meta property="og:description" content="又是前言上一篇的 Shizuku 源码分析，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。 我们接下来要更深入分析，去 Na">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2020-02-04T03:46:31.269Z">
+<meta property="og:updated_time" content="2020-02-04T03:52:01.216Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Shizuku源码分析">
+<meta name="twitter:title" content="Android Shizuku源码分析 第二篇">
 <meta name="twitter:description" content="又是前言上一篇的 Shizuku 源码分析，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。 我们接下来要更深入分析，去 Na">
 <meta name="twitter:image" content="https://lcblog.cn/images/og_image.png">
 
@@ -26,7 +26,7 @@
 
 
 
-<link rel="alternative" href="https://lcblog.cn/atom.xml" title="Android Shizuku源码分析" type="application/atom+xml">
+<link rel="alternative" href="https://lcblog.cn/atom.xml" title="Android Shizuku源码分析 第二篇" type="application/atom+xml">
 
 
 
@@ -120,7 +120,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="Android Shizuku源码分析" height="28">
+                <img src="/images/logo.png" alt="Android Shizuku源码分析 第二篇" height="28">
             
             </a>
         </div>
@@ -200,17 +200,17 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Android Shizuku源码分析
+                Android Shizuku源码分析 第二篇
             
         </h1>
         <div class="content">
-            <h2 id="又是前言"><a href="#又是前言" class="headerlink" title="又是前言"></a>又是前言</h2><p>上一篇的 <a href="https://lcblog.cn/post/android-shizuku-theory">Shizuku 源码分析</a>，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。</p>
+            <h1 id="又是前言"><a href="#又是前言" class="headerlink" title="又是前言"></a>又是前言</h1><p>上一篇的 <a href="https://lcblog.cn/post/android-shizuku-theory">Shizuku 源码分析</a>，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。</p>
 <p>我们接下来要更深入分析，去 Navtive 层看看。我想要知道 Starter 的 main 方法又是谁调用的？怎么调用的？</p>
 <a id="more"></a>
 <p>Shizuku 是什么？我就不再多说了。</p>
 <p>Github: <a href="https://github.com/RikkaApps/Shizuku" target="_blank" rel="noopener">https://github.com/RikkaApps/Shizuku</a></p>
 <p>（之后会简单涉及到 Android 中的 NDK 开发，和一些 C++ 的内容）</p>
-<h2 id="start-sh"><a href="#start-sh" class="headerlink" title="start.sh"></a>start.sh</h2><p>当用户使用 ShizukuManager ，通过 ShizukuManager 激活应用时，需要先启动 ShizukuService 。</p>
+<h1 id="start-sh"><a href="#start-sh" class="headerlink" title="start.sh"></a>start.sh</h1><p>当用户使用 ShizukuManager ，通过 ShizukuManager 激活应用时，需要先启动 ShizukuService 。</p>
 <p>这里有 adb 和 root 两种启动方式，我们只分析 adb 方式。</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh</span><br></pre></td></tr></table></figure>
 <p>这条 adb 命令想必用过 ShizukuManager 的人都很熟悉吧？只要在 adb 终端输入这条命令，就能激活 ShizukuManager。</p>
@@ -241,7 +241,7 @@ var _hmt = _hmt || [];
 <figure class="highlight csharp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_process -Djava.class.path=dex文件名 dex所处的目录路径 你要启动的 Java 类（有类名和包名）</span><br></pre></td></tr></table></figure>
 <p>我找来了一个参数列表：</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vm-options – VM 选项</span><br><span class="line">cmd-dir –父目录 (/system/bin)</span><br><span class="line">options –运行的参数 :</span><br><span class="line">    –zygote</span><br><span class="line">    –start-system-server</span><br><span class="line">    –application (api&gt;=14)</span><br><span class="line">    –nice-name=nice_proc_name (api&gt;=14)</span><br><span class="line">start-class-name –包含main方法的主类  (com.android.commands.am.Am)</span><br><span class="line">main-options –启动时候传递到main方法中的参数</span><br></pre></td></tr></table></figure>
-<h2 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h2><p>用户通过输入一条 adb 命令去执行 start.sh 文件，start.sh 文件会执行 ShizukuManager 早已准备好的 so 文件。在 so 文件中经过一大堆操作，会通过 app_process 运行 Starter 类的 main 方法，而 Starter 这个 Java 类的 main 方法会直接 new 一个 ShizukuService 使它跑起来。</p>
+<h1 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h1><p>用户通过输入一条 adb 命令去执行 start.sh 文件，start.sh 文件会执行 ShizukuManager 早已准备好的 so 文件。在 so 文件中经过一大堆操作，会通过 app_process 运行 Starter 类的 main 方法，而 Starter 这个 Java 类的 main 方法会直接 new 一个 ShizukuService 使它跑起来。</p>
 <p>看了一上午的代码，翘了一上午的在铛铛的网络课。</p>
 <p>尼玛，都延长假期了和上个屎的网络课。</p>
 
@@ -803,14 +803,14 @@ var _hmt = _hmt || [];
             
             <a href="/post/android-shizuku-theory2" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析 第二篇">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-04T03:43:10.000Z">2020-02-04</time></div>
-                    <a href="/post/android-shizuku-theory2" class="has-link-black-ter is-size-6">Android Shizuku源码分析</a>
+                    <a href="/post/android-shizuku-theory2" class="has-link-black-ter is-size-6">Android Shizuku源码分析 第二篇</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                     </p>
@@ -1011,14 +1011,14 @@ var _hmt = _hmt || [];
             
             <a href="/post/android-shizuku-theory2" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析 第二篇">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-04T03:43:10.000Z">2020-02-04</time></div>
-                    <a href="/post/android-shizuku-theory2" class="has-link-black-ter is-size-6">Android Shizuku源码分析</a>
+                    <a href="/post/android-shizuku-theory2" class="has-link-black-ter is-size-6">Android Shizuku源码分析 第二篇</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/代码/">代码</a>
                     </p>
@@ -1209,7 +1209,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="Android Shizuku源码分析" height="28">
+                    <img src="/images/logo.png" alt="Android Shizuku源码分析 第二篇" height="28">
                 
                 </a>
                 <p class="is-size-7">
