@@ -16,7 +16,7 @@
 <meta property="og:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2020-02-03T10:37:47.888Z">
+<meta property="og:updated_time" content="2020-02-04T03:48:09.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Shizuku源码分析">
 <meta name="twitter:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
@@ -191,7 +191,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 即可读完 (大约 2239 个字)
+                    15 分钟 即可读完 (大约 2279 个字)
                 </span>
                 
                 
@@ -275,6 +275,10 @@ var _hmt = _hmt || [];
 <p>Shizuku 内还有好多 dalao操作，我都没有去看，只把重要的一部分写了下来。</p>
 <p>果然只有 dalao才能这样操作，我还是继续躺着吧。</p>
 <p>Orz</p>
+<hr>
+<p>2020-02-04：</p>
+<p>时隔两天，我又写出了第二篇文章啦：<a href="https://lcblog.cn/post/android-shizuku-theory2">https://lcblog.cn/post/android-shizuku-theory2</a></p>
+<p>尝试具体分析 Starter 类是如何启动的。</p>
 
         </div>
         

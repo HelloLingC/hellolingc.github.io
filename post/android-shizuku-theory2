@@ -16,7 +16,7 @@
 <meta property="og:description" content="又是前言上一篇的 Shizuku 源码分析，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。 我们接下来要更深入分析，去 Na">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lcblog.cn/images/og_image.png">
-<meta property="og:updated_time" content="2020-02-04T03:43:31.125Z">
+<meta property="og:updated_time" content="2020-02-04T03:46:31.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Shizuku源码分析">
 <meta name="twitter:description" content="又是前言上一篇的 Shizuku 源码分析，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。 我们接下来要更深入分析，去 Na">
@@ -191,7 +191,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 即可读完 (大约 2234 个字)
+                    15 分钟 即可读完 (大约 2235 个字)
                 </span>
                 
                 
@@ -206,6 +206,7 @@ var _hmt = _hmt || [];
         <div class="content">
             <h2 id="又是前言"><a href="#又是前言" class="headerlink" title="又是前言"></a>又是前言</h2><p>上一篇的 <a href="https://lcblog.cn/post/android-shizuku-theory">Shizuku 源码分析</a>，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。</p>
 <p>我们接下来要更深入分析，去 Navtive 层看看。我想要知道 Starter 的 main 方法又是谁调用的？怎么调用的？</p>
+<a id="more"></a>
 <p>Shizuku 是什么？我就不再多说了。</p>
 <p>Github: <a href="https://github.com/RikkaApps/Shizuku" target="_blank" rel="noopener">https://github.com/RikkaApps/Shizuku</a></p>
 <p>（之后会简单涉及到 Android 中的 NDK 开发，和一些 C++ 的内容）</p>
