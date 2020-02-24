@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lcblog.cn/post/pit-for-litepal-save</loc>
+    
+    <lastmod>2020-02-24T04:06:40.107Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lcblog.cn/about/index.html</loc>
+    
+    <lastmod>2020-02-07T08:03:52.322Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lcblog.cn/post/android-shizuku-theory2</loc>
     
-    <lastmod>2020-02-04T04:01:55.710Z</lastmod>
+    <lastmod>2020-02-07T08:03:01.631Z</lastmod>
     
   </url>
   
@@ -54,13 +68,6 @@
     <loc>https://lcblog.cn/messages/index.html</loc>
     
     <lastmod>2019-05-25T11:18:59.677Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lcblog.cn/about/index.html</loc>
-    
-    <lastmod>2019-05-25T11:07:12.873Z</lastmod>
     
   </url>
   

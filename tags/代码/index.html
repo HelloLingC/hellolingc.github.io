@@ -187,6 +187,65 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-24T03:52:38.000Z">2020-02-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/代码/">代码</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 即可读完 (大约 395 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/post/pit-for-litepal-save">坑：Litepal save方法返回true却没有保存</a>
+            
+        </h1>
+        <div class="content">
+            <p>在开发 Madoka 日记时，做到导出导入的功能时，我想偷个懒导出直接用 Gson 将 Java 对象转换为 json 然后放在 txt 中，导入的时候再将 json 转为 javaBean 就行啦。</p>
+<p>而数据库我用的是 Litepal 直接搞，使用这个库的好处就是速度快，方便，适合新手。</p>
+<p>但其实 sqlite 的语法和一些其他的语句并不难，所以用这个库就是为了方便…</p>
+<p>使用 Litepal 储存数据时，需要调用 save() 方法。</p>
+<p>这里我就遇到了一个问题，明明 save() 方法返回的是 true ，但数据库里没有需要保存的数据啊？</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Gson gson = <span class="hljs-keyword">new</span> Gson();</span><br><span class="line">Diary diary = gson.fromJson(json, Diary.class);</span><br><span class="line"><span class="hljs-keyword">return</span> diary.save();</span><br></pre></td></tr></table></figure>
+<p>这是调用 Gson 将 json 转换为 javabean 对象。</p>
+<p>明明 Diary 的内容全是正确的，我开始询问度娘。</p>
+<p>结果没找到跟我的问题直接相关的文章，结果我看到了有个人在吐槽啥 setting getting，我就想到了会不会是因为没有调用 Diary 的构造方法？</p>
+<p>Diary 作为一个 Litepal 的，它是继承自 LitePalSupport 的，会不会是因为没有调用 LitePalSupport 的构造方法呢？</p>
+<p>我将导入代码改了一下：</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Gson gson = <span class="hljs-keyword">new</span> Gson();</span><br><span class="line">Diary diary = gson.fromJson(json, Diary.class);</span><br><span class="line">Diary saveDiary = <span class="hljs-keyword">new</span> Diary();</span><br><span class="line">saveDiary.setId(diary.getId());</span><br><span class="line">saveDiary.setCreatedTime(diary.getCreatedTime());</span><br><span class="line">saveDiary.setLastUpdatedTime(diary.getLastUpdatedTime());</span><br><span class="line">... 省略一万个代码</span><br><span class="line"><span class="hljs-keyword">return</span> saveDiary.save();</span><br></pre></td></tr></table></figure>
+<p>果然，最后正常了…</p>
+<p><del>(水文真开心)</del></p>
+<p><img src="https://i.loli.net/2020/02/24/yA5aeP8Z2zHrbns.jpg" alt="咕咕咕"></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-02-04T03:43:10.000Z">2020-02-04</time>
                 
                 <div class="level-item">
@@ -197,7 +256,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 即可读完 (大约 2239 个字)
+                    15 分钟 即可读完 (大约 2254 个字)
                 </span>
                 
                 
@@ -516,7 +575,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        8
                     </p>
                 </div>
             </div>
@@ -536,7 +595,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        4
                     </p>
                 </div>
             </div>
@@ -870,7 +929,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">代码</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/其他/">
@@ -892,7 +951,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Android开发/" style="font-size: 20px;">Android开发</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 20px;">代码</a>
+        <a href="/tags/Android-开发/" style="font-size: 10px;">Android 开发</a> <a href="/tags/Android开发/" style="font-size: 15px;">Android开发</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/代码/" style="font-size: 20px;">代码</a>
     </div>
 </div>
 
@@ -906,6 +965,25 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/pit-for-litepal-save" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="坑：Litepal save方法返回true却没有保存">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T03:52:38.000Z">2020-02-24</time></div>
+                    <a href="/post/pit-for-litepal-save" class="has-link-black-ter is-size-6">坑：Litepal save方法返回true却没有保存</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -983,25 +1061,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/android-zhihu-daily" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="知乎日报的坑">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-04T12:34:10.000Z">2019-07-04</time></div>
-                    <a href="/post/android-zhihu-daily" class="has-link-black-ter is-size-6">知乎日报的坑</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1020,7 +1079,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1072,6 +1131,13 @@ var _hmt = _hmt || [];
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Android-开发/">
+                        <span class="tag">Android 开发</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Android开发/">
                         <span class="tag">Android开发</span>
                         <span class="tag is-grey">5</span>
@@ -1088,7 +1154,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/代码/">
                         <span class="tag">代码</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1117,6 +1183,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/post/pit-for-litepal-save" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="坑：Litepal save方法返回true却没有保存">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T03:52:38.000Z">2020-02-24</time></div>
+                    <a href="/post/pit-for-litepal-save" class="has-link-black-ter is-size-6">坑：Litepal save方法返回true却没有保存</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/android-shizuku-theory2" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Shizuku源码分析 第二篇">
@@ -1191,25 +1276,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/android-zhihu-daily" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="知乎日报的坑">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-04T12:34:10.000Z">2019-07-04</time></div>
-                    <a href="/post/android-zhihu-daily" class="has-link-black-ter is-size-6">知乎日报的坑</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/代码/">代码</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1228,7 +1294,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1280,6 +1346,13 @@ var _hmt = _hmt || [];
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Android-开发/">
+                        <span class="tag">Android 开发</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Android开发/">
                         <span class="tag">Android开发</span>
                         <span class="tag is-grey">5</span>
@@ -1296,7 +1369,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/代码/">
                         <span class="tag">代码</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
