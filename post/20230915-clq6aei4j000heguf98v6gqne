@@ -1,105 +1,66 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Title -->
-<title>Git push 出现 permisson denied error 403 - 咸鱼不咸</title>
-
-<!-- Icon -->
-<link rel="icon" href="https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg">
-
-<!-- Fonts -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
-
-
-
-<!-- Style -->
-
-<link rel="stylesheet" href="/styles/main.css">
-
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
-
-
-
-
-
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-
-    <meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="咸鱼不咸" type="application/atom+xml">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>
+        Git push 出现 permisson denied error 403 |
+        
+        咸鱼不咸</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="最开始 $ git push -u origin main output: remote: Permission to ViteMux&#x2F;repo.git denied to Olduser. fatal: unable to access ‘https:&#x2F;&#x2F;github.com&#x2F;ViteMux&#x2F;repo.git&#x2F;&#39;: The requested URL returned error: 40">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git push 出现 permisson denied error 403">
+<meta property="og:url" content="https://hellolingc.github.io/post/20230915-clq6aei4j000heguf98v6gqne">
+<meta property="og:site_name" content="咸鱼不咸">
+<meta property="og:description" content="最开始 $ git push -u origin main output: remote: Permission to ViteMux&#x2F;repo.git denied to Olduser. fatal: unable to access ‘https:&#x2F;&#x2F;github.com&#x2F;ViteMux&#x2F;repo.git&#x2F;&#39;: The requested URL returned error: 40">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0wbUoiTtF090WOtkX1mqVJYhs0KpLCoKEfweTLqsbktGKREfV1UkCd4TAvF2lj6fIXYiVINV-hVD3-Yz4aly0MIvMmwWS1JcKBVBhwTveoF56wKhbrSr8r39dBKBFGMjr1Ql-eNdNwbVv-lTBCRA_1cAzB_ZkYpudXcWlsAWak-u7nu0uTJfqNFHjrUaK/s320/%E6%8D%95%E8%8E%B7.PNG">
+<meta property="article:published_time" content="2023-09-15T04:09:04.000Z">
+<meta property="article:modified_time" content="2023-12-15T04:24:26.787Z">
+<meta property="article:author" content="LingC">
+<meta property="article:tag" content="代码">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0wbUoiTtF090WOtkX1mqVJYhs0KpLCoKEfweTLqsbktGKREfV1UkCd4TAvF2lj6fIXYiVINV-hVD3-Yz4aly0MIvMmwWS1JcKBVBhwTveoF56wKhbrSr8r39dBKBFGMjr1Ql-eNdNwbVv-lTBCRA_1cAzB_ZkYpudXcWlsAWak-u7nu0uTJfqNFHjrUaK/s320/%E6%8D%95%E8%8E%B7.PNG">
+    
+    
+    
+        
+            <link rel="stylesheet" href="https://hellolingc.github.io/css/markdown.css">
+        
+            <link rel="stylesheet" href="https://hellolingc.github.io/css/july.css">
+        
+    
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="咸鱼不咸" type="application/atom+xml">
 </head>
-    <body>
-        <div class="main gt-bg-theme-color-first">
-            <div class="main-content">
-                <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="/">
-        <img class="user-avatar" src="https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            咸鱼不咸
-        </div>
-    </a>
-    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
-        <i class="gt-c-content-color-first" style="font-size: 18px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
-                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
-            </svg>
-        </i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center; ">
-            
-                <div class="nav-item">
-                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
-                </div>
-            
-        </div>
+<body>
+
+<div id="banner-outer" class="hidden">
+    <div id="banner-image" style="background-image: url()"></div>
+    <img src="https://www.gravatar.com/avatar/7a585313ed855e8d652cbb3154a6056e?s=300&amp;d=mm&amp;r=g" id="avatar">
+</div>
+
+<div id="menu-outer">
+    <div id="menu-inner">
+        
+            <a class="false" href="https://hellolingc.github.io/index.html">Home</a>
+        
+            <a class="false" href="https://hellolingc.github.io/archives/index.html">Archives</a>
+        
+            <a class="false" href="https://hellolingc.github.io/about/index.html">About</a>
+        
     </div>
-</nav>
+</div>
 
-<script>
-    /* 移动端导航栏展开/收起切换 */
-    document.getElementById('changeNavbar').onclick = function() {
-        let element = document.getElementById('navbarSupportedContent');
-        if (element.style.display === 'none' || element.style.display === '') {
-            element.style.display = 'block';
-        } else { 
-            element.style.display = 'none';
-        }
-    }
-</script>
-
-                <div class="post-container">
-    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
-        <article class="gt-post-content">
-            <h1 class="post-title">Git push 出现 permisson denied error 403</h1>
-            <div class="post-info">
-                <time class="post-time gt-c-content-color-first">
-                    · 2023-09-15 ·</time>
-                
-                    
-                        <a href="/tags/%E4%BB%A3%E7%A0%81/" class="post-tag">
-                            #代码</a>
-                    
-                
-            </div>
-            <hr>
-            <div class="post-content gt-c-content-color-first">
-                <p>最开始</p>
+<div id="content-outer" class="container">
+    <div id="content-inner">
+        <article id="post">
+    <h1 id="post-title">Git push 出现 permisson denied error 403</h1>
+    <time id="post-date" datetime="2023-09-15T04:09:04.000Z">
+        九月 15, 2023
+    </time>
+    <div id="post-content" class="markdown-body">
+        <p>最开始</p>
 <p>$ git push -u origin main</p>
 <p>output:</p>
 <p>remote: Permission to ViteMux/repo.git denied to Olduser.</p>
@@ -111,50 +72,65 @@
 <p><a href="https://www.blogger.com/blog/post/edit/3258410905752786662/7124892052163434745#"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0wbUoiTtF090WOtkX1mqVJYhs0KpLCoKEfweTLqsbktGKREfV1UkCd4TAvF2lj6fIXYiVINV-hVD3-Yz4aly0MIvMmwWS1JcKBVBhwTveoF56wKhbrSr8r39dBKBFGMjr1Ql-eNdNwbVv-lTBCRA_1cAzB_ZkYpudXcWlsAWak-u7nu0uTJfqNFHjrUaK/s320/%E6%8D%95%E8%8E%B7.PNG" alt></a></p>
 <p>把这个凭证删了就行，浪费我1个小时。</p>
 
-            </div>
-        </article>
     </div>
-    <br>
-    
-        <div class="next-prev-post">
-            
-                <div class="prev-post">
-                    <div class="prev gt-c-content-color-first">
-                        上一篇：<a href="/post/20231215-clq6aei3g0001eguf930l6g8i" 
-                            class="post-title gt-a-link">aem-esp-ebp</a>
-                    </div>
-                </div>
-            
-            
-                <div class="next-post">
-                    <div class="next gt-c-content-color-first">
-                        下一篇：<a href="/post/20200224-clq6aei4s000ueguf2w232cdk" 
-                            class="post-title gt-a-link">坑：Litepal save方法返回true却没有保存</a>
-                    </div>
-                </div>
-            
-        </div>
-    
-    
+</article>
 
-    
-
+<div id="paginator">
     
 </div>
 
-                <div class="site-footer gt-c-content-color-first">
-    <div class="footer-main">
-        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
-        <!-- 文件位置：layout/_includes/footer.ejs -->
-        <span style="text-align: right; float: right;">Theme <a 
-            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
-            href="https://hexo.io" target="_blank">Hexo</a></span>
-        <span style="text-align: left;">Footer HTML
-</span>
     </div>
 </div>
 
-            </div>
-        </div>
-    </body>
+<div id="bottom-outer">
+    <div id="bottom-inner">
+        2019-2023 LingC 皖ICP备16011445号
+    </div>
+</div>
+
+<div id="to-top">
+    <i class="iconfont icon-up"></i>
+</div>
+
+
+    
+        <script src="https://hellolingc.github.io/js/jquery-3.4.1.min.js"></script>
+    
+        <script src="https://hellolingc.github.io/js/highlight-9.13.1.min.js"></script>
+    
+        <script src="https://hellolingc.github.io/js/transition.js"></script>
+    
+        <script src="https://hellolingc.github.io/js/smooth-scroll.min.js"></script>
+    
+
+
+
+    <script>
+      $(function () {
+        $('#banner-outer').addClass('fade-out')
+        $('#menu-outer').addClass('fade-show')
+
+        $('pre').each(function (i, block) {
+          hljs.highlightBlock(block);
+        });
+      })
+    </script>
+
+
+<script>
+  $(function () {
+    $(window).scroll(function () {
+      if ($(window).scrollTop() > 150) {
+        $("#to-top").fadeIn();
+      } else {
+        $("#to-top").fadeOut();
+      }
+    });
+    $("#to-top").click(function () {
+      $("body,html").animate({scrollTop: 0}, 500);
+      return false;
+    })
+  })
+</script>
+</body>
 </html>
