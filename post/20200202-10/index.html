@@ -6,20 +6,19 @@
     <title>
         Android Shizuku源码分析 |
         
-        咸鱼不咸</title>
+        MoonLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Shizuku源码分析">
 <meta property="og:url" content="https://hellolingc.github.io/post/20200202-10/index.html">
-<meta property="og:site_name" content="咸鱼不咸">
+<meta property="og:site_name" content="MoonLab">
 <meta property="og:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-02T11:24:10.000Z">
-<meta property="article:modified_time" content="2020-02-04T03:48:09.716Z">
+<meta property="article:modified_time" content="2023-12-15T08:05:08.058Z">
 <meta property="article:author" content="LingC">
-<meta property="article:tag" content="代码">
-<meta property="article:tag" content="Android开发">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
     
     
@@ -30,12 +29,12 @@
             <link rel="stylesheet" href="https://hellolingc.github.io/css/july.css">
         
     
-<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="咸鱼不咸" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
 </head>
 <body>
 
-<div id="banner-outer" class="hidden">
-    <div id="banner-image" style="background-image: url()"></div>
+<div id="banner-outer" class="">
+    <div id="banner-image" style="background-image: url(/img/banner.png)"></div>
     <img src="https://www.gravatar.com/avatar/7a585313ed855e8d652cbb3154a6056e?s=300&amp;d=mm&amp;r=g" id="avatar">
 </div>
 
@@ -179,8 +178,8 @@
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
             currentTimeHtml = '❤️ LingC Blog has been running for ' + (currentTime[0] * 360 + currentTime[1]) + 'days '
-                + currentTime[2] + 'hours ' + currentTime[3] + 'mins ' + currentTime[4]
-                + 'secs';
+                + currentTime[2] + ' hours ' + currentTime[3] + ' mins ' + currentTime[4]
+                + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }
         setInterval(setTime, 1000);

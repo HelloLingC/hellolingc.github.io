@@ -6,20 +6,22 @@
     <title>
         通过汇编分析栈、函数调用 esp&amp;ebp |
         
-        咸鱼不咸</title>
+        MoonLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IMG 栈 Stack栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。 在栈中，有两个重要的寄存器 SP (Stack Pointer) BP (Base Pointer) 在16位系统中是这样的，在32位系统中分别叫做esp ebp，在64位中 栈是从高地址向低地址搭起来的，因此栈顶位于低地址，栈底位于高地址">
+    <meta name="description" content="栈 Stack栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。 在栈中，有两个重要的寄存器 SP (Stack Pointer) BP (Base Pointer) 在16位系统中是这样的，在32位系统中分别叫做esp ebp，在64位中 栈是从高地址向低地址搭起来的，因此栈顶位于低地址，栈底位于高地址。一般">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过汇编分析栈、函数调用 esp&amp;ebp">
 <meta property="og:url" content="https://hellolingc.github.io/post/20231215-17/index.html">
-<meta property="og:site_name" content="咸鱼不咸">
-<meta property="og:description" content="IMG 栈 Stack栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。 在栈中，有两个重要的寄存器 SP (Stack Pointer) BP (Base Pointer) 在16位系统中是这样的，在32位系统中分别叫做esp ebp，在64位中 栈是从高地址向低地址搭起来的，因此栈顶位于低地址，栈底位于高地址">
+<meta property="og:site_name" content="MoonLab">
+<meta property="og:description" content="栈 Stack栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。 在栈中，有两个重要的寄存器 SP (Stack Pointer) BP (Base Pointer) 在16位系统中是这样的，在32位系统中分别叫做esp ebp，在64位中 栈是从高地址向低地址搭起来的，因此栈顶位于低地址，栈底位于高地址。一般">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hellolingc.github.io/post/20231215-17/1.png">
 <meta property="article:published_time" content="2023-12-15T06:31:17.000Z">
-<meta property="article:modified_time" content="2023-12-15T07:30:39.907Z">
+<meta property="article:modified_time" content="2023-12-15T08:04:09.935Z">
 <meta property="article:author" content="LingC">
-<meta property="article:tag" content="代码">
+<meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hellolingc.github.io/post/20231215-17/1.png">
     
     
     
@@ -29,12 +31,12 @@
             <link rel="stylesheet" href="https://hellolingc.github.io/css/july.css">
         
     
-<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="咸鱼不咸" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
 </head>
 <body>
 
-<div id="banner-outer" class="hidden">
-    <div id="banner-image" style="background-image: url()"></div>
+<div id="banner-outer" class="">
+    <div id="banner-image" style="background-image: url(/img/banner.png)"></div>
     <img src="https://www.gravatar.com/avatar/7a585313ed855e8d652cbb3154a6056e?s=300&amp;d=mm&amp;r=g" id="avatar">
 </div>
 
@@ -58,7 +60,7 @@
         十二月 15, 2023
     </time>
     <div id="post-content" class="markdown-body">
-        <p><a href="1.png">IMG</a></p>
+        <p><img src="/post/20231215-17/1.png" alt="IMG"></p>
 <h1 id="栈-Stack"><a href="#栈-Stack" class="headerlink" title="栈 Stack"></a>栈 Stack</h1><p>栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。</p>
 <p>在栈中，有两个重要的寄存器</p>
 <p>SP (Stack Pointer)</p>
@@ -124,8 +126,8 @@
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
             currentTimeHtml = '❤️ LingC Blog has been running for ' + (currentTime[0] * 360 + currentTime[1]) + 'days '
-                + currentTime[2] + 'hours ' + currentTime[3] + 'mins ' + currentTime[4]
-                + 'secs';
+                + currentTime[2] + ' hours ' + currentTime[3] + ' mins ' + currentTime[4]
+                + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }
         setInterval(setTime, 1000);

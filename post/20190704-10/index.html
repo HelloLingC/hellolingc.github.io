@@ -6,20 +6,19 @@
     <title>
         知乎日报的坑 |
         
-        咸鱼不咸</title>
+        MoonLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知乎日报的坑">
 <meta property="og:url" content="https://hellolingc.github.io/post/20190704-10/index.html">
-<meta property="og:site_name" content="咸鱼不咸">
+<meta property="og:site_name" content="MoonLab">
 <meta property="og:description" content="没想到吧！本鸽子想起自己的博客啦！ 暑假到了，感觉时间跟不要钱一样，没有了时间概念了233 我实在没啥可写的，就随便说说这两天干了啥吧 昨天我开始写一个第三方的知乎日报客户端 因为太无聊了，就随便搞搞吧。用的是这个API 简单说一下之前遇到的问题吧，以及开发的过程">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-04T12:34:10.000Z">
-<meta property="article:modified_time" content="2020-02-03T10:33:16.375Z">
+<meta property="article:modified_time" content="2023-12-15T08:05:56.750Z">
 <meta property="article:author" content="LingC">
-<meta property="article:tag" content="代码">
-<meta property="article:tag" content="Android开发">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
     
     
@@ -30,12 +29,12 @@
             <link rel="stylesheet" href="https://hellolingc.github.io/css/july.css">
         
     
-<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="咸鱼不咸" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
 </head>
 <body>
 
-<div id="banner-outer" class="hidden">
-    <div id="banner-image" style="background-image: url()"></div>
+<div id="banner-outer" class="">
+    <div id="banner-image" style="background-image: url(/img/banner.png)"></div>
     <img src="https://www.gravatar.com/avatar/7a585313ed855e8d652cbb3154a6056e?s=300&amp;d=mm&amp;r=g" id="avatar">
 </div>
 
@@ -155,8 +154,8 @@
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
             currentTimeHtml = '❤️ LingC Blog has been running for ' + (currentTime[0] * 360 + currentTime[1]) + 'days '
-                + currentTime[2] + 'hours ' + currentTime[3] + 'mins ' + currentTime[4]
-                + 'secs';
+                + currentTime[2] + ' hours ' + currentTime[3] + ' mins ' + currentTime[4]
+                + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }
         setInterval(setTime, 1000);

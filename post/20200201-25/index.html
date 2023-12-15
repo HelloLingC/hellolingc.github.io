@@ -6,20 +6,19 @@
     <title>
         Android 监听第三方Activity的一举一动 |
         
-        咸鱼不咸</title>
+        MoonLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="前言距离上一次更新也已经是六个月前了。感觉2019年过得真不咋样，什么也没干成吧，没有什么进步。 不知不觉又是新的一年，2019是去年，2018就成了前年了。 这个冬天我们这都没怎么下过雪，积雪的话我知记得有一次，融化得还很快。 国内也出现了传染病，迄今为止有五千多人中枪了吧。现在也不让出去，亲戚也都没有拜完，现在天天在家窝。（不过好处就是不用上学啦）。 今年的央视春晚也没有看，bilibili还">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 监听第三方Activity的一举一动">
 <meta property="og:url" content="https://hellolingc.github.io/post/20200201-25/index.html">
-<meta property="og:site_name" content="咸鱼不咸">
+<meta property="og:site_name" content="MoonLab">
 <meta property="og:description" content="前言距离上一次更新也已经是六个月前了。感觉2019年过得真不咋样，什么也没干成吧，没有什么进步。 不知不觉又是新的一年，2019是去年，2018就成了前年了。 这个冬天我们这都没怎么下过雪，积雪的话我知记得有一次，融化得还很快。 国内也出现了传染病，迄今为止有五千多人中枪了吧。现在也不让出去，亲戚也都没有拜完，现在天天在家窝。（不过好处就是不用上学啦）。 今年的央视春晚也没有看，bilibili还">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-01T10:39:25.000Z">
-<meta property="article:modified_time" content="2020-02-02T11:55:47.370Z">
+<meta property="article:modified_time" content="2023-12-15T08:04:58.281Z">
 <meta property="article:author" content="LingC">
-<meta property="article:tag" content="代码">
-<meta property="article:tag" content="Android开发">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
     
     
@@ -30,12 +29,12 @@
             <link rel="stylesheet" href="https://hellolingc.github.io/css/july.css">
         
     
-<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="咸鱼不咸" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
 </head>
 <body>
 
-<div id="banner-outer" class="hidden">
-    <div id="banner-image" style="background-image: url()"></div>
+<div id="banner-outer" class="">
+    <div id="banner-image" style="background-image: url(/img/banner.png)"></div>
     <img src="https://www.gravatar.com/avatar/7a585313ed855e8d652cbb3154a6056e?s=300&amp;d=mm&amp;r=g" id="avatar">
 </div>
 
@@ -162,8 +161,8 @@
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
             currentTimeHtml = '❤️ LingC Blog has been running for ' + (currentTime[0] * 360 + currentTime[1]) + 'days '
-                + currentTime[2] + 'hours ' + currentTime[3] + 'mins ' + currentTime[4]
-                + 'secs';
+                + currentTime[2] + ' hours ' + currentTime[3] + ' mins ' + currentTime[4]
+                + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }
         setInterval(setTime, 1000);

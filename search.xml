@@ -3,7 +3,7 @@
   <entry>
     <title>通过汇编分析栈、函数调用 esp&amp;ebp</title>
     <url>//post/20231215-17/</url>
-    <content><![CDATA[<p><a href="1.png">IMG</a></p>
+    <content><![CDATA[<p><img src="/post/20231215-17/1.png" alt="IMG"></p>
 <h1 id="栈-Stack"><a href="#栈-Stack" class="headerlink" title="栈 Stack"></a>栈 Stack</h1><p>栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。</p>
 <p>在栈中，有两个重要的寄存器</p>
 <p>SP (Stack Pointer)</p>
@@ -26,10 +26,10 @@
 <p><a href="https://blog.csdn.net/song_lee/article/details/105297902">https://blog.csdn.net/song_lee/article/details/105297902</a></p>
 ]]></content>
       <categories>
-        <category>代码</category>
+        <category>Programming</category>
       </categories>
       <tags>
-        <tag>代码</tag>
+        <tag>Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -95,11 +95,10 @@
 <p>这样我们就能直接调用 setActivityController 方法了，然后在重写 IActivityController.Stub 内的回调方法就行了。</p>
 ]]></content>
       <categories>
-        <category>代码</category>
+        <category>Programming</category>
       </categories>
       <tags>
-        <tag>代码</tag>
-        <tag>Android开发</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -182,11 +181,10 @@
 <p>尝试具体分析 Starter 类是如何启动的。</p>
 ]]></content>
       <categories>
-        <category>代码</category>
+        <category>Programming</category>
       </categories>
       <tags>
-        <tag>代码</tag>
-        <tag>Android开发</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -234,11 +232,10 @@
 <p>尼玛，都延长假期了和上个屎的网络课。</p>
 ]]></content>
       <categories>
-        <category>代码</category>
+        <category>Programming</category>
       </categories>
       <tags>
-        <tag>代码</tag>
-        <tag>Android开发</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -320,11 +317,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>代码</category>
+        <category>Programming</category>
       </categories>
       <tags>
-        <tag>代码</tag>
-        <tag>Android开发</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -383,17 +379,16 @@
 <h1 id="2020更新"><a href="#2020更新" class="headerlink" title="2020更新"></a>2020更新</h1><p>基本上已经完成了，主要是写完了分页加载，垃圾代码随便看看吧：Github (<a href="https://github.com/HelloLingC/zhihu-daily-open">https://github.com/HelloLingC/zhihu-daily-open</a>)</p>
 ]]></content>
       <categories>
-        <category>代码</category>
+        <category>Programming</category>
       </categories>
       <tags>
-        <tag>代码</tag>
-        <tag>Android开发</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
     <title>Git push 出现 permisson denied error 403</title>
     <url>//post/20230915-04/</url>
-    <content><![CDATA[<p>最开始</p>
+    <content><![CDATA[<p>git最开始</p>
 <p>$ git push -u origin main</p>
 <p>output:</p>
 <p>remote: Permission to ViteMux/repo.git denied to Olduser.</p>
@@ -406,11 +401,8 @@
 <p>把这个凭证删了就行，浪费我1个小时。</p>
 ]]></content>
       <categories>
-        <category>代码</category>
+        <category>Programming</category>
       </categories>
-      <tags>
-        <tag>代码</tag>
-      </tags>
   </entry>
   <entry>
     <title>使用Hexo</title>
@@ -465,11 +457,10 @@
 <p><img src="https://i.loli.net/2020/02/24/yA5aeP8Z2zHrbns.jpg" alt="咕咕咕"></p>
 ]]></content>
       <categories>
-        <category>代码</category>
+        <category>Programming</category>
       </categories>
       <tags>
-        <tag>代码</tag>
-        <tag>Android 开发</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
 </search>

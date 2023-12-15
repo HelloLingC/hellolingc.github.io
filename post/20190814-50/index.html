@@ -6,20 +6,19 @@
     <title>
         Android笔记#1 View的事件分发机制解析 |
         
-        咸鱼不咸</title>
+        MoonLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android笔记#1 View的事件分发机制解析">
 <meta property="og:url" content="https://hellolingc.github.io/post/20190814-50/index.html">
-<meta property="og:site_name" content="咸鱼不咸">
+<meta property="og:site_name" content="MoonLab">
 <meta property="og:description" content="咕咕咕基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。 很久以前的 Android 开发笔记太鸡儿水了。 简单介绍众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。 一个事件的传递顺序：Activ">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-08-14T03:07:50.000Z">
-<meta property="article:modified_time" content="2019-08-18T08:26:27.439Z">
+<meta property="article:modified_time" content="2023-12-15T08:05:49.207Z">
 <meta property="article:author" content="LingC">
-<meta property="article:tag" content="代码">
-<meta property="article:tag" content="Android开发">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
     
     
@@ -30,12 +29,12 @@
             <link rel="stylesheet" href="https://hellolingc.github.io/css/july.css">
         
     
-<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="咸鱼不咸" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
 </head>
 <body>
 
-<div id="banner-outer" class="hidden">
-    <div id="banner-image" style="background-image: url()"></div>
+<div id="banner-outer" class="">
+    <div id="banner-image" style="background-image: url(/img/banner.png)"></div>
     <img src="https://www.gravatar.com/avatar/7a585313ed855e8d652cbb3154a6056e?s=300&amp;d=mm&amp;r=g" id="avatar">
 </div>
 
@@ -178,8 +177,8 @@
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
             currentTimeHtml = '❤️ LingC Blog has been running for ' + (currentTime[0] * 360 + currentTime[1]) + 'days '
-                + currentTime[2] + 'hours ' + currentTime[3] + 'mins ' + currentTime[4]
-                + 'secs';
+                + currentTime[2] + ' hours ' + currentTime[3] + ' mins ' + currentTime[4]
+                + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }
         setInterval(setTime, 1000);
