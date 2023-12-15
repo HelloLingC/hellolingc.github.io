@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>通过汇编分析栈、函数调用 esp&amp;ebp</title>
-    <url>//post/20231215-17</url>
+    <url>//post/20231215-17/</url>
     <content><![CDATA[<p><a href="1.png">IMG</a></p>
 <h1 id="栈-Stack"><a href="#栈-Stack" class="headerlink" title="栈 Stack"></a>栈 Stack</h1><p>栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。</p>
 <p>在栈中，有两个重要的寄存器</p>
@@ -34,7 +34,7 @@
   </entry>
   <entry>
     <title>Android 监听第三方Activity的一举一动</title>
-    <url>//post/20200201-25</url>
+    <url>//post/20200201-25/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>距离上一次更新也已经是六个月前了。感觉2019年过得真不咋样，什么也没干成吧，没有什么进步。</p>
 <p>不知不觉又是新的一年，2019是去年，2018就成了前年了。</p>
 <p>这个冬天我们这都没怎么下过雪，积雪的话我知记得有一次，融化得还很快。</p>
@@ -104,7 +104,7 @@
   </entry>
   <entry>
     <title>Android Shizuku源码分析</title>
-    <url>//post/20200202-10</url>
+    <url>//post/20200202-10/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇文章我使用了 Shizuku 去调用系统API：<a href="https://lcblog.cn/post/android-activity-monitor">文章链接</a></p>
 <p>这次就来看看 Shizuku 的源码是怎么写的。</p>
 <p>最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。</p>
@@ -191,7 +191,7 @@
   </entry>
   <entry>
     <title>Android Shizuku源码分析 第二篇</title>
-    <url>//post/20200204-10</url>
+    <url>//post/20200204-10/</url>
     <content><![CDATA[<h1 id="又是前言"><a href="#又是前言" class="headerlink" title="又是前言"></a>又是前言</h1><p>上一篇的 <a href="https://lcblog.cn/post/android-shizuku-theory">Shizuku 源码分析</a>，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。</p>
 <p>我们接下来要更深入分析，去 Navtive 层看看。我想要知道 Starter 的 main 方法又是谁调用的？怎么调用的？</p>
 <span id="more"></span>
@@ -243,7 +243,7 @@
   </entry>
   <entry>
     <title>Android笔记#1 View的事件分发机制解析</title>
-    <url>//post/20190814-50</url>
+    <url>//post/20190814-50/</url>
     <content><![CDATA[<h1 id="咕咕咕"><a href="#咕咕咕" class="headerlink" title="咕咕咕"></a>咕咕咕</h1><p>基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。</p>
 <p>很久以前的 Android 开发笔记太鸡儿水了。</p>
 <h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p>众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。</p>
@@ -329,7 +329,7 @@
   </entry>
   <entry>
     <title>知乎日报的坑</title>
-    <url>//post/20190704-10</url>
+    <url>//post/20190704-10/</url>
     <content><![CDATA[<p>没想到吧！本鸽子想起自己的博客啦！</p>
 <p>暑假到了，感觉时间跟不要钱一样，没有了时间概念了233</p>
 <p>我实在没啥可写的，就随便说说这两天干了啥吧</p>
@@ -392,7 +392,7 @@
   </entry>
   <entry>
     <title>Git push 出现 permisson denied error 403</title>
-    <url>//post/20230915-04</url>
+    <url>//post/20230915-04/</url>
     <content><![CDATA[<p>最开始</p>
 <p>$ git push -u origin main</p>
 <p>output:</p>
@@ -414,7 +414,7 @@
   </entry>
   <entry>
     <title>使用Hexo</title>
-    <url>//post/20190525-36</url>
+    <url>//post/20190525-36/</url>
     <content><![CDATA[<p>咸鱼不咸从今天（2019.5.25）开始使用<a href="https://hexo.io">Hexo</a>啦</p>
 <p>用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用</p>
 <p>之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客…</p>
@@ -433,7 +433,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>//post/20190519-35</url>
+    <url>//post/20190519-35/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -447,7 +447,7 @@
   </entry>
   <entry>
     <title>坑：Litepal save方法返回true却没有保存</title>
-    <url>//post/20200224-38</url>
+    <url>//post/20200224-38/</url>
     <content><![CDATA[<p>在开发 Madoka 日记时，做到导出导入的功能时，我想偷个懒导出直接用 Gson 将 Java 对象转换为 json 然后放在 txt 中，导入的时候再将 json 转为 javaBean 就行啦。</p>
 <p>而数据库我用的是 Litepal 直接搞，使用这个库的好处就是速度快，方便，适合新手。</p>
 <p>但其实 sqlite 的语法和一些其他的语句并不难，所以用这个库就是为了方便…</p>
