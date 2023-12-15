@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Title -->
+<title>Android Shizuku源码分析 第二篇 - 咸鱼不咸</title>
+
+<!-- Icon -->
+<link rel="icon" href="https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg">
+
+<!-- Fonts -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
+
+
+
+<!-- Style -->
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
+
+
+
+
+
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+    <meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="咸鱼不咸" type="application/atom+xml">
+</head>
+    <body>
+        <div class="main gt-bg-theme-color-first">
+            <div class="main-content">
+                <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            咸鱼不咸
+        </div>
+    </a>
+    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
+        <i class="gt-c-content-color-first" style="font-size: 18px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
+                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+            </svg>
+        </i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center; ">
+            
+                <div class="nav-item">
+                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function() {
+        let element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else { 
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+                <div class="post-container">
+    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
+        <article class="gt-post-content">
+            <h1 class="post-title">Android Shizuku源码分析 第二篇</h1>
+            <div class="post-info">
+                <time class="post-time gt-c-content-color-first">
+                    · 2020-02-04 ·</time>
+                
+                    
+                        <a href="/tags/%E4%BB%A3%E7%A0%81/" class="post-tag">
+                            #代码</a>
+                    
+                        <a href="/tags/Android%E5%BC%80%E5%8F%91/" class="post-tag">
+                            #Android开发</a>
+                    
+                
+            </div>
+            <hr>
+            <div class="post-content gt-c-content-color-first">
+                <h1 id="又是前言"><a href="#又是前言" class="headerlink" title="又是前言"></a>又是前言</h1><p>上一篇的 <a href="https://lcblog.cn/post/android-shizuku-theory">Shizuku 源码分析</a>，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。</p>
+<p>我们接下来要更深入分析，去 Navtive 层看看。我想要知道 Starter 的 main 方法又是谁调用的？怎么调用的？</p>
+<span id="more"></span>
+<p>Shizuku 是什么？我就不再多说了。</p>
+<p>Github: <a href="https://github.com/RikkaApps/Shizuku">https://github.com/RikkaApps/Shizuku</a></p>
+<p>（之后会简单涉及到 Android 中的 NDK 开发，和一些 C++ 的内容）</p>
+<h1 id="start-sh"><a href="#start-sh" class="headerlink" title="start.sh"></a>start.sh</h1><p>当用户使用 ShizukuManager ，通过 ShizukuManager 激活应用时，需要先启动 ShizukuService 。</p>
+<p>这里有 adb 和 root 两种启动方式，我们只分析 adb 方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh</span><br></pre></td></tr></table></figure>
+<p>这条 adb 命令想必用过 ShizukuManager 的人都很熟悉吧？只要在 adb 终端输入这条命令，就能激活 ShizukuManager。</p>
+<p>这条命令很简单，就是调用 sh 脚本 start.sh 。这个 start.sh 在源码中 manager 模块的 raw 文件夹中：</p>
+<p>这个 shell 脚本的内容是什么我们等会再看，我们先要知道 ShizukuManager 这个 APP 在启动时干了什么 ，看看 Manager 的 MainActivity 的 onCreate 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> sWriteFilesCalled;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line"><span class="keyword">if</span> (!sWriteFilesCalled) &#123;</span><br><span class="line">          ServerLauncher.writeFiles(<span class="built_in">this</span>, <span class="literal">true</span>);</span><br><span class="line">          sWriteFilesCalled = <span class="literal">true</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>这里调用了 ServiceLauncher 的 writeFiles 方法，让我们来康康：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">writeFiles</span><span class="params">(Context context, <span class="type">boolean</span> external)</span> &#123;</span><br><span class="line">       <span class="comment">// 从 MainActivity 传入的 external 是 true</span></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           File out;</span><br><span class="line">           <span class="keyword">if</span> (external)</span><br><span class="line">               <span class="comment">// 执行这里，得到 /sdcard/Android/data/com.example.app/files/</span></span><br><span class="line">               out = context.getExternalFilesDir(<span class="literal">null</span>);</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">               out = getParent(context);</span><br><span class="line"></span><br><span class="line">           <span class="keyword">if</span> (out == <span class="literal">null</span>)</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           <span class="type">int</span> <span class="variable">apiVersion</span> <span class="operator">=</span> Math.min(ShizukuLegacy.MAX_SDK, Build.VERSION.SDK_INT);</span><br><span class="line">           <span class="type">String</span> <span class="variable">source</span> <span class="operator">=</span> String.format(Locale.ENGLISH, <span class="string">&quot;server-v2-%d.dex&quot;</span>, apiVersion);</span><br><span class="line">           <span class="comment">// 此时 i 为 1</span></span><br><span class="line">           <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> external ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">           <span class="comment">// copyDex</span></span><br><span class="line">           DEX_LEGACY_PATH[i] = copyDex(context, source, <span class="keyword">new</span> <span class="title class_">File</span>(out, V2_DEX_NAME));</span><br><span class="line">           DEX_PATH[i] = copyDex(context, <span class="string">&quot;server.dex&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(out, V3_DEX_NAME));</span><br><span class="line">           <span class="comment">// 注意注意这个 writeShellFile 方法</span></span><br><span class="line">           <span class="type">String</span> <span class="variable">command</span> <span class="operator">=</span> writeShellFile(context, <span class="keyword">new</span> <span class="title class_">File</span>(out, <span class="string">&quot;start.sh&quot;</span>), DEX_LEGACY_PATH[i], DEX_PATH[i]);</span><br><span class="line">           <span class="comment">// external 为 true ，不执行</span></span><br><span class="line">           <span class="keyword">if</span> (!external) &#123;</span><br><span class="line">               COMMAND_ROOT = command;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>看到 writeShellFile 这个方法了吗？里面的参数是一个 File 类和一个 “start.sh”，还有两个 dex 文件路径。</p>
+<p>继续看 ServiceLauncher#writeShellFile：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title function_">writeShellFile</span><span class="params">(Context context, File out, String dexLegacy, String dex)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">if</span> (!out.exists()) &#123;</span><br><span class="line">        <span class="comment">//noinspection ResultOfMethodCallIgnored</span></span><br><span class="line">        out.createNewFile();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">is</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(context.getResources().openRawResource(R.raw.start)));</span><br><span class="line">    <span class="type">PrintWriter</span> <span class="variable">os</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintWriter</span>(<span class="keyword">new</span> <span class="title class_">FileWriter</span>(out));</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = is.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 这里将 start.sh 写出，并把 start.sh 的那些文字替换成路径值。</span></span><br><span class="line">        os.println(line</span><br><span class="line">                .replace(<span class="string">&quot;%%%STARTER_PATH%%%&quot;</span>, getLibPath(context, <span class="string">&quot;libshizuku.so&quot;</span>))</span><br><span class="line">                .replace(<span class="string">&quot;%%%STARTER_PARAM%%%&quot;</span>, getStarterParam(dexLegacy, dex))</span><br><span class="line">                .replace(<span class="string">&quot;%%%LIBRARY_PATH%%%&quot;</span>, getLibPath(context, <span class="string">&quot;libhelper.so&quot;</span>))</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    os.flush();</span><br><span class="line">    os.close();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;sh &quot;</span> + out.getAbsolutePath();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还记得我们之前看的那个 start.sh 的内容吗？这里实际上就是把 raw 内的 start.sh 写出放到 /sdcard/Android/data/moe.shizuku.privileged.api/files。</p>
+<p>这就是为什么那条激活用的 adb 命令能够执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh</span><br></pre></td></tr></table></figure>
+<p>看到了吗？如果你安装了 ShizukuManager 并打开了，你可以在 /sdcard/Android/data/moe.shizuku.privileged.api/files 目录里找到这个 start.sh 和两个 dex 文件。</p>
+<p>这俩 dex 文件就是通过 ServiceLauncher#writeFiles 用 copyDex 方法把 assets 的 dex 写出到SD目录。</p>
+<p>同时 start.sh 中的那开头的三个变量也在写出的时候被 ShizukuManager 替换了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/system/bin/sh</span></span><br><span class="line"></span><br><span class="line">// 这三个变量在 ShizukuManager 写出时被替换了</span><br><span class="line">STARTER_PATH=&quot;%%%STARTER_PATH%%%&quot; // 对应 libshizuku.so 文件路径</span><br><span class="line">STARTER_PARAM=&quot;%%%STARTER_PARAM%%%&quot; // 对应调用 main 函数的参数，里面包含了那两个 dex 文件的路径和 token </span><br><span class="line">LIBRARY_PATH=&quot;%%%LIBRARY_PATH%%%&quot; // 对应 libhelper.so 文件路径</span><br><span class="line"></span><br><span class="line">echo &quot;info: start.sh begin&quot;</span><br><span class="line"></span><br><span class="line">if [[ -f &quot;$STARTER_PATH&quot; ]]; then</span><br><span class="line">    rm -f /data/local/tmp/shizuku_starter</span><br><span class="line">    // 将 libshizuku.so 文件移动到</span><br><span class="line">    // 实际上 /data/local/tmp/ 下的 shizuku_starter 文件就是 libshizuku.so 文件 </span><br><span class="line">    cp &quot;$STARTER_PATH&quot; /data/local/tmp/shizuku_starter</span><br><span class="line">    // 修改权限</span><br><span class="line">    chmod 700 /data/local/tmp/shizuku_starter</span><br><span class="line">    chown 2000 /data/local/tmp/shizuku_starter</span><br><span class="line">    chgrp 2000 /data/local/tmp/shizuku_starter</span><br><span class="line">    // 这似乎是在修改 Selinux 啥的什么东西的啥子命令</span><br><span class="line">    chcon u:object_r:shell_data_file:s0 /data/local/tmp/shizuku_starter</span><br><span class="line"></span><br><span class="line">	// 设置环境变量</span><br><span class="line">    export PATH=/data/local/tmp:/system/bin:$PATH</span><br><span class="line">    // 调用 shizku_starter so文件（原来是 libshizuku.so）的 main 方法，传入参数</span><br><span class="line">    shizuku_starter $&#123;STARTER_PARAM&#125; $1</span><br><span class="line">    // 返回上 shizuku_starer 内 main 函数的返回值</span><br><span class="line">    result=$?</span><br><span class="line">    if [[ $&#123;result&#125; -ne 0 ]]; then</span><br><span class="line">        echo &quot;info: shizuku_starter exit with non-zero value $result&quot;</span><br><span class="line">    else</span><br><span class="line">        echo &quot;info: shizuku_starter exit with 0&quot;</span><br><span class="line">    fi</span><br><span class="line">else</span><br><span class="line">    echo &quot;Starter file not exist, please open Shizuku Manager and try again.&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>当我们输入那条用来激活 ShizukuManager 的 adb 命令时候，输出框会噼里啪啦滚出一大堆输出。那些输出是哪里来的？很明显在 start.sh 中没有几条 echo 命令，只能是在 shizuku_starter 的 main 方法里有什么大动作。</p>
+<p>这个 libshizuku.so 文件的原身你可以在 ShizukuManager 源码中的 jni 文件夹中找到，文件名是 starter.cpp。</p>
+<p>没错，它是一个 C++ 文件，我们看看它的 main 方法（我会适当地跳过一些与主题无关的代码）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SERVER_CLASS_PATH_LEGACY <span class="string">&quot;moe.shizuku.server.ShizukuServer&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVER_CLASS_PATH <span class="string">&quot;moe.shizuku.server.Starter&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// argc 是传进来的参数的数量，argv是传入的参数的数组。里面包含了 token， 两个 dec 文件的路径</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="type">char</span> *token = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="type">char</span> *_path = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="type">char</span> *_path_legacy = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="type">int</span> v2 = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">int</span> use_shell_context = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// for 循环，可以看到这是在取出参数</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; argc; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">strncmp</span>(argv[i], <span class="string">&quot;--token=&quot;</span>, <span class="number">8</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">            token = <span class="built_in">strdup</span>(argv[i] + <span class="number">8</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strncmp</span>(argv[i], <span class="string">&quot;--path=&quot;</span>, <span class="number">7</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">            _path = <span class="built_in">strdup</span>(argv[i] + <span class="number">7</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strncmp</span>(argv[i], <span class="string">&quot;--path-legacy=&quot;</span>, <span class="number">14</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">            _path_legacy = <span class="built_in">strdup</span>(argv[i] + <span class="number">14</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strncmp</span>(argv[i], <span class="string">&quot;--no-v2&quot;</span>, <span class="number">7</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">            v2 = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strncmp</span>(argv[i], <span class="string">&quot;--use-shell-context&quot;</span>, <span class="number">19</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">            use_shell_context = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">        </span><br><span class="line">    <span class="comment">// check_acess 会调用 acess 函数判断路径是否有读写权限</span></span><br><span class="line">    <span class="built_in">check_access</span>(_path, <span class="string">&quot;source dex path&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (v2) <span class="built_in">check_access</span>(_path_legacy, <span class="string">&quot;source legacy dex path&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 这里我是没看懂的，不知道为什么又建了一个 /data/local/tmp/shizuku 文件夹，将之前 _path 内的文件全部移动到了 path 这个路径里。</span></span><br><span class="line">    <span class="built_in">mkdir</span>(<span class="string">&quot;/data/local/tmp/shizuku&quot;</span>, <span class="number">0707</span>);</span><br><span class="line">    <span class="built_in">chmod</span>(<span class="string">&quot;/data/local/tmp/shizuku&quot;</span>, <span class="number">0707</span>);</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 一个 char 数组，也就相当于一个 string</span></span><br><span class="line">    <span class="type">char</span> path[PATH_MAX], path_legacy[PATH_MAX];</span><br><span class="line">    <span class="comment">// 格式化字符，也就是为 path 赋值了</span></span><br><span class="line">    <span class="built_in">sprintf</span>(path, <span class="string">&quot;/data/local/tmp/shizuku/%s&quot;</span>, <span class="built_in">basename</span>(_path));</span><br><span class="line">    <span class="built_in">sprintf</span>(path_legacy, <span class="string">&quot;/data/local/tmp/shizuku/%s&quot;</span>, <span class="built_in">basename</span>(_path_legacy));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开始复制了，将 _path 路径下的两个 dex 移动到 path 路径</span></span><br><span class="line">    <span class="built_in">copy_if_not_exist</span>(_path, path);</span><br><span class="line">    <span class="keyword">if</span> (v2) <span class="built_in">copy_if_not_exist</span>(_path_legacy, path_legacy);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">check_access</span>(path, <span class="string">&quot;dex path&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (v2) <span class="built_in">check_access</span>(path_legacy, <span class="string">&quot;legacy dex path&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;info: starter begin\n&quot;</span>);</span><br><span class="line">    <span class="comment">// 强制输出缓冲区的信息，就是为了快速输出上面的 printf 内容啦</span></span><br><span class="line">    <span class="built_in">fflush</span>(stdout); </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;info: starting server v3...\n&quot;</span>);</span><br><span class="line">    <span class="built_in">fflush</span>(stdout);</span><br><span class="line">    <span class="comment">// 我们重点分析这个 start_service 函数，传入 SERVICE_CLASS_PATH 这个常量，值为 &quot;moe.shizuku.server.Starter&quot;，熟悉吗？这就是在应用层的主角啊，用于启动 ShizukuService 的 Java 类。</span></span><br><span class="line">    <span class="built_in">start_server</span>(path, SERVER_CLASS_PATH, token, SERVER_NAME, use_shell_context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (v2) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;info: starting server v2 (legacy)...\n&quot;</span>);</span><br><span class="line">        <span class="built_in">fflush</span>(stdout);</span><br><span class="line">        <span class="built_in">start_server</span>(path_legacy, SERVER_CLASS_PATH_LEGACY, token, SERVER_NAME_LEGACY, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">exit_with_logcat</span>(EXIT_SUCCESS);</span><br><span class="line">    <span class="comment">// starter.cpp 结束</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注释上已经大概地说了一遍，我们接下来看 start_service 函数，同样 start_service 也是 starter.cpp 中的一个函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">start_server</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path, <span class="type">const</span> <span class="type">char</span> *main_class, <span class="type">const</span> <span class="type">char</span> *token,</span></span></span><br><span class="line"><span class="params"><span class="function">                        <span class="type">const</span> <span class="type">char</span> *nice_name, <span class="type">int</span> change_context)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">/* 省略了很多内容，详细可自己去看看 Shizuku 的源码 */</span></span><br><span class="line">	<span class="type">char</span> buf[<span class="number">128</span>], class_path[PATH_MAX];</span><br><span class="line">    <span class="built_in">sprintf</span>(buf, <span class="string">&quot;--nice-name=%s&quot;</span>, nice_name);</span><br><span class="line">    <span class="built_in">setClasspathEnv</span>(path);</span><br><span class="line">    <span class="built_in">snprintf</span>(class_path, PATH_MAX, <span class="string">&quot;-Djava.class.path=%s&quot;</span>, path);</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> *appProcessArgs[] = &#123;</span><br><span class="line">        <span class="comment">// app_process 是 Android 里专门用来启动 Java 程序的</span></span><br><span class="line">        <span class="built_in">const_cast</span>&lt;<span class="type">char</span> *&gt;(<span class="string">&quot;/system/bin/app_process&quot;</span>),</span><br><span class="line">        class_path,</span><br><span class="line">        <span class="built_in">const_cast</span>&lt;<span class="type">char</span> *&gt;(<span class="string">&quot;/system/bin&quot;</span>),</span><br><span class="line">        <span class="built_in">const_cast</span>&lt;<span class="type">char</span> *&gt;(buf),</span><br><span class="line">        <span class="comment">// main_class 值为 &quot;moe.shizuku.server.Starter&quot;</span></span><br><span class="line">        <span class="built_in">const_cast</span>&lt;<span class="type">char</span> *&gt;(main_class),</span><br><span class="line">        <span class="built_in">const_cast</span>&lt;<span class="type">char</span> *&gt;(token),</span><br><span class="line">        <span class="literal">nullptr</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 调用 app_process 去运行 main_class</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">execvp</span>(appProcessArgs[<span class="number">0</span>], appProcessArgs)) &#123;</span><br><span class="line">        <span class="built_in">exit_with_logcat</span>(EXIT_FATAL_APP_PROCESS);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到这里我们的分析已经差不多了。</p>
+<p>我们再仔细说说 app_process 的内容：</p>
+<p>调用 app_process 的话，你需要在参数中提供 dex 文件，同时必须要使 dex 文件有执行权限</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_process -Djava.<span class="keyword">class</span>.path=dex文件名 dex所处的目录路径 你要启动的 Java 类（有类名和包名）</span><br></pre></td></tr></table></figure>
+<p>我找来了一个参数列表：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vm-options – VM 选项</span><br><span class="line">cmd-dir –父目录 (/system/bin)</span><br><span class="line">options –运行的参数 :</span><br><span class="line">    –zygote</span><br><span class="line">    –start-system-server</span><br><span class="line">    –application (api&gt;=14)</span><br><span class="line">    –nice-name=nice_proc_name (api&gt;=14)</span><br><span class="line">start-class-name –包含main方法的主类  (com.android.commands.am.Am)</span><br><span class="line">main-options –启动时候传递到main方法中的参数</span><br></pre></td></tr></table></figure>
+<h1 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h1><p>用户通过输入一条 adb 命令去执行 start.sh 文件，start.sh 文件会执行 ShizukuManager 早已准备好的 so 文件。在 so 文件中经过一大堆操作，会通过 app_process 运行 Starter 类的 main 方法，而 Starter 这个 Java 类的 main 方法会直接 new 一个 ShizukuService 使它跑起来。</p>
+<p>看了一上午的代码，翘了一上午的在铛铛的网络课。</p>
+<p>尼玛，都延长假期了和上个屎的网络课。</p>
+
+            </div>
+        </article>
+    </div>
+    <br>
+    
+        <div class="next-prev-post">
+            
+                <div class="prev-post">
+                    <div class="prev gt-c-content-color-first">
+                        上一篇：<a href="/post/20200224-clq6aei4s000ueguf2w232cdk" 
+                            class="post-title gt-a-link">坑：Litepal save方法返回true却没有保存</a>
+                    </div>
+                </div>
+            
+            
+                <div class="next-post">
+                    <div class="next gt-c-content-color-first">
+                        下一篇：<a href="/post/20200202-clq6aei3w0007egufei7h0sa0" 
+                            class="post-title gt-a-link">Android Shizuku源码分析</a>
+                    </div>
+                </div>
+            
+        </div>
+    
+    
+
+    
+
+    
+</div>
+
+                <div class="site-footer gt-c-content-color-first">
+    <div class="footer-main">
+        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
+        <!-- 文件位置：layout/_includes/footer.ejs -->
+        <span style="text-align: right; float: right;">Theme <a 
+            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
+            href="https://hexo.io" target="_blank">Hexo</a></span>
+        <span style="text-align: left;">Footer HTML
+</span>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </body>
+</html>
