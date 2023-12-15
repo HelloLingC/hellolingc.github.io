@@ -11,7 +11,7 @@
     <meta name="description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Shizuku源码分析">
-<meta property="og:url" content="https://hellolingc.github.io/post/20200202-clq6aei3w0007egufei7h0sa0">
+<meta property="og:url" content="https://hellolingc.github.io/post/20200202-10">
 <meta property="og:site_name" content="咸鱼不咸">
 <meta property="og:description" content="前言上一篇文章我使用了 Shizuku 去调用系统API：文章链接 这次就来看看 Shizuku 的源码是怎么写的。 最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。 官方文档 酷安下载 ShizukuManager Watch it on GitHub Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku">
 <meta property="og:locale" content="zh_CN">
