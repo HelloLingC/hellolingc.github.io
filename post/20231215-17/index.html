@@ -16,8 +16,10 @@
 <meta property="og:description" content="栈 Stack栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。 在栈中，有两个重要的寄存器 SP (Stack Pointer) BP (Base Pointer) 在16位系统中是这样的，在32位系统中分别叫做esp ebp，在64位中 栈是从高地址向低地址搭起来的，因此栈顶位于低地址，栈底位于高地址。一般">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hellolingc.github.io/post/20231215-17/1.png">
+<meta property="og:image" content="https://hellolingc.github.io/post/20231215-17/aem1.png">
+<meta property="og:image" content="https://hellolingc.github.io/post/20231215-17/aem2.png">
 <meta property="article:published_time" content="2023-12-15T06:31:17.000Z">
-<meta property="article:modified_time" content="2023-12-15T08:04:09.935Z">
+<meta property="article:modified_time" content="2023-12-15T12:38:29.021Z">
 <meta property="article:author" content="LingC">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
@@ -77,8 +79,15 @@
 <p>ret 跳转到返回地址，执行add esp,8 清除栈内的函数参数。</p>
 <h3 id="EBP-函数调用"><a href="#EBP-函数调用" class="headerlink" title="EBP 函数调用"></a>EBP 函数调用</h3><p>但分析C语言的函数调用，会发现与上文的esp寻址有些不同，一般是用ebp来进行参数的寻址。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int add(int a, int b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    add(1, 2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>用gcc将其编译成32位可执行文件</p>
+<p>这是一段简单的C代码，用gcc将其编译成32位可执行文件</p>
 <p>gcc -m32 -o main main.c</p>
+<p>对于Windows 64 bit要想编译32位程序，如果MinGW的exception model是SEH，那么可以用i686-w64-mingw32-gcc来编译32位程序</p>
+<p>对main.exe进行反汇编</p>
+<p><img src="/post/20231215-17/aem1.png" alt="AEM1"></p>
+<p>在上图中可以看到，在调用call前，先处理两个参数，但这里因为编译器等等问题使用了mov而不是push，实现的效果也是一样的。这里没有用push的区别就是esp没有始终指向栈顶,，所以也不用考虑栈平衡了。</p>
+<p><img src="/post/20231215-17/aem2.png" alt="AEM2"></p>
+<p>这里就是通过ebp来使用两个形参，分别赋到了EDX, EAX。然后EAX储存函数返回值。</p>
+<hr>
 <p>Refs</p>
 <p><a href="https://blog.csdn.net/song_lee/article/details/105297902">https://blog.csdn.net/song_lee/article/details/105297902</a></p>
 
