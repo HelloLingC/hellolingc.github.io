@@ -96,7 +96,7 @@ body {
 .container {
   width: 100%;
 }
-video {
+.video {
   max-width: 80%;
   height: auto;
   display: block;
@@ -104,7 +104,7 @@ video {
 }
 
 @media (min-width: 600px) {
-  video {
+  .video {
       max-width: 45%;
   }
 }
