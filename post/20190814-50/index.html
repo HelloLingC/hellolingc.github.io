@@ -176,8 +176,8 @@
             var create_time = Math.round(new Date(Date.UTC(2018, 1, 20, 16, 15, 30)).getTime() / 1000);
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
-            currentTimeHtml = '❤️ LingC Blog has been running for ' + (currentTime[0] * 360 + currentTime[1]) + 'days '
-                + currentTime[2] + ' hours ' + currentTime[3] + ' mins ' + currentTime[4]
+            currentTimeHtml = 'Moonlab has been observing the world for ' + (currentTime[0] * 360 + currentTime[1]) + ' d '
+                + currentTime[2] + ' h ' + currentTime[3] + ' m ' + currentTime[4]
                 + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }
