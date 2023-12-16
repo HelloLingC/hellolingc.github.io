@@ -96,16 +96,18 @@ body {
 .container {
   width: 100%;
 }
-/* .video {
+.video-js {
   max-width: 80%;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
-.video {
-  max-width: 45%;
-} */
+@media (min-width: 600px) {
+  .video-js {
+      max-width: 45%;
+  }
+}
 #menu-outer,
 #content-outer,
 #bottom-outer {
