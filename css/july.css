@@ -139,6 +139,9 @@ body {
   transition: all 0.5s;
   bottom: 1rem;
 }
+.site-title-outer {
+  text-align: center;
+}
 #menu-outer {
   padding: 8px;
   background-color: transparent;
