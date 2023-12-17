@@ -11,26 +11,26 @@
     <meta name="description" content="栈 Stack栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。 在栈中，有两个重要的寄存器 SP (Stack Pointer) BP (Base Pointer) 在16位系统中是这样的，在32位系统中分别叫做esp ebp，在64位中 栈是从高地址向低地址搭起来的，因此栈顶位于低地址，栈底位于高地址。一般">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过汇编分析栈、函数调用 esp&amp;ebp">
-<meta property="og:url" content="https://hellolingc.github.io/post/20231215-17/index.html">
+<meta property="og:url" content="https://moonlab.top/post/20231215-17/index.html">
 <meta property="og:site_name" content="MoonLab">
 <meta property="og:description" content="栈 Stack栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。 在栈中，有两个重要的寄存器 SP (Stack Pointer) BP (Base Pointer) 在16位系统中是这样的，在32位系统中分别叫做esp ebp，在64位中 栈是从高地址向低地址搭起来的，因此栈顶位于低地址，栈底位于高地址。一般">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hellolingc.github.io/post/20231215-17/1.png">
-<meta property="og:image" content="https://hellolingc.github.io/post/20231215-17/aem1.png">
-<meta property="og:image" content="https://hellolingc.github.io/post/20231215-17/aem2.png">
+<meta property="og:image" content="https://moonlab.top/post/20231215-17/1.png">
+<meta property="og:image" content="https://moonlab.top/post/20231215-17/aem1.png">
+<meta property="og:image" content="https://moonlab.top/post/20231215-17/aem2.png">
 <meta property="article:published_time" content="2023-12-15T06:31:17.000Z">
 <meta property="article:modified_time" content="2023-12-15T12:38:29.021Z">
 <meta property="article:author" content="LingC">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hellolingc.github.io/post/20231215-17/1.png">
+<meta name="twitter:image" content="https://moonlab.top/post/20231215-17/1.png">
     
     
     
         
-            <link rel="stylesheet" href="https://hellolingc.github.io/css/markdown.css">
+            <link rel="stylesheet" href="https://moonlab.top/css/markdown.css">
         
-            <link rel="stylesheet" href="https://hellolingc.github.io/css/july.css">
+            <link rel="stylesheet" href="https://moonlab.top/css/july.css">
         
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🌒</text></svg>">
@@ -51,11 +51,11 @@
 <div id="menu-outer">
     <div id="menu-inner">
         
-            <a class="false" href="https://hellolingc.github.io/index.html">Home</a>
+            <a class="false" href="https://moonlab.top/index.html">Home</a>
         
-            <a class="false" href="https://hellolingc.github.io/archives/index.html">Archives</a>
+            <a class="false" href="https://moonlab.top/archives/index.html">Archives</a>
         
-            <a class="false" href="https://hellolingc.github.io/about/index.html">About</a>
+            <a class="false" href="https://moonlab.top/about/index.html">About</a>
         
     </div>
 </div>
@@ -176,13 +176,13 @@
 
 
     
-        <script src="https://hellolingc.github.io/js/jquery-3.4.1.min.js"></script>
+        <script src="https://moonlab.top/js/jquery-3.4.1.min.js"></script>
     
-        <script src="https://hellolingc.github.io/js/highlight-9.13.1.min.js"></script>
+        <script src="https://moonlab.top/js/highlight-9.13.1.min.js"></script>
     
-        <script src="https://hellolingc.github.io/js/transition.js"></script>
+        <script src="https://moonlab.top/js/transition.js"></script>
     
-        <script src="https://hellolingc.github.io/js/smooth-scroll.min.js"></script>
+        <script src="https://moonlab.top/js/smooth-scroll.min.js"></script>
     
 
 
