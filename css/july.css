@@ -247,7 +247,6 @@ article#post > #post-date {
 article#post > #post-content {
   line-height: 1.625;
   color: #2d3748;
-  margin-bottom: 1.5rem;
 }
 #paginator {
   text-align: center;
