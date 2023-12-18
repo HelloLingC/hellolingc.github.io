@@ -160,7 +160,7 @@
 <div id="bottom-outer">
     <div id="bottom-inner">
         2018-2023
-        LingC
+        MoonLab
     </div>
     <script type="text/javascript" language="javascript">
         function secondToDate(second) {
@@ -190,8 +190,8 @@
             var create_time = Math.round(new Date(Date.UTC(2018, 1, 20, 16, 15, 30)).getTime() / 1000);
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
-            currentTimeHtml = 'Moonlab has been observing the world for ' + (currentTime[0] * 360 + currentTime[1]) + ' d '
-                + currentTime[2] + ' h ' + currentTime[3] + ' m ' + currentTime[4]
+            currentTimeHtml = '- ' + (currentTime[0] * 360 + currentTime[1]) + ' d '
+                + currentTime[2] + ' h ' + currentTime[3] + ' mins ' + currentTime[4]
                 + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }

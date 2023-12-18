@@ -58,11 +58,13 @@
 
 <div id="content-outer" class="container">
     <div id="content-inner">
-        
-<article id="page">
-  <h1>messages</h1>
+        <article id="page">
+  <h1>
+    messages
+  </h1>
   
-  <p>有什么想对LingC说的都可以来这里留言( ～’ω’)～ </p>
+        <div id="post-content" class="markdown-body">
+          <p>有什么想对LingC说的都可以来这里留言( ～’ω’)～ </p>
 <h2 id="友链申请"><a href="#友链申请" class="headerlink" title="友链申请"></a>友链申请</h2><p>条件：</p>
 <ol>
 <li>网站成立天数 &gt;= 30 day</li>
@@ -76,20 +78,19 @@
 <p>网址：<a href="https://lcblog.cn">https://lcblog.cn</a></p>
 <p>介绍：老板！这条鱼再加点盐！</p>
 
+        </div>
 </article>
-
 
 <div id="paginator">
   
 </div>
-
     </div>
 </div>
 
 <div id="bottom-outer">
     <div id="bottom-inner">
         2018-2023
-        LingC
+        MoonLab
     </div>
     <script type="text/javascript" language="javascript">
         function secondToDate(second) {
@@ -119,8 +120,8 @@
             var create_time = Math.round(new Date(Date.UTC(2018, 1, 20, 16, 15, 30)).getTime() / 1000);
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
-            currentTimeHtml = 'Moonlab has been observing the world for ' + (currentTime[0] * 360 + currentTime[1]) + ' d '
-                + currentTime[2] + ' h ' + currentTime[3] + ' m ' + currentTime[4]
+            currentTimeHtml = '- ' + (currentTime[0] * 360 + currentTime[1]) + ' d '
+                + currentTime[2] + ' h ' + currentTime[3] + ' mins ' + currentTime[4]
                 + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }

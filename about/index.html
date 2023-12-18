@@ -58,9 +58,10 @@
 
 <div id="content-outer" class="container">
     <div id="content-inner">
-        
-<article id="page">
-  <h1>About</h1>
+        <article id="page">
+  <h1>
+    About
+  </h1>
   
     <h1>Showcase Video</h1>
     <video
@@ -80,26 +81,26 @@
   </video>
 
   <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
-    
-  <h1 id="About-Me"><a href="#About-Me" class="headerlink" title="About Me"></a>About Me</h1><p>An Explorer of the cold land.</p>
+      
+        <div id="post-content" class="markdown-body">
+          <h1 id="About-Me"><a href="#About-Me" class="headerlink" title="About Me"></a>About Me</h1><p>An Explorer of the cold land.</p>
 <p>Email: <a href="mailto:contact@moonlab.top">contact@moonlab.top</a><br>My PGP PK: <a href="https://moonlab.top/pgpkey.html">https://moonlab.top/pgpkey.html</a><br><a href="https://piped.video/watch?v=rxeShLhH4N4&amp;list=2ba7e4e5-ad13-4428-83f6-b2e074202a77&amp;index=1">My favorite music playlist</a></p>
 <h1 id="About-the-MoonLab"><a href="#About-the-MoonLab" class="headerlink" title="About the MoonLab"></a>About the MoonLab</h1><p>Glowing guardian in the cosmic sea,<br>A timeless, tranquil melody.</p>
 <p>All the articles in this site are licensed under the  <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> .</p>
 
+        </div>
 </article>
-
 
 <div id="paginator">
   
 </div>
-
     </div>
 </div>
 
 <div id="bottom-outer">
     <div id="bottom-inner">
         2018-2023
-        LingC
+        MoonLab
     </div>
     <script type="text/javascript" language="javascript">
         function secondToDate(second) {
@@ -129,8 +130,8 @@
             var create_time = Math.round(new Date(Date.UTC(2018, 1, 20, 16, 15, 30)).getTime() / 1000);
             var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
             currentTime = secondToDate((timestamp - create_time));
-            currentTimeHtml = 'Moonlab has been observing the world for ' + (currentTime[0] * 360 + currentTime[1]) + ' d '
-                + currentTime[2] + ' h ' + currentTime[3] + ' m ' + currentTime[4]
+            currentTimeHtml = '- ' + (currentTime[0] * 360 + currentTime[1]) + ' d '
+                + currentTime[2] + ' h ' + currentTime[3] + ' mins ' + currentTime[4]
                 + ' secs';
             document.getElementById("htmer_time").innerHTML = currentTimeHtml;
         }
