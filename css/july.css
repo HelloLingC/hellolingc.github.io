@@ -235,6 +235,9 @@ ul.archive-list {
 #bottom-outer #bottom-inner {
   color: #a2a2a2;
 }
+article#post {
+  margin-bottom: 1.3rem;
+}
 article#post > h1#post-title {
   color: #4c4c4c;
   font-size: 1.8rem;
