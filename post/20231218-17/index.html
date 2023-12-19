@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>
+        博客的评论系统的选择 |
+        
+        MoonLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="18年，我最开始在typecho的时候直接用的是博客程序自带的评论系统。在19年换到Hexo后就一直在用Valine加上免费的LeanCloud，但如今博客之前的评论数据库早已丢失。而且当时的我也没有意识到数据的重要性，之前的评论全部消失掉也是有些可惜。 为了不重蹈覆辙，人是不可以在一个地方犯两次错误的，所以必须需要位我的博客寻找一个合适且稳定的评论系统。 我的博客在可预见的未来内，不会出现大量的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客的评论系统的选择">
+<meta property="og:url" content="https://moonlab.top/post/20231218-17/index.html">
+<meta property="og:site_name" content="MoonLab">
+<meta property="og:description" content="18年，我最开始在typecho的时候直接用的是博客程序自带的评论系统。在19年换到Hexo后就一直在用Valine加上免费的LeanCloud，但如今博客之前的评论数据库早已丢失。而且当时的我也没有意识到数据的重要性，之前的评论全部消失掉也是有些可惜。 为了不重蹈覆辙，人是不可以在一个地方犯两次错误的，所以必须需要位我的博客寻找一个合适且稳定的评论系统。 我的博客在可预见的未来内，不会出现大量的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://moonlab.top/post/20231218-17/isso.png">
+<meta property="article:published_time" content="2023-12-18T03:19:17.000Z">
+<meta property="article:modified_time" content="2023-12-19T01:15:27.855Z">
+<meta property="article:author" content="LingC">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://moonlab.top/post/20231218-17/isso.png">
+    
+    
+    
+        
+            <link rel="stylesheet" href="https://moonlab.top/css/markdown.css">
+        
+            <link rel="stylesheet" href="https://moonlab.top/css/july.css">
+        
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🌒</text></svg>">
+    <link rel="stylesheet" href="https://vjs.zencdn.net/8.6.1/video-js.css">
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
+</head>
+<body>
+
+<div id="banner-outer" class="">
+    <div id="banner-image" style="background-image: url(/img/banner.png)"></div>
+    <img src="/img/avatar.jpg" id="avatar">
+</div>
+
+<div class="site-title-outer">
+    🌒MoonLab
+</div>
+
+<div id="menu-outer">
+    <div id="menu-inner">
+        
+            <a class="false" href="https://moonlab.top/">Home</a>
+        
+            <a class="false" href="https://moonlab.top/archives/">Archives</a>
+        
+            <a class="false" href="https://moonlab.top/about/">About</a>
+        
+    </div>
+</div>
+
+<div id="content-outer" class="container">
+    <div id="content-inner">
+        <article id="post">
+    <h1 id="post-title">博客的评论系统的选择</h1>
+    <time id="post-date" datetime="2023-12-18T03:19:17.000Z">
+        December 18, 2023
+    </time>
+    <div id="post-content" class="markdown-body">
+        <p>18年，我最开始在typecho的时候直接用的是博客程序自带的评论系统。在19年换到Hexo后就一直在用Valine加上免费的LeanCloud，但如今博客之前的评论数据库早已丢失。而且当时的我也没有意识到数据的重要性，之前的评论全部消失掉也是有些可惜。</p>
+<p>为了不重蹈覆辙，人是不可以在一个地方犯两次错误的，所以必须需要位我的博客寻找一个合适且稳定的评论系统。</p>
+<p>我的博客在可预见的未来内，不会出现大量的访问量，且读&gt;写。<br>我希望我的博客数据能完全由自己掌控，我的博客数据由这两者构成：文章和评论。<br>目前博客的文章并不用担心丢失，我在Github上有一份公开的同步备份，就是你现在所看到的。同时我的本地有两份备份，一份在我的PC上，一份在我的SD卡上。其中也包括了文章的图片。考虑到用SD卡作为媒介依旧不是特别保险，之后也会在远程的OneDrive同步一份。</p>
+<p>因此目前需要着重考虑的就是评论数据了，我所需要的评论系统需要满足以下：</p>
+<ul>
+<li>数据完全掌控，体现在数据可以直接地导出</li>
+<li>易于备份和迁移</li>
+<li>访问者可以轻松地评论</li>
+</ul>
+<h1 id="Disqus-amp-Github"><a href="#Disqus-amp-Github" class="headerlink" title="Disqus &amp; Github"></a>Disqus &amp; Github</h1><p>Disqus 等中心化的评论系统，虽然有免费计划可以使用，但始终不稳定。除了评论数据绑定在平台，评论的用户还需要注册一个平台的账户，十分麻烦。并且这类评论接入服务对于用户隐私的保护实在存疑。</p>
+<p>Disqus 会追踪用户行为，以及IP地址。它会根据你所访问的网站进行个性化广告投放，这对评论者的隐私是一个极其严重的侵犯。</p>
+<p>还有一种很早就有的评论系统Gitalk, Gitment，都是利用Github Issues来托管评论。<br>这种评论系统虽然开放且隐私保护完善，但有一个巨大的缺陷：对于评论者来说，将自己的Github账号授权给一个网站去发起Issue是很危险的，如果恶意的网站一旦获取到了你的Access Token，其权限是非常大的。</p>
+<p>但现在如果想将博客评论托管在Github上其实已经有了更好的选择。<br><a href="https://github.com/giscus/giscus">giscus</a>利用Github Discussion的API和Github App很好的解决了上面的问题。划定了Github App的权限。同时借助Discussion也能轻松地在Github上管理你博客内的评论。并且能很大程度上避免了垃圾评论。</p>
+<p>但giscus会暴露评论者的Github账号，不仅会在网页的前端显示出来，而且在Github Discussion中也会有相应的记录。这在某些情况下是优点，但对于我的博客来说，我不希望将评论者的任何信息暴露在公网之中。</p>
+<p>评论者所需提供的仅仅应该是一个用于识别的名字。</p>
+<p>同时giscus也需要一个中心服务器来托管App，处理认证回调，调用Github API等等。只是官方提供了一个免费公开的服务。但你也可以自己托管在Vercel或其他地方中。</p>
+<p>综上，我的博客的评论系统将不采用任何与Github相关的服务。</p>
+<h1 id="Cusdis"><a href="#Cusdis" class="headerlink" title="Cusdis"></a>Cusdis</h1><p><a href="https://cusdis.com/">Cusdis</a>是一个对标Disqus的更加轻量，注重隐私的评论系统，最最重要的是它是开源。整个网站只需插入一个几kb大小的js就可以使用。<br>免费版可以直接接入使用，非常好用。</p>
+<p>但如果想要自己托管，就需要一个PostgreSQL Database，但是用在我的博客上还是有些臃肿了，事实上我认为大多数的网站的访问量还远远没有达到需要使用MySQL这类数据库的地步。一个简单的单文件的Sqlite是更好的选择，不仅便于迁移还易于管理。</p>
+<p>关于这一部分的内容可以阅读<a href="https://www.sqlite.org/whentouse.html">Appropriate Uses For SQLite</a></p>
+<p>基于Sqlite的评论系统比较少，抛开一些不完善的小项目，目前commit数最多，且最热门的应该是<a href="https://github.com/posativ/isso">posativ/isso</a>。不过居然是用python实现的。</p>
+<h1 id="ISSO"><a href="#ISSO" class="headerlink" title="ISSO"></a>ISSO</h1><p>isso支持从Disqus和wp迁移数据，不过我之前的评论数据全存在别的地方，现在应该已经丢过了，那已经是好几年前的事情了。</p>
+<p>简单的安装启用过后，就是博客现在的这个样子了。</p>
+<p>ISSO支持Markdown语法，评论feed的订阅，评论先审后发，SMTP提醒回复，并且社区也很活跃。<br>评论者头像可以通过Gravatar获取，isso的js和css也可以配置cdn</p>
+<p>同时ISSO还带有Admin模块：</p>
+<p><img src="/post/20231218-17/isso.png" alt="admin"></p>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>博客评论的db文件储存在我的服务器中，后续要和文章数据一同，能够同步备份在远程的OneDrive中。</p>
+
+    </div>
+</article>
+
+<script data-isso="//comment.moonlab.top/"
+        src="//comment.moonlab.top/js/embed.min.js"></script>
+
+<section id="isso-thread">
+    <noscript>Javascript needs to be activated to view comments.</noscript>
+</section>
+
+<div id="paginator">
+    
+</div>
+
+    </div>
+</div>
+
+<div id="bottom-outer">
+    <a href="https://moonlab.top/atom.xml" target="_blank" rel="noopener noreferrer">
+        <img src="/img/rss.svg" alt="Atom Feed" style="width: 30px; height: 30px; margin-right: 5px;">
+    </a>
+    <div id="bottom-inner">
+        2018-2023
+        MoonLab
+    </div>
+    <script type="text/javascript" language="javascript">
+        function secondToDate(second) {
+            var time = new Array(0, 0, 0, 0, 0);
+            if (second >= 365 * 24 * 3600) {
+                time[0] = parseInt(second / (365 * 24 * 3600));
+                second %= 365 * 24 * 3600;
+            }
+            if (second >= 24 * 3600) {
+                time[1] = parseInt(second / (24 * 3600));
+                second %= 24 * 3600;
+            }
+            if (second >= 3600) {
+                time[2] = parseInt(second / 3600);
+                second %= 3600;
+            }
+            if (second >= 60) {
+                time[3] = parseInt(second / 60);
+                second %= 60;
+            }
+            if (second > 0) {
+                time[4] = second;
+            }
+            return time;
+        }
+        function setTime() {
+            var create_time = Math.round(new Date(Date.UTC(2018, 1, 20, 16, 15, 30)).getTime() / 1000);
+            var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+            currentTime = secondToDate((timestamp - create_time));
+            currentTimeHtml = '- ' + (currentTime[0] * 360 + currentTime[1]) + ' d '
+                + currentTime[2] + ' h ' + currentTime[3] + ' mins ' + currentTime[4]
+                + ' secs';
+            document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+        }
+        setInterval(setTime, 1000);
+    </script>
+    <span id="htmer_time"></span>
+</div>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-38QBGC8F67');
+</script>
+
+<div id="to-top">
+    <i class="iconfont icon-up"></i>
+</div>
+
+
+    
+        <script src="https://moonlab.top/js/jquery-3.4.1.min.js"></script>
+    
+        <script src="https://moonlab.top/js/highlight-9.13.1.min.js"></script>
+    
+        <script src="https://moonlab.top/js/transition.js"></script>
+    
+        <script src="https://moonlab.top/js/smooth-scroll.min.js"></script>
+    
+
+
+
+    <script>
+      $(function () {
+        $('#banner-outer').addClass('fade-out')
+        $('#menu-outer').addClass('fade-show')
+
+        $('pre').each(function (i, block) {
+          hljs.highlightBlock(block);
+        });
+      })
+    </script>
+
+
+<script>
+  $(function () {
+    $(window).scroll(function () {
+      if ($(window).scrollTop() > 150) {
+        $("#to-top").fadeIn();
+      } else {
+        $("#to-top").fadeOut();
+      }
+    });
+    $("#to-top").click(function () {
+      $("body,html").animate({scrollTop: 0}, 500);
+      return false;
+    })
+  })
+</script>
+</body>
+</html>
