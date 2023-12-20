@@ -471,7 +471,7 @@
       </tags>
   </entry>
   <entry>
-    <title>博客的评论系统的选择</title>
+    <title>博客评论系统的选择</title>
     <url>//post/20231218-17/</url>
     <content><![CDATA[<p>18年，我最开始在typecho的时候直接用的是博客程序自带的评论系统。在19年换到Hexo后就一直在用Valine加上免费的LeanCloud，但如今博客之前的评论数据库早已丢失。而且当时的我也没有意识到数据的重要性，之前的评论全部消失掉也是有些可惜。</p>
 <p>为了不重蹈覆辙，人是不可以在一个地方犯两次错误的，所以必须需要位我的博客寻找一个合适且稳定的评论系统。</p>
@@ -499,10 +499,36 @@
 <p>ISSO支持Markdown语法，评论feed的订阅，评论先审后发，SMTP提醒回复，并且社区也很活跃。<br>评论者头像可以通过Gravatar获取，isso的js和css也可以配置cdn</p>
 <p>同时ISSO还带有Admin模块：</p>
 <p><img src="/post/20231218-17/isso.png" alt="admin"></p>
+<p>注：后来我又发现一个Waline，支持多种数据库，也包括Sqlite，且功能更多。如果不是为了追求更加的简洁，可以选择Waline。</p>
 <h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>博客评论的db文件储存在我的服务器中，后续要和文章数据一同，能够同步备份在远程的OneDrive中。</p>
 ]]></content>
       <categories>
         <category>其他</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客自动备份插件 云盘备份支持</title>
+    <url>//post/20231219-50/</url>
+    <content><![CDATA[<p>上篇文章整理了一下博客的评论系统，而现在我需要一个稳定好用的博客数据备份方案。</p>
+<p>老生常谈的321原则，即至少保留3个备份副本，使用2种不同的储存介质，并将其中1个备份存储在远离数据源的地方。</p>
+<p>最开始我考虑用Github Action构建一个Workflow来实现在每次commit自动将仓库内的文件同步在OneDrive中。</p>
+<p>但后来想想这种方法局限性很大。首先这样做只能备份已发布的文章和页面，对于博客的草稿，主题文件，package.json，<code>_config.cml</code> 这些同样重要的文件并没有保存的方法。而且十分受限于Github平台。</p>
+<p>因此我开发了一个Hexo插件用于实现多平台备份，项目GitHub仓库：<a href="https://github.com/HelloLingC/hexo-auto-backup">HelloLingC/hexo-auto-backup (github.com)</a></p>
+<p>此插件可以在执行 hexo deploy 命令时自动根据配置将source, themes, package.json, <code>_config.yml</code> 同步在其他的本地磁盘（如USB），或云盘之中。</p>
+<p>借助rclone，支持所有主流的云盘，OneDrive, Google Drive, Pikpak等等，同时也支持SMTP, FTP, HTTP等协议。<br>详细可以查看插件的readme</p>
+<p>安装插件的方法很简单，和大部分的插件一样用npm：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-auto-backup</span><br></pre></td></tr></table></figure>
+<p>目前还仍需改善：</p>
+<ul>
+<li>Expire 的设置，即设置每个备份最大保留时间，如30天</li>
+<li>多系统支持，目前只支持Windows</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Programming</category>
       </categories>
       <tags>
         <tag>blog</tag>
