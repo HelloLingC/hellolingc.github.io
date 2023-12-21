@@ -41,15 +41,15 @@
             text-align: center;
             text-decoration: none;
             cursor: pointer;
-            border: 2px solid #3498db;
+            border: 2px solid #FF69B4;
             border-radius: 5px;
             color: #ffffff;
-            background-color: #3498db;
+            background-color: #FF69B4;
             transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #2980b9;
+            background-color: #FFC0CB;
         }
     </style>
 </head>
@@ -59,13 +59,12 @@
         <h1>404 Not Found</h1>
         <p>Hi~ It seems like you're running to a void.</p>
         <p>Maybe you are tryin' to visit MoonLab Mini, instead of MoonLab.</p>
-        <p>Try to click the button below to transefer your request to MoonLab Mini</p>
+        <p>Try to click the button below to transfer your request to MoonLab Mini</p>
         <button id="navi">NAVIGATE TO MOONLAB MINI</button>
     </div>
     <script>
         const path = window.location.pathname;
-        // const mod_path = path.replace("moonlab.top", "mini.moonlab.top");
-        const mod_path = path.replace("Hexo", "mini.moonlab.top");
+        const mod_path = path.replace("moonlab.top", "mini.moonlab.top");
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("navi").addEventListener("click", function () {
                 window.location.href = mod_path;
