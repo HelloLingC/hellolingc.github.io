@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>MoonLab Search Indexes</title>
+    <meta name="description" content="Search all the contents in MoonLab.">
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+    <script src="/pagefind/pagefind-ui.js"></script>
+    <style>
+        html,
+        body {
+            color: #efefef;
+            background-color: #080808;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        body {
+            padding: 1em;
+            --pagefind-ui-primary: #efefef;
+            --pagefind-ui-text: #efefef;
+            --pagefind-ui-background: #080808;
+            --pagefind-ui-border: #444;
+            --pagefind-ui-tag: #444;
+        }
+
+        .pane {
+            max-width: 700px;
+            margin: clamp(10px, 5vw, 100px) auto;
+        }
+
+        body .pagefind-ui mark {
+            padding: 0 3px;
+            border-radius: 4px;
+            background-color: #f6b7ff;
+            background: linear-gradient(0.15turn, #e448a075, #da0ab96e);
+            white-space: nowrap;
+            color: #efefef;
+        }
+
+        .pagefind-ui__result-excerpt {
+            line-height: 1.5;
+            color: #efefefcc;
+        }
+
+        .pagefind-ui__result-link {
+            color: #fad8ff !important;
+        }
+
+        h1 {
+            margin-bottom: 0;
+        }
+
+        h1+p {
+            margin-top: .5em;
+            margin-bottom: 2em;
+        }
+
+        footer {
+            border-top: solid 1px #444;
+            color: #999;
+            font-size: 12px;
+            margin-top: 2em;
+            padding: 1em 0 2em;
+            text-align: right;
+        }
+
+        footer a {
+            color: #9d81a1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pane">
+        <h1>MoonLab Seach Indexes</h1>
+        <p>Notice: All the articles in Moonlab are licensed under the CC BY-NC 4.0.</p>
+        <div id="search"></div>
+        <script>
+            window.addEventListener('DOMContentLoaded', (event) => {
+                new PagefindUI({ element: "#search", showSubResults: true });
+            });
+        </script>
+    </div>
+</body>
+
+</html>
