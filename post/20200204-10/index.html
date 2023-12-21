@@ -67,25 +67,28 @@
     <h1 id="post-title">
         Android Shizuku源码分析 第二篇
     </h1>
-    <p data-pagefind-ignore>Category:
-        
-            <a href="/categories/Programming"><span data-pagefind-filter="category">
-                Programming
-            </span></a>
-        
-    </p>
-    
-        <p data-pagefind-ignore>Tags:
+    <div data-pagefind-ignore>
+        <p>Category:
             
-                <a href="/tags/Android"><span data-pagefind-filter="tag">
-                    Android
+                <a href="/categories/Programming"><span data-pagefind-filter="category">
+                    Programming
                 </span></a>
             
         </p>
-    
-    <time data-pagefind-ignore id="post-date" datetime="2020-02-04T03:43:10.000Z">
-        二月 04, 2020
-    </time>
+        
+            <p>Tags:
+                
+                    <a href="/tags/Android"><span data-pagefind-filter="tag">
+                        Android
+                    </span></a>
+                
+            </p>
+        
+        <p><span data-pagefind-filter="language">中文</span></p>
+        <time id="post-date" datetime="2020-02-04T03:43:10.000Z">
+            二月 04, 2020
+        </time>
+    </div>
     <div id="post-content" class="markdown-body">
         <h1 id="又是前言"><a href="#又是前言" class="headerlink" title="又是前言"></a>又是前言</h1><p>上一篇的 <a href="https://lcblog.cn/post/android-shizuku-theory">Shizuku 源码分析</a>，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。</p>
 <p>我们接下来要更深入分析，去 Navtive 层看看。我想要知道 Starter 的 main 方法又是谁调用的？怎么调用的？</p>
