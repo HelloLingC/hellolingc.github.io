@@ -63,7 +63,7 @@
         <button id="navi">NAVIGATE TO MOONLAB MINI</button>
     </div>
     <script>
-        const path = window.location.pathname;
+        const path = window.location.href;
         const mod_path = path.replace("moonlab.top", "mini.moonlab.top");
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("navi").addEventListener("click", function () {
