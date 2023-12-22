@@ -15,13 +15,14 @@
 <meta property="og:site_name" content="MoonLab">
 <meta property="og:description" content="18年，我最开始在typecho的时候直接用的是博客程序自带的评论系统。在19年换到Hexo后就一直在用Valine加上免费的LeanCloud，但如今博客之前的评论数据库早已丢失。而且当时的我也没有意识到数据的重要性，之前的评论全部消失掉也是有些可惜。 为了不重蹈覆辙，人是不可以在一个地方犯两次错误的，所以必须需要位我的博客寻找一个合适且稳定的评论系统。 我的博客在可预见的未来内，不会出现大量的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://moonlab.top/isso.png">
+<meta property="og:image" content="https://moonlab.top/post/20231218-17/test.png">
+<meta property="og:image" content="https://moonlab.top/post/20231218-17/isso.png">
 <meta property="article:published_time" content="2023-12-18T03:19:17.000Z">
-<meta property="article:modified_time" content="2023-12-19T05:34:40.882Z">
+<meta property="article:modified_time" content="2023-12-22T09:26:27.565Z">
 <meta property="article:author" content="LingC">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://moonlab.top/isso.png">
+<meta name="twitter:image" content="https://moonlab.top/post/20231218-17/test.png">
     
         <link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
     
@@ -116,13 +117,15 @@
 <h1 id="Cusdis"><a href="#Cusdis" class="headerlink" title="Cusdis"></a>Cusdis</h1><p><a href="https://cusdis.com/" rel="external nofollow noreferrer">Cusdis</a>是一个对标Disqus的更加轻量，注重隐私的评论系统，最最重要的是它是开源。整个网站只需插入一个几kb大小的js就可以使用。<br>免费版可以直接接入使用，非常好用。</p>
 <p>但如果想要自己托管，就需要一个PostgreSQL Database，但是用在我的博客上还是有些臃肿了，事实上我认为大多数的网站的访问量还远远没有达到需要使用MySQL这类数据库的地步。一个简单的单文件的Sqlite是更好的选择，不仅便于迁移还易于管理。</p>
 <p>关于这一部分的内容可以阅读<a href="https://www.sqlite.org/whentouse.html" rel="external nofollow noreferrer">Appropriate Uses For SQLite</a></p>
-<p>基于Sqlite的评论系统比较少，抛开一些不完善的小项目，目前commit数最多，且最热门的应该是<a href="https://github.com/posativ/isso" rel="external nofollow noreferrer">posativ&#x2F;isso</a>。不过居然是用python实现的。</p>
-<h1 id="ISSO"><a href="#ISSO" class="headerlink" title="ISSO"></a>ISSO</h1><p>isso支持从Disqus和wp迁移数据，不过我之前的评论数据全存在别的地方，现在应该已经丢过了，那已经是好几年前的事情了。</p>
+<h1 id="Waline-Artalk"><a href="#Waline-Artalk" class="headerlink" title="Waline &amp; Artalk"></a>Waline &amp; Artalk</h1><p>这两位也支持Sqlite，前者的前后端都是JavaScript写的，后者的后端是Go，客户端是JavaScript</p>
+<p>不过两者的实现都有些沉余，而且如果要自己修改一些功能比较麻烦。</p>
+<h1 id="ISSO"><a href="#ISSO" class="headerlink" title="ISSO"></a>ISSO</h1><p><a href="https://github.com/posativ/isso" rel="external nofollow noreferrer">posativ&#x2F;isso</a>是用python写的，也支持从Disqus和wp迁移数据，不过我之前的评论数据全存在别的地方，现在应该已经丢过了，那已经是好几年前的事情了。</p>
+<p>Waline的官网上说他们的js大小是53kb gzip，而isso实际使用上是19.4kb，我连31kb的jquery都嫌大，准备找个时间修修。</p>
+<p><img src="/post/20231218-17/test.png" alt="test"></p>
 <p>简单的安装启用过后，就是博客现在的这个样子了。</p>
-<p>ISSO支持Markdown语法，评论feed的订阅，评论先审后发，SMTP提醒回复，并且社区也很活跃。<br>评论者头像可以通过Gravatar获取，isso的js和css也可以配置cdn</p>
+<p>ISSO支持Markdown语法，评论feed的订阅（只能单独），评论先审后发，SMTP提醒回复，并且社区也算活跃。<br>评论者头像可以通过Gravatar获取，isso的js和css也可以配置cdn</p>
 <p>同时ISSO还带有Admin模块：</p>
-<p><img src="/isso.png" alt="admin"></p>
-<p>注：后来我又发现一个Waline，支持多种数据库，也包括Sqlite，且功能更多。如果不是为了追求更加的简洁，可以选择Waline。</p>
+<p><img src="/post/20231218-17/isso.png" alt="admin"></p>
 <h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>博客评论的db文件储存在我的服务器中，后续要和文章数据一同，能够同步备份在远程的OneDrive中。</p>
 
     </div>
