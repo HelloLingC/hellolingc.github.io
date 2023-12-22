@@ -23,6 +23,10 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/02/24/yA5aeP8Z2zHrbns.jpg">
     
+        <link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
+    
+    
+        <link rel="icon" href="/assets/moon.svg">
     
     
         
@@ -31,10 +35,8 @@
             <link rel="stylesheet" href="https://moonlab.top/css/july.css">
         
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🌒</text></svg>">
     <link rel="stylesheet" href="https://vjs.zencdn.net/8.6.1/video-js.css">
-<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="MoonLab" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 <body>
 
 <div id="banner-outer" class="">
@@ -100,12 +102,14 @@
 <p>使用 Litepal 储存数据时，需要调用 save() 方法。</p>
 <p>这里我就遇到了一个问题，明明 save() 方法返回的是 true ，但数据库里没有需要保存的数据啊？</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Gson</span> <span class="variable">gson</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>();</span><br><span class="line"><span class="type">Diary</span> <span class="variable">diary</span> <span class="operator">=</span> gson.fromJson(json, Diary.class);</span><br><span class="line"><span class="keyword">return</span> diary.save();</span><br></pre></td></tr></table></figure>
+
 <p>这是调用 Gson 将 json 转换为 javabean 对象。</p>
 <p>明明 Diary 的内容全是正确的，我开始询问度娘。</p>
 <p>结果没找到跟我的问题直接相关的文章，结果我看到了有个人在吐槽啥 setting getting，我就想到了会不会是因为没有调用 Diary 的构造方法？</p>
 <p>Diary 作为一个 Litepal 的，它是继承自 LitePalSupport 的，会不会是因为没有调用 LitePalSupport 的构造方法呢？</p>
 <p>我将导入代码改了一下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Gson</span> <span class="variable">gson</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>();</span><br><span class="line"><span class="type">Diary</span> <span class="variable">diary</span> <span class="operator">=</span> gson.fromJson(json, Diary.class);</span><br><span class="line"><span class="type">Diary</span> <span class="variable">saveDiary</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Diary</span>();</span><br><span class="line">saveDiary.setId(diary.getId());</span><br><span class="line">saveDiary.setCreatedTime(diary.getCreatedTime());</span><br><span class="line">saveDiary.setLastUpdatedTime(diary.getLastUpdatedTime());</span><br><span class="line">... 省略一万个代码</span><br><span class="line"><span class="keyword">return</span> saveDiary.save();</span><br></pre></td></tr></table></figure>
+
 <p>果然，最后正常了…</p>
 <p><del>(水文真开心)</del></p>
 <p><img src="https://i.loli.net/2020/02/24/yA5aeP8Z2zHrbns.jpg" alt="咕咕咕"></p>
