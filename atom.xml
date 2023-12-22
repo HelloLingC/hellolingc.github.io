@@ -6,7 +6,7 @@
   <link href="https://moonlab.top/atom.xml" rel="self"/>
   
   <link href="https://moonlab.top/"/>
-  <updated>2023-12-22T04:11:38.910Z</updated>
+  <updated>2023-12-19T15:13:47.552Z</updated>
   <id>https://moonlab.top/</id>
   
   <author>
@@ -15,36 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>如何正确地更新Hexo，整理依赖项</title>
-    <link href="https://moonlab.top/post/20231222-54/"/>
-    <id>https://moonlab.top/post/20231222-54/</id>
-    <published>2023-12-22T03:55:54.000Z</published>
-    <updated>2023-12-22T04:11:38.910Z</updated>
-    
-    <content type="html"><![CDATA[<p>通过本篇文章，你将看到：</p><ul><li>如何更新Hexo</li><li>如何迁移至pnpm进行依赖项管理</li></ul><p>提示：在进行跨大版本的更新时，请进行本地的数据备份。</p><h1 id="Hexo-CLI"><a href="#Hexo-CLI" class="headerlink" title="Hexo-CLI"></a>Hexo-CLI</h1><p>由于Hexo-CLI是全局安装的，所以需要单独更新一下，通过以下命令查看Hexo-CLI的版本：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm list -g --depth=0 hexo-cli</span><br></pre></td></tr></table></figure><p>当然也可以直接通过Hexo-CLI查看：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure><p>与Hexo-CLI的最新版进行版本对比：<a href="https://www.npmjs.com/package/hexo-cli">hexo-cli (npmjs.com)</a><br>如果发现不是最新版且在明确无冲突的前提下，进行更新：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g hexo-cli@latest</span><br></pre></td></tr></table></figure><h1 id="其他依赖项"><a href="#其他依赖项" class="headerlink" title="其他依赖项"></a>其他依赖项</h1><p>查看当前项目（博客）下依赖项的版本：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm outdated</span><br></pre></td></tr></table></figure><p>建议通过<a href="https://www.npmjs.com/package/npm-check-updates">npm-check-updates (npmjs.com)</a>来帮助进行依赖项的更新。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g npm-check-updates</span><br></pre></td></tr></table></figure><p>查看依赖项的版本情况：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ncu</span><br></pre></td></tr></table></figure><p>更新所有的依赖项版本至package.json中：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ncu -u</span><br></pre></td></tr></table></figure><p>如要选择性地更新依赖，请通过交互式更新：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ncu -i</span><br></pre></td></tr></table></figure><p>更新完package.json后，安装所有新版依赖：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure><h1 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp; hexo s</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;通过本篇文章，你将看到：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;如何更新Hexo&lt;/li&gt;
-&lt;li&gt;如何迁移至pnpm进行依赖项管理&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;提示：在进行跨大版本的更新时，请进行本地的数据备份。&lt;/p&gt;
-&lt;h1 id=&quot;Hexo-CLI&quot;&gt;&lt;a href=&quot;#Hex</summary>
-      
-    
-    
-    
-    <category term="Uncategoried" scheme="https://moonlab.top/categories/Uncategoried/"/>
-    
-    
-    <category term="blog" scheme="https://moonlab.top/tags/blog/"/>
-    
-  </entry>
   
   <entry>
     <title>Hexo博客自动备份插件 云盘备份支持</title>

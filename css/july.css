@@ -64,8 +64,9 @@ html {
 }
 body {
   overflow-y: scroll;
-  font: 1.1em "Vollkorn", Palatino, Times, "Noto Serif SC", Lusitana, serif, "PT Sans", source-han-sans-simplified-c, "PingFang SC", "Hiragino Sans GB", PingHei, "Open Sans", sans-serif, Helvetica Neue, "Work Sans", "Microsoft YaHei", SimSun;
+  font: 1.1em Palatino, Times, "Noto Serif SC", Lusitana, serif, "PT Sans", source-han-sans-simplified-c, "PingFang SC", "Hiragino Sans GB", PingHei, "Open Sans", sans-serif, Helvetica Neue, "Work Sans", "Microsoft YaHei", SimSun;
   color: #333;
+  background-color: #faf8f1;
   line-height: 1.4;
   text-align: justify;
 }
