@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://moonlab.top/post/20231219-50/</loc>
+    
+    <lastmod>2023-12-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://moonlab.top/post/20231218-17/</loc>
     
     <lastmod>2023-12-22</lastmod>
@@ -32,15 +41,6 @@
     <loc>https://moonlab.top/post/20190525-36/</loc>
     
     <lastmod>2023-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://moonlab.top/post/20231219-50/</loc>
-    
-    <lastmod>2023-12-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -161,13 +161,6 @@
   
   <url>
     <loc>https://moonlab.top/categories/%E5%85%B6%E4%BB%96/</loc>
-    <lastmod>2023-12-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://moonlab.top/categories/Uncategoried/</loc>
     <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

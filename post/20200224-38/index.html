@@ -101,14 +101,23 @@
 <p>但其实 sqlite 的语法和一些其他的语句并不难，所以用这个库就是为了方便…</p>
 <p>使用 Litepal 储存数据时，需要调用 save() 方法。</p>
 <p>这里我就遇到了一个问题，明明 save() 方法返回的是 true ，但数据库里没有需要保存的数据啊？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Gson</span> <span class="variable">gson</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>();</span><br><span class="line"><span class="type">Diary</span> <span class="variable">diary</span> <span class="operator">=</span> gson.fromJson(json, Diary.class);</span><br><span class="line"><span class="keyword">return</span> diary.save();</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight java"><span class="type">Gson</span> <span class="variable">gson</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>();
+<span class="type">Diary</span> <span class="variable">diary</span> <span class="operator">=</span> gson.fromJson(json, Diary.class);
+<span class="keyword">return</span> diary.save();</code></pre>
 
 <p>这是调用 Gson 将 json 转换为 javabean 对象。</p>
 <p>明明 Diary 的内容全是正确的，我开始询问度娘。</p>
 <p>结果没找到跟我的问题直接相关的文章，结果我看到了有个人在吐槽啥 setting getting，我就想到了会不会是因为没有调用 Diary 的构造方法？</p>
 <p>Diary 作为一个 Litepal 的，它是继承自 LitePalSupport 的，会不会是因为没有调用 LitePalSupport 的构造方法呢？</p>
 <p>我将导入代码改了一下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Gson</span> <span class="variable">gson</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>();</span><br><span class="line"><span class="type">Diary</span> <span class="variable">diary</span> <span class="operator">=</span> gson.fromJson(json, Diary.class);</span><br><span class="line"><span class="type">Diary</span> <span class="variable">saveDiary</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Diary</span>();</span><br><span class="line">saveDiary.setId(diary.getId());</span><br><span class="line">saveDiary.setCreatedTime(diary.getCreatedTime());</span><br><span class="line">saveDiary.setLastUpdatedTime(diary.getLastUpdatedTime());</span><br><span class="line">... 省略一万个代码</span><br><span class="line"><span class="keyword">return</span> saveDiary.save();</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight java"><span class="type">Gson</span> <span class="variable">gson</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>();
+<span class="type">Diary</span> <span class="variable">diary</span> <span class="operator">=</span> gson.fromJson(json, Diary.class);
+<span class="type">Diary</span> <span class="variable">saveDiary</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Diary</span>();
+saveDiary.setId(diary.getId());
+saveDiary.setCreatedTime(diary.getCreatedTime());
+saveDiary.setLastUpdatedTime(diary.getLastUpdatedTime());
+... 省略一万个代码
+<span class="keyword">return</span> saveDiary.save();</code></pre>
 
 <p>果然，最后正常了…</p>
 <p><del>(水文真开心)</del></p>

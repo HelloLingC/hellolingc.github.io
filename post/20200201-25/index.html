@@ -113,7 +113,8 @@
 <p>我这种菜鸡只能先求助百度：Android 监听第三方Activity</p>
 <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>首先百度到的第一个方法是搞一个Service，然后在一个循环里一直获取栈顶的Activity。</p>
 <p>emmmmmm….</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;ActivityManager.RunningTaskInfo&gt; runningTasks = am.getRunningTasks(<span class="number">1</span>);</span><br><span class="line">ActivityManager.<span class="type">RunningTaskInfo</span> <span class="variable">runningTaskInfo</span> <span class="operator">=</span> runningTasks.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight java">List&lt;ActivityManager.RunningTaskInfo&gt; runningTasks = am.getRunningTasks(<span class="number">1</span>);
+ActivityManager.<span class="type">RunningTaskInfo</span> <span class="variable">runningTaskInfo</span> <span class="operator">=</span> runningTasks.get(<span class="number">0</span>);</code></pre>
 
 <p>这个办法肯定是不行哒，Google早已对getRunningTasks方法严加管制，需要<code>android.permission.GET_TOP_ACTIVITY_INFO</code>权限，但是这个权限必须要系统app才能申请。</p>
 <p>但或许能用shell指令 ps 来获取栈顶的 Activity，虽然我没试过。</p>
@@ -128,7 +129,10 @@
 <p><code>IInterface</code>, <code>Stub</code>, <code>Proxy</code> 三个类是分离的，分别是 IActivityManager，ActivityManagerNative (extends Binder) 和 ActivityManagerProxy。</p>
 <p>而现在（API 26+），AMS直接继承了 IActivityManager的内部类 Stub：</p>
 <p>这时候 Android 源码已经有了 IActivityManager.aidl，ActivityManagerNative 这个类被弃用了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ActivityManagerService</span> <span class="keyword">extends</span> <span class="title class_">IActivityManager</span>.Stub</span><br><span class="line">        <span class="keyword">implements</span> <span class="title class_">Watchdog</span>.Monitor, BatteryStatsImpl.BatteryCallback &#123;</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ActivityManagerService</span> <span class="keyword">extends</span> <span class="title class_">IActivityManager</span>.Stub
+        <span class="keyword">implements</span> <span class="title class_">Watchdog</span>.Monitor, BatteryStatsImpl.BatteryCallback &#123;
+        ...
+&#125;</code></pre>
 
 <p>那么自然而然，setIActivityController 这个方法是在 IActivityManager.aidl 内定义的，</p>
 <p>而 IActivityController 是一个在 Binder 中的回调接口，可以直接下载 IActivityController.aidl 放在 android.app 这个包下。要与 Android 系统源码的位置一致。</p>
@@ -149,12 +153,37 @@
 </blockquote>
 <p>导入 Shizuku 的开源库，先在 android.app 包内创建一个同名文件：!ActivityManager.java</p>
 <p>假装他是 IActivityManager.aidl 自动生成的一个类（我们无需在下载 IActivityManager.aidl 放在项目里）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> android.app;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Binder;</span><br><span class="line"><span class="keyword">import</span> android.os.IBinder;</span><br><span class="line"><span class="keyword">import</span> android.os.IInterface;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 我们自己创建的 IActivityManager */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IActivityManager</span> <span class="keyword">extends</span> <span class="title class_">IInterface</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">setActivityController</span><span class="params">(IActivityController watcher, <span class="type">boolean</span> imAMonkey)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Stub</span> <span class="keyword">extends</span> <span class="title class_">Binder</span> <span class="keyword">implements</span> <span class="title class_">IActivityManager</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> IActivityManager <span class="title function_">asInterface</span><span class="params">(IBinder obj)</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight java"><span class="keyword">package</span> android.app;
+
+<span class="keyword">import</span> android.os.Binder;
+<span class="keyword">import</span> android.os.IBinder;
+<span class="keyword">import</span> android.os.IInterface;
+
+<span class="comment">/* 我们自己创建的 IActivityManager */</span>
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IActivityManager</span> <span class="keyword">extends</span> <span class="title class_">IInterface</span> &#123;
+
+    <span class="keyword">void</span> <span class="title function_">setActivityController</span><span class="params">(IActivityController watcher, <span class="type">boolean</span> imAMonkey)</span>;
+
+    <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Stub</span> <span class="keyword">extends</span> <span class="title class_">Binder</span> <span class="keyword">implements</span> <span class="title class_">IActivityManager</span> &#123;
+
+        <span class="keyword">public</span> <span class="keyword">static</span> IActivityManager <span class="title function_">asInterface</span><span class="params">(IBinder obj)</span> &#123;
+            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();
+        &#125;
+    &#125;
+
+&#125;</code></pre>
 
 <p>结构和 aidl 自动生成的类没什么两样，就是只把关键的方法写出来。</p>
 <p>注意哦，这个 Stub 是一个抽象类！asInterface 方法并没有具体的实现。</p>
 <p>之后我们再：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">IActivityManager</span> <span class="variable">ACTIVITY_MANAGER</span> <span class="operator">=</span> IActivityManager.Stub.asInterface(<span class="keyword">new</span> <span class="title class_">ShizukuBinderWrapper</span>(SystemServiceHelper.getSystemService(<span class="string">&quot;activity&quot;</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">setActivityController</span><span class="params">(IActivityController activityController)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!ShizukuService.pingBinder()) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ACTIVITY_MANAGER.setActivityController(activityController, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight java"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">IActivityManager</span> <span class="variable">ACTIVITY_MANAGER</span> <span class="operator">=</span> IActivityManager.Stub.asInterface(<span class="keyword">new</span> <span class="title class_">ShizukuBinderWrapper</span>(SystemServiceHelper.getSystemService(<span class="string">&quot;activity&quot;</span>)));
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">setActivityController</span><span class="params">(IActivityController activityController)</span> &#123;
+        <span class="keyword">if</span> (!ShizukuService.pingBinder()) &#123;
+            <span class="keyword">return</span>;
+        &#125;
+        ACTIVITY_MANAGER.setActivityController(activityController, <span class="literal">true</span>);
+    &#125;</code></pre>
 
 <p>这样我们就能直接调用 setActivityController 方法了，然后在重写 IActivityController.Stub 内的回调方法就行了。</p>
 
