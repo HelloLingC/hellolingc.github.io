@@ -190,7 +190,32 @@ body {
   color: #868686;
 }
 
-#content-outer #content-inner .recent-post-item,
+#content-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#recent-posts {
+  width: fit-content;
+}
+
+#recent-posts h2 {
+  display: inline-block;
+  width: fit-content;
+}
+
+.recent-post-item {
+  width: fit-content;
+  text-align: start;
+}
+
+.recent-post-item a {
+  font-size: 1.2em;
+  line-height: 2rem;
+}
+
 #content-outer #content-inner .archive-item,
 #content-outer #content-inner .category-item,
 #content-outer #content-inner .tag-item {
