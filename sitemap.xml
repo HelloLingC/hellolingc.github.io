@@ -130,7 +130,7 @@
 
   <url>
     <loc>https://moonlab.top/</loc>
-    <lastmod>2023-12-23</lastmod>
+    <lastmod>2023-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -138,14 +138,14 @@
   
   <url>
     <loc>https://moonlab.top/tags/Android/</loc>
-    <lastmod>2023-12-23</lastmod>
+    <lastmod>2023-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://moonlab.top/tags/blog/</loc>
-    <lastmod>2023-12-23</lastmod>
+    <lastmod>2023-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -154,14 +154,14 @@
   
   <url>
     <loc>https://moonlab.top/categories/Programming/</loc>
-    <lastmod>2023-12-23</lastmod>
+    <lastmod>2023-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://moonlab.top/categories/%E5%85%B6%E4%BB%96/</loc>
-    <lastmod>2023-12-23</lastmod>
+    <lastmod>2023-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
