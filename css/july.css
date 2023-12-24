@@ -99,7 +99,7 @@ body {
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-image: url("../img/banner.jpg");
+  /* background-image: url("../img/banner.png"); */
 }
 
 #banner-outer #avatar {
