@@ -247,11 +247,7 @@
 
 
     
-        <script src="https://moonlab.top/js/jquery-3.4.1.min.js"></script>
-    
         <script src="https://moonlab.top/js/highlight-9.13.1.min.js"></script>
-    
-        <script src="https://moonlab.top/js/transition.js"></script>
     
         <script src="https://moonlab.top/js/smooth-scroll.min.js"></script>
     
@@ -260,19 +256,26 @@
 
 
 <script>
-  $(function () {
-    $(window).scroll(function () {
-      if ($(window).scrollTop() > 150) {
-        $("#to-top").fadeIn();
-      } else {
-        $("#to-top").fadeOut();
-      }
+  document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('scroll', function () {
+        var toTopButton = document.getElementById('to-top');
+        if (toTopButton) {
+            if (window.scrollY > 150) {
+                toTopButton.style.display = 'block';
+            } else {
+                toTopButton.style.display = 'none';
+            }
+        }
     });
-    $("#to-top").click(function () {
-      $("body,html").animate({scrollTop: 0}, 500);
-      return false;
-    })
-  })
+    var toTopButton = document.getElementById('to-top');
+    if (toTopButton) {
+        toTopButton.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return false;
+        });
+    }
+});
+
 </script>
 </body>
 </html>
