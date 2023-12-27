@@ -6,7 +6,7 @@
   <link href="https://moonlab.top/atom.xml" rel="self"/>
   
   <link href="https://moonlab.top/"/>
-  <updated>2023-12-22T10:17:31.422Z</updated>
+  <updated>2023-12-27T00:10:28.803Z</updated>
   <id>https://moonlab.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Golang embed 使用问题</title>
+    <link href="https://moonlab.top/post/20231227-39/"/>
+    <id>https://moonlab.top/post/20231227-39/</id>
+    <published>2023-12-27T00:10:39.000Z</published>
+    <updated>2023-12-27T00:10:28.803Z</updated>
+    
+    <content type="html"><![CDATA[<p>Golang一般用到embed package的主要场景就是Web server需要携带html css js等静态文件。</p><p>使用embed directive可以让外部文件在编译时自动加入到二进制程序中。这样我们如果要分发程序，只需一个二进制文件，不需要外带任何其他资源文件。</p><p>而我们在代码中去引用embedded文件有三种方法（类型）：<code>string </code>, <code>[]byte</code> 和 <code>FS</code></p><p>但实际上，embed还是有一些限制的，本文就详细讲讲这些限制是什么，以及如何曲线救国。</p><h1 id="文件层级问题"><a href="#文件层级问题" class="headerlink" title="文件层级问题"></a>文件层级问题</h1><p>如果embed directive与被embedded的文件不在同一级（文件系统中）。</p><p>比如说</p><pre><code class="highlight plaintext">│  main.go│  ├─server│      handler.go│      └─tepl        index.html</code></pre><p>如果handler.go试图去包含tepl文件夹里的文件：</p><pre><code class="highlight plaintext">// handler.go//go:embed teplvar s embed.FS</code></pre><p>embed pattern将无法被成功解析，因为被引用者的文件层级高于引用者。</p><p>除了将被引用者的文件层级降至同一级或更低，还有一种方法就是直接在main.go这样同级的文件中进行处理，然后传递给需要的包中。</p><pre><code class="highlight plaintext">// main.go//go:embed teplvar tepl embed.FSfunc main() &#123;handler.injectFS(&amp;tepl)&#125;</code></pre><p>目前来说，没有其他更好的解决方法了。</p><h1 id="复杂路径问题"><a href="#复杂路径问题" class="headerlink" title="复杂路径问题"></a>复杂路径问题</h1><p>假如我们在tepl中放入一个static文件夹：</p><pre><code class="highlight plaintext">│  main.go│  └─server    │  handler.go    │      └─tepl        │  index.html        │          └─static                main.css</code></pre><p>在handler.go中，我们用http.FileServer来处理对静态文件们的请求：</p><pre><code class="highlight plaintext">//go:embed teplvar tepl embed.FSfunc handle() &#123;http.Handle(&quot;/static/&quot;, http.StripPrefix(&quot;/static/&quot;, http.FileServer(http.FS(tepl))))&#125;</code></pre><p>很自然地，定义的是<code>/static/</code>的路由，而不是<code>/</code>，因为根路径常常要处理其他事情。</p><p>但此时由于 embed 的局限，如果我们要获取mian.css，就需要访问这个路径<code>/static/tepl/static/main.css</code></p><p>解决的方法也很简单，用 <code>io.fs</code> 包中的Sub方法即可：</p><pre><code class="highlight plaintext">var tepl embed.FSfunc handle() &#123;sub, _ := fs.Sub(tepl, &quot;tepl/static&quot;)http.Handle(&quot;/static/&quot;, http.StripPrefix(&quot;/static/&quot;, http.FileServer(http.FS(sub))))&#125;</code></pre><p>Refs</p><hr><p><a href="https://pkg.go.dev/embed">https://pkg.go.dev/embed</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Golang一般用到embed package的主要场景就是Web server需要携带html css js等静态文件。&lt;/p&gt;
+&lt;p&gt;使用embed directive可以让外部文件在编译时自动加入到二进制程序中。这样我们如果要分发程序，只需一个二进制文件，不需要外带任</summary>
+      
+    
+    
+    
+    <category term="Programming" scheme="https://moonlab.top/categories/Programming/"/>
+    
+    
+    <category term="golang" scheme="https://moonlab.top/tags/golang/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo博客自动备份插件 云盘备份支持</title>
