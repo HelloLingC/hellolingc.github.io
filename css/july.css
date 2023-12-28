@@ -282,6 +282,7 @@ ul.archive-list {
 
 article#post {
   margin-bottom: 2.3rem;
+  width: 100%;
 }
 
 article#post>h1#post-title {
