@@ -76,6 +76,13 @@ body {
   text-align: justify;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #2c2a2a;
+    color: #f0e8e8;
+  }
+}
+
 .container {
   width: 100%;
 }
@@ -202,6 +209,10 @@ body {
 .recent-post-item a {
   font-size: 1em;
   line-height: 2rem;
+}
+
+.about-icon {
+  width: 4.5rem;
 }
 
 #content-outer #content-inner .archive-item,

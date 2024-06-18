@@ -6,7 +6,7 @@
   <link href="https://moonlab.top/atom.xml" rel="self"/>
   
   <link href="https://moonlab.top/"/>
-  <updated>2023-12-27T00:10:28.803Z</updated>
+  <updated>2024-06-17T07:34:42.823Z</updated>
   <id>https://moonlab.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MoonCounter - 快速安全的网站流量计数器</title>
+    <link href="https://moonlab.top/post/20240617-27/"/>
+    <id>https://moonlab.top/post/20240617-27/</id>
+    <published>2024-06-17T05:19:27.000Z</published>
+    <updated>2024-06-17T07:34:42.823Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Moon-Counter"><a href="#Moon-Counter" class="headerlink" title="Moon Counter"></a>Moon Counter</h2><p>A fast, simple &amp; easy-to-use webpage visitor counter, but not only limited to websites.</p><p>🔒 CORS 支持</p><p>With a visual admin panel</p><p>text &amp; image output</p><h2 id="Rule34-Theme-Preview"><a href="#Rule34-Theme-Preview" class="headerlink" title="Rule34 Theme Preview:"></a>Rule34 Theme Preview:</h2><p><img src="/post/20240617-27/rule34.svg" alt="rule34"></p><h2 id="Moebooru-Preview"><a href="#Moebooru-Preview" class="headerlink" title="Moebooru Preview"></a>Moebooru Preview</h2><p><img src="/post/20240617-27/moebooru.svg" alt="moobooru"></p><h2 id="This-Page-Views"><a href="#This-Page-Views" class="headerlink" title="This Page Views"></a>This Page Views</h2><p><img src="https://counter.moonlab.top/counter/img?id=moon-counter"></p><h2 id="Project-repo"><a href="#Project-repo" class="headerlink" title="Project repo"></a>Project repo</h2><p><a href="https://github.com/HelloLingC/moon-counter">HelloLingC&#x2F;moon-counter: A fast, simple &amp; powerful website visitor counter written with Golang (github.com)</a></p><h2 id="Admin-panel"><a href="#Admin-panel" class="headerlink" title="Admin panel"></a>Admin panel</h2><p>Preview at <a href="https://counter.moonlab.top/admin">https://counter.moonlab.top/admin</a>. The password is 123456.</p><h1 id="Public-Counter"><a href="#Public-Counter" class="headerlink" title="Public Counter"></a>Public Counter</h1><p>You can use my MoonCounter instance as you want. But I don’t have responsibility for its stablility. In fact, no one does. But as long as this website continues, the counter service is always public.<br>But i still recommand you self-host your owned service.</p><p><strong>Ofc, the use of my service is prohibited for illegal websites.</strong></p><h2 id="Image-Counter"><a href="#Image-Counter" class="headerlink" title="Image Counter"></a>Image Counter</h2><p><strong>Replace the UniqueID parameter with the webpage’s url. At least it must be unique to identify your page.</strong></p><pre><code class="highlight plaintext">![](https:///counter.moonlab.top/counter/img?id=UniqueID)&lt;img src=&quot;//counter.moonlab.top/counter/img?id=UniqueID&quot;&gt;&lt;/img&gt;</code></pre><p>If you don’t wanna handle UniqueID by yourself, you can use this.</p><pre><code class="highlight plaintext">&lt;script src=&quot;//counter.moonlab.top/moon-counter/js/img&quot;&gt;&lt;/script&gt;&lt;img id=&quot;moon-counter-img&quot;&gt;&lt;/img&gt;</code></pre><p> It will automatically handle the id param. You can just directly put it on your webpage to count.</p><h2 id="Text-Counter"><a href="#Text-Counter" class="headerlink" title="Text Counter"></a>Text Counter</h2><p>And this will only output plain count text. You also don’t need to handle the uniqueid parameter by yourself.</p><pre><code class="highlight plaintext">&lt;script src=&quot;//counter.moonlab.top/moon-counter/js&quot;&gt;&lt;/script&gt;&lt;span id=&quot;moon-counter&quot;&gt;&lt;/span&gt;</code></pre><h1 id="Self-Host"><a href="#Self-Host" class="headerlink" title="Self Host"></a>Self Host</h1><p>Download the release file. Replace the following verison  <code>v0.0.1</code> with the latest version. You can get it from <a href="https://github.com/HelloLingC/moon-counter/releases">Github Release</a></p><pre><code class="highlight plaintext">wget https://github.com/HelloLingC/moon-counter/releases/download/v0.0.1/moon-counter-v0.0.1-linux-amd64.tar.gz</code></pre><p>Decompress.</p><pre><code class="highlight plaintext">tar -xf moon-counter-v0.0.1-linux-amd64.tar.gz</code></pre><p>Configure &gt;&gt; <a href="#Configuration">Configuration Details</a></p><pre><code class="highlight plaintext">vi config.yaml</code></pre><p>Configure daemon process. This is a service template for systemd</p><pre><code class="highlight plaintext">[Unit]Description=Moon Counter serviceWants=network.targetAfter=network.target network.service[Service]Type=simpleWorkingDirectory=/opt/counterExecStart=/opt/counter/moon-counterKillMode=process</code></pre><p>Configure reverse proxy. This is a template for nginx</p><pre><code class="highlight plaintext">server &#123;listen 80;server_name counter.moonlab.toplocation &#123;proxy_pass http://127.0.0.1:3800proxy_pass_request_headers on;&#125;&#125;</code></pre><h1 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h1><p>You can use <code>-c</code> to specify the path of config file, eg: <code>moon-counter -c custom.yml</code><br>By default, the configuration file is named as  <code>config.yaml</code>, which is located in the root directory of the program’s binary file.</p><pre><code class="highlight yaml"><span class="attr">host:</span> <span class="string">counter.moonlab.top</span><span class="attr">listen:</span> <span class="number">3800</span><span class="attr">img_theme:</span> <span class="string">rule34</span><span class="attr">cors:</span> <span class="literal">true</span><span class="attr">hostnames:</span>  <span class="bullet">-</span> <span class="string">moonlab.top</span><span class="attr">error_log:</span> <span class="string">error.log</span><span class="attr">db:</span>  <span class="attr">type:</span> <span class="string">sqlite</span>  <span class="attr">dbname:</span> <span class="string">moon.db</span>  <span class="attr">host:</span>  <span class="attr">username:</span>  <span class="attr">password:</span>  <span class="attr">admin:</span>  <span class="attr">enable:</span> <span class="literal">false</span>  <span class="attr">path:</span> <span class="string">/admin</span>  <span class="attr">password:</span></code></pre><p><strong>host</strong> - The counter server’s domain. If you don’t have a domain for your server, replace this with your external IP and server listening port. eg: <code>201.25.21.3:3800</code><br><strong>listen</strong> - The server listening port. It’s always better to use with reverse proxy.<br><strong>img_theme</strong> - The theme name for image mode. You can add your own theme under the assets folder. And modify this variable with your theme folder name.<br><strong>cors</strong> - CORS mode for security. Once enabled, others cannot use your counter server to tally views for their websites without your permission. And thus, <code>hostnames</code> is required. For more details about CORS, see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS) - HTTP | MDN (mozilla.org)</a>.<br><strong>hostnames</strong> - Only when cors is enabled. A array of allowed hostnames.<br><strong>error_log</strong> - currently not available</p><p><strong>db</strong><br><strong>type</strong> - currently only support sqlite<br><strong>dbname</strong> - For SQLite,  dbname is the filename.</p><p><strong>admin</strong><br><strong>enable</strong> - Enable admin panel or not. If admin panel is not enabled, the admin panel will disguise as 404 error page.<br><strong>path</strong> - The path to the admin panel. You must set a random string for it, instead of <code>/admin</code>.<br><strong>passphrase</strong> - You should use a generator to generate a random string, either passphrase or password. For passphrase generating, try <a href="https://www.useapassphrase.com/">Use a Passphrase</a>.</p><h1 id="Philosophy"><a href="#Philosophy" class="headerlink" title="Philosophy"></a>Philosophy</h1><p><strong>Only Do One Thing For the Best</strong></p><p>Moon Couner is only for pageview counting.<br>Your website will create a history and precious memories for you, and for this, A pageview counter is the best way to store it forever.</p><p>If you’re looking for website analytics service, I recommand you <a href="https://www.goatcounter.com/">GoatCounter – open source web analytics</a></p><h1 id="Credits"><a href="#Credits" class="headerlink" title="Credits"></a>Credits</h1><p>The resources (images) used in MoonCounter are not owned by me. All the resources belong to their respective owners. I do <strong>NOT</strong> claim any ownership. <strong>USE AT YOUR OWN RISK</strong>.</p><blockquote><p>WARNING: NSFW Content. The following external links may contain NSFW content.</p></blockquote><p>Rule34 - <a href="https://rule34.xxx/">Rule 34, if it exist there is porn of it.</a><br>Moebooru &#x3D; <a href="https://github.com/moebooru/moebooru/tree/master/app">moebooru&#x2F;app at master · moebooru&#x2F;moebooru (github.com)</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Moon-Counter&quot;&gt;&lt;a href=&quot;#Moon-Counter&quot; class=&quot;headerlink&quot; title=&quot;Moon Counter&quot;&gt;&lt;/a&gt;Moon Counter&lt;/h2&gt;&lt;p&gt;A fast, simple &amp;amp; easy-to-u</summary>
+      
+    
+    
+    
+    <category term="Project" scheme="https://moonlab.top/categories/Project/"/>
+    
+    
+    <category term="golang" scheme="https://moonlab.top/tags/golang/"/>
+    
+  </entry>
   
   <entry>
     <title>Golang embed 使用问题</title>
@@ -120,24 +144,27 @@
     <link href="https://moonlab.top/post/20230915-04/"/>
     <id>https://moonlab.top/post/20230915-04/</id>
     <published>2023-09-15T04:09:04.000Z</published>
-    <updated>2023-12-15T08:04:25.199Z</updated>
+    <updated>2024-05-12T21:17:33.787Z</updated>
     
-    <content type="html"><![CDATA[<p>git最开始</p><p>$ git push -u origin main</p><p>output:</p><p>remote: Permission to ViteMux&#x2F;repo.git denied to Olduser.</p><p>fatal: unable to access ‘<a href="https://github.com/ViteMux/repo.git/">https://github.com/ViteMux/repo.git/</a>‘: The requested URL returned error: 403</p><p>我设置了local的username，但是却显示了旧用户被拒绝请求了，所以我以为是上一次的commit的author还是旧用户</p><p>所以我尝试：</p><p>$ git commit –amend –reset-author</p><p>结果还是一样，最后在 <a href="https://www.blogger.com/blog/post/edit/3258410905752786662/7124892052163434745#">stackoverflow</a> 中找到了方法</p><p><a href="https://www.blogger.com/blog/post/edit/3258410905752786662/7124892052163434745#"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0wbUoiTtF090WOtkX1mqVJYhs0KpLCoKEfweTLqsbktGKREfV1UkCd4TAvF2lj6fIXYiVINV-hVD3-Yz4aly0MIvMmwWS1JcKBVBhwTveoF56wKhbrSr8r39dBKBFGMjr1Ql-eNdNwbVv-lTBCRA_1cAzB_ZkYpudXcWlsAWak-u7nu0uTJfqNFHjrUaK/s320/%E6%8D%95%E8%8E%B7.PNG"></a></p><p>把这个凭证删了就行，浪费我1个小时。</p>]]></content>
+    <content type="html"><![CDATA[<p>在最开始尝试push：</p><pre><code class="highlight plaintext">$ git push -u origin main</code></pre><p>结果出现：</p><pre><code class="highlight plaintext">remote: Permission to XXX/repo.git denied to Olduser.fatal: unable to access &#x27;https://github.com/xxx/repo.git/&#x27;: The requested URL returned error: 403</code></pre><p>因为我之前设置了local的username，但是这里却显示了旧用户被拒绝请求了，所以我以为是上一次的commit的author还是旧用户，导致验证不通过。</p><p>所以我再次尝试：</p><pre><code class="highlight plaintext">$ git commit --amend --reset-author</code></pre><p>结果还是一样，最后在 <a href="https://stackoverflow.com/questions/5335197/gits-famous-error-permission-to-git-denied-to-user">stackoverflow</a> 中找到了方法</p><p><a href="img.png"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0wbUoiTtF090WOtkX1mqVJYhs0KpLCoKEfweTLqsbktGKREfV1UkCd4TAvF2lj6fIXYiVINV-hVD3-Yz4aly0MIvMmwWS1JcKBVBhwTveoF56wKhbrSr8r39dBKBFGMjr1Ql-eNdNwbVv-lTBCRA_1cAzB_ZkYpudXcWlsAWak-u7nu0uTJfqNFHjrUaK/s320/%E6%8D%95%E8%8E%B7.PNG"></a></p><p>把这个凭证删了就行，浪费我1个小时。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;git最开始&lt;/p&gt;
-&lt;p&gt;$ git push -u origin main&lt;/p&gt;
-&lt;p&gt;output:&lt;/p&gt;
-&lt;p&gt;remote: Permission to ViteMux&amp;#x2F;repo.git denied to Olduser.&lt;/p&gt;
-&lt;p&gt;fatal</summary>
+    <summary type="html">&lt;p&gt;在最开始尝试push：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;highlight plaintext&quot;&gt;$ git push -u origin main&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;结果出现：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;highlight </summary>
       
     
     
     
     <category term="Programming" scheme="https://moonlab.top/categories/Programming/"/>
     
+    
+    <category term="git" scheme="https://moonlab.top/tags/git/"/>
     
   </entry>
   
