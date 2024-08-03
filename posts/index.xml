@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on MoonLab</title>
+    <link>https://moonlab.top/posts/</link>
+    <description>Recent content in Posts on MoonLab</description>
+    <generator>Hugo -- 0.131.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Aug 2024 22:40:43 +0800</lastBuildDate>
+    <atom:link href="https://moonlab.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BT 吸血</title>
+      <link>https://moonlab.top/posts/2024/bt-vampire/</link>
+      <pubDate>Sat, 03 Aug 2024 22:40:43 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2024/bt-vampire/</guid>
+      <description>我有点火星了，今天是2024 8月3日，我刚刚才发现还有BT吸血这件事情。
+我昨天还在用BT下载一些番剧，发现了上传被占满，但是下载却非常慢，而且总是有几个叫taipei torrent的客户端一直在线。我起初并没有在意，只是去搜了搜taipei torrent发现是一个不怎么有名的在github上开源的bt客户端。
+但现在我才明白，
+这次BT吸血的起因是，运营商在2024年初对PCDN的整治。
+PCDN这种技术并不稀罕，国内的酷狗爱奇艺优酷等影音服务商早就在用户的后台偷偷使用了。
+它们偷偷占用用户的上传带宽，美其名曰“网络加速服务”，把用户的视频或音乐缓存直接P2P传给其他用户，以此来节省服务器成本。但对于运营商来说，就是坏事了。运营商网络的负载比以往更大了，但是收上来的钱是一点没多。
+而且，有一些人用一些“挂机宝”，比如网心云，京东云，自愿去当一个PCDN的节点，用自己闲置的上传带宽去换钱。听起来很好，但是运营商是不乐意的，所以年初就对PCDN进行了整改。
+这些跑PCDN的人，为了规避运营商的检测封禁，为了降低 上传/下载 的比率，也会故意占满下载带宽。有的人用菠菜app的下载链接去刷带宽，有的就用大学开源镜像站刷，有的就通过魔改github上开源的bt客户端去刷。但是我好奇，运营商对PCDN的检测策略怎么可能只是通过一个简单的上传/下载比
+这也就是BT吸血，迅雷干的事情是用公共资源圈地，但这种BT吸血就是占者茅坑不拉屎。而且我实在是不理解薅这三瓜俩枣有什么意义&amp;hellip;&amp;hellip;是真的缺这点钱吗？生活太闲就只能捣鼓捣鼓这点东西了吗。
+Refs
+https://docs.qq.com/doc/DQnJBTGJjSFZBR2JW
+https://ngabbs.com/read.php?tid=40169663&amp;amp;rand=134</description>
+    </item>
+    <item>
+      <title>[双系统] Windows 更新摧毁了我的Linux系统</title>
+      <link>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</link>
+      <pubDate>Sat, 03 Aug 2024 08:28:35 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</guid>
+      <description>和平常一样，在我结束使用Windows并点击更新并关机，在那一刻我只当这次windows更新是一次无足轻重的事情，不会对我的电脑造成什么影响。
+但下一秒，我转到Linux系统，发现了一些不对劲的事情。
+我在refind直接启动Linux，在最开始还一切正常，直到中间出现了一个90秒的等待：
+90秒倒计时结束后，就无法启动至系统了：
+Dependency failed for file system check Dependency failed for local file system 然后系统进入了emergency状态，但是可以使用终端。
+而且grub也进入了rescue界面，引导自然是有问题了。
+我看了一下磁盘分区，发现Windows的10GB的Recovery分区与Linux系统的分区的顺序互换了。全靠windows在我的电脑里驰骋。
+修复Linux 看起来是某个分区出现了问题。
+我简直一头雾水。
+这个被一直执行某个任务的E4F3的分区我查了下是不存在的。然后看了看fstab，发现这个E4F3是要被挂载到/boot/efi的。看来这个分区本来应该是我的ESP，不知道Windows更新做了什么事情让ESP的UUID改变了。
+之后我就直接用device path而不是UUID了。
+修复Grub 看起来grub.cfg中也是用UUID来定位ESP的，所以这次就出现了问题。
+使用两行命令重装一下就能修好。（但是grub会被添加到uefi boot的第一顺序）
+$ sudo grub-install $ sudo grub-mkconfig -p /boot/grub/grub.cfg 再用efibootmgr更改一下启动顺序（我是用refind的）
+$ sudo efibootmgr -o 0001,0002,0003... 我实在不明白，Windows更新你怎么那么事事呢 </description>
+    </item>
+    <item>
+      <title>废弃的Android设备成为BT下载服务器</title>
+      <link>https://moonlab.top/posts/2024/vncserver-configuration/</link>
+      <pubDate>Sat, 03 Aug 2024 02:25:02 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2024/vncserver-configuration/</guid>
+      <description>讲道理，我还从来没关注过VNC这个东西。早在几年前就知道了VNC，但其实我一直都用不上。
+最近，我的Android设备因为电池寿命问题已经终止使用了，我就打算让他成为一个永久的·被插入的状态（指充电）。
+为了方便，我直接用傻瓜脚本在Termux中装上Ubuntu: https://github.com/MFDGaming/ubuntu-in-termux
+首先先安装ssh，方便直接在电脑中输入命令。
+$ sudo apt install openssh-server $ systemctl status ssh 为了让VNC客户端能够连接到手机中的Ubuntu，要先装一个桌面。
+$ sudo apt install ubuntu-desktop 我选择的是TightVNC，其他的还有TigerVNC什么的，我只是随便选了一个。
+$ apt install tightvncserver 就在我毫无感情地用vncserver指令启动时，提示我环境变量 $USER 没有设置。
+啊？
+$ export USER=root $ source ~/.bashrc 任何奇怪的东西只要遇见Termux就都能接受。
+然而我从电脑中的VNC Viewer连接是灰屏的，什么也没有。
+然后我瞎🐔把改了改~/.vnc/xstartup，好消息是不再灰屏了，
+坏消息是变成只显示File Explorer的状态了，其他桌面上什么也没有。我实在是不知道怎么配置VNC啊&amp;hellip;&amp;hellip;
+当我看到 localhost:1 的时候，我两眼一黑，后来才知道VNC中端口是5900+X, X=1,2,3&amp;hellip;
+vncserver -kill :1
+vncpasswd</description>
+    </item>
+    <item>
+      <title>博客从Hexo迁移至Hugo</title>
+      <link>https://moonlab.top/posts/2024/my-first-post/</link>
+      <pubDate>Mon, 17 Jun 2024 13:40:01 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2024/my-first-post/</guid>
+      <description>由于Hexo的性能问题，以及并不能完整地支持i8n，各个组件其实也相当碎片化
+最重要的是，因为nodejs的存在，迁移十分麻烦
+所以决定将博客换到Hugo
+部署问题 不过比较不爽的是，hugo部署到Github page比较麻烦。需要把整个博客都push到Github，然后Github Action之类的东西用hugo命令build一下。
+而hugo deploy命令则是用来上传到云盘的。
+这与Hexo十分不同，</description>
+    </item>
+    <item>
+      <title>Golang embed 使用问题</title>
+      <link>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</link>
+      <pubDate>Wed, 27 Dec 2023 08:10:39 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</guid>
+      <description>Golang一般用到embed package的主要场景就是Web server需要携带html css js等静态文件。
+使用embed directive可以让外部文件在编译时自动加入到二进制程序中。这样我们如果要分发程序，只需一个二进制文件，不需要外带任何其他资源文件。
+而我们在代码中去引用embedded文件有三种方法（类型）：string , []byte 和 FS
+但实际上，embed还是有一些限制的，本文就详细讲讲这些限制是什么，以及如何曲线救国。
+文件层级问题 如果embed directive与被embedded的文件不在同一级（文件系统中）。
+比如说
+│ main.go │ ├─server │ handler.go │ └─tepl index.html 如果handler.go试图去包含tepl文件夹里的文件：
+// handler.go //go:embed tepl var s embed.FS embed pattern将无法被成功解析，因为被引用者的文件层级高于引用者。
+除了将被引用者的文件层级降至同一级或更低，还有一种方法就是直接在main.go这样同级的文件中进行处理，然后传递给需要的包中。
+// main.go //go:embed tepl var tepl embed.FS func main() { handler.injectFS(&amp;amp;tepl) } 目前来说，没有其他更好的解决方法了。
+复杂路径问题 假如我们在tepl中放入一个static文件夹：
+│ main.go │ └─server │ handler.go │ └─tepl │ index.html │ └─static main.css 在handler.go中，我们用http.FileServer来处理对静态文件们的请求：
+//go:embed tepl var tepl embed.</description>
+    </item>
+    <item>
+      <title>Hexo博客自动备份插件 云盘备份支持</title>
+      <link>https://moonlab.top/posts/2023/hexo-auto-backup/</link>
+      <pubDate>Tue, 19 Dec 2023 21:38:50 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2023/hexo-auto-backup/</guid>
+      <description>上篇文章整理了一下博客的评论系统，而现在我需要一个稳定好用的博客数据备份方案。
+老生常谈的321原则，即至少保留3个备份副本，使用2种不同的储存介质，并将其中1个备份存储在远离数据源的地方。
+最开始我考虑用Github Action构建一个Workflow来实现在每次commit自动将仓库内的文件同步在OneDrive中。
+但后来想想这种方法局限性很大。首先这样做只能备份已发布的文章和页面，对于博客的草稿，主题文件，package.json，_config.cml 这些同样重要的文件并没有保存的方法。而且十分受限于Github平台。
+因此我开发了一个Hexo插件用于实现多平台备份，项目GitHub仓库：HelloLingC/hexo-auto-backup (github.com)
+此插件可以在执行 hexo deploy 命令时自动根据配置将source, themes, package.json, _config.yml 同步在其他的本地磁盘（如USB），或云盘之中。
+借助rclone，支持所有主流的云盘，OneDrive, Google Drive, Pikpak等等，同时也支持SMTP, FTP, HTTP等协议。 详细可以查看插件的readme
+安装插件的方法很简单，和大部分的插件一样用npm：
+npm install hexo-auto-backup 目前还仍需改善：
+Expire 的设置，即设置每个备份最大保留时间，如30天 多系统支持，目前只支持Windows </description>
+    </item>
+    <item>
+      <title>通过汇编分析栈、函数调用 esp&amp;ebp</title>
+      <link>https://moonlab.top/posts/2023/aem-esp-ebp/</link>
+      <pubDate>Fri, 15 Dec 2023 14:31:17 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2023/aem-esp-ebp/</guid>
+      <description>栈 Stack 栈是一种数据结构，遵循Last in, First out (LIFO)规则，栈在中文语境中有时也被叫做堆栈。在实际中，是一片内存空间。
+在栈中，有两个重要的寄存器
+SP (Stack Pointer)
+BP (Base Pointer)
+在16位系统中是这样的，在32位系统中分别叫做esp ebp，在64位中
+栈是从高地址向低地址搭起来的，因此栈顶位于低地址，栈底位于高地址。一般来说是这样，当然你的程序也可以不这样做，主打一个叛逆。
+ESP 函数调用 要理解栈和那两个有关栈的寄存器，可以通过函数调用来理解。
+以下是x86 32bit的汇编程序。
+push 1 push 2 call 002110D add esp,8 nop ; this func will add up a and b mov eax,dword ptr [esp+4] add eax,dword ptr [esp+8] ret 其中push操作码不仅会将参数压入栈中，还会使esp寄存器的值减4，即sub esp,#4。以确保esp始终指向栈顶。
+call首先会用push来把下一个操作码的地址压入栈中，这个地址叫做返回地址，然后跳转到函数所在的地址。
+在进入到func后，此时esp指向之前call所压入栈内的地址。就可以直接通过exp+4向下拿到参数。
+执行完函数后，就需要考虑栈平衡了。要让调用函数后的栈和调用函数前的保存一致。
+ret 跳转到返回地址，执行add esp,8 清除栈内的函数参数。
+EBP 函数调用 但分析C语言的函数调用，会发现与上文的esp寻址有些不同，一般是用ebp来进行参数的寻址。
+int add(int a, int b) { return a + b; } int main() { add(1, 2); return 0; } 这是一段简单的C代码，用gcc将其编译成32位可执行文件</description>
+    </item>
+    <item>
+      <title>坑：Litepal save方法返回true却没有保存</title>
+      <link>https://moonlab.top/posts/2020/pit-for-litepal-save/</link>
+      <pubDate>Mon, 24 Feb 2020 11:52:38 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2020/pit-for-litepal-save/</guid>
+      <description>在开发 Madoka 日记时，做到导出导入的功能时，我想偷个懒导出直接用 Gson 将 Java 对象转换为 json 然后放在 txt 中，导入的时候再将 json 转为 javaBean 就行啦。
+而数据库我用的是 Litepal 直接搞，使用这个库的好处就是速度快，方便，适合新手。
+但其实 sqlite 的语法和一些其他的语句并不难，所以用这个库就是为了方便&amp;hellip;
+使用 Litepal 储存数据时，需要调用 save() 方法。
+这里我就遇到了一个问题，明明 save() 方法返回的是 true ，但数据库里没有需要保存的数据啊？
+Gson gson = new Gson(); Diary diary = gson.fromJson(json, Diary.class); return diary.save(); 这是调用 Gson 将 json 转换为 javabean 对象。
+明明 Diary 的内容全是正确的，我开始询问度娘。
+结果没找到跟我的问题直接相关的文章，结果我看到了有个人在吐槽啥 setting getting，我就想到了会不会是因为没有调用 Diary 的构造方法？
+Diary 作为一个 Litepal 的，它是继承自 LitePalSupport 的，会不会是因为没有调用 LitePalSupport 的构造方法呢？
+我将导入代码改了一下：
+Gson gson = new Gson(); Diary diary = gson.</description>
+    </item>
+    <item>
+      <title>Android Shizuku源码分析 第二篇</title>
+      <link>https://moonlab.top/posts/2020/android-shizuku-theory2/</link>
+      <pubDate>Tue, 04 Feb 2020 11:43:10 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2020/android-shizuku-theory2/</guid>
+      <description>又是前言 上一篇的 Shizuku 源码分析，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。
+我们接下来要更深入分析，去 Navtive 层看看。我想要知道 Starter 的 main 方法又是谁调用的？怎么调用的？
+Shizuku 是什么？我就不再多说了。
+Github: https://github.com/RikkaApps/Shizuku
+（之后会简单涉及到 Android 中的 NDK 开发，和一些 C++ 的内容）
+start.sh 当用户使用 ShizukuManager ，通过 ShizukuManager 激活应用时，需要先启动 ShizukuService 。
+这里有 adb 和 root 两种启动方式，我们只分析 adb 方式。
+adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh 这条 adb 命令想必用过 ShizukuManager 的人都很熟悉吧？只要在 adb 终端输入这条命令，就能激活 ShizukuManager。
+这条命令很简单，就是调用 sh 脚本 start.sh 。这个 start.</description>
+    </item>
+    <item>
+      <title>Android Shizuku源码分析</title>
+      <link>https://moonlab.top/posts/2020/android-shizuku-theory/</link>
+      <pubDate>Sun, 02 Feb 2020 19:24:10 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2020/android-shizuku-theory/</guid>
+      <description>前言 上一篇文章我使用了 Shizuku 去调用系统API：文章链接
+这次就来看看 Shizuku 的源码是怎么写的。
+最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。
+官方文档
+酷安下载 ShizukuManager
+Watch it on GitHub
+Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。
+应用进程启动时 Shizuku 服务进程发送 binder 至应用进程 应用通过该 binder 与 Shizuku 服务进程交互，Shizuku 服务进程通过 binder 与 system server 交互 正文 ShizukuBinderWrapper 首先我们看，在开发时调用 Shizuku 的代码：
+private static final IPackageManager PACKAGE_MANAGER = IPackageManager.Stub.asInterface(new ShizukuBinderWrapper(SystemServiceHelper.getSystemService(&amp;#34;package&amp;#34;))); 它使我们能随意调用 Android 系统中 IPackageManager 内的方法，也就是系统隐藏的API（有 @hide 标签的方法）
+我们可以看到 ShizukuBinderWrapper 的构造方法内传入了一个 SystemServiceHelper#getSystemService 方法的返回值。</description>
+    </item>
+    <item>
+      <title>Android 监听第三方Activity的一举一动</title>
+      <link>https://moonlab.top/posts/2020/android-activity-monitor/</link>
+      <pubDate>Sat, 01 Feb 2020 18:39:25 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2020/android-activity-monitor/</guid>
+      <description>前言 距离上一次更新也已经是六个月前了。感觉2019年过得真不咋样，什么也没干成吧，没有什么进步。
+不知不觉又是新的一年，2019是去年，2018就成了前年了。
+这个冬天我们这都没怎么下过雪，积雪的话我知记得有一次，融化得还很快。
+国内也出现了传染病，迄今为止有五千多人中枪了吧。现在也不让出去，亲戚也都没有拜完，现在天天在家窝。（不过好处就是不用上学啦）。
+今年的央视春晚也没有看，bilibili还搞了拜年祭，拜年祭真的是一年比一年棒了，可惜我也没兴趣看。
+最近在补魔法少女小圆，看得很慢。1月新番也没啥期待的，只有一部喜欢的：某科学电池炮T，毕竟是我的入坑番。还有一部是异度入侵，我不太喜欢目前的剧情，唯一喜欢的就只有OP了。
+哦其实还有Acfun独播的达尔文游戏，也还可以~~（因为我喜欢女主的性格）~~
+总结：一月新番喜欢的只有一部番和一首歌，没了。
+感觉越来越没意思了，也可能是我心态的变化，现在我都一直在看以前的番，新番我已经没啥可期待的了。
+这篇文章磨磨唧唧花费了三天，我已经把魔法少女小圆TV版看完了，太特喵好看了，还有剧场版和外传又够我看一阵子了。
+好多人都说“致郁”，其实我觉得还可以啊并不怎么致郁，相反还有些治愈（迫真脸）。
+[TOC]
+正文 回归正题，我在开发的过程中有一个小需求：需要监听每一个Activity的启动，并且需要获取Activity的ClassName。
+我这种菜鸡只能先求助百度：Android 监听第三方Activity
+方法1 首先百度到的第一个方法是搞一个Service，然后在一个循环里一直获取栈顶的Activity。
+emmmmmm&amp;hellip;.
+List&amp;lt;ActivityManager.RunningTaskInfo&amp;gt; runningTasks = am.getRunningTasks(1); ActivityManager.RunningTaskInfo runningTaskInfo = runningTasks.get(0); 这个办法肯定是不行哒，Google早已对getRunningTasks方法严加管制，需要android.permission.GET_TOP_ACTIVITY_INFO权限，但是这个权限必须要系统app才能申请。
+但或许能用shell指令 ps 来获取栈顶的 Activity，虽然我没试过。
+方法2 (???) 第二个方法是使用 UsageStatsManager，也就是应用使用情况的一个功能。
+但是只能得到应用的包名，而不是Activity的类名。
+方法3 在我百度的时候我注意到了一个接口：IActivityController和一个方法：setActivityController。
+啊，决定了，就是你啦！
+我开始了解有关IActivityController的详细内容。
+我还发现了一个比AndroidXref稍微更友好的Android源码在线查看网站：https://www.androidos.net.cn/
+本来setActivityController这个方法是在ActivityManagerNative中的，但是在Android API 26的时候似乎被遗弃了，取而代之的是IActivityManager中的setActivityController。
+在之前，启动Activity的是ActivityManagerNative,getDefault()内的startActivity方法，而ActivityManagerService继承自ActivityManagerNative，ActivityManagerNative又继承自Binder并实现iActivityManager，AMS是IActivityManager的具体实现。
+IInterface, Stub, Proxy 三个类是分离的，分别是 IActivityManager，ActivityManagerNative (extends Binder) 和 ActivityManagerProxy。
+而现在（API 26+），AMS直接继承了 IActivityManager的内部类 Stub：
+这时候 Android 源码已经有了 IActivityManager.aidl，ActivityManagerNative 这个类被弃用了
+public class ActivityManagerService extends IActivityManager.Stub implements Watchdog.</description>
+    </item>
+    <item>
+      <title>Android笔记#1 View的事件分发机制解析</title>
+      <link>https://moonlab.top/posts/2019/android-view-motionevent/</link>
+      <pubDate>Wed, 14 Aug 2019 11:07:50 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2019/android-view-motionevent/</guid>
+      <description>咕咕咕 基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。
+很久以前的 Android 开发笔记太鸡儿水了。
+简单介绍 众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。
+一个事件的传递顺序：Activity - &amp;gt; Window -&amp;gt; DecorView - &amp;gt; RootView (你所设置的 View)
+ViewGroup 是继承自 View 的，这点也是基础中的基础了。
+事件的分发过程主要由以下三个方法来完成：
+public boolean dispatchTouchEvent(MotionEvent ev); // 如果事件传到此 View 那么该方法一定会被调用 public boolean onInterceptTouchEvent(MotionEvent event); // 用来判断 View 是否拦截此事件，如果拦截那么在这事件序列中此方法不会再被调用 public boolean onTouchEvent(MotionEvent event); // 用来处理事件，返回是否消耗当前事件，如果不消耗那么在同一事件序列不会再让此 View 接收到。 下面我们附上一段伪代码来阐述三个方法的关系：
+public boolean dispatchTouchEvent(MotionEvent ev) { boolean consume = false; // onInterceptTouchEvent判断是否拦截此事件 if (onInterceptTouchEvent(ev)) { // 拦截的话，则调用 onTouchEvent 处理事件，返回是否消耗此事件 consume = onTouchEvent(ev); } else { // 不拦截交给子类 View consume = child.</description>
+    </item>
+    <item>
+      <title>知乎日报的坑</title>
+      <link>https://moonlab.top/posts/2020/android-zhihu-daily/</link>
+      <pubDate>Thu, 04 Jul 2019 20:34:10 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2020/android-zhihu-daily/</guid>
+      <description>没想到吧！本鸽子想起自己的博客啦！
+暑假到了，感觉时间跟不要钱一样，没有了时间概念了233
+我实在没啥可写的，就随便说说这两天干了啥吧
+昨天我开始写一个第三方的知乎日报客户端
+因为太无聊了，就随便搞搞吧。用的是这个API
+简单说一下之前遇到的问题吧，以及开发的过程
+架构 用的是MVP，也就是Model, View, Presenter
+感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦
+最开始当然是疯狂写写写写接口，创建Activity
+后面则是疯狂用用用用别人的轮子
+全局异常处理 自己写了个全局异常处理实现Thread.UncaughtExceptionHandler这个接口。
+然后再把自己的Application搞上去，在MyApplication中把默认的ExceptionHandler给搞下去！
+在uncaughtException方法中写入处理异常的代码，这里是不能使用AlertDialog的！！！
+我是直接跳转到专门的ExceptionActivity处理，这样用户体验就更棒了（其实没啥用）
+但但但但但是！！！
+不知道为啥在uncaughtException中Throwable的printStackTrace方法失效了，我也没有深究，也懒得管啦
+JSON解析 没啥意思，就那样JSONOBJECT, JSONARRAY，懒得用别人的轮子233
+应用中需要加载图片，我并没有考虑Glide，我使用了OkHttp框架，而Picasso也用到了OkHttp，况且Picasso更轻量，在某种情况下个人感觉Picasso比Glide更好用
+图片宽度太宽啦 这个Webview的图片超过了屏幕的宽度，我在网上查了一下 WenView 图片自适应
+找到了一个方法，就是加载JavaScript，这可能是一个本方法但管用
+像我这种五线水平，也就只能这样惹QAQ
+webView.setWebViewClient(new WebViewClient() { @Override public void onPageFinished(WebView view, String url) { super.onPageFinished(view, url); String javascript = &amp;#34;javascript:function ResizeImages() {&amp;#34; + &amp;#34;var myimg,oldwidth;&amp;#34; + &amp;#34;var maxwidth = document.body.clientWidth;&amp;#34; + &amp;#34;for(i=0;i &amp;lt;document.images.length;i++){&amp;#34; + &amp;#34;myimg = document.images[i];&amp;#34; + &amp;#34;if(myimg.width &amp;gt; maxwidth){&amp;#34; + &amp;#34;oldwidth = myimg.</description>
+    </item>
+    <item>
+      <title>使用Hexo</title>
+      <link>https://moonlab.top/posts/2019/hello-hexo/</link>
+      <pubDate>Sat, 25 May 2019 14:50:36 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2019/hello-hexo/</guid>
+      <description>咸鱼不咸从今天（2019.5.25）开始使用Hexo啦
+用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用
+之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客&amp;hellip;
+之前的 咕咕咕 事故导致博客失去了许多朋友QAQ
+写博客的这一段时间，我也有许多的收获吧
+咸鱼不咸的初心只是因为无聊，而现在则是想要有一个在复杂的网络中发声的立身之地
+在茫茫海洋中，唯有这小小的避浪处能给我安心吧
+这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333</description>
+    </item>
+    <item>
+      <title>Git push 出现 permisson denied error 403</title>
+      <link>https://moonlab.top/posts/2023/git-err/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2023/git-err/</guid>
+      <description>在最开始尝试push：
+$ git push -u origin main 结果出现：
+remote: Permission to XXX/repo.git denied to Olduser. fatal: unable to access &amp;#39;https://github.com/xxx/repo.git/&amp;#39;: The requested URL returned error: 403 因为我之前设置了local的username，但是这里却显示了旧用户被拒绝请求了，所以我以为是上一次的commit的author还是旧用户，导致验证不通过。
+所以我再次尝试：
+$ git commit --amend --reset-author 结果还是一样，最后在 stackoverflow 中找到了方法
+把这个凭证删了就行，浪费我1个小时。</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>https://moonlab.top/posts/2019/hello-world/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2019/hello-world/</guid>
+      <description>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick Start Create a new post $ hexo new &amp;#34;My New Post&amp;#34; More info: Writing
+Run server $ hexo server More info: Server
+Generate static files $ hexo generate More info: Generating
+Deploy to remote sites $ hexo deploy More info: Deployment</description>
+    </item>
+  </channel>
+</rss>
