@@ -5,7 +5,7 @@
     <link>https://moonlab.top/tags/blog/</link>
     <description>Recent content in Blog on MoonLab</description>
     <generator>Hugo -- 0.131.0</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <lastBuildDate>Tue, 19 Dec 2023 21:38:50 +0000</lastBuildDate>
     <atom:link href="https://moonlab.top/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -13,16 +13,7 @@
       <link>https://moonlab.top/posts/2023/hexo-auto-backup/</link>
       <pubDate>Tue, 19 Dec 2023 21:38:50 +0000</pubDate>
       <guid>https://moonlab.top/posts/2023/hexo-auto-backup/</guid>
-      <description>上篇文章整理了一下博客的评论系统，而现在我需要一个稳定好用的博客数据备份方案。
-老生常谈的321原则，即至少保留3个备份副本，使用2种不同的储存介质，并将其中1个备份存储在远离数据源的地方。
-最开始我考虑用Github Action构建一个Workflow来实现在每次commit自动将仓库内的文件同步在OneDrive中。
-但后来想想这种方法局限性很大。首先这样做只能备份已发布的文章和页面，对于博客的草稿，主题文件，package.json，_config.cml 这些同样重要的文件并没有保存的方法。而且十分受限于Github平台。
-因此我开发了一个Hexo插件用于实现多平台备份，项目GitHub仓库：HelloLingC/hexo-auto-backup (github.com)
-此插件可以在执行 hexo deploy 命令时自动根据配置将source, themes, package.json, _config.yml 同步在其他的本地磁盘（如USB），或云盘之中。
-借助rclone，支持所有主流的云盘，OneDrive, Google Drive, Pikpak等等，同时也支持SMTP, FTP, HTTP等协议。 详细可以查看插件的readme
-安装插件的方法很简单，和大部分的插件一样用npm：
-npm install hexo-auto-backup 目前还仍需改善：
-Expire 的设置，即设置每个备份最大保留时间，如30天 多系统支持，目前只支持Windows </description>
+      <description>本文讨论了博客数据备份方案，强调321原则：保留3个备份副本，使用2种不同储存介质，1个备份远离数据源。最初考虑使用GitHub Action进行备份，但发现其局限性。为此，开发了Hexo插件“hexo-auto-backup”，可在执行hexo deploy时自动备份重要文件到本地或云盘，支持多种云服务和协议。插件安装简单，通过npm安装。未来计划改进备份过期设置和多系统支持。详细信息可见插件的GitHub仓库。</description>
     </item>
     <item>
       <title>使用Hexo</title>

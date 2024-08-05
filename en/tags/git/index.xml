@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Git on MoonLab</title>
+    <link>https://moonlab.top/en/tags/git/</link>
+    <description>Recent content in Git on MoonLab</description>
+    <generator>Hugo -- 0.131.0</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 15 Sep 2023 12:09:04 +0000</lastBuildDate>
+    <atom:link href="https://moonlab.top/en/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git push results in permission denied error 403</title>
+      <link>https://moonlab.top/en/posts/2023/git-err/</link>
+      <pubDate>Fri, 15 Sep 2023 12:09:04 +0000</pubDate>
+      <guid>https://moonlab.top/en/posts/2023/git-err/</guid>
+      <description>When trying to use &lt;code&gt;git push -u origin main&lt;/code&gt;, a permission error occurred, indicating that the old user was denied access. To resolve this issue, the author attempted to reset the commit author using &lt;code&gt;git commit --amend --reset-author&lt;/code&gt;, but the problem persisted. Ultimately, a solution was found on Stack Overflow： deleting the old credentials successfully resolved the issue, saving an hour of time.</description>
+    </item>
+  </channel>
+</rss>

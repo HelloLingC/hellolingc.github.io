@@ -5,7 +5,7 @@
     <link>https://moonlab.top/tags/android/</link>
     <description>Recent content in Android on MoonLab</description>
     <generator>Hugo -- 0.131.0</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <lastBuildDate>Mon, 24 Feb 2020 11:52:38 +0000</lastBuildDate>
     <atom:link href="https://moonlab.top/tags/android/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -30,109 +30,35 @@ Gson gson = new Gson(); Diary diary = gson.</description>
       <link>https://moonlab.top/posts/2020/android-shizuku-theory2/</link>
       <pubDate>Tue, 04 Feb 2020 11:43:10 +0000</pubDate>
       <guid>https://moonlab.top/posts/2020/android-shizuku-theory2/</guid>
-      <description>又是前言 上一篇的 Shizuku 源码分析，我大概从我们开发的应用到 ShizukuService 再到 SystemService 都通了一遍。在文章的结尾我只提到了 moe.shizuku.service 包下的 Starter 这个 Java 类的 main 方法启动了整个 ShizukuService ，所以我们才能愉快地调用 Shizuku 的 API。
-我们接下来要更深入分析，去 Navtive 层看看。我想要知道 Starter 的 main 方法又是谁调用的？怎么调用的？
-Shizuku 是什么？我就不再多说了。
-Github: https://github.com/RikkaApps/Shizuku
-（之后会简单涉及到 Android 中的 NDK 开发，和一些 C++ 的内容）
-start.sh 当用户使用 ShizukuManager ，通过 ShizukuManager 激活应用时，需要先启动 ShizukuService 。
-这里有 adb 和 root 两种启动方式，我们只分析 adb 方式。
-adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh 这条 adb 命令想必用过 ShizukuManager 的人都很熟悉吧？只要在 adb 终端输入这条命令，就能激活 ShizukuManager。
-这条命令很简单，就是调用 sh 脚本 start.sh 。这个 start.</description>
+      <description>本文深入分析了 Shizuku 的启动过程，特别是 &lt;code&gt;Starter&lt;/code&gt; 类的 &lt;code&gt;main&lt;/code&gt; 方法是如何被调用的。文章首先回顾了 Shizuku 的基本概念，并介绍了通过 &lt;code&gt;adb&lt;/code&gt; 命令激活 ShizukuService 的过程，重点分析了 &lt;code&gt;start.sh&lt;/code&gt; 脚本的执行。当用户通过 ShizukuManager 启动应用时，&lt;code&gt;start.sh&lt;/code&gt; 脚本被调用，该脚本负责设置环境并执行 &lt;code&gt;libshizuku.so&lt;/code&gt; 文件。文章详细描述了 &lt;code&gt;ShizukuManager&lt;/code&gt; 在启动时如何写入 &lt;code&gt;start.sh&lt;/code&gt; 文件及其相关的 dex 文件路径。接着，文章探讨了 &lt;code&gt;libshizuku.so&lt;/code&gt; 中的 &lt;code&gt;main&lt;/code&gt; 方法，说明了如何通过 &lt;code&gt;app_process&lt;/code&gt; 启动 Java 类 &lt;code&gt;moe.shizuku.server.Starter&lt;/code&gt;。在 &lt;code&gt;Starter&lt;/code&gt; 类的 &lt;code&gt;main&lt;/code&gt; 方法中，创建了 &lt;code&gt;ShizukuService&lt;/code&gt; 实例，从而完成了 ShizukuService 的启动。最后，作者总结了整个过程，强调了用户通过简单的 &lt;code&gt;adb&lt;/code&gt; 命令如何触发一系列复杂的操作，最终实现 Shizuku 的功能。</description>
     </item>
     <item>
       <title>Android Shizuku源码分析</title>
       <link>https://moonlab.top/posts/2020/android-shizuku-theory/</link>
       <pubDate>Sun, 02 Feb 2020 19:24:10 +0000</pubDate>
       <guid>https://moonlab.top/posts/2020/android-shizuku-theory/</guid>
-      <description>前言 上一篇文章我使用了 Shizuku 去调用系统API：文章链接
-这次就来看看 Shizuku 的源码是怎么写的。
-最开始我用 Notepad++ 看，最后还是用 as 看源码好点吧。
-官方文档
-酷安下载 ShizukuManager
-Watch it on GitHub
-Shizuku 是什么？ Shizuku app 会引导用户使用 root 或是 adb 方式运行一个进程（Shizuku 服务进程）。
-应用进程启动时 Shizuku 服务进程发送 binder 至应用进程 应用通过该 binder 与 Shizuku 服务进程交互，Shizuku 服务进程通过 binder 与 system server 交互 正文 ShizukuBinderWrapper 首先我们看，在开发时调用 Shizuku 的代码：
-private static final IPackageManager PACKAGE_MANAGER = IPackageManager.Stub.asInterface(new ShizukuBinderWrapper(SystemServiceHelper.getSystemService(&amp;#34;package&amp;#34;))); 它使我们能随意调用 Android 系统中 IPackageManager 内的方法，也就是系统隐藏的API（有 @hide 标签的方法）
-我们可以看到 ShizukuBinderWrapper 的构造方法内传入了一个 SystemServiceHelper#getSystemService 方法的返回值。</description>
+      <description>本文分析了 Shizuku 的源码，介绍了其如何通过 Binder 实现与 Android 系统服务的交互。Shizuku 应用引导用户以 root 或 adb 方式运行服务进程，利用 ShizukuBinderWrapper 进行系统隐藏 API 的调用。文章详细探讨了 ShizukuBinderWrapper 的构造、transact 方法及其与 IShizukuService 的通信过程，最后简要提及 ShizukuService 的启动流程。作者计划进一步深入分析 Shizuku 的启动机制。</description>
     </item>
     <item>
       <title>Android 监听第三方Activity的一举一动</title>
       <link>https://moonlab.top/posts/2020/android-activity-monitor/</link>
       <pubDate>Sat, 01 Feb 2020 18:39:25 +0000</pubDate>
       <guid>https://moonlab.top/posts/2020/android-activity-monitor/</guid>
-      <description>前言 距离上一次更新也已经是六个月前了。感觉2019年过得真不咋样，什么也没干成吧，没有什么进步。
-不知不觉又是新的一年，2019是去年，2018就成了前年了。
-这个冬天我们这都没怎么下过雪，积雪的话我知记得有一次，融化得还很快。
-国内也出现了传染病，迄今为止有五千多人中枪了吧。现在也不让出去，亲戚也都没有拜完，现在天天在家窝。（不过好处就是不用上学啦）。
-今年的央视春晚也没有看，bilibili还搞了拜年祭，拜年祭真的是一年比一年棒了，可惜我也没兴趣看。
-最近在补魔法少女小圆，看得很慢。1月新番也没啥期待的，只有一部喜欢的：某科学电池炮T，毕竟是我的入坑番。还有一部是异度入侵，我不太喜欢目前的剧情，唯一喜欢的就只有OP了。
-哦其实还有Acfun独播的达尔文游戏，也还可以~~（因为我喜欢女主的性格）~~
-总结：一月新番喜欢的只有一部番和一首歌，没了。
-感觉越来越没意思了，也可能是我心态的变化，现在我都一直在看以前的番，新番我已经没啥可期待的了。
-这篇文章磨磨唧唧花费了三天，我已经把魔法少女小圆TV版看完了，太特喵好看了，还有剧场版和外传又够我看一阵子了。
-好多人都说“致郁”，其实我觉得还可以啊并不怎么致郁，相反还有些治愈（迫真脸）。
-[TOC]
-正文 回归正题，我在开发的过程中有一个小需求：需要监听每一个Activity的启动，并且需要获取Activity的ClassName。
-我这种菜鸡只能先求助百度：Android 监听第三方Activity
-方法1 首先百度到的第一个方法是搞一个Service，然后在一个循环里一直获取栈顶的Activity。
-emmmmmm&amp;hellip;.
-List&amp;lt;ActivityManager.RunningTaskInfo&amp;gt; runningTasks = am.getRunningTasks(1); ActivityManager.RunningTaskInfo runningTaskInfo = runningTasks.get(0); 这个办法肯定是不行哒，Google早已对getRunningTasks方法严加管制，需要android.permission.GET_TOP_ACTIVITY_INFO权限，但是这个权限必须要系统app才能申请。
-但或许能用shell指令 ps 来获取栈顶的 Activity，虽然我没试过。
-方法2 (???) 第二个方法是使用 UsageStatsManager，也就是应用使用情况的一个功能。
-但是只能得到应用的包名，而不是Activity的类名。
-方法3 在我百度的时候我注意到了一个接口：IActivityController和一个方法：setActivityController。
-啊，决定了，就是你啦！
-我开始了解有关IActivityController的详细内容。
-我还发现了一个比AndroidXref稍微更友好的Android源码在线查看网站：https://www.androidos.net.cn/
-本来setActivityController这个方法是在ActivityManagerNative中的，但是在Android API 26的时候似乎被遗弃了，取而代之的是IActivityManager中的setActivityController。
-在之前，启动Activity的是ActivityManagerNative,getDefault()内的startActivity方法，而ActivityManagerService继承自ActivityManagerNative，ActivityManagerNative又继承自Binder并实现iActivityManager，AMS是IActivityManager的具体实现。
-IInterface, Stub, Proxy 三个类是分离的，分别是 IActivityManager，ActivityManagerNative (extends Binder) 和 ActivityManagerProxy。
-而现在（API 26+），AMS直接继承了 IActivityManager的内部类 Stub：
-这时候 Android 源码已经有了 IActivityManager.aidl，ActivityManagerNative 这个类被弃用了
-public class ActivityManagerService extends IActivityManager.Stub implements Watchdog.</description>
+      <description>这篇文章主要记录了作者在2019年初的个人感受和一些技术探索。作者回顾了过去一年的经历，感到没有太多进展，并提到冬季的天气和国内的传染病情况。尽管在家中待得久了，作者也提到了一些娱乐活动，比如观看动画和春晚，但整体上对新番的期待逐渐减弱。在技术方面，作者分享了在Android开发中监听Activity启动的需求，探讨了几种方法来获取Activity的类名。首先，作者提到使用&lt;code&gt;ActivityManager&lt;/code&gt;的&lt;code&gt;getRunningTasks&lt;/code&gt;方法，但由于权限限制，这种方法不可行。接着，作者提到&lt;code&gt;UsageStatsManager&lt;/code&gt;只能获取应用包名，而无法获取Activity类名。最终，作者发现了&lt;code&gt;IActivityController&lt;/code&gt;接口，并通过使用Shizuku工具来调用系统API，从而实现了监听Activity启动的功能。总结来说，文章结合了个人生活感受与技术探索，展示了作者在面对生活和技术挑战时的思考与解决方案。</description>
     </item>
     <item>
       <title>Android笔记#1 View的事件分发机制解析</title>
       <link>https://moonlab.top/posts/2019/android-view-motionevent/</link>
       <pubDate>Wed, 14 Aug 2019 11:07:50 +0000</pubDate>
       <guid>https://moonlab.top/posts/2019/android-view-motionevent/</guid>
-      <description>咕咕咕 基本上本文是把《Android艺术开发探索》这本书中的 View 事件分发机制 这一章节总结一下。
-很久以前的 Android 开发笔记太鸡儿水了。
-简单介绍 众所周知，一个事件序列是由 MotionEvent.ACTION_DOWN（按下） 开始，多个 MotionEvent.MOVE（移动） 和一个 MotionEvent.ACTION_UP（抬起） 结束。
-一个事件的传递顺序：Activity - &amp;gt; Window -&amp;gt; DecorView - &amp;gt; RootView (你所设置的 View)
-ViewGroup 是继承自 View 的，这点也是基础中的基础了。
-事件的分发过程主要由以下三个方法来完成：
-public boolean dispatchTouchEvent(MotionEvent ev); // 如果事件传到此 View 那么该方法一定会被调用 public boolean onInterceptTouchEvent(MotionEvent event); // 用来判断 View 是否拦截此事件，如果拦截那么在这事件序列中此方法不会再被调用 public boolean onTouchEvent(MotionEvent event); // 用来处理事件，返回是否消耗当前事件，如果不消耗那么在同一事件序列不会再让此 View 接收到。 下面我们附上一段伪代码来阐述三个方法的关系：
-public boolean dispatchTouchEvent(MotionEvent ev) { boolean consume = false; // onInterceptTouchEvent判断是否拦截此事件 if (onInterceptTouchEvent(ev)) { // 拦截的话，则调用 onTouchEvent 处理事件，返回是否消耗此事件 consume = onTouchEvent(ev); } else { // 不拦截交给子类 View consume = child.</description>
+      <description>本文总结了《Android艺术开发探索》中关于View事件分发机制的内容。事件序列从ACTION_DOWN开始，经过多个ACTION_MOVE，最后以ACTION_UP结束。事件传递顺序为Activity -&amp;gt; Window -&amp;gt; DecorView -&amp;gt; RootView。事件分发主要通过dispatchTouchEvent、onInterceptTouchEvent和onTouchEvent三个方法实现。ViewGroup的onInterceptTouchEvent默认返回false，子View可通过OnTouchListener处理事件。总结指出，事件分发机制确保一个事件序列只能被一个View拦截和消耗，且OnTouchListener优先级高于onTouchEvent。</description>
     </item>
     <item>
-      <title>知乎日报的坑</title>
-      <link>https://moonlab.top/posts/2020/android-zhihu-daily/</link>
+      <title>知乎日报的问题</title>
+      <link>https://moonlab.top/posts/2019/android-zhihu-daily/</link>
       <pubDate>Thu, 04 Jul 2019 20:34:10 +0000</pubDate>
-      <guid>https://moonlab.top/posts/2020/android-zhihu-daily/</guid>
-      <description>没想到吧！本鸽子想起自己的博客啦！
-暑假到了，感觉时间跟不要钱一样，没有了时间概念了233
-我实在没啥可写的，就随便说说这两天干了啥吧
-昨天我开始写一个第三方的知乎日报客户端
-因为太无聊了，就随便搞搞吧。用的是这个API
-简单说一下之前遇到的问题吧，以及开发的过程
-架构 用的是MVP，也就是Model, View, Presenter
-感觉有点麻烦，其实现在有点后悔了，写起来太无聊啦
-最开始当然是疯狂写写写写接口，创建Activity
-后面则是疯狂用用用用别人的轮子
-全局异常处理 自己写了个全局异常处理实现Thread.UncaughtExceptionHandler这个接口。
-然后再把自己的Application搞上去，在MyApplication中把默认的ExceptionHandler给搞下去！
-在uncaughtException方法中写入处理异常的代码，这里是不能使用AlertDialog的！！！
-我是直接跳转到专门的ExceptionActivity处理，这样用户体验就更棒了（其实没啥用）
-但但但但但是！！！
-不知道为啥在uncaughtException中Throwable的printStackTrace方法失效了，我也没有深究，也懒得管啦
-JSON解析 没啥意思，就那样JSONOBJECT, JSONARRAY，懒得用别人的轮子233
-应用中需要加载图片，我并没有考虑Glide，我使用了OkHttp框架，而Picasso也用到了OkHttp，况且Picasso更轻量，在某种情况下个人感觉Picasso比Glide更好用
-图片宽度太宽啦 这个Webview的图片超过了屏幕的宽度，我在网上查了一下 WenView 图片自适应
-找到了一个方法，就是加载JavaScript，这可能是一个本方法但管用
-像我这种五线水平，也就只能这样惹QAQ
-webView.setWebViewClient(new WebViewClient() { @Override public void onPageFinished(WebView view, String url) { super.onPageFinished(view, url); String javascript = &amp;#34;javascript:function ResizeImages() {&amp;#34; + &amp;#34;var myimg,oldwidth;&amp;#34; + &amp;#34;var maxwidth = document.body.clientWidth;&amp;#34; + &amp;#34;for(i=0;i &amp;lt;document.images.length;i++){&amp;#34; + &amp;#34;myimg = document.images[i];&amp;#34; + &amp;#34;if(myimg.width &amp;gt; maxwidth){&amp;#34; + &amp;#34;oldwidth = myimg.</description>
+      <guid>https://moonlab.top/posts/2019/android-zhihu-daily/</guid>
+      <description>作者在暑假期间开始开发一个第三方的知乎日报客户端，使用MVP架构。遇到了一些问题，如全局异常处理和JSON解析，选择使用Picasso加载图片。为了解决WebView中图片宽度过大的问题，作者通过JavaScript调整图片大小。最终，作者完成了基本的加载和查看功能，并在GitHub上分享了代码。尽管开发过程充满挑战，作者仍然享受这个过程。</description>
     </item>
   </channel>
 </rss>

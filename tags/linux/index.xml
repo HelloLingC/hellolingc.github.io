@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linux on MoonLab</title>
+    <link>https://moonlab.top/tags/linux/</link>
+    <description>Recent content in Linux on MoonLab</description>
+    <generator>Hugo -- 0.131.0</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 03 Aug 2024 08:28:35 +0800</lastBuildDate>
+    <atom:link href="https://moonlab.top/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[双系统] Windows 更新摧毁了我的Linux系统</title>
+      <link>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</link>
+      <pubDate>Sat, 03 Aug 2024 08:28:35 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</guid>
+      <description>在 Windows 更新后，用户的 Linux 系统因等待 90 秒而无法启动，并且出现依赖失败。调查发现，Windows 调换了 Linux 分区和恢复分区的顺序，从而导致了问题。用户通过修复 Linux、更新 fstab、重新安装 Grub 和使用 efibootmgr 更改启动顺序解决了问题。</description>
+    </item>
+  </channel>
+</rss>
