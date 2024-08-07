@@ -6,8 +6,28 @@
     <description>Recent content on MoonLab</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 03 Aug 2024 08:28:35 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2024 08:24:02 +0800</lastBuildDate>
     <atom:link href="https://moonlab.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android设备安装Debian成为BT下载服务器</title>
+      <link>https://moonlab.top/posts/2024/debian-on-android/</link>
+      <pubDate>Wed, 07 Aug 2024 08:24:02 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2024/debian-on-android/</guid>
+      <description>讲道理，我还从来没关注过VNC这个东西。早在几年前就知道了VNC，但其实我一直都用不上。
+最近，我的Android设备因为电池寿命问题已经终止使用了，我就打算让他成为一个永久的·被插入的状态（指充电）。
+为了方便，我直接用傻瓜脚本在Termux中装上Debian。
+一键安装Debian脚本：https://github.com/wahasa/Debian
+一键安装Ubuntu脚本：https://github.com/MFDGaming/ubuntu-in-termux
+不过我不推荐在termux用ubuntu。因为Termux无法使用systemd，所以在ubuntu的snapd也就用不了。（但是如果root后似乎是有办法的。）而Ubuntu深度绑定了snap，就算有办法移除snap也挺麻烦的。snap对arm64处理器的优化也很少，为什么不直接用debian呢。
+就比如在Ubuntu要通过传统的deb去安装firefox浏览器，就先需要用snap remove firefox来先删除，但是&amp;hellip;&amp;hellip;snap是完全用不了的。
+Phantom Process Killer 自Android12开始有一个Phantom Process Killer机制，会限制应用后台的子进程数量。所以Termux很容易被杀，从而出现Process completed (signal 9) 。 我用的是adb命令去关闭这项限制。
+ADB工具下载链接：https://developer.android.com/studio/releases/platform-tools
+adb devices adb shell &amp;#34;/system/bin/device_config set_sync_disabled_for_tests persistent&amp;#34; adb shell &amp;#34;/system/bin/device_config put activity_manager max_phantom_processes 2147483647&amp;#34; adb shell settings put global settings_enable_monitor_phantom_procs false 还有一种方法是在开发者设置中找到Feature flag，在里面关闭settings_enable_monitor_phantom_procs。不过不知道为什么，我的手机中的feature flag里什么都没有。
+桌面环境 &amp;amp; VNC 为了让VNC客户端能够连接到手机中的Debian，要先装一个桌面。
+我用的是xfce，可以直接用apt安装：
+sudo apt install xfce4 xfce4-goodies 但是也可以用@wahasa的脚本,顺带就安装了tigervnc，而且配置好了/.vnc/xstartup：
+apt install wget -y ; wget https://raw.githubusercontent.com/wahasa/Debian/main/Desktop/de-xfce.sh ; chmod +x de-xfce.sh ; ./de-xfce.sh 这里我使用使用vnc-start去启动VNC Server只能监听本地的端口，在局域网内是搜不到的。</description>
+    </item>
     <item>
       <title>[双系统] Windows 更新摧毁了我的Linux系统</title>
       <link>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</link>
@@ -137,12 +157,19 @@ Deploy to remote sites $ hexo deploy More info: Deployment</description>
       <link>https://moonlab.top/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://moonlab.top/about/</guid>
-      <description>关于我(LingC) An Explorer of the cold land.
+      <description>Showcase Video 关于我(LingC) An Explorer of the cold land.
 Email: contact@moonlab.top
 关于 MoonLab Glowing guardian in the cosmic sea, always a timeless, tranquil melody.
 All the articles in this site are licensed under the CC BY-NC 4.0 .
 友情链接 &amp;gt; 折影轻梦
 &amp;gt; Zgcwkj</description>
+    </item>
+    <item>
+      <title>搜索</title>
+      <link>https://moonlab.top/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://moonlab.top/test/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>

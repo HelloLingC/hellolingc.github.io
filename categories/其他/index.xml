@@ -6,14 +6,14 @@
     <description>Recent content in 其他 on MoonLab</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 03 Aug 2024 08:28:35 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 19 Dec 2023 21:38:50 +0000</lastBuildDate>
     <atom:link href="https://moonlab.top/categories/%E5%85%B6%E4%BB%96/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[双系统] Windows 更新摧毁了我的Linux系统</title>
-      <link>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</link>
-      <pubDate>Sat, 03 Aug 2024 08:28:35 +0800</pubDate>
-      <guid>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</guid>
-      <description>在 Windows 更新后，用户的 Linux 系统因等待 90 秒而无法启动，并且出现依赖失败。调查发现，Windows 调换了 Linux 分区和恢复分区的顺序，从而导致了问题。用户通过修复 Linux、更新 fstab、重新安装 Grub 和使用 efibootmgr 更改启动顺序解决了问题。</description>
+      <title>Hexo博客自动备份插件 云盘备份支持</title>
+      <link>https://moonlab.top/posts/2023/hexo-auto-backup/</link>
+      <pubDate>Tue, 19 Dec 2023 21:38:50 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2023/hexo-auto-backup/</guid>
+      <description>本文讨论了博客数据备份方案，强调321原则：保留3个备份副本，使用2种不同储存介质，1个备份远离数据源。最初考虑使用GitHub Action进行备份，但发现其局限性。为此，开发了Hexo插件“hexo-auto-backup”，可在执行hexo deploy时自动备份重要文件到本地或云盘，支持多种云服务和协议。插件安装简单，通过npm安装。未来计划改进备份过期设置和多系统支持。详细信息可见插件的GitHub仓库。</description>
     </item>
     <item>
       <title>使用Hexo</title>
