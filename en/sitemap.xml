@@ -2,21 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://moonlab.top/en/posts/2024/windows-update-broke-linux-system/</loc>
-    <lastmod>2024-08-03T08:28:35+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://moonlab.top/posts/2024/windows-update-broke-linux-system/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://moonlab.top/en/posts/2024/windows-update-broke-linux-system/"
-                />
-  </url><url>
     <loc>https://moonlab.top/en/categories/</loc>
-    <lastmod>2024-08-03T08:28:35+08:00</lastmod>
+    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
@@ -28,8 +15,21 @@
                 href="https://moonlab.top/en/categories/"
                 />
   </url><url>
+    <loc>https://moonlab.top/en/posts/2024/debian-on-android/</loc>
+    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/posts/2024/debian-on-android/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/posts/2024/debian-on-android/"
+                />
+  </url><url>
     <loc>https://moonlab.top/en/tags/linux/</loc>
-    <lastmod>2024-08-03T08:28:35+08:00</lastmod>
+    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
@@ -42,7 +42,7 @@
                 />
   </url><url>
     <loc>https://moonlab.top/en/</loc>
-    <lastmod>2024-08-03T08:28:35+08:00</lastmod>
+    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
@@ -55,7 +55,7 @@
                 />
   </url><url>
     <loc>https://moonlab.top/en/posts/</loc>
-    <lastmod>2024-08-03T08:28:35+08:00</lastmod>
+    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
@@ -67,8 +67,21 @@
                 href="https://moonlab.top/en/posts/"
                 />
   </url><url>
+    <loc>https://moonlab.top/en/categories/programming/</loc>
+    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/categories/programming/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/categories/programming/"
+                />
+  </url><url>
     <loc>https://moonlab.top/en/tags/</loc>
-    <lastmod>2024-08-03T08:28:35+08:00</lastmod>
+    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
@@ -78,6 +91,19 @@
                 rel="alternate"
                 hreflang="en-US"
                 href="https://moonlab.top/en/tags/"
+                />
+  </url><url>
+    <loc>https://moonlab.top/en/posts/2024/windows-update-broke-linux-system/</loc>
+    <lastmod>2024-08-03T08:28:35+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/posts/2024/windows-update-broke-linux-system/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/posts/2024/windows-update-broke-linux-system/"
                 />
   </url><url>
     <loc>https://moonlab.top/en/categories/%E5%85%B6%E4%BB%96/</loc>
@@ -104,19 +130,6 @@
                 rel="alternate"
                 hreflang="en-US"
                 href="https://moonlab.top/en/posts/2023/git-err/"
-                />
-  </url><url>
-    <loc>https://moonlab.top/en/categories/programming/</loc>
-    <lastmod>2023-09-15T12:09:04+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://moonlab.top/categories/programming/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://moonlab.top/en/categories/programming/"
                 />
   </url><url>
     <loc>https://moonlab.top/en/tags/android/</loc>

@@ -6,8 +6,15 @@
     <description>Recent content in Linux on MoonLab</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 03 Aug 2024 08:28:35 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2024 08:24:02 +0800</lastBuildDate>
     <atom:link href="https://moonlab.top/en/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install Debian on Android devices to become a BT download server</title>
+      <link>https://moonlab.top/en/posts/2024/debian-on-android/</link>
+      <pubDate>Wed, 07 Aug 2024 08:24:02 +0800</pubDate>
+      <guid>https://moonlab.top/en/posts/2024/debian-on-android/</guid>
+      <description>The author discusses their experience with VNC and setting up a Debian environment on an Android device using Termux. After their Android device became unusable due to battery issues, they installed Debian with a simple script. They advise against using Ubuntu in Termux due to limitations with systemd and snap. The post also covers the Phantom Process Killer in Android 12, providing ADB commands to disable it. For VNC access, the author installs the XFCE desktop environment and configures the VNC server to allow connections beyond localhost. They also mention potential future installations like Gogs for a local Git server.</description>
+    </item>
     <item>
       <title>[Dual Boot] Windows Update Destroyed My Linux System</title>
       <link>https://moonlab.top/en/posts/2024/windows-update-broke-linux-system/</link>

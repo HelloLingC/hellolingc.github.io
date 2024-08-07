@@ -4,6 +4,16 @@
   <url>
     <loc>https://moonlab.top/posts/2024/debian-on-android/</loc>
     <lastmod>2024-08-07T08:24:02+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/posts/2024/debian-on-android/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/posts/2024/debian-on-android/"
+                />
   </url><url>
     <loc>https://moonlab.top/categories/</loc>
     <lastmod>2024-08-07T08:24:02+08:00</lastmod>
