@@ -6,30 +6,8 @@
     <description>Recent content in Blog on MoonLab</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 07 Aug 2024 23:45:40 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 19 Dec 2023 21:38:50 +0000</lastBuildDate>
     <atom:link href="https://moonlab.top/tags/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Couldflare Worker &#43; D1搭建博客计数器</title>
-      <link>https://moonlab.top/posts/2024/cf-worker-blog-counter/</link>
-      <pubDate>Wed, 07 Aug 2024 23:45:40 +0800</pubDate>
-      <guid>https://moonlab.top/posts/2024/cf-worker-blog-counter/</guid>
-      <description>最近我发现，Cloudflare居然是支持Serverless database的，而且和Worker一样是免费的！（我又火星了）　详细可见：D1官方文档
-我之前一直都认为SQLite作为serverless database是很有潜力的，在读&amp;gt;写的小型情境下，无脑选SQLite就完事了，完全没有必要用MySQL, Mongodb, PostgreSQL等．尤其是对流量十分小，且数据写入相当不频繁的个人博客来说，每天的独立UV能有10个都算烧高香了，用MySQL非常浪费服务器资源．
-所以这次依靠CF Worker + D1搭建博客的浏览计数器服务，完全就不需要自己再买一个服务器了．成本除了开发的时间，完全为0．
-我之前已经用Go写了一个网站浏览量的计数器：Github Repo
-但是由于CF Worker现在只支持JavaScript, Python, TypeScript, Rust，所以无法运行在Worker中．
-就算用WASM也特别麻烦，还不如直接用JS重新写一版．
-（支持的语言）
-准备工作 Wrangler CLI Worker有一个在线的Background，可以在网页内修改代码和调试，十分的牛逼．
-如果想在本地写代码，也可以用Wrangler CLI．
-$ npx create-cloudflare@latest mooncounter --existing-script mooncounter 不过我在使用Wrangler CLI时出了点小差错：
-好吧，是我太急了，要先用wrangler login登录一下Cloudflare账号．
-$ npx wrangler login Nodejs 兼容 由于Worker运行在V8环境，所以用不了node的包，但是CF为nodejs做了兼容层：Node.js compatibility
-在 wrangler.toml　文件添加以下即可启用node兼容：
-compatibility_flags = [ &amp;#34;nodejs_compat&amp;#34; ] 然后就可以修改代码中的包的导入，比如：
-import path from &amp;#34;node:path&amp;#34; 不过用处基本上不大，因为只支持少量的node api，还是尽量在Worker中避免使用node环境吧．
-本地调试 $ wrangler dev --remote </description>
-    </item>
     <item>
       <title>Hexo博客自动备份插件 云盘备份支持</title>
       <link>https://moonlab.top/posts/2023/hexo-auto-backup/</link>

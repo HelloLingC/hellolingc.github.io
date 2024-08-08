@@ -6,15 +6,8 @@
     <description>Recent content in Tags on MoonLab</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 07 Aug 2024 23:45:40 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2024 08:24:02 +0800</lastBuildDate>
     <atom:link href="https://moonlab.top/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Blog</title>
-      <link>https://moonlab.top/tags/blog/</link>
-      <pubDate>Wed, 07 Aug 2024 23:45:40 +0800</pubDate>
-      <guid>https://moonlab.top/tags/blog/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Linux</title>
       <link>https://moonlab.top/tags/linux/</link>
@@ -27,6 +20,13 @@
       <link>https://moonlab.top/tags/golang/</link>
       <pubDate>Wed, 27 Dec 2023 08:10:39 +0000</pubDate>
       <guid>https://moonlab.top/tags/golang/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blog</title>
+      <link>https://moonlab.top/tags/blog/</link>
+      <pubDate>Tue, 19 Dec 2023 21:38:50 +0000</pubDate>
+      <guid>https://moonlab.top/tags/blog/</guid>
       <description></description>
     </item>
     <item>
