@@ -6,8 +6,30 @@
     <description>Recent content in Posts on MoonLab</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 07 Aug 2024 08:24:02 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2024 23:45:40 +0800</lastBuildDate>
     <atom:link href="https://moonlab.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Couldflare Worker &#43; D1搭建博客计数器</title>
+      <link>https://moonlab.top/posts/2024/cf-worker-blog-counter/</link>
+      <pubDate>Wed, 07 Aug 2024 23:45:40 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2024/cf-worker-blog-counter/</guid>
+      <description>最近我发现，Cloudflare居然是支持Serverless database的，而且和Worker一样是免费的！（我又火星了）　详细可见：D1官方文档
+我之前一直都认为SQLite作为serverless database是很有潜力的，在读&amp;gt;写的小型情境下，无脑选SQLite就完事了，完全没有必要用MySQL, Mongodb, PostgreSQL等．尤其是对流量十分小，且数据写入相当不频繁的个人博客来说，每天的独立UV能有10个都算烧高香了，用MySQL非常浪费服务器资源．
+所以这次依靠CF Worker + D1搭建博客的浏览计数器服务，完全就不需要自己再买一个服务器了．成本除了开发的时间，完全为0．
+我之前已经用Go写了一个网站浏览量的计数器：Github Repo
+但是由于CF Worker现在只支持JavaScript, Python, TypeScript, Rust，所以无法运行在Worker中．
+就算用WASM也特别麻烦，还不如直接用JS重新写一版．
+（支持的语言）
+准备工作 Wrangler CLI Worker有一个在线的Background，可以在网页内修改代码和调试，十分的牛逼．
+如果想在本地写代码，也可以用Wrangler CLI．
+$ npx create-cloudflare@latest mooncounter --existing-script mooncounter 不过我在使用Wrangler CLI时出了点小差错：
+好吧，是我太急了，要先用wrangler login登录一下Cloudflare账号．
+$ npx wrangler login Nodejs 兼容 由于Worker运行在V8环境，所以用不了node的包，但是CF为nodejs做了兼容层：Node.js compatibility
+在 wrangler.toml　文件添加以下即可启用node兼容：
+compatibility_flags = [ &amp;#34;nodejs_compat&amp;#34; ] 然后就可以修改代码中的包的导入，比如：
+import path from &amp;#34;node:path&amp;#34; 不过用处基本上不大，因为只支持少量的node api，还是尽量在Worker中避免使用node环境吧．
+本地调试 $ wrangler dev --remote </description>
+    </item>
     <item>
       <title>Android设备安装Debian成为BT下载服务器</title>
       <link>https://moonlab.top/posts/2024/debian-on-android/</link>
@@ -103,6 +125,17 @@ Gson gson = new Gson(); Diary diary = gson.</description>
       <description>作者在暑假期间开始开发一个第三方的知乎日报客户端，使用MVP架构。遇到了一些问题，如全局异常处理和JSON解析，选择使用Picasso加载图片。为了解决WebView中图片宽度过大的问题，作者通过JavaScript调整图片大小。最终，作者完成了基本的加载和查看功能，并在GitHub上分享了代码。尽管开发过程充满挑战，作者仍然享受这个过程。</description>
     </item>
     <item>
+      <title>Hello World</title>
+      <link>https://moonlab.top/posts/2019/hello-world/</link>
+      <pubDate>Sat, 25 May 2019 14:50:36 +0000</pubDate>
+      <guid>https://moonlab.top/posts/2019/hello-world/</guid>
+      <description>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick Start Create a new post $ hexo new &amp;#34;My New Post&amp;#34; More info: Writing
+Run server $ hexo server More info: Server
+Generate static files $ hexo generate More info: Generating
+Deploy to remote sites $ hexo deploy More info: Deployment</description>
+    </item>
+    <item>
       <title>使用Hexo</title>
       <link>https://moonlab.top/posts/2019/hello-hexo/</link>
       <pubDate>Sat, 25 May 2019 14:50:36 +0000</pubDate>
@@ -117,15 +150,84 @@ Gson gson = new Gson(); Diary diary = gson.</description>
 这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333</description>
     </item>
     <item>
-      <title>Hello World</title>
-      <link>https://moonlab.top/posts/2019/hello-world/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://moonlab.top/posts/2019/hello-world/</guid>
-      <description>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick Start Create a new post $ hexo new &amp;#34;My New Post&amp;#34; More info: Writing
-Run server $ hexo server More info: Server
-Generate static files $ hexo generate More info: Generating
-Deploy to remote sites $ hexo deploy More info: Deployment</description>
+      <title>Ubnutu 无法启动网易云音乐 - 总结</title>
+      <link>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</link>
+      <pubDate>Tue, 07 Aug 2018 21:28:14 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</guid>
+      <description>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7
+Author Avatar LingC 8 月 7 日
+00 本文总结了16.04以上的版本运行网易云音乐会出现的问题，以及解决方法 如果你安装官方版本网易云音乐后（v1.1.0）,运行网易云音乐无响应的话可以试试以下几种方法
+01 在终端中输入
+$ netease-cloud-music &amp;ndash;no-sandbox %U
+即可启动网易云音乐
+有可能会出现一些警告，稍后会打开网易云主界面
+如果出现Unable to locate theme engine in module_path: &amp;ldquo;adwaita&amp;rdquo;
+可以尝试执行这条命令：$ sudo apt install gnome-themes-standard
+如果出现failed to retrieve propertygtk-primary-button-warps-slider’ of type gboolean&#39;
+可以尝试$ vi ~/.gtkrc-2.0
+使用vim打开这个文件，将其中的一行改为
+gtk-primary-button-warps-slider=false改为gtk-primary-button-warps-slider=0
+然后可以再试着运行一下，如果还不行就reboot
+如果出现Gtk-Message: 08:59:03.546: Failed to load module &amp;ldquo;canberra-gtk-module&amp;quot;或者没有反应，那么你可以试试第二种方法
+02 在终端中输入
+$ sudo netease-cloud-music
+使用root权限运行网易云音乐
+可能会出现一些警告和报错，其实可以无视（懒的管）
+2018-08-07 09-00-03屏幕截图.png
+03 可以试一下这个方法 https://jingyan.baidu.com/article/1e5468f956a15c484861b770.html
+04 该方法针对于ubuntu 18.04LTS 网易云音乐v1.1.0</description>
+    </item>
+    <item>
+      <title>Windows 好软推荐 | 这一定是良心软件</title>
+      <link>https://moonlab.top/posts/2018/windows-software-recommendation/</link>
+      <pubDate>Sat, 04 Aug 2018 21:28:14 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2018/windows-software-recommendation/</guid>
+      <description>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7
+Author Avatar LingC 8 月 4 日
+00 继上一篇电脑中常用的软件
+我在 C 盘格式化后又遇见了一些不错的软件，这些软件反正是有 Windows 版本的，其他系统我就不知道啦~~
+并且这篇文章我会为你找到软件的官网或资源下载地址，我会一并写在这篇文章中
+01 - Fances 这款软件就是让你的桌面更条例有序，给泥们放一张我桌面的截图吧 TIM截图20180804195952.png 是不是感觉很好看 o(￣▽￣)o
+购买：https://www.stardock.com/products/fences/ 不过 steam 上也有卖 https://store.steampowered.com/app/607380/Fences/?l=tchinese&amp;cc;=nl 你说你没有钱买正版？没关系，我这里有破解版 不过在下载之前你要答应我，自己有能力的话一定要去买正版哦 (。・∀・) ノ 慕若曦那里就有这个破解版资源，链接：https://www.muruoxi.com/623.html
+02 - f.lux 有时候我会抱怨，电脑屏幕的亮度太高了，兼职闪瞎我的眼睛，特别是在晚上的时候，我一直找不到好的护眼软件
+然而，这款软件除了普通的护眼功能外，还可以根据你选择的模式在不同时间段进行自动调节 来张图
+flux.png
+你可以直接去官网中下载：https://justgetflux.com/
+03 - uninstaller 这其实是一个小工具，你不用安装就可以启动
+这是一款小型轻量的卸载程序，我看中它可以卸载完程序后，清理注册表里的残留，感觉挺良心的 我查了一下才发现，我一直用的是老版本的 uninstaller，这是老板本截图，新版本比这好看很多
+uninstallerold.png
+老板本的 uninstaller 不需要安装，而新版本的需要安装，但是新版本的用户体验肯定比老板本好啦
+新版本截图：
+uninstallernow.png
+虽然新版本安装时有一些肿瘤，推荐你安装同一公司的产品，以及订阅书籍，但是它在功能使用方面并不膨胀，我自己稍微使用了一下感觉还行 飞去下载地址吧！：https://iobit-uninstaller.en.softonic.com/
+04 - 火绒 这是本文唯一提到的国产软件，也是我最期待的软件
+这是一款电脑安全软件，我相信你们的电脑一般都会装一些安全软件，比如 360，百度，腾讯的那些安全卫士
+我在知道火绒之前一直是裸体的，直到火绒出现到我面前，我一直是不相信国内会有如此良心的安全软件
+首先，肯定有人会问
+啊，这是什么软件，听都没有听说过，肯定没有 360 好用啦 其实火绒的防护能力并不亚于国内的安全软件，不敢说是站在顶端，但是从制作人方面就可以看出一定不是什么小公司做开发的，我用着感觉十分的不错，纯净的超乎想象，有一次我卸载国内某款软件，最后即将完成卸载时，我不耐烦的快速按了，眼角的余光看见了</description>
+    </item>
+    <item>
+      <title>typecho - http转https</title>
+      <link>https://moonlab.top/posts/2018/typecho-http-2-https/</link>
+      <pubDate>Tue, 27 Mar 2018 21:28:14 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2018/typecho-http-2-https/</guid>
+      <description>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7
+2018-03-27 21:28 在我从http转成https时出现一个致命问题： css与js无法加载 报错截图： 主页界面： 并且这时没有绿锁 访问了许多网站，游览了许多资料 在config.inc.php中插入
+/** 开启HTTPS */ define(&#39;__TYPECHO_SECURE__&#39;,true); 也没有任何卵用，我开始绝望
+其主要问题是 网站前台资源 通过http访问，而本站是https，所以会出现问题 且安全连接并不完全，因为有http的连接
+就在这时，我翻到一篇文章，看到一个插件：TEDUriReplace 使用方法非常简单，插件截图： 步骤： 1.将后台的网址改为https://xxx.cn
+2.在插件的规则中写入http://xxx.cn/=&gt;https://xxx.cn/
+3.刷新网页
+就是如此简单，这款插件真的很好用 下载链接：https://s.typechodev.com/plugins/uploads/2017/12/2122242327.zip</description>
+    </item>
+    <item>
+      <title>如何评价Android P</title>
+      <link>https://moonlab.top/posts/2018/comment-about-android-p/</link>
+      <pubDate>Wed, 21 Mar 2018 21:09:14 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2018/comment-about-android-p/</guid>
+      <description>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7
+2018-03-21 21:09 2018年3月8日，Google发布了Android P的预览版 而这次版本更新引来了很多不满，大多是对布局外观上的评价 主要都是围绕着Material Design的问题，因为Google从Android5.x开始就遵循着Material Design 而Material Design是Google提出的设计风格，虽然Google系列很多都遵循着MD 但是也有一部分偏移了MD，就比如AndroidP，我感觉更偏向于扁平化 这张图片是AndroidP的截图，感觉还可以 另外再说一下圆角元素，AndroidP大量使用了圆角元素 我个人感觉圆角元素的弧度只要把握好，真的不是什么大问题 斜刘海的问题我也不想多说 这也成为了被众人吐槽的原因之一 Android P IOS P的通知栏已经丝毫没有MD的风格了，与IOS的通知栏比起来 感觉更像了，偏向于扁平化，没有质感了 P的设置界面倒还不错，虽然与MD搭不上边 色彩的搭配很有亮点
+总的来说，并不是特别讨厌P的更新，因为时代会变化 倒不如说很喜欢这次更新，感觉是安卓目前最好看的设计 MD风格是给人的设计思路，而不是限制设计的锁链</description>
     </item>
   </channel>
 </rss>

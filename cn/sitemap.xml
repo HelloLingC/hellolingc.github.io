@@ -2,6 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://moonlab.top/tags/blog/</loc>
+    <lastmod>2024-08-07T23:45:40+08:00</lastmod>
+  </url><url>
+    <loc>https://moonlab.top/categories/</loc>
+    <lastmod>2024-08-07T23:45:40+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/categories/"
+                />
+  </url><url>
+    <loc>https://moonlab.top/posts/2024/cf-worker-blog-counter/</loc>
+    <lastmod>2024-08-07T23:45:40+08:00</lastmod>
+  </url><url>
+    <loc>https://moonlab.top/</loc>
+    <lastmod>2024-08-07T23:45:40+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/"
+                />
+  </url><url>
+    <loc>https://moonlab.top/posts/</loc>
+    <lastmod>2024-08-07T23:45:40+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/posts/"
+                />
+  </url><url>
+    <loc>https://moonlab.top/tags/</loc>
+    <lastmod>2024-08-07T23:45:40+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/tags/"
+                />
+  </url><url>
+    <loc>https://moonlab.top/categories/%E5%85%B6%E4%BB%96/</loc>
+    <lastmod>2024-08-07T23:45:40+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://moonlab.top/en/categories/%E5%85%B6%E4%BB%96/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://moonlab.top/categories/%E5%85%B6%E4%BB%96/"
+                />
+  </url><url>
     <loc>https://moonlab.top/posts/2024/debian-on-android/</loc>
     <lastmod>2024-08-07T08:24:02+08:00</lastmod>
     <xhtml:link
@@ -13,19 +84,6 @@
                 rel="alternate"
                 hreflang="zh-CN"
                 href="https://moonlab.top/posts/2024/debian-on-android/"
-                />
-  </url><url>
-    <loc>https://moonlab.top/categories/</loc>
-    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://moonlab.top/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://moonlab.top/categories/"
                 />
   </url><url>
     <loc>https://moonlab.top/tags/linux/</loc>
@@ -41,32 +99,6 @@
                 href="https://moonlab.top/tags/linux/"
                 />
   </url><url>
-    <loc>https://moonlab.top/</loc>
-    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://moonlab.top/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://moonlab.top/"
-                />
-  </url><url>
-    <loc>https://moonlab.top/posts/</loc>
-    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://moonlab.top/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://moonlab.top/posts/"
-                />
-  </url><url>
     <loc>https://moonlab.top/categories/programming/</loc>
     <lastmod>2024-08-07T08:24:02+08:00</lastmod>
     <xhtml:link
@@ -78,19 +110,6 @@
                 rel="alternate"
                 hreflang="zh-CN"
                 href="https://moonlab.top/categories/programming/"
-                />
-  </url><url>
-    <loc>https://moonlab.top/tags/</loc>
-    <lastmod>2024-08-07T08:24:02+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://moonlab.top/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://moonlab.top/tags/"
                 />
   </url><url>
     <loc>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</loc>
@@ -115,24 +134,8 @@
     <loc>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</loc>
     <lastmod>2023-12-27T08:10:39+00:00</lastmod>
   </url><url>
-    <loc>https://moonlab.top/tags/blog/</loc>
-    <lastmod>2023-12-19T21:38:50+00:00</lastmod>
-  </url><url>
     <loc>https://moonlab.top/posts/2023/hexo-auto-backup/</loc>
     <lastmod>2023-12-19T21:38:50+00:00</lastmod>
-  </url><url>
-    <loc>https://moonlab.top/categories/%E5%85%B6%E4%BB%96/</loc>
-    <lastmod>2023-12-19T21:38:50+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://moonlab.top/en/categories/%E5%85%B6%E4%BB%96/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://moonlab.top/categories/%E5%85%B6%E4%BB%96/"
-                />
   </url><url>
     <loc>https://moonlab.top/posts/2023/aem-esp-ebp/</loc>
     <lastmod>2023-12-15T14:31:17+00:00</lastmod>
@@ -201,10 +204,23 @@
                 href="https://moonlab.top/posts/2019/android-zhihu-daily/"
                 />
   </url><url>
+    <loc>https://moonlab.top/posts/2019/hello-world/</loc>
+    <lastmod>2019-05-25T14:50:36+00:00</lastmod>
+  </url><url>
     <loc>https://moonlab.top/posts/2019/hello-hexo/</loc>
     <lastmod>2019-05-25T14:50:36+00:00</lastmod>
   </url><url>
-    <loc>https://moonlab.top/posts/2019/hello-world/</loc>
+    <loc>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</loc>
+    <lastmod>2018-08-07T21:28:14+08:00</lastmod>
+  </url><url>
+    <loc>https://moonlab.top/posts/2018/windows-software-recommendation/</loc>
+    <lastmod>2018-08-04T21:28:14+08:00</lastmod>
+  </url><url>
+    <loc>https://moonlab.top/posts/2018/typecho-http-2-https/</loc>
+    <lastmod>2018-03-27T21:28:14+08:00</lastmod>
+  </url><url>
+    <loc>https://moonlab.top/posts/2018/comment-about-android-p/</loc>
+    <lastmod>2018-03-21T21:09:14+08:00</lastmod>
   </url><url>
     <loc>https://moonlab.top/about/</loc>
     <xhtml:link
@@ -241,7 +257,5 @@
                 hreflang="zh-CN"
                 href="https://moonlab.top/search/"
                 />
-  </url><url>
-    <loc>https://moonlab.top/test/</loc>
   </url>
 </urlset>

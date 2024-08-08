@@ -22,5 +22,33 @@
       <guid>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</guid>
       <description>在 Windows 更新后，用户的 Linux 系统因等待 90 秒而无法启动，并且出现依赖失败。调查发现，Windows 调换了 Linux 分区和恢复分区的顺序，从而导致了问题。用户通过修复 Linux、更新 fstab、重新安装 Grub 和使用 efibootmgr 更改启动顺序解决了问题。</description>
     </item>
+    <item>
+      <title>Ubnutu 无法启动网易云音乐 - 总结</title>
+      <link>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</link>
+      <pubDate>Tue, 07 Aug 2018 21:28:14 +0800</pubDate>
+      <guid>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</guid>
+      <description>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7
+Author Avatar LingC 8 月 7 日
+00 本文总结了16.04以上的版本运行网易云音乐会出现的问题，以及解决方法 如果你安装官方版本网易云音乐后（v1.1.0）,运行网易云音乐无响应的话可以试试以下几种方法
+01 在终端中输入
+$ netease-cloud-music &amp;ndash;no-sandbox %U
+即可启动网易云音乐
+有可能会出现一些警告，稍后会打开网易云主界面
+如果出现Unable to locate theme engine in module_path: &amp;ldquo;adwaita&amp;rdquo;
+可以尝试执行这条命令：$ sudo apt install gnome-themes-standard
+如果出现failed to retrieve propertygtk-primary-button-warps-slider’ of type gboolean&#39;
+可以尝试$ vi ~/.gtkrc-2.0
+使用vim打开这个文件，将其中的一行改为
+gtk-primary-button-warps-slider=false改为gtk-primary-button-warps-slider=0
+然后可以再试着运行一下，如果还不行就reboot
+如果出现Gtk-Message: 08:59:03.546: Failed to load module &amp;ldquo;canberra-gtk-module&amp;quot;或者没有反应，那么你可以试试第二种方法
+02 在终端中输入
+$ sudo netease-cloud-music
+使用root权限运行网易云音乐
+可能会出现一些警告和报错，其实可以无视（懒的管）
+2018-08-07 09-00-03屏幕截图.png
+03 可以试一下这个方法 https://jingyan.baidu.com/article/1e5468f956a15c484861b770.html
+04 该方法针对于ubuntu 18.04LTS 网易云音乐v1.1.0</description>
+    </item>
   </channel>
 </rss>
