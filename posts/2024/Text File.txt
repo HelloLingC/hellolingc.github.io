@@ -1,0 +1,52 @@
+
+https://github.com/lit/lit/
+
+有很多关于Lit的文档都是
+
+```
+import {customElement, property} from 'lit/decorators';
+```
+
+
+```
+import {customElement, property} from 'lit/decorators.js';
+```
+
+The inclusion of the .js extension in the import statement when using ES Modules (ESM) is a requirement of the module system in JavaScript. Here’s a detailed explanation of why this is necessary and how it works:
+Why Include the .js Extension?
+
+    ES Module Specification: The ES Module specification requires that when you import a module, you must specify the full path, including the file extension. This is different from CommonJS, where you can omit the file extension, and Node.js will resolve it for you.
+
+    Browser Compatibility: Modern browsers implement the ES Module specification, which mandates that the import paths must be explicit. This means that if you are importing a JavaScript file, you need to include the .js extension in the import statement.
+
+    Clarity and Explicitness: Including the file extension makes it clear to developers and tools what type of file is being imported. This can help avoid confusion, especially in projects that may include different types of files (e.g., .ts, .jsx, .json, etc.).
+
+Example of Importing with .js
+
+Here’s how you would typically import decorators from the Lit library:
+
+javascript
+
+import { customElement, property } from 'lit/decorators.js';
+
+In this example:
+
+    lit/decorators.js is the path to the module file that exports the customElement and property functions.
+    The .js extension is required to indicate that you are importing a JavaScript module.
+
+What If You Omit the .js Extension?
+
+If you try to import without the .js extension, like this:
+
+javascript
+
+import { customElement, property } from 'lit/decorators';
+
+You will likely encounter an error similar to "Module not found" or "Could not resolve import," because the browser or the module loader will not be able to locate the file without the explicit extension.
+Summary
+
+    Always Include the .js Extension: When using ES Modules in the browser, always include the .js extension in your import statements for JavaScript files.
+    Compliance with the Specification: This requirement is part of the ES Module specification and ensures compatibility across different environments and tools.
+    Best Practice: Including the file extension is considered a best practice in modern JavaScript development, as it improves clarity and reduces potential errors.
+
+By following this guideline, you can avoid issues related to module resolution and ensure that your code works correctly in environments that support ES Modules.
