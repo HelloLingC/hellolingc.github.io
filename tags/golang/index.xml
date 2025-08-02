@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Golang on MoonLab</title><link>https://moonlab.top/tags/golang/</link><description>Recent content in Golang on MoonLab</description><generator>Hugo -- 0.143.1</generator><language>zh-CN</language><lastBuildDate>Fri, 24 Jan 2025 03:33:27 +0800</lastBuildDate><atom:link href="https://moonlab.top/tags/golang/index.xml" rel="self" type="application/rss+xml"/><item><title>Protobuf</title><link>https://moonlab.top/posts/2025/protobuf3/</link><pubDate>Fri, 24 Jan 2025 03:33:27 +0800</pubDate><guid>https://moonlab.top/posts/2025/protobuf3/</guid><description>&lt;h1 id="安装-protobuf">安装 protobuf&lt;/h1>
+&lt;p>假设环境下已有&lt;code>protoc&lt;/code> (protocal buffers compiler)。&lt;/p>
+&lt;p>对于 Go 语言，安装相应的可执行文件：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go install google.golang.org/grpc/cmd/protoc-gen-go@latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在Windows中，执行完安装命令后在&lt;code>C:\Users\user\go\bin&lt;/code>路径下会有&lt;code>proctoc-gen-go.exe&lt;/code>和&lt;code>protoc-gen-go-grpc.exe&lt;/code>。&lt;/p>
+&lt;p>安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 &lt;code>.proto&lt;/code> 文件加一行以指定生成的Go包名：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">syntax&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;proto3&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">com&lt;/span>.&lt;span style="color:#a6e22e">example&lt;/span>.&lt;span style="color:#a6e22e">pkg&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">option&lt;/span> &lt;span style="color:#a6e22e">go_package&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;example/gopkg&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果需要使用 &lt;code>grpc&lt;/code> 服务，安装包：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go get google.golang.org/grpc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>之后便可启动一个 gRPC 服务器：&lt;/p>
+&lt;h1 id="grpc-gateway">gRPC gateway&lt;/h1>
+&lt;p>为 &lt;code>gRPC&lt;/code> 服务生成面向 &lt;code>RestFul API&lt;/code> 的网关&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">syntax&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;proto3&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">com&lt;/span>.&lt;span style="color:#a6e22e">example&lt;/span>.&lt;span style="color:#a6e22e">pkg&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> &lt;span style="color:#e6db74">&amp;#34;google/api/annotations.proto&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">option&lt;/span> &lt;span style="color:#a6e22e">go_package&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;example/gopkg
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">service AuthService {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rpc Login(LRequest) returns (LResponse) {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> option (google.api.http) = {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> post: &amp;#34;&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#a6e22e">v1&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#a6e22e">login&lt;/span>&lt;span style="color:#e6db74">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> body: &amp;#34;&lt;/span>&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">message&lt;/span> &lt;span style="color:#a6e22e">LRequest&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#a6e22e">field&lt;/span> = &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">message&lt;/span> &lt;span style="color:#a6e22e">LResponse&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#a6e22e">field&lt;/span> = &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>之后便可以生成grpc gateway的代码了：&lt;/p></description></item><item><title>Golang embed 使用问题</title><link>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</link><pubDate>Wed, 27 Dec 2023 08:10:39 +0000</pubDate><guid>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</guid><description>Golang 使用 embed 包在编译时将外部文件包含到二进制程序中。使用 embed 指令可以将 html、css、js 等静态文件添加到二进制文件中，而无需额外的资源文件。嵌入文件可以使用字符串、[]字节和 FS 来引用。但也有一些限制，如文件层次结构问题和复杂路径问题。例如，如果嵌入文件和被嵌入文件不在同一层次，嵌入模式将无法成功解析。另一个问题是处理复杂路径，即静态文件夹被放置在嵌入文件的子文件夹中。解决办法是使用 io/fs 软件包中的 Sub 方法来处理这些复杂路径。</description></item></channel></rss>

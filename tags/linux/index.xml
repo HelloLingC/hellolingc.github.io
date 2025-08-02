@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on MoonLab</title><link>https://moonlab.top/tags/linux/</link><description>Recent content in Linux on MoonLab</description><generator>Hugo -- 0.143.1</generator><language>zh-CN</language><lastBuildDate>Wed, 07 Aug 2024 08:24:02 +0800</lastBuildDate><atom:link href="https://moonlab.top/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Android设备安装Debian成为BT下载服务器</title><link>https://moonlab.top/posts/2024/debian-on-android/</link><pubDate>Wed, 07 Aug 2024 08:24:02 +0800</pubDate><guid>https://moonlab.top/posts/2024/debian-on-android/</guid><description>文章介绍了如何在Android设备上通过Termux安装Debian，并配置VNC以便远程访问。作者提到，由于Android 12引入的Phantom Process Killer机制，Termux容易被杀死，因此提供了关闭该限制的ADB命令。接着，文章详细说明了如何安装XFCE桌面环境和配置VNC服务器，包括使用TightVNC的步骤。最后，作者提到可以进一步安装gogs作为本地Git服务器。</description></item><item><title>[双系统] Windows 更新摧毁了我的Linux系统</title><link>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</link><pubDate>Sat, 03 Aug 2024 08:28:35 +0800</pubDate><guid>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</guid><description>在 Windows 更新后，用户的 Linux 系统因等待 90 秒而无法启动，并且出现依赖失败。调查发现，Windows 调换了 Linux 分区和恢复分区的顺序，从而导致了问题。用户通过修复 Linux、更新 fstab、重新安装 Grub 和使用 efibootmgr 更改启动顺序解决了问题。</description></item><item><title>Ubnutu 无法启动网易云音乐 - 总结</title><link>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</link><pubDate>Tue, 07 Aug 2018 21:28:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>Author Avatar
+LingC
+8 月 7 日&lt;/p>
+&lt;h1 id="00">00&lt;/h1>
+&lt;p>本文总结了16.04以上的版本运行网易云音乐会出现的问题，以及解决方法
+如果你安装官方版本网易云音乐后（v1.1.0）,运行网易云音乐无响应的话可以试试以下几种方法&lt;/p>
+&lt;h1 id="01">01&lt;/h1>
+&lt;p>在终端中输入&lt;/p>
+&lt;p>$ netease-cloud-music &amp;ndash;no-sandbox %U&lt;/p>
+&lt;p>即可启动网易云音乐&lt;/p>
+&lt;p>有可能会出现一些警告，稍后会打开网易云主界面&lt;/p>
+&lt;p>如果出现Unable to locate theme engine in module_path: &amp;ldquo;adwaita&amp;rdquo;&lt;/p>
+&lt;p>可以尝试执行这条命令：$ sudo apt install gnome-themes-standard&lt;/p>
+&lt;p>如果出现failed to retrieve propertygtk-primary-button-warps-slider’ of type gboolean'&lt;/p>
+&lt;p>可以尝试$ vi ~/.gtkrc-2.0&lt;/p>
+&lt;p>使用vim打开这个文件，将其中的一行改为&lt;/p>
+&lt;p>gtk-primary-button-warps-slider=false改为gtk-primary-button-warps-slider=0&lt;/p>
+&lt;p>然后可以再试着运行一下，如果还不行就reboot&lt;/p>
+&lt;p>如果出现Gtk-Message: 08:59:03.546: Failed to load module &amp;ldquo;canberra-gtk-module&amp;quot;或者没有反应，那么你可以试试第二种方法&lt;/p>
+&lt;h1 id="02">02&lt;/h1>
+&lt;p>在终端中输入&lt;/p>
+&lt;p>$ sudo netease-cloud-music&lt;/p>
+&lt;p>使用root权限运行网易云音乐&lt;/p>
+&lt;p>可能会出现一些警告和报错，其实可以无视（懒的管）&lt;/p>
+&lt;p>2018-08-07 09-00-03屏幕截图.png&lt;/p>
+&lt;h1 id="03">03&lt;/h1>
+&lt;p>可以试一下这个方法
+&lt;a href="https://jingyan.baidu.com/article/1e5468f956a15c484861b770.html">https://jingyan.baidu.com/article/1e5468f956a15c484861b770.html&lt;/a>&lt;/p>
+&lt;h1 id="04">04&lt;/h1>
+&lt;p>该方法针对于ubuntu 18.04LTS 网易云音乐v1.1.0&lt;/p>
+&lt;p>其他版本也可以试一下&lt;/p>
+&lt;p>首先&lt;/p></description></item></channel></rss>
