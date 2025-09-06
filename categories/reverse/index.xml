@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Reverse on MoonLab</title><link>https://moonlab.top/categories/reverse/</link><description>Recent content in Reverse on MoonLab</description><generator>Hugo -- 0.143.1</generator><language>zh-CN</language><lastBuildDate>Wed, 05 Feb 2025 18:22:04 +0800</lastBuildDate><atom:link href="https://moonlab.top/categories/reverse/index.xml" rel="self" type="application/rss+xml"/><item><title>JavaScript 逆向 Steam 登录二维码</title><link>https://moonlab.top/posts/2025/steam/</link><pubDate>Wed, 05 Feb 2025 18:22:04 +0800</pubDate><guid>https://moonlab.top/posts/2025/steam/</guid><description>&lt;p>众所周知，steam里骗子猖狂。以下页面是骗子私信发给我的一个仿冒的steam钓鱼网站。&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-04-19-202645.png" alt="s" />
+&lt;/p>
+&lt;p>如果点击 接受礼物 就会跳转至虚假的steam登录界面。&lt;/p>
+&lt;p>&lt;img loading="lazy" src="steam.png" alt="steam" />
+&lt;/p>
+&lt;p>如果毫无防备，通过手机steam客户端扫描右边的二维码进行登录，steam会进行登录异常的警告，一般来说要通过这一步还是很麻烦的。如果强行继续，那么steam账号除了会被劫持api key以外，大概率还会被洗库存，比如一些便宜的卡片和库存里的小件都会被卖出，而不会触发steam手机令牌的验证。&lt;/p>
+&lt;p>那么骗子是如何制作这些钓鱼网站的？steam对于自身系统的保护究竟做的怎么样？&lt;/p>
+&lt;p>这些都绕不开对于steam的逆向分析。&lt;/p>
+&lt;h1 id="开始逆向">开始逆向&lt;/h1>
+&lt;p>抓包观察了一会steam登录界面后，就已经捋清了整个登录站点的逻辑。&lt;/p>
+&lt;p>在最开始会连接&lt;code>/BeginAuthStatusViaQRCode&lt;/code> 获取登录二维码，之后每隔一段时间（5s）就会请求 &lt;code>PollAuthSessionStatus/v1&lt;/code> 以更新会话状态，如果当前页面的二维码已经过期，则会刷新。&lt;/p>
+&lt;p>如果先点击登录按钮，会请求&lt;code>/GetPasswordRSAPublicKey/v1&lt;/code>，之后是 &lt;code>/BeginAuthSessionStatusViaCredentials&lt;/code>。&lt;/p>
+&lt;p>可以很明显的看到用的是 protobuf 协议。&lt;/p>
+&lt;p>&lt;img loading="lazy" src="1.png" alt="1.png" />
+&lt;/p>
+&lt;p>查看这个网络请求的来源：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-02-07-173039.png" alt="2025-02-07-173039.png" />
+&lt;/p>
+&lt;p>继续追踪这个API的来源。在js文件顶部可以看到这是用webpack打包的：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-02-07-174847.png" alt="2025-02-07-174847.png" />
+&lt;/p>
+&lt;p>找到来自Send的方法调用比较可疑：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-02-07-191915.png" alt="2025-02-07-191915.png" />
+&lt;/p>
+&lt;p>这里的 &lt;code>r&lt;/code> 是一个对象，查看一下它的构造方法：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-02-07-195700.png" alt="2025-02-07-195700.png" />
+&lt;/p>
+&lt;p>已经能看到proto的结构了。&lt;/p>
+&lt;p>构建出用于请求&lt;code>GetPasswordRSAPublicKey/v1&lt;/code>的proto：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>syntax &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;proto3&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>package steam;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>option go_package &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;proto/steam&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>message GetPasswordRSAPublicKey_Request {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    string account_name &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>message GetPasswordRSAPublicKey_Response {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    string public_key_mod &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    string public_key_exp &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    uint64 timestamp &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编译proto：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ protoc --go_out&lt;span style="color:#f92672">=&lt;/span>. --go-grpc_out&lt;span style="color:#f92672">=&lt;/span>. steam.proto
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装golang的protobuf包：&lt;/p></description></item></channel></rss>

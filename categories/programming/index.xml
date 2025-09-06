@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Programming on MoonLab</title><link>https://moonlab.top/categories/programming/</link><description>Recent content in Programming on MoonLab</description><generator>Hugo -- 0.143.1</generator><language>zh-CN</language><lastBuildDate>Sat, 06 Sep 2025 21:25:30 +0800</lastBuildDate><atom:link href="https://moonlab.top/categories/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>Keil5 编译错误 error: call to undeclared function '__enable_irq'</title><link>https://moonlab.top/posts/2025/keil-i2c-error/</link><pubDate>Sat, 06 Sep 2025 21:25:30 +0800</pubDate><guid>https://moonlab.top/posts/2025/keil-i2c-error/</guid><description>&lt;p>&lt;img loading="lazy" src="Cursor_V82vfScjj0.png" alt="" />
+&lt;/p>
+&lt;p>&lt;code>stm32f1xx_hal_i2c.c&lt;/code> 中 &lt;code>__enable_irq&lt;/code> 和 &lt;code>disable_irq&lt;/code> 函数出现了报错：&lt;/p>
+&lt;pre tabindex="0">&lt;code>error: call to undeclared function &amp;#39;__enable_irq&amp;#39;; ISO C99 and later do not support implicit of function declarations
+&lt;/code>&lt;/pre>&lt;p>在 core_cm3.h -&amp;gt; cmsis_compiler.h -&amp;gt; cmsis_armclang.h (ARM Compiler 6) 或 cmsis_armcc.h (AC5) 中对这两个方法没有定义，只有一段注释：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="Cursor_PY4yNMqFgJ.png" alt="" />
+&lt;/p>
+&lt;p>&lt;code>__enable_irq&lt;/code> 和 &lt;code>disable_irq&lt;/code> 控制的是PRIMASK寄存器值。&lt;/p>
+&lt;p>是一种 intrinsic 函数，编译器会自动识别并替换为相关的指令，它们其实是编译器的一部分，实际的定义位于Keil的 arm_compat.h 中。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * Arm Compiler 6 (armclang)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#elif defined (__ARMCC_VERSION) &amp;amp;&amp;amp; (__ARMCC_VERSION &amp;gt;= 6010050)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>  &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;#34;cmsis_armclang.h&amp;#34;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在其中，这个头文件 &lt;code>arm_compat.h&lt;/code> 本该是不存在的：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;arm_compat.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在&lt;code>.\Drivers\CMSIS\Include&lt;/code> 中多了一个&lt;code>arm_compat.h&lt;/code>文件，这会导致覆盖编译器的头文件，所以会出现一系列错误。&lt;/p></description></item><item><title>BTSNOOP is FUN!</title><link>https://moonlab.top/posts/2025/btsnoop/</link><pubDate>Fri, 01 Aug 2025 22:40:44 +0800</pubDate><guid>https://moonlab.top/posts/2025/btsnoop/</guid><description>&lt;h1 id="手机-hci-日志记录">手机 HCI 日志记录&lt;/h1>
+&lt;p>在VIVO手机中的开发者选项，启用蓝牙 HCI 信息手机日志。&lt;/p>
+&lt;p>用USB连接电脑后，将 USB连接方式 调整为传输文件。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>adb bugreport vivo_btsnoop
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>会在 &lt;code>/data/user_de/0/com.android.shell/files/&lt;/code> 下生成日志，并自动拉取到电脑上。&lt;/p>
+&lt;p>在 bugreport.zip 下的 &lt;code>\FS\data\misc\bluetooth\logs&lt;/code> 中能找到 HCI log:&lt;/p>
+&lt;p>&lt;img loading="lazy" src="explorer_yhsMlyWsdg.png" alt="" />
+&lt;/p>
+&lt;h1 id="knowledge-base">&lt;strong>Knowledge Base&lt;/strong>&lt;/h1>
+&lt;h2 id="uuid">&lt;strong>UUID&lt;/strong>&lt;/h2>
+&lt;p>UUID（Universally Unique Identifier）是一个 &lt;strong>128位（16字节）&lt;/strong> 的唯一标识符，用于标识蓝牙协议中的各种组件 &lt;strong>Services&lt;/strong> &lt;strong>Characteristics&lt;/strong> &lt;strong>Descriptors&lt;/strong> 的类型和功能。&lt;/p>
+&lt;h2 id="service">&lt;strong>Service&lt;/strong>&lt;/h2>
+&lt;p>Service 是蓝牙设备提供的 &lt;strong>功能集合&lt;/strong>，每个 Service 包含一个或多个 &lt;strong>Characteristic&lt;/strong>&lt;/p>
+&lt;p>Service 也分为 &lt;strong>Primary Service&lt;/strong> 和 &lt;strong>Secondary Service&lt;/strong>&lt;/p>
+&lt;h2 id="characteristic">&lt;strong>Characteristic&lt;/strong>&lt;/h2>
+&lt;p>Characteristic 是 Service 中的 &lt;strong>具体数据点&lt;/strong>，用于 &lt;strong>读取、写入、通知&lt;/strong> 数据。&lt;br>
+每个 Characteristic 包含：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Value&lt;/strong>：存储的数据（如温度、心率等）。&lt;/li>
+&lt;li>&lt;strong>Properties&lt;/strong>：定义操作权限（&lt;code>read&lt;/code>、&lt;code>write&lt;/code>、&lt;code>notify&lt;/code> 等）。&lt;/li>
+&lt;li>&lt;strong>Descriptors&lt;/strong>：额外配置（如通知开关）。&lt;/li>
+&lt;/ul>
+&lt;h1 id="抓包">抓包&lt;/h1>
+&lt;p>我已经知道这是一个蓝牙低功耗（BLE）设备，只需找到Attribute Protocol通信：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="Wireshark_7s6DEm1OpW.png" alt="" />
+&lt;/p></description></item><item><title>Protobuf</title><link>https://moonlab.top/posts/2025/protobuf3/</link><pubDate>Fri, 24 Jan 2025 03:33:27 +0800</pubDate><guid>https://moonlab.top/posts/2025/protobuf3/</guid><description>&lt;h1 id="安装-protobuf">安装 protobuf&lt;/h1>
+&lt;p>假设环境下已有&lt;code>protoc&lt;/code> (protocal buffers compiler)。&lt;/p>
+&lt;p>对于 Go 语言，安装相应的可执行文件：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go install google.golang.org/grpc/cmd/protoc-gen-go@latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在Windows中，执行完安装命令后在&lt;code>C:\Users\user\go\bin&lt;/code>路径下会有&lt;code>proctoc-gen-go.exe&lt;/code>和&lt;code>protoc-gen-go-grpc.exe&lt;/code>。&lt;/p>
+&lt;p>安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 &lt;code>.proto&lt;/code> 文件加一行以指定生成的Go包名：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">syntax&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;proto3&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">com&lt;/span>.&lt;span style="color:#a6e22e">example&lt;/span>.&lt;span style="color:#a6e22e">pkg&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">option&lt;/span> &lt;span style="color:#a6e22e">go_package&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;example/gopkg&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果需要使用 &lt;code>grpc&lt;/code> 服务，安装包：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go get google.golang.org/grpc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>之后便可启动一个 gRPC 服务器：&lt;/p>
+&lt;h1 id="grpc-gateway">gRPC gateway&lt;/h1>
+&lt;p>为 &lt;code>gRPC&lt;/code> 服务生成面向 &lt;code>RestFul API&lt;/code> 的网关&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">syntax&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;proto3&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">com&lt;/span>.&lt;span style="color:#a6e22e">example&lt;/span>.&lt;span style="color:#a6e22e">pkg&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> &lt;span style="color:#e6db74">&amp;#34;google/api/annotations.proto&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">option&lt;/span> &lt;span style="color:#a6e22e">go_package&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;example/gopkg
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">service AuthService {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rpc Login(LRequest) returns (LResponse) {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> option (google.api.http) = {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> post: &amp;#34;&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#a6e22e">v1&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#a6e22e">login&lt;/span>&lt;span style="color:#e6db74">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> body: &amp;#34;&lt;/span>&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">message&lt;/span> &lt;span style="color:#a6e22e">LRequest&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#a6e22e">field&lt;/span> = &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">message&lt;/span> &lt;span style="color:#a6e22e">LResponse&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#a6e22e">field&lt;/span> = &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>之后便可以生成grpc gateway的代码了：&lt;/p></description></item><item><title>Android设备安装Debian成为BT下载服务器</title><link>https://moonlab.top/posts/2024/debian-on-android/</link><pubDate>Wed, 07 Aug 2024 08:24:02 +0800</pubDate><guid>https://moonlab.top/posts/2024/debian-on-android/</guid><description>文章介绍了如何在Android设备上通过Termux安装Debian，并配置VNC以便远程访问。作者提到，由于Android 12引入的Phantom Process Killer机制，Termux容易被杀死，因此提供了关闭该限制的ADB命令。接着，文章详细说明了如何安装XFCE桌面环境和配置VNC服务器，包括使用TightVNC的步骤。最后，作者提到可以进一步安装gogs作为本地Git服务器。</description></item><item><title>[双系统] Windows 更新摧毁了我的Linux系统</title><link>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</link><pubDate>Sat, 03 Aug 2024 08:28:35 +0800</pubDate><guid>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</guid><description>在 Windows 更新后，用户的 Linux 系统因等待 90 秒而无法启动，并且出现依赖失败。调查发现，Windows 调换了 Linux 分区和恢复分区的顺序，从而导致了问题。用户通过修复 Linux、更新 fstab、重新安装 Grub 和使用 efibootmgr 更改启动顺序解决了问题。</description></item><item><title>Golang embed 使用问题</title><link>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</link><pubDate>Wed, 27 Dec 2023 08:10:39 +0000</pubDate><guid>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</guid><description>Golang 使用 embed 包在编译时将外部文件包含到二进制程序中。使用 embed 指令可以将 html、css、js 等静态文件添加到二进制文件中，而无需额外的资源文件。嵌入文件可以使用字符串、[]字节和 FS 来引用。但也有一些限制，如文件层次结构问题和复杂路径问题。例如，如果嵌入文件和被嵌入文件不在同一层次，嵌入模式将无法成功解析。另一个问题是处理复杂路径，即静态文件夹被放置在嵌入文件的子文件夹中。解决办法是使用 io/fs 软件包中的 Sub 方法来处理这些复杂路径。</description></item><item><title>通过汇编分析栈、函数调用 esp&amp;ebp</title><link>https://moonlab.top/posts/2023/aem-esp-ebp/</link><pubDate>Fri, 15 Dec 2023 14:31:17 +0000</pubDate><guid>https://moonlab.top/posts/2023/aem-esp-ebp/</guid><description>栈是一种遵循后进先出（LIFO）规则的数据结构，通常用于内存管理。重要寄存器包括栈指针（SP）和基指针（BP）。在函数调用中，使用&lt;code>push&lt;/code>将参数压入栈中，&lt;code>call&lt;/code>指令保存返回地址。ESP寄存器指向栈顶，函数执行后需平衡栈。C语言函数调用中，参数通过EBP寻址，编译器可能使用&lt;code>mov&lt;/code>而非&lt;code>push&lt;/code>，使得ESP不指向栈顶，简化栈平衡的处理。</description></item><item><title>Git push 出现 permisson denied error 403</title><link>https://moonlab.top/posts/2023/git-err/</link><pubDate>Fri, 15 Sep 2023 12:09:04 +0000</pubDate><guid>https://moonlab.top/posts/2023/git-err/</guid><description>在尝试使用 &lt;code>git push -u origin main&lt;/code> 时，出现了权限错误，提示旧用户被拒绝访问。为了解决这个问题，作者尝试通过 &lt;code>git commit --amend --reset-author&lt;/code> 重置提交作者，但问题依旧。最终在 Stack Overflow 找到解决方案：删除旧的凭证，成功解决了问题，节省了一个小时的时间。</description></item><item><title>坑：Litepal save方法返回true却没有保存</title><link>https://moonlab.top/posts/2020/pit-for-litepal-save/</link><pubDate>Mon, 24 Feb 2020 11:52:38 +0000</pubDate><guid>https://moonlab.top/posts/2020/pit-for-litepal-save/</guid><description>&lt;p>在开发 Madoka 日记时，做到导出导入的功能时，我想偷个懒导出直接用 Gson 将 Java 对象转换为 json 然后放在 txt 中，导入的时候再将 json 转为 javaBean 就行啦。&lt;/p>
+&lt;p>而数据库我用的是 Litepal 直接搞，使用这个库的好处就是速度快，方便，适合新手。&lt;/p>
+&lt;p>但其实 sqlite 的语法和一些其他的语句并不难，所以用这个库就是为了方便&amp;hellip;&lt;/p>
+&lt;p>使用 Litepal 储存数据时，需要调用 save() 方法。&lt;/p>
+&lt;p>这里我就遇到了一个问题，明明 save() 方法返回的是 true ，但数据库里没有需要保存的数据啊？&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span> Gson gson &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Gson();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Diary diary &lt;span style="color:#f92672">=&lt;/span> gson.&lt;span style="color:#a6e22e">fromJson&lt;/span>(json, Diary.&lt;span style="color:#a6e22e">class&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> diary.&lt;span style="color:#a6e22e">save&lt;/span>();
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这是调用 Gson 将 json 转换为 javabean 对象。&lt;/p>
+&lt;p>明明 Diary 的内容全是正确的，我开始询问度娘。&lt;/p>
+&lt;p>结果没找到跟我的问题直接相关的文章，结果我看到了有个人在吐槽啥 setting getting，我就想到了会不会是因为没有调用 Diary 的构造方法？&lt;/p>
+&lt;p>Diary 作为一个 Litepal 的，它是继承自 LitePalSupport 的，会不会是因为没有调用 LitePalSupport 的构造方法呢？&lt;/p>
+&lt;p>我将导入代码改了一下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span> Gson gson &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Gson();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Diary diary &lt;span style="color:#f92672">=&lt;/span> gson.&lt;span style="color:#a6e22e">fromJson&lt;/span>(json, Diary.&lt;span style="color:#a6e22e">class&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Diary saveDiary &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Diary();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> saveDiary.&lt;span style="color:#a6e22e">setId&lt;/span>(diary.&lt;span style="color:#a6e22e">getId&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> saveDiary.&lt;span style="color:#a6e22e">setCreatedTime&lt;/span>(diary.&lt;span style="color:#a6e22e">getCreatedTime&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> saveDiary.&lt;span style="color:#a6e22e">setLastUpdatedTime&lt;/span>(diary.&lt;span style="color:#a6e22e">getLastUpdatedTime&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ... 省略一万个代码
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> saveDiary.&lt;span style="color:#a6e22e">save&lt;/span>();
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>果然，最后正常了&amp;hellip;&lt;/p></description></item><item><title>Android Shizuku源码分析 第二篇</title><link>https://moonlab.top/posts/2020/android-shizuku-theory2/</link><pubDate>Tue, 04 Feb 2020 11:43:10 +0000</pubDate><guid>https://moonlab.top/posts/2020/android-shizuku-theory2/</guid><description>本文深入分析了 Shizuku 的启动过程，特别是 &lt;code>Starter&lt;/code> 类的 &lt;code>main&lt;/code> 方法是如何被调用的。文章首先回顾了 Shizuku 的基本概念，并介绍了通过 &lt;code>adb&lt;/code> 命令激活 ShizukuService 的过程，重点分析了 &lt;code>start.sh&lt;/code> 脚本的执行。当用户通过 ShizukuManager 启动应用时，&lt;code>start.sh&lt;/code> 脚本被调用，该脚本负责设置环境并执行 &lt;code>libshizuku.so&lt;/code> 文件。文章详细描述了 &lt;code>ShizukuManager&lt;/code> 在启动时如何写入 &lt;code>start.sh&lt;/code> 文件及其相关的 dex 文件路径。接着，文章探讨了 &lt;code>libshizuku.so&lt;/code> 中的 &lt;code>main&lt;/code> 方法，说明了如何通过 &lt;code>app_process&lt;/code> 启动 Java 类 &lt;code>moe.shizuku.server.Starter&lt;/code>。在 &lt;code>Starter&lt;/code> 类的 &lt;code>main&lt;/code> 方法中，创建了 &lt;code>ShizukuService&lt;/code> 实例，从而完成了 ShizukuService 的启动。最后，作者总结了整个过程，强调了用户通过简单的 &lt;code>adb&lt;/code> 命令如何触发一系列复杂的操作，最终实现 Shizuku 的功能。</description></item><item><title>Android Shizuku源码分析</title><link>https://moonlab.top/posts/2020/android-shizuku-theory/</link><pubDate>Sun, 02 Feb 2020 19:24:10 +0000</pubDate><guid>https://moonlab.top/posts/2020/android-shizuku-theory/</guid><description>本文分析了 Shizuku 的源码，介绍了其如何通过 Binder 实现与 Android 系统服务的交互。Shizuku 应用引导用户以 root 或 adb 方式运行服务进程，利用 ShizukuBinderWrapper 进行系统隐藏 API 的调用。文章详细探讨了 ShizukuBinderWrapper 的构造、transact 方法及其与 IShizukuService 的通信过程，最后简要提及 ShizukuService 的启动流程。作者计划进一步深入分析 Shizuku 的启动机制。</description></item><item><title>Android 监听第三方Activity的一举一动</title><link>https://moonlab.top/posts/2020/android-activity-monitor/</link><pubDate>Sat, 01 Feb 2020 18:39:25 +0000</pubDate><guid>https://moonlab.top/posts/2020/android-activity-monitor/</guid><description>这篇文章主要记录了作者在2019年初的个人感受和一些技术探索。作者回顾了过去一年的经历，感到没有太多进展，并提到冬季的天气和国内的传染病情况。尽管在家中待得久了，作者也提到了一些娱乐活动，比如观看动画和春晚，但整体上对新番的期待逐渐减弱。在技术方面，作者分享了在Android开发中监听Activity启动的需求，探讨了几种方法来获取Activity的类名。首先，作者提到使用&lt;code>ActivityManager&lt;/code>的&lt;code>getRunningTasks&lt;/code>方法，但由于权限限制，这种方法不可行。接着，作者提到&lt;code>UsageStatsManager&lt;/code>只能获取应用包名，而无法获取Activity类名。最终，作者发现了&lt;code>IActivityController&lt;/code>接口，并通过使用Shizuku工具来调用系统API，从而实现了监听Activity启动的功能。总结来说，文章结合了个人生活感受与技术探索，展示了作者在面对生活和技术挑战时的思考与解决方案。</description></item><item><title>Android笔记#1 View的事件分发机制解析</title><link>https://moonlab.top/posts/2019/android-view-motionevent/</link><pubDate>Wed, 14 Aug 2019 11:07:50 +0000</pubDate><guid>https://moonlab.top/posts/2019/android-view-motionevent/</guid><description>本文总结了《Android艺术开发探索》中关于View事件分发机制的内容。事件序列从ACTION_DOWN开始，经过多个ACTION_MOVE，最后以ACTION_UP结束。事件传递顺序为Activity -&amp;gt; Window -&amp;gt; DecorView -&amp;gt; RootView。事件分发主要通过dispatchTouchEvent、onInterceptTouchEvent和onTouchEvent三个方法实现。ViewGroup的onInterceptTouchEvent默认返回false，子View可通过OnTouchListener处理事件。总结指出，事件分发机制确保一个事件序列只能被一个View拦截和消耗，且OnTouchListener优先级高于onTouchEvent。</description></item><item><title>知乎日报的问题</title><link>https://moonlab.top/posts/2019/android-zhihu-daily/</link><pubDate>Thu, 04 Jul 2019 20:34:10 +0000</pubDate><guid>https://moonlab.top/posts/2019/android-zhihu-daily/</guid><description>作者在暑假期间开始开发一个第三方的知乎日报客户端，使用MVP架构。遇到了一些问题，如全局异常处理和JSON解析，选择使用Picasso加载图片。为了解决WebView中图片宽度过大的问题，作者通过JavaScript调整图片大小。最终，作者完成了基本的加载和查看功能，并在GitHub上分享了代码。尽管开发过程充满挑战，作者仍然享受这个过程。</description></item><item><title>Ubnutu 无法启动网易云音乐 - 总结</title><link>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</link><pubDate>Tue, 07 Aug 2018 21:28:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>Author Avatar
+LingC
+8 月 7 日&lt;/p>
+&lt;h1 id="00">00&lt;/h1>
+&lt;p>本文总结了16.04以上的版本运行网易云音乐会出现的问题，以及解决方法
+如果你安装官方版本网易云音乐后（v1.1.0）,运行网易云音乐无响应的话可以试试以下几种方法&lt;/p>
+&lt;h1 id="01">01&lt;/h1>
+&lt;p>在终端中输入&lt;/p>
+&lt;p>$ netease-cloud-music &amp;ndash;no-sandbox %U&lt;/p>
+&lt;p>即可启动网易云音乐&lt;/p>
+&lt;p>有可能会出现一些警告，稍后会打开网易云主界面&lt;/p>
+&lt;p>如果出现Unable to locate theme engine in module_path: &amp;ldquo;adwaita&amp;rdquo;&lt;/p>
+&lt;p>可以尝试执行这条命令：$ sudo apt install gnome-themes-standard&lt;/p>
+&lt;p>如果出现failed to retrieve propertygtk-primary-button-warps-slider’ of type gboolean'&lt;/p>
+&lt;p>可以尝试$ vi ~/.gtkrc-2.0&lt;/p>
+&lt;p>使用vim打开这个文件，将其中的一行改为&lt;/p>
+&lt;p>gtk-primary-button-warps-slider=false改为gtk-primary-button-warps-slider=0&lt;/p>
+&lt;p>然后可以再试着运行一下，如果还不行就reboot&lt;/p>
+&lt;p>如果出现Gtk-Message: 08:59:03.546: Failed to load module &amp;ldquo;canberra-gtk-module&amp;quot;或者没有反应，那么你可以试试第二种方法&lt;/p>
+&lt;h1 id="02">02&lt;/h1>
+&lt;p>在终端中输入&lt;/p>
+&lt;p>$ sudo netease-cloud-music&lt;/p>
+&lt;p>使用root权限运行网易云音乐&lt;/p>
+&lt;p>可能会出现一些警告和报错，其实可以无视（懒的管）&lt;/p>
+&lt;p>2018-08-07 09-00-03屏幕截图.png&lt;/p>
+&lt;h1 id="03">03&lt;/h1>
+&lt;p>可以试一下这个方法
+&lt;a href="https://jingyan.baidu.com/article/1e5468f956a15c484861b770.html">https://jingyan.baidu.com/article/1e5468f956a15c484861b770.html&lt;/a>&lt;/p>
+&lt;h1 id="04">04&lt;/h1>
+&lt;p>该方法针对于ubuntu 18.04LTS 网易云音乐v1.1.0&lt;/p>
+&lt;p>其他版本也可以试一下&lt;/p>
+&lt;p>首先&lt;/p></description></item></channel></rss>
