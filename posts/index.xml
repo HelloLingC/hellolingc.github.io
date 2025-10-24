@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on MoonLab</title><link>https://moonlab.top/posts/</link><description>Recent content in Posts on MoonLab</description><generator>Hugo -- 0.143.1</generator><language>zh-CN</language><lastBuildDate>Thu, 23 Oct 2025 00:36:09 +0800</lastBuildDate><atom:link href="https://moonlab.top/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Clangd + VSCode使用方法</title><link>https://moonlab.top/posts/2025/clangd/</link><pubDate>Thu, 23 Oct 2025 00:36:09 +0800</pubDate><guid>https://moonlab.top/posts/2025/clangd/</guid><description>&lt;p>&lt;strong>clangd 是基于 Clang 编译器的 C/C++/Objective-C 语言服务器。&lt;/strong>&lt;br>
+它提供类似 IDE 的功能，例如&lt;strong>代码补全&lt;/strong>、跳转导航、重构和诊断，并可在支持 LSP（语言服务器协议）的编辑器中使用，如 VSCode、Neovim、Sublime 等。&lt;/p>
+&lt;hr>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>代码补全（Code completion）&lt;/strong>&lt;br>
+在你输入代码时，自动建议变量、函数和类型。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>跳转到定义 &amp;amp; 查找引用（Go-to-definition &amp;amp; Find references）&lt;/strong>&lt;br>
+一键跳转到符号的定义，或查找它在何处被使用。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>诊断与警告（Diagnostics &amp;amp; warnings）&lt;/strong>&lt;br>
+不用手动编译，编辑器中就能显示编译错误和警告。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>重构 &amp;amp; 代码操作（Refactoring &amp;amp; code actions）&lt;/strong>&lt;br>
+支持重命名符号、生成函数框架、自动修复 include 等。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>请确保在项目根目录下有一个 &lt;code>compile_commands.json&lt;/code> 文件。&lt;br>
+👉 参考文档：&lt;a href="https://clang.llvm.org/docs/JSONCompilationDatabase.html">JSON Compilation Database&lt;/a>&lt;/p>
+&lt;p>CMake（2.8.5 及以上版本）支持在使用 Unix Makefile 构建时，通过设置 &lt;code>CMAKE_EXPORT_COMPILE_COMMANDS&lt;/code> 选项来生成这个编译数据库。&lt;/p>
+&lt;p>但是也可以用&lt;a href="https://github.com/rizsotto/Bear">Bear&lt;/a>来生成。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>brew install bear
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>bear -- make clean all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>但是我在Mac平台下使用arm-none-eabi-gcc来进行交叉编译的时候，bear生成的&lt;code>compile_commands.json&lt;/code>里只有&lt;code>[]&lt;/code>。&lt;/p>
+&lt;p>我懒得找解决方法，就直接用&lt;a href="https://github.com/nickdiego/compiledb">compiledb&lt;/a>最后生成了&lt;code>compile_commands.json&lt;/code>：&lt;/p>
+&lt;p>在VSCode中&lt;code>Ctrl + Shift + P&lt;/code>打开 &lt;code>Preferences: Open Settings(JSON)&lt;/code>编辑&lt;code>settings.json&lt;/code>&lt;/p>
+&lt;p>或手动去寻找：&lt;/p></description></item><item><title>Keil5 编译错误 error: call to undeclared function '__enable_irq'</title><link>https://moonlab.top/posts/2025/keil-i2c-error/</link><pubDate>Sat, 06 Sep 2025 21:25:30 +0800</pubDate><guid>https://moonlab.top/posts/2025/keil-i2c-error/</guid><description>&lt;p>&lt;img loading="lazy" src="Cursor_V82vfScjj0.png" alt="" />
+&lt;/p>
+&lt;p>&lt;code>stm32f1xx_hal_i2c.c&lt;/code> 中 &lt;code>__enable_irq&lt;/code> 和 &lt;code>disable_irq&lt;/code> 函数出现了报错：&lt;/p>
+&lt;pre tabindex="0">&lt;code>error: call to undeclared function &amp;#39;__enable_irq&amp;#39;; ISO C99 and later do not support implicit of function declarations
+&lt;/code>&lt;/pre>&lt;p>在 core_cm3.h -&amp;gt; cmsis_compiler.h -&amp;gt; cmsis_armclang.h (ARM Compiler 6) 或 cmsis_armcc.h (AC5) 中对这两个方法没有定义，只有一段注释：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="Cursor_PY4yNMqFgJ.png" alt="" />
+&lt;/p>
+&lt;p>&lt;code>__enable_irq&lt;/code> 和 &lt;code>disable_irq&lt;/code> 控制的是PRIMASK寄存器值。&lt;/p>
+&lt;p>是一种 intrinsic 函数，编译器会自动识别并替换为相关的指令，它们其实是编译器的一部分，实际的定义位于Keil的 arm_compat.h 中。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * Arm Compiler 6 (armclang)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#elif defined (__ARMCC_VERSION) &amp;amp;&amp;amp; (__ARMCC_VERSION &amp;gt;= 6010050)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>  &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;#34;cmsis_armclang.h&amp;#34;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在其中，这个头文件 &lt;code>arm_compat.h&lt;/code> 本该是不存在的：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;arm_compat.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在&lt;code>.\Drivers\CMSIS\Include&lt;/code> 中多了一个&lt;code>arm_compat.h&lt;/code>文件，这会导致覆盖编译器的头文件，所以会出现一系列错误。&lt;/p></description></item><item><title>BTSNOOP is FUN!</title><link>https://moonlab.top/posts/2025/btsnoop/</link><pubDate>Fri, 01 Aug 2025 22:40:44 +0800</pubDate><guid>https://moonlab.top/posts/2025/btsnoop/</guid><description>&lt;h1 id="手机-hci-日志记录">手机 HCI 日志记录&lt;/h1>
+&lt;p>在VIVO手机中的开发者选项，启用蓝牙 HCI 信息手机日志。&lt;/p>
+&lt;p>用USB连接电脑后，将 USB连接方式 调整为传输文件。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>adb bugreport vivo_btsnoop
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>会在 &lt;code>/data/user_de/0/com.android.shell/files/&lt;/code> 下生成日志，并自动拉取到电脑上。&lt;/p>
+&lt;p>在 bugreport.zip 下的 &lt;code>\FS\data\misc\bluetooth\logs&lt;/code> 中能找到 HCI log:&lt;/p>
+&lt;p>&lt;img loading="lazy" src="explorer_yhsMlyWsdg.png" alt="" />
+&lt;/p>
+&lt;h1 id="knowledge-base">&lt;strong>Knowledge Base&lt;/strong>&lt;/h1>
+&lt;h2 id="uuid">&lt;strong>UUID&lt;/strong>&lt;/h2>
+&lt;p>UUID（Universally Unique Identifier）是一个 &lt;strong>128位（16字节）&lt;/strong> 的唯一标识符，用于标识蓝牙协议中的各种组件 &lt;strong>Services&lt;/strong> &lt;strong>Characteristics&lt;/strong> &lt;strong>Descriptors&lt;/strong> 的类型和功能。&lt;/p>
+&lt;h2 id="service">&lt;strong>Service&lt;/strong>&lt;/h2>
+&lt;p>Service 是蓝牙设备提供的 &lt;strong>功能集合&lt;/strong>，每个 Service 包含一个或多个 &lt;strong>Characteristic&lt;/strong>&lt;/p>
+&lt;p>Service 也分为 &lt;strong>Primary Service&lt;/strong> 和 &lt;strong>Secondary Service&lt;/strong>&lt;/p>
+&lt;h2 id="characteristic">&lt;strong>Characteristic&lt;/strong>&lt;/h2>
+&lt;p>Characteristic 是 Service 中的 &lt;strong>具体数据点&lt;/strong>，用于 &lt;strong>读取、写入、通知&lt;/strong> 数据。&lt;br>
+每个 Characteristic 包含：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Value&lt;/strong>：存储的数据（如温度、心率等）。&lt;/li>
+&lt;li>&lt;strong>Properties&lt;/strong>：定义操作权限（&lt;code>read&lt;/code>、&lt;code>write&lt;/code>、&lt;code>notify&lt;/code> 等）。&lt;/li>
+&lt;li>&lt;strong>Descriptors&lt;/strong>：额外配置（如通知开关）。&lt;/li>
+&lt;/ul>
+&lt;h1 id="抓包">抓包&lt;/h1>
+&lt;p>我已经知道这是一个蓝牙低功耗（BLE）设备，只需找到Attribute Protocol通信：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="Wireshark_7s6DEm1OpW.png" alt="" />
+&lt;/p></description></item><item><title>算法 - 前缀和</title><link>https://moonlab.top/posts/2025/alg-prefix-array/</link><pubDate>Sun, 04 May 2025 02:23:47 +0800</pubDate><guid>https://moonlab.top/posts/2025/alg-prefix-array/</guid><description>&lt;p>在需要频繁地求数组中区间的和的情景下，前缀和数组十分有用。花费 $O(n)$ 的时间生成前缀和，之后只需要 $O(1)$ 的时间计算区间和。&lt;/p>
+&lt;p>定义一个数组&lt;code>a = [1, 2, 3, 4, 5]&lt;/code>，它的前缀和数组：&lt;/p>
+&lt;pre tabindex="0">&lt;code>prefix[0] = 1
+prefix[1] = 1 + 2 = 3
+prefix[2] = 1 + 2 + 3 = 6
+prefix[3] = 1 + 2 + 3 + 4 = 10
+prefix[4] = 1 + 2 + 3 + 4 + 5 = 15
+&lt;/code>&lt;/pre>&lt;p>要计算 $[i,j]$ 区间的和，可以用 &lt;code>prefix[j] - prefix[i-1]&lt;/code> 算出，其中 i = 0 下溢时直接取 &lt;code>prefix[j]&lt;/code>。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> prefix(n);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> sum &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> n; i&lt;span style="color:#f92672">++&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sum &lt;span style="color:#f92672">+=&lt;/span> i;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> prefix[i] &lt;span style="color:#f92672">=&lt;/span> sum;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>C++的&lt;code>numeric&lt;/code>库提供了一个方便的函数&lt;code>partial_sum&lt;/code>可以快速计算前缀和。&lt;/p></description></item><item><title>2025蓝桥杯赛后总结</title><link>https://moonlab.top/posts/2025/lanqiao-aftermatch/</link><pubDate>Thu, 01 May 2025 16:11:27 +0800</pubDate><guid>https://moonlab.top/posts/2025/lanqiao-aftermatch/</guid><description>&lt;p>这次省赛，实际上我并无准备，因为我一如既往地对算法没有什么兴趣。&lt;/p>
+&lt;p>竞赛一共八道题，A和B题是填空题，后六道题都是程序设计。前五题都做了，第六题暴力应该只拿了部分分，后两题就没时间写了。&lt;/p>
+&lt;p>在赛场上当时看到C++编译器是2014年发布的gcc 4.7.4，用的是C++98标准。但蓝桥杯的云端是可以运行C++11以上的标准的代码的。&lt;/p>
+&lt;p>本地做题环境的编译器低版本，导致许多C++函数用不了。比如 to_string()函数用不了。前两题最快速的做饭需要将数转到字符串类型，但是我只知道c++中有一个方便的 to_string() 函数，还好当时我看到赛场机子中有Pycharm，所以我就用python计算了前两道填空题。&lt;/p>
+&lt;p>&lt;strong>这个向下兼容的过程，消耗了我大量时间。&lt;/strong>&lt;/p>
+&lt;p>最致命的是，有一道题我需要声明一个迭代器，但是我不知道迭代器的类型名，一般来说都是用auto自动推导的，但auto只在C++11标准以上才有，导致这道题的代码我在本地环境无法测试。明明代码是正确的，但本地的低版本编译器却认为我的代码是错误的。这种割裂感很少有。&lt;/p>
+&lt;p>而现在看来这道题也依旧做对了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// C++98
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>std&lt;span style="color:#f92672">::&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> vec;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>std&lt;span style="color:#f92672">::&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;::&lt;/span>iterator it &lt;span style="color:#f92672">=&lt;/span> vec.begin();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// C++ 11
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">auto&lt;/span> it &lt;span style="color:#f92672">=&lt;/span> vec.begin(); &lt;span style="color:#75715e">// 自动推导为 std::vector&amp;lt;int&amp;gt;::iterator
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>与当时赛场的老师沟通，得知组委会只要求提供5.11版本的dev c++，而他们似乎只更新了代码编辑器版本，但一般来说dev c++是捆绑了一个编译器的，但不知为何内置的编译器却十分古典，感觉有点意思。&lt;/p>
+&lt;p>比赛完后，我查找了在 C++98 的字符串类型转换方法：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// for C++98/03 standard
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>string &lt;span style="color:#a6e22e">old_int_to_string&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> v) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    ostringstream oss;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    oss &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> v;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#66d9ef">return&lt;/span> oss.str();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>string &lt;span style="color:#a6e22e">old_double_to_string&lt;/span>(&lt;span style="color:#66d9ef">double&lt;/span> v) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    ostringstream oss;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    oss &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> fixed &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> setprecision(&lt;span style="color:#ae81ff">6&lt;/span>) &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> v;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#66d9ef">return&lt;/span> oss.str();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>string &lt;span style="color:#a6e22e">old_c_style_to_string&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> v) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#66d9ef">char&lt;/span> buffer[&lt;span style="color:#ae81ff">32&lt;/span>]; &lt;span style="color:#75715e">// make sure buffer is suffcient
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>    sprintf(buffer, &lt;span style="color:#e6db74">&amp;#34;%d&amp;#34;&lt;/span>, v);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#66d9ef">return&lt;/span> string(buffer);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>事实上，生活在草台班子里的我们不必认真太多。&lt;/p></description></item><item><title>三星ZFold 3改造</title><link>https://moonlab.top/posts/2025/samsung-zfold3/</link><pubDate>Thu, 01 May 2025 16:11:27 +0800</pubDate><guid>https://moonlab.top/posts/2025/samsung-zfold3/</guid><description>&lt;h1 id="samsung-zfold-3">Samsung ZFold 3&lt;/h1>
+&lt;p>&lt;img loading="lazy" src="IMG_2029.png" alt="" />
+&lt;/p>
+&lt;p>&lt;img loading="lazy" src="scrcpy_xRO0PSYyxj.png" alt="" />
+&lt;/p>
+&lt;h2 id="bootloader-unlock">BootLoader Unlock&lt;/h2>
+&lt;p>打开 OEM Unlock&lt;/p>
+&lt;h2 id="root">Root&lt;/h2>
+&lt;h2 id="get-the-firmware">Get the Firmware&lt;/h2>
+&lt;p>获取系统固件可以通过网络查找，也可以借助官方工具进行下载。下面将借助S换机助手将手机更新到最新版系统来获取固件。&lt;/p>
+&lt;p>解锁BL后，在手机中进行系统更新会提示不信任设备，只能借助S换机助手来更新系统。&lt;/p>
+&lt;p>&lt;img loading="lazy" src="explorer_jYjuPIThAE.jpg" alt="" />
+&lt;/p>
+&lt;p>连接后，换机助手会下载固件到安装路径下的Binary文件夹中，在手机Download完成后会自动删除下载的固件。&lt;/p>
+&lt;p>&lt;img loading="lazy" src="SmartSwitchPC_QCh5cJbOn9.png" alt="" />
+&lt;/p>
+&lt;p>更新完成后，手机的系统版本是2025/6/29发布的大陆版F9260ZCSCKYF3&lt;/p>
+&lt;p>&lt;img loading="lazy" src="scrcpy_FvDqDY2d7u.png" alt="" />
+&lt;/p>
+&lt;p>&lt;img loading="lazy" src="explorer_MicmWOa3Sj.png" alt="" />
+&lt;/p>
+&lt;p>将AP中的boot.img.lz4压缩为tar格式&lt;/p>
+&lt;p>&lt;a href="https://github.com/fei-ke/Magisk/releases">https://github.com/fei-ke/Magisk/releases&lt;/a>&lt;/p>
+&lt;p>使用Magisk对镜像进行修补&lt;/p>
+&lt;p>&lt;img loading="lazy" src="scrcpy_6fzUZLhKPH.png" alt="" />
+&lt;/p>
+&lt;blockquote>
+&lt;p>adb reboot download&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img loading="lazy" src="IMG_2034.png" alt="" />
+&lt;/p>
+&lt;p>使用Odin刷入镜像&lt;/p>
+&lt;p>&lt;img loading="lazy" src="Odin3_v3.14.4_ufInA2qRE3.png" alt="" />
+&lt;/p></description></item><item><title>JavaScript 逆向 Steam 登录二维码</title><link>https://moonlab.top/posts/2025/steam/</link><pubDate>Wed, 05 Feb 2025 18:22:04 +0800</pubDate><guid>https://moonlab.top/posts/2025/steam/</guid><description>&lt;p>众所周知，steam里骗子猖狂。以下页面是骗子私信发给我的一个仿冒的steam钓鱼网站。&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-04-19-202645.png" alt="s" />
+&lt;/p>
+&lt;p>如果点击 接受礼物 就会跳转至虚假的steam登录界面。&lt;/p>
+&lt;p>&lt;img loading="lazy" src="steam.png" alt="steam" />
+&lt;/p>
+&lt;p>如果毫无防备，通过手机steam客户端扫描右边的二维码进行登录，steam会进行登录异常的警告，一般来说要通过这一步还是很麻烦的。如果强行继续，那么steam账号除了会被劫持api key以外，大概率还会被洗库存，比如一些便宜的卡片和库存里的小件都会被卖出，而不会触发steam手机令牌的验证。&lt;/p>
+&lt;p>那么骗子是如何制作这些钓鱼网站的？steam对于自身系统的保护究竟做的怎么样？&lt;/p>
+&lt;p>这些都绕不开对于steam的逆向分析。&lt;/p>
+&lt;h1 id="开始逆向">开始逆向&lt;/h1>
+&lt;p>抓包观察了一会steam登录界面后，就已经捋清了整个登录站点的逻辑。&lt;/p>
+&lt;p>在最开始会连接&lt;code>/BeginAuthStatusViaQRCode&lt;/code> 获取登录二维码，之后每隔一段时间（5s）就会请求 &lt;code>PollAuthSessionStatus/v1&lt;/code> 以更新会话状态，如果当前页面的二维码已经过期，则会刷新。&lt;/p>
+&lt;p>如果先点击登录按钮，会请求&lt;code>/GetPasswordRSAPublicKey/v1&lt;/code>，之后是 &lt;code>/BeginAuthSessionStatusViaCredentials&lt;/code>。&lt;/p>
+&lt;p>可以很明显的看到用的是 protobuf 协议。&lt;/p>
+&lt;p>&lt;img loading="lazy" src="1.png" alt="1.png" />
+&lt;/p>
+&lt;p>查看这个网络请求的来源：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-02-07-173039.png" alt="2025-02-07-173039.png" />
+&lt;/p>
+&lt;p>继续追踪这个API的来源。在js文件顶部可以看到这是用webpack打包的：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-02-07-174847.png" alt="2025-02-07-174847.png" />
+&lt;/p>
+&lt;p>找到来自Send的方法调用比较可疑：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-02-07-191915.png" alt="2025-02-07-191915.png" />
+&lt;/p>
+&lt;p>这里的 &lt;code>r&lt;/code> 是一个对象，查看一下它的构造方法：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="2025-02-07-195700.png" alt="2025-02-07-195700.png" />
+&lt;/p>
+&lt;p>已经能看到proto的结构了。&lt;/p>
+&lt;p>构建出用于请求&lt;code>GetPasswordRSAPublicKey/v1&lt;/code>的proto：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>syntax &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;proto3&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>package steam;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>option go_package &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;proto/steam&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>message GetPasswordRSAPublicKey_Request {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    string account_name &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>message GetPasswordRSAPublicKey_Response {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    string public_key_mod &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    string public_key_exp &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    uint64 timestamp &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编译proto：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ protoc --go_out&lt;span style="color:#f92672">=&lt;/span>. --go-grpc_out&lt;span style="color:#f92672">=&lt;/span>. steam.proto
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装golang的protobuf包：&lt;/p></description></item><item><title>快速求解平方根倒数算法</title><link>https://moonlab.top/posts/2025/alg-graphics-1/</link><pubDate>Tue, 04 Feb 2025 21:35:38 +0800</pubDate><guid>https://moonlab.top/posts/2025/alg-graphics-1/</guid><description>本文介绍了一种快速计算平方根倒数的算法，该算法源于上世纪90年代。文章首先解释了浮点数在计算机中的存储方式，特别是float32格式的结构，包括符号位、指数位和尾数位。接着，介绍了牛顿迭代法的基本原理及其在求解平方根倒数中的应用。通过对浮点数的对数变换，推导出与平方根倒数相关的公式，并解释了代码中使用的神秘常数 0x5f3759df 的来源，最后提到切比雪夫最佳逼近的概念，以优化计算结果。</description></item><item><title>Protobuf</title><link>https://moonlab.top/posts/2025/protobuf3/</link><pubDate>Fri, 24 Jan 2025 03:33:27 +0800</pubDate><guid>https://moonlab.top/posts/2025/protobuf3/</guid><description>&lt;h1 id="安装-protobuf">安装 protobuf&lt;/h1>
+&lt;p>假设环境下已有&lt;code>protoc&lt;/code> (protocal buffers compiler)。&lt;/p>
+&lt;p>对于 Go 语言，安装相应的可执行文件：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go install google.golang.org/grpc/cmd/protoc-gen-go@latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在Windows中，执行完安装命令后在&lt;code>C:\Users\user\go\bin&lt;/code>路径下会有&lt;code>proctoc-gen-go.exe&lt;/code>和&lt;code>protoc-gen-go-grpc.exe&lt;/code>。&lt;/p>
+&lt;p>安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 &lt;code>.proto&lt;/code> 文件加一行以指定生成的Go包名：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">syntax&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;proto3&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">com&lt;/span>.&lt;span style="color:#a6e22e">example&lt;/span>.&lt;span style="color:#a6e22e">pkg&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">option&lt;/span> &lt;span style="color:#a6e22e">go_package&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;example/gopkg&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果需要使用 &lt;code>grpc&lt;/code> 服务，安装包：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go get google.golang.org/grpc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>之后便可启动一个 gRPC 服务器：&lt;/p>
+&lt;h1 id="grpc-gateway">gRPC gateway&lt;/h1>
+&lt;p>为 &lt;code>gRPC&lt;/code> 服务生成面向 &lt;code>RestFul API&lt;/code> 的网关&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">syntax&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;proto3&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">com&lt;/span>.&lt;span style="color:#a6e22e">example&lt;/span>.&lt;span style="color:#a6e22e">pkg&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> &lt;span style="color:#e6db74">&amp;#34;google/api/annotations.proto&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">option&lt;/span> &lt;span style="color:#a6e22e">go_package&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;example/gopkg
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">service AuthService {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rpc Login(LRequest) returns (LResponse) {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> option (google.api.http) = {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> post: &amp;#34;&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#a6e22e">v1&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#a6e22e">login&lt;/span>&lt;span style="color:#e6db74">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> body: &amp;#34;&lt;/span>&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">message&lt;/span> &lt;span style="color:#a6e22e">LRequest&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#a6e22e">field&lt;/span> = &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">message&lt;/span> &lt;span style="color:#a6e22e">LResponse&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#a6e22e">field&lt;/span> = &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>之后便可以生成grpc gateway的代码了：&lt;/p></description></item><item><title>Android设备安装Debian成为BT下载服务器</title><link>https://moonlab.top/posts/2024/debian-on-android/</link><pubDate>Wed, 07 Aug 2024 08:24:02 +0800</pubDate><guid>https://moonlab.top/posts/2024/debian-on-android/</guid><description>文章介绍了如何在Android设备上通过Termux安装Debian，并配置VNC以便远程访问。作者提到，由于Android 12引入的Phantom Process Killer机制，Termux容易被杀死，因此提供了关闭该限制的ADB命令。接着，文章详细说明了如何安装XFCE桌面环境和配置VNC服务器，包括使用TightVNC的步骤。最后，作者提到可以进一步安装gogs作为本地Git服务器。</description></item><item><title>[双系统] Windows 更新摧毁了我的Linux系统</title><link>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</link><pubDate>Sat, 03 Aug 2024 08:28:35 +0800</pubDate><guid>https://moonlab.top/posts/2024/windows-update-broke-linux-system/</guid><description>在 Windows 更新后，用户的 Linux 系统因等待 90 秒而无法启动，并且出现依赖失败。调查发现，Windows 调换了 Linux 分区和恢复分区的顺序，从而导致了问题。用户通过修复 Linux、更新 fstab、重新安装 Grub 和使用 efibootmgr 更改启动顺序解决了问题。</description></item><item><title>Golang embed 使用问题</title><link>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</link><pubDate>Wed, 27 Dec 2023 08:10:39 +0000</pubDate><guid>https://moonlab.top/posts/2023/golang-embed-package-use-issues/</guid><description>Golang 使用 embed 包在编译时将外部文件包含到二进制程序中。使用 embed 指令可以将 html、css、js 等静态文件添加到二进制文件中，而无需额外的资源文件。嵌入文件可以使用字符串、[]字节和 FS 来引用。但也有一些限制，如文件层次结构问题和复杂路径问题。例如，如果嵌入文件和被嵌入文件不在同一层次，嵌入模式将无法成功解析。另一个问题是处理复杂路径，即静态文件夹被放置在嵌入文件的子文件夹中。解决办法是使用 io/fs 软件包中的 Sub 方法来处理这些复杂路径。</description></item><item><title>Hexo博客自动备份插件 云盘备份支持</title><link>https://moonlab.top/posts/2023/hexo-auto-backup/</link><pubDate>Tue, 19 Dec 2023 21:38:50 +0000</pubDate><guid>https://moonlab.top/posts/2023/hexo-auto-backup/</guid><description>本文讨论了博客数据备份方案，强调321原则：保留3个备份副本，使用2种不同储存介质，1个备份远离数据源。最初考虑使用GitHub Action进行备份，但发现其局限性。为此，开发了Hexo插件“hexo-auto-backup”，可在执行hexo deploy时自动备份重要文件到本地或云盘，支持多种云服务和协议。插件安装简单，通过npm安装。未来计划改进备份过期设置和多系统支持。详细信息可见插件的GitHub仓库。</description></item><item><title>通过汇编分析栈、函数调用 esp&amp;ebp</title><link>https://moonlab.top/posts/2023/aem-esp-ebp/</link><pubDate>Fri, 15 Dec 2023 14:31:17 +0000</pubDate><guid>https://moonlab.top/posts/2023/aem-esp-ebp/</guid><description>栈是一种遵循后进先出（LIFO）规则的数据结构，通常用于内存管理。重要寄存器包括栈指针（SP）和基指针（BP）。在函数调用中，使用&lt;code>push&lt;/code>将参数压入栈中，&lt;code>call&lt;/code>指令保存返回地址。ESP寄存器指向栈顶，函数执行后需平衡栈。C语言函数调用中，参数通过EBP寻址，编译器可能使用&lt;code>mov&lt;/code>而非&lt;code>push&lt;/code>，使得ESP不指向栈顶，简化栈平衡的处理。</description></item><item><title>Git push 出现 permisson denied error 403</title><link>https://moonlab.top/posts/2023/git-err/</link><pubDate>Fri, 15 Sep 2023 12:09:04 +0000</pubDate><guid>https://moonlab.top/posts/2023/git-err/</guid><description>在尝试使用 &lt;code>git push -u origin main&lt;/code> 时，出现了权限错误，提示旧用户被拒绝访问。为了解决这个问题，作者尝试通过 &lt;code>git commit --amend --reset-author&lt;/code> 重置提交作者，但问题依旧。最终在 Stack Overflow 找到解决方案：删除旧的凭证，成功解决了问题，节省了一个小时的时间。</description></item><item><title>坑：Litepal save方法返回true却没有保存</title><link>https://moonlab.top/posts/2020/pit-for-litepal-save/</link><pubDate>Mon, 24 Feb 2020 11:52:38 +0000</pubDate><guid>https://moonlab.top/posts/2020/pit-for-litepal-save/</guid><description>&lt;p>在开发 Madoka 日记时，做到导出导入的功能时，我想偷个懒导出直接用 Gson 将 Java 对象转换为 json 然后放在 txt 中，导入的时候再将 json 转为 javaBean 就行啦。&lt;/p>
+&lt;p>而数据库我用的是 Litepal 直接搞，使用这个库的好处就是速度快，方便，适合新手。&lt;/p>
+&lt;p>但其实 sqlite 的语法和一些其他的语句并不难，所以用这个库就是为了方便&amp;hellip;&lt;/p>
+&lt;p>使用 Litepal 储存数据时，需要调用 save() 方法。&lt;/p>
+&lt;p>这里我就遇到了一个问题，明明 save() 方法返回的是 true ，但数据库里没有需要保存的数据啊？&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span> Gson gson &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Gson();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Diary diary &lt;span style="color:#f92672">=&lt;/span> gson.&lt;span style="color:#a6e22e">fromJson&lt;/span>(json, Diary.&lt;span style="color:#a6e22e">class&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> diary.&lt;span style="color:#a6e22e">save&lt;/span>();
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这是调用 Gson 将 json 转换为 javabean 对象。&lt;/p>
+&lt;p>明明 Diary 的内容全是正确的，我开始询问度娘。&lt;/p>
+&lt;p>结果没找到跟我的问题直接相关的文章，结果我看到了有个人在吐槽啥 setting getting，我就想到了会不会是因为没有调用 Diary 的构造方法？&lt;/p>
+&lt;p>Diary 作为一个 Litepal 的，它是继承自 LitePalSupport 的，会不会是因为没有调用 LitePalSupport 的构造方法呢？&lt;/p>
+&lt;p>我将导入代码改了一下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span> Gson gson &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Gson();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Diary diary &lt;span style="color:#f92672">=&lt;/span> gson.&lt;span style="color:#a6e22e">fromJson&lt;/span>(json, Diary.&lt;span style="color:#a6e22e">class&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Diary saveDiary &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Diary();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> saveDiary.&lt;span style="color:#a6e22e">setId&lt;/span>(diary.&lt;span style="color:#a6e22e">getId&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> saveDiary.&lt;span style="color:#a6e22e">setCreatedTime&lt;/span>(diary.&lt;span style="color:#a6e22e">getCreatedTime&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> saveDiary.&lt;span style="color:#a6e22e">setLastUpdatedTime&lt;/span>(diary.&lt;span style="color:#a6e22e">getLastUpdatedTime&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ... 省略一万个代码
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> saveDiary.&lt;span style="color:#a6e22e">save&lt;/span>();
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>果然，最后正常了&amp;hellip;&lt;/p></description></item><item><title>Android Shizuku源码分析 第二篇</title><link>https://moonlab.top/posts/2020/android-shizuku-theory2/</link><pubDate>Tue, 04 Feb 2020 11:43:10 +0000</pubDate><guid>https://moonlab.top/posts/2020/android-shizuku-theory2/</guid><description>本文深入分析了 Shizuku 的启动过程，特别是 &lt;code>Starter&lt;/code> 类的 &lt;code>main&lt;/code> 方法是如何被调用的。文章首先回顾了 Shizuku 的基本概念，并介绍了通过 &lt;code>adb&lt;/code> 命令激活 ShizukuService 的过程，重点分析了 &lt;code>start.sh&lt;/code> 脚本的执行。当用户通过 ShizukuManager 启动应用时，&lt;code>start.sh&lt;/code> 脚本被调用，该脚本负责设置环境并执行 &lt;code>libshizuku.so&lt;/code> 文件。文章详细描述了 &lt;code>ShizukuManager&lt;/code> 在启动时如何写入 &lt;code>start.sh&lt;/code> 文件及其相关的 dex 文件路径。接着，文章探讨了 &lt;code>libshizuku.so&lt;/code> 中的 &lt;code>main&lt;/code> 方法，说明了如何通过 &lt;code>app_process&lt;/code> 启动 Java 类 &lt;code>moe.shizuku.server.Starter&lt;/code>。在 &lt;code>Starter&lt;/code> 类的 &lt;code>main&lt;/code> 方法中，创建了 &lt;code>ShizukuService&lt;/code> 实例，从而完成了 ShizukuService 的启动。最后，作者总结了整个过程，强调了用户通过简单的 &lt;code>adb&lt;/code> 命令如何触发一系列复杂的操作，最终实现 Shizuku 的功能。</description></item><item><title>Android Shizuku源码分析</title><link>https://moonlab.top/posts/2020/android-shizuku-theory/</link><pubDate>Sun, 02 Feb 2020 19:24:10 +0000</pubDate><guid>https://moonlab.top/posts/2020/android-shizuku-theory/</guid><description>本文分析了 Shizuku 的源码，介绍了其如何通过 Binder 实现与 Android 系统服务的交互。Shizuku 应用引导用户以 root 或 adb 方式运行服务进程，利用 ShizukuBinderWrapper 进行系统隐藏 API 的调用。文章详细探讨了 ShizukuBinderWrapper 的构造、transact 方法及其与 IShizukuService 的通信过程，最后简要提及 ShizukuService 的启动流程。作者计划进一步深入分析 Shizuku 的启动机制。</description></item><item><title>Android 监听第三方Activity的一举一动</title><link>https://moonlab.top/posts/2020/android-activity-monitor/</link><pubDate>Sat, 01 Feb 2020 18:39:25 +0000</pubDate><guid>https://moonlab.top/posts/2020/android-activity-monitor/</guid><description>这篇文章主要记录了作者在2019年初的个人感受和一些技术探索。作者回顾了过去一年的经历，感到没有太多进展，并提到冬季的天气和国内的传染病情况。尽管在家中待得久了，作者也提到了一些娱乐活动，比如观看动画和春晚，但整体上对新番的期待逐渐减弱。在技术方面，作者分享了在Android开发中监听Activity启动的需求，探讨了几种方法来获取Activity的类名。首先，作者提到使用&lt;code>ActivityManager&lt;/code>的&lt;code>getRunningTasks&lt;/code>方法，但由于权限限制，这种方法不可行。接着，作者提到&lt;code>UsageStatsManager&lt;/code>只能获取应用包名，而无法获取Activity类名。最终，作者发现了&lt;code>IActivityController&lt;/code>接口，并通过使用Shizuku工具来调用系统API，从而实现了监听Activity启动的功能。总结来说，文章结合了个人生活感受与技术探索，展示了作者在面对生活和技术挑战时的思考与解决方案。</description></item><item><title>Android笔记#1 View的事件分发机制解析</title><link>https://moonlab.top/posts/2019/android-view-motionevent/</link><pubDate>Wed, 14 Aug 2019 11:07:50 +0000</pubDate><guid>https://moonlab.top/posts/2019/android-view-motionevent/</guid><description>本文总结了《Android艺术开发探索》中关于View事件分发机制的内容。事件序列从ACTION_DOWN开始，经过多个ACTION_MOVE，最后以ACTION_UP结束。事件传递顺序为Activity -&amp;gt; Window -&amp;gt; DecorView -&amp;gt; RootView。事件分发主要通过dispatchTouchEvent、onInterceptTouchEvent和onTouchEvent三个方法实现。ViewGroup的onInterceptTouchEvent默认返回false，子View可通过OnTouchListener处理事件。总结指出，事件分发机制确保一个事件序列只能被一个View拦截和消耗，且OnTouchListener优先级高于onTouchEvent。</description></item><item><title>知乎日报的问题</title><link>https://moonlab.top/posts/2019/android-zhihu-daily/</link><pubDate>Thu, 04 Jul 2019 20:34:10 +0000</pubDate><guid>https://moonlab.top/posts/2019/android-zhihu-daily/</guid><description>作者在暑假期间开始开发一个第三方的知乎日报客户端，使用MVP架构。遇到了一些问题，如全局异常处理和JSON解析，选择使用Picasso加载图片。为了解决WebView中图片宽度过大的问题，作者通过JavaScript调整图片大小。最终，作者完成了基本的加载和查看功能，并在GitHub上分享了代码。尽管开发过程充满挑战，作者仍然享受这个过程。</description></item><item><title>Hello World</title><link>https://moonlab.top/posts/2019/hello-world/</link><pubDate>Sat, 25 May 2019 14:50:36 +0000</pubDate><guid>https://moonlab.top/posts/2019/hello-world/</guid><description>&lt;p>Welcome to &lt;a href="https://hexo.io/">Hexo&lt;/a>! This is your very first post. Check &lt;a href="https://hexo.io/docs/">documentation&lt;/a> for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href="https://hexo.io/docs/troubleshooting.html">troubleshooting&lt;/a> or you can ask me on &lt;a href="https://github.com/hexojs/hexo/issues">GitHub&lt;/a>.&lt;/p>
+&lt;h2 id="quick-start">Quick Start&lt;/h2>
+&lt;h3 id="create-a-new-post">Create a new post&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ hexo new &lt;span style="color:#e6db74">&amp;#34;My New Post&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>More info: &lt;a href="https://hexo.io/docs/writing.html">Writing&lt;/a>&lt;/p>
+&lt;h3 id="run-server">Run server&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ hexo server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>More info: &lt;a href="https://hexo.io/docs/server.html">Server&lt;/a>&lt;/p>
+&lt;h3 id="generate-static-files">Generate static files&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ hexo generate
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>More info: &lt;a href="https://hexo.io/docs/generating.html">Generating&lt;/a>&lt;/p>
+&lt;h3 id="deploy-to-remote-sites">Deploy to remote sites&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ hexo deploy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>More info: &lt;a href="https://hexo.io/docs/deployment.html">Deployment&lt;/a>&lt;/p></description></item><item><title>使用Hexo</title><link>https://moonlab.top/posts/2019/hello-hexo/</link><pubDate>Sat, 25 May 2019 14:50:36 +0000</pubDate><guid>https://moonlab.top/posts/2019/hello-hexo/</guid><description>&lt;p>咸鱼不咸从今天（2019.5.25）开始使用&lt;a href="https://hexo.io">Hexo&lt;/a>啦&lt;/p>
+&lt;p>用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用&lt;/p>
+&lt;p>之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客&amp;hellip;&lt;/p>
+&lt;p>之前的 咕咕咕 事故导致博客失去了许多朋友QAQ&lt;/p>
+&lt;p>写博客的这一段时间，我也有许多的收获吧&lt;/p>
+&lt;p>咸鱼不咸的初心只是因为无聊，而现在则是想要有一个在复杂的网络中发声的立身之地&lt;/p>
+&lt;p>在茫茫海洋中，唯有这小小的避浪处能给我安心吧&lt;/p>
+&lt;p>这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333&lt;/p></description></item><item><title>Ubnutu 无法启动网易云音乐 - 总结</title><link>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</link><pubDate>Tue, 07 Aug 2018 21:28:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/ubuntu-cannot-use-netease-music/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>Author Avatar
+LingC
+8 月 7 日&lt;/p>
+&lt;h1 id="00">00&lt;/h1>
+&lt;p>本文总结了16.04以上的版本运行网易云音乐会出现的问题，以及解决方法
+如果你安装官方版本网易云音乐后（v1.1.0）,运行网易云音乐无响应的话可以试试以下几种方法&lt;/p>
+&lt;h1 id="01">01&lt;/h1>
+&lt;p>在终端中输入&lt;/p>
+&lt;p>$ netease-cloud-music &amp;ndash;no-sandbox %U&lt;/p>
+&lt;p>即可启动网易云音乐&lt;/p>
+&lt;p>有可能会出现一些警告，稍后会打开网易云主界面&lt;/p>
+&lt;p>如果出现Unable to locate theme engine in module_path: &amp;ldquo;adwaita&amp;rdquo;&lt;/p>
+&lt;p>可以尝试执行这条命令：$ sudo apt install gnome-themes-standard&lt;/p>
+&lt;p>如果出现failed to retrieve propertygtk-primary-button-warps-slider’ of type gboolean'&lt;/p>
+&lt;p>可以尝试$ vi ~/.gtkrc-2.0&lt;/p>
+&lt;p>使用vim打开这个文件，将其中的一行改为&lt;/p>
+&lt;p>gtk-primary-button-warps-slider=false改为gtk-primary-button-warps-slider=0&lt;/p>
+&lt;p>然后可以再试着运行一下，如果还不行就reboot&lt;/p>
+&lt;p>如果出现Gtk-Message: 08:59:03.546: Failed to load module &amp;ldquo;canberra-gtk-module&amp;quot;或者没有反应，那么你可以试试第二种方法&lt;/p>
+&lt;h1 id="02">02&lt;/h1>
+&lt;p>在终端中输入&lt;/p>
+&lt;p>$ sudo netease-cloud-music&lt;/p>
+&lt;p>使用root权限运行网易云音乐&lt;/p>
+&lt;p>可能会出现一些警告和报错，其实可以无视（懒的管）&lt;/p>
+&lt;p>2018-08-07 09-00-03屏幕截图.png&lt;/p>
+&lt;h1 id="03">03&lt;/h1>
+&lt;p>可以试一下这个方法
+&lt;a href="https://jingyan.baidu.com/article/1e5468f956a15c484861b770.html">https://jingyan.baidu.com/article/1e5468f956a15c484861b770.html&lt;/a>&lt;/p>
+&lt;h1 id="04">04&lt;/h1>
+&lt;p>该方法针对于ubuntu 18.04LTS 网易云音乐v1.1.0&lt;/p>
+&lt;p>其他版本也可以试一下&lt;/p>
+&lt;p>首先&lt;/p></description></item><item><title>Windows 好软推荐 | 这一定是良心软件</title><link>https://moonlab.top/posts/2018/windows-software-recommendation/</link><pubDate>Sat, 04 Aug 2018 21:28:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/windows-software-recommendation/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>Author Avatar
+LingC
+8 月 4 日&lt;/p>
+&lt;h1 id="00">00&lt;/h1>
+&lt;p>继上一篇电脑中常用的软件&lt;/p>
+&lt;p>我在 C 盘格式化后又遇见了一些不错的软件，这些软件反正是有 Windows 版本的，其他系统我就不知道啦~~&lt;/p>
+&lt;p>并且这篇文章我会为你找到软件的官网或资源下载地址，我会一并写在这篇文章中&lt;/p>
+&lt;h1 id="01---fances">01 - Fances&lt;/h1>
+&lt;p>这款软件就是让你的桌面更条例有序，给泥们放一张我桌面的截图吧
+TIM截图20180804195952.png
+是不是感觉很好看 o(￣▽￣)o&lt;/p>
+&lt;p>购买：https://www.stardock.com/products/fences/
+不过 steam 上也有卖 &lt;a href="https://store.steampowered.com/app/607380/Fences/?l=tchinese&amp;amp;cc;=nl">https://store.steampowered.com/app/607380/Fences/?l=tchinese&amp;cc;=nl&lt;/a>
+你说你没有钱买正版？没关系，我这里有破解版
+不过在下载之前你要答应我，自己有能力的话一定要去买正版哦 (。・∀・) ノ
+慕若曦那里就有这个破解版资源，链接：https://www.muruoxi.com/623.html&lt;/p>
+&lt;h1 id="02---flux">02 - f.lux&lt;/h1>
+&lt;p>有时候我会抱怨，电脑屏幕的亮度太高了，兼职闪瞎我的眼睛，特别是在晚上的时候，我一直找不到好的护眼软件&lt;/p>
+&lt;p>然而，这款软件除了普通的护眼功能外，还可以根据你选择的模式在不同时间段进行自动调节
+来张图&lt;/p>
+&lt;p>flux.png&lt;/p>
+&lt;p>你可以直接去官网中下载：https://justgetflux.com/&lt;/p>
+&lt;h1 id="03---uninstaller">03 - uninstaller&lt;/h1>
+&lt;p>这其实是一个小工具，你不用安装就可以启动&lt;/p>
+&lt;p>这是一款小型轻量的卸载程序，我看中它可以卸载完程序后，清理注册表里的残留，感觉挺良心的
+我查了一下才发现，我一直用的是老版本的 uninstaller，这是老板本截图，新版本比这好看很多&lt;/p>
+&lt;p>uninstallerold.png&lt;/p>
+&lt;p>老板本的 uninstaller 不需要安装，而新版本的需要安装，但是新版本的用户体验肯定比老板本好啦&lt;/p>
+&lt;p>新版本截图：&lt;/p>
+&lt;p>uninstallernow.png&lt;/p>
+&lt;p>虽然新版本安装时有一些肿瘤，推荐你安装同一公司的产品，以及订阅书籍，但是它在功能使用方面并不膨胀，我自己稍微使用了一下感觉还行
+飞去下载地址吧！：https://iobit-uninstaller.en.softonic.com/&lt;/p>
+&lt;h1 id="04---火绒">04 - 火绒&lt;/h1>
+&lt;p>这是本文唯一提到的国产软件，也是我最期待的软件&lt;/p>
+&lt;p>这是一款电脑安全软件，我相信你们的电脑一般都会装一些安全软件，比如 360，百度，腾讯的那些安全卫士&lt;/p>
+&lt;p>我在知道火绒之前一直是裸体的，直到火绒出现到我面前，我一直是不相信国内会有如此良心的安全软件&lt;/p>
+&lt;p>首先，肯定有人会问&lt;/p>
+&lt;pre>&lt;code>啊，这是什么软件，听都没有听说过，肯定没有 360 好用啦
+&lt;/code>&lt;/pre>
+&lt;p>其实火绒的防护能力并不亚于国内的安全软件，不敢说是站在顶端，但是从制作人方面就可以看出一定不是什么小公司做开发的，我用着感觉十分的不错，纯净的超乎想象，有一次我卸载国内某款软件，最后即将完成卸载时，我不耐烦的快速按了，眼角的余光看见了&lt;/p>
+&lt;pre>&lt;code>√ 安装 鲁大师
+√ 安装 …
+&lt;/code>&lt;/pre>
+&lt;p>当时其实我都忘记了还有火绒在，所以慌的一批，然后火绒就在右下角弹出 “已拦截…..”&lt;/p></description></item><item><title>typecho - http转https</title><link>https://moonlab.top/posts/2018/typecho-http-2-https/</link><pubDate>Tue, 27 Mar 2018 21:28:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/typecho-http-2-https/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>2018-03-27 21:28&lt;/p>
+&lt;p>在我从http转成https时出现一个致命问题：&lt;/p>
+&lt;p>css与js无法加载&lt;/p>
+&lt;p>报错截图：&lt;/p>
+&lt;p>![NOT]&lt;/p>
+&lt;p>主页界面：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="https://img.lcblog.cn/images/typecho/2018-03-27/1.png" alt="1" />
+&lt;/p>
+&lt;p>并且这时没有绿锁&lt;/p>
+&lt;p>&lt;img loading="lazy" src="https://img.lcblog.cn/images/typecho/2018-03-27/3.png" alt="3" />
+&lt;/p>
+&lt;hr>
+&lt;p>访问了许多网站，游览了许多资料
+在&lt;code>config.inc.php&lt;/code>中插入&lt;/p>
+&lt;pre>&lt;code>/** 开启HTTPS */
+define('__TYPECHO_SECURE__',true);&lt;/code>&lt;/pre>
+&lt;p>也没有任何卵用，我开始绝望&lt;/p>
+&lt;p>其主要问题是 网站前台资源 通过http访问，而本站是https，所以会出现问题
+且安全连接并不完全，因为有http的连接&lt;/p>
+&lt;p>就在这时，我翻到一篇文章，看到一个插件：&lt;code>TEDUriReplace&lt;/code>
+使用方法非常简单，插件截图：
+&lt;img loading="lazy" src="https://img.lcblog.cn/images/typecho/2018-03-27/2.png" alt="2" />
+&lt;/p>
+&lt;p>步骤：&lt;/p>
+&lt;p>1.将后台的网址改为https://xxx.cn&lt;/p>
+&lt;p>2.在插件的规则中写入&lt;code>&lt;a href="http://xxx.cn/=%3Ehttps://xxx.cn/">http://xxx.cn/=>https://xxx.cn/&lt;/a>&lt;/code>&lt;/p>
+&lt;p>3.刷新网页&lt;/p>
+&lt;p>就是如此简单，这款插件真的很好用
+下载链接：&lt;a href="https://s.typechodev.com/plugins/uploads/2017/12/2122242327.zip">https://s.typechodev.com/plugins/uploads/2017/12/2122242327.zip&lt;/a>&lt;/p></description></item><item><title>如何评价Android P</title><link>https://moonlab.top/posts/2018/comment-about-android-p/</link><pubDate>Wed, 21 Mar 2018 21:09:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/comment-about-android-p/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>2018-03-21 21:09&lt;/p>
+&lt;p>[one]&lt;/p>
+&lt;p>[two]&lt;/p>
+&lt;p>2018年3月8日，Google发布了Android P的预览版
+而这次版本更新引来了很多不满，大多是对布局外观上的评价
+主要都是围绕着Material Design的问题，因为Google从Android5.x开始就遵循着Material Design
+而Material Design是Google提出的设计风格，虽然Google系列很多都遵循着MD
+但是也有一部分偏移了MD，就比如AndroidP，我感觉更偏向于扁平化&lt;/p>
+&lt;p>[Android]&lt;/p>
+&lt;p>这张图片是AndroidP的截图，感觉还可以
+另外再说一下圆角元素，AndroidP大量使用了圆角元素
+我个人感觉圆角元素的弧度只要把握好，真的不是什么大问题
+斜刘海的问题我也不想多说
+这也成为了被众人吐槽的原因之一&lt;/p>
+&lt;p>[Android Title]&lt;/p>
+&lt;p>&lt;em>Android P&lt;/em>&lt;/p>
+&lt;p>[IOS]
+&lt;em>IOS&lt;/em>
+P的通知栏已经丝毫没有MD的风格了，与IOS的通知栏比起来
+感觉更像了，偏向于扁平化，没有质感了&lt;/p>
+&lt;p>[Android Seting]&lt;/p>
+&lt;p>P的设置界面倒还不错，虽然与MD搭不上边
+色彩的搭配很有亮点&lt;/p>
+&lt;hr>
+&lt;p>总的来说，并不是特别讨厌P的更新，因为时代会变化&lt;/p>
+&lt;p>&lt;code>![hx][7]&lt;/code>&lt;/p>
+&lt;p>倒不如说很喜欢这次更新，感觉是安卓目前最好看的设计
+MD风格是给人的设计思路，而不是限制设计的锁链&lt;/p></description></item><item><title/><link>https://moonlab.top/posts/2025/forced-air-cooler/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://moonlab.top/posts/2025/forced-air-cooler/</guid><description>&lt;p>我的笔记本温度达到80度以上，系统就会降频。打cs的话，fps直接从稳定的180帧调到130-140帧上下。&lt;/p>
+&lt;p>&lt;a href="https://www.bilibili.com/video/BV1Lr421M7u2">B站视频&lt;/a>&lt;/p>
+&lt;p>看了视频中的测评，能降温10度左右。&lt;/p>
+&lt;p>压风式散热&lt;/p>
+&lt;p>36*25cm&lt;/p>
+&lt;p>考虑到用纸箱做自己根据需要来开孔比较简单，不需要改图纸&lt;/p>
+&lt;h1 id="材料清单">材料清单&lt;/h1>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>材料&lt;/th>
+&lt;th>数量&lt;/th>
+&lt;th>总价&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>10cm 离心风机（空气净化器风扇）&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>15￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>可调电源3-12V 2A&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>5.99￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>DC转4pin线&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>3.3￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>36*26*6cm 飞机盒&lt;/td>
+&lt;td>3&lt;/td>
+&lt;td>4.1￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>PVC胶布&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1.62￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>回弹海绵 厚15mm 宽20mm&lt;/td>
+&lt;td>2米&lt;/td>
+&lt;td>5.56￥&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>合计：&lt;/p>
+&lt;p>如果要用亚克力板做，则需要加上：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>材料&lt;/th>
+&lt;th>数量&lt;/th>
+&lt;th>总价&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>亚克力板&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>40￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>M3 10*10*10 六面螺母&lt;/td>
+&lt;td>12&lt;/td>
+&lt;td>9￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>M3*8 螺丝&lt;/td>
+&lt;td>32&lt;/td>
+&lt;td>1.28￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>M4*8 螺丝&lt;/td>
+&lt;td>9&lt;/td>
+&lt;td>3￥&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>M4 14mm 双通铜柱&lt;/td>
+&lt;td>3&lt;/td>
+&lt;td>4.5￥&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title/><link>https://moonlab.top/posts/2025/stm32-problem-1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://moonlab.top/posts/2025/stm32-problem-1/</guid><description>&lt;p>&lt;img loading="lazy" src="Cursor_jOhDlTFH4Y.png" alt="" />
+&lt;/p></description></item><item><title/><link>https://moonlab.top/posts/2025/windows-performance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://moonlab.top/posts/2025/windows-performance/</guid><description>&lt;p>Windows很好用。&lt;/p>
+&lt;p>关闭Windows更新的&lt;a href="https://learn.microsoft.com/zh-cn/windows/deployment/do/waas-delivery-optimization">传递优化 Delivery Optimization&lt;/a>。&lt;/p>
+&lt;p>设置-&amp;gt;Windows更新-&amp;gt;高级选项-&amp;gt;传递优化-&amp;gt;允许从其他设备下载-&amp;gt;关&lt;/p></description></item></channel></rss>

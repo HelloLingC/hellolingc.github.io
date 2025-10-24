@@ -1,0 +1,285 @@
+<!doctype html><html lang=cn dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>2025蓝桥杯赛后总结 | MoonLab</title>
+<meta name=keywords content><meta name=description content='这次省赛，实际上我并无准备，因为我一如既往地对算法没有什么兴趣。
+竞赛一共八道题，A和B题是填空题，后六道题都是程序设计。前五题都做了，第六题暴力应该只拿了部分分，后两题就没时间写了。
+在赛场上当时看到C++编译器是2014年发布的gcc 4.7.4，用的是C++98标准。但蓝桥杯的云端是可以运行C++11以上的标准的代码的。
+本地做题环境的编译器低版本，导致许多C++函数用不了。比如 to_string()函数用不了。前两题最快速的做饭需要将数转到字符串类型，但是我只知道c++中有一个方便的 to_string() 函数，还好当时我看到赛场机子中有Pycharm，所以我就用python计算了前两道填空题。
+这个向下兼容的过程，消耗了我大量时间。
+最致命的是，有一道题我需要声明一个迭代器，但是我不知道迭代器的类型名，一般来说都是用auto自动推导的，但auto只在C++11标准以上才有，导致这道题的代码我在本地环境无法测试。明明代码是正确的，但本地的低版本编译器却认为我的代码是错误的。这种割裂感很少有。
+而现在看来这道题也依旧做对了。
+// C++98
+std::vector<int> vec;
+std::vector<int>::iterator it = vec.begin();
+// C++ 11
+auto it = vec.begin();  // 自动推导为 std::vector<int>::iterator
+与当时赛场的老师沟通，得知组委会只要求提供5.11版本的dev c++，而他们似乎只更新了代码编辑器版本，但一般来说dev c++是捆绑了一个编译器的，但不知为何内置的编译器却十分古典，感觉有点意思。
+比赛完后，我查找了在 C++98 的字符串类型转换方法：
+// for C++98/03 standard
+string old_int_to_string(int v) {
+    ostringstream oss;
+    oss << v;
+    return oss.str();
+
+}
+
+string old_double_to_string(double v) {
+    ostringstream oss;
+    oss << fixed << setprecision(6) << v;
+    return oss.str();
+
+}
+
+string old_c_style_to_string(int v) {
+    char buffer[32]; // make sure buffer is suffcient
+    sprintf(buffer, "%d", v);
+    return string(buffer);
+}
+事实上，生活在草台班子里的我们不必认真太多。'><meta name=author content="LingC"><link rel=canonical href=https://moonlab.top/posts/2025/lanqiao-aftermatch/><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><script>MathJax={tex:{displayMath:[["\\[","\\]"],["$$","$$"]],inlineMath:[["\\(","\\)"],["$","$"]]},loader:{load:["ui/safe"]}}</script><link crossorigin=anonymous href=/assets/css/stylesheet.1ff5a7b3bb4a96bf1747dfa25e8031167d4537d7ae4b78fac2b752886047a06e.css rel="preload stylesheet" as=style><link rel=icon href=/moon.svg type=image/svg+xml><link rel=icon type=image/png sizes=16x16 href=https://moonlab.top/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://moonlab.top/favicon-32x32.png><link rel=apple-touch-icon href=https://moonlab.top/apple-touch-icon.png><link rel=mask-icon href=https://moonlab.top/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=cn href=https://moonlab.top/posts/2025/lanqiao-aftermatch/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="2025蓝桥杯赛后总结"><meta property="og:description" content='这次省赛，实际上我并无准备，因为我一如既往地对算法没有什么兴趣。
+竞赛一共八道题，A和B题是填空题，后六道题都是程序设计。前五题都做了，第六题暴力应该只拿了部分分，后两题就没时间写了。
+在赛场上当时看到C++编译器是2014年发布的gcc 4.7.4，用的是C++98标准。但蓝桥杯的云端是可以运行C++11以上的标准的代码的。
+本地做题环境的编译器低版本，导致许多C++函数用不了。比如 to_string()函数用不了。前两题最快速的做饭需要将数转到字符串类型，但是我只知道c++中有一个方便的 to_string() 函数，还好当时我看到赛场机子中有Pycharm，所以我就用python计算了前两道填空题。
+这个向下兼容的过程，消耗了我大量时间。
+最致命的是，有一道题我需要声明一个迭代器，但是我不知道迭代器的类型名，一般来说都是用auto自动推导的，但auto只在C++11标准以上才有，导致这道题的代码我在本地环境无法测试。明明代码是正确的，但本地的低版本编译器却认为我的代码是错误的。这种割裂感很少有。
+而现在看来这道题也依旧做对了。
+// C++98
+std::vector<int> vec;
+std::vector<int>::iterator it = vec.begin();
+// C++ 11
+auto it = vec.begin();  // 自动推导为 std::vector<int>::iterator
+与当时赛场的老师沟通，得知组委会只要求提供5.11版本的dev c++，而他们似乎只更新了代码编辑器版本，但一般来说dev c++是捆绑了一个编译器的，但不知为何内置的编译器却十分古典，感觉有点意思。
+比赛完后，我查找了在 C++98 的字符串类型转换方法：
+// for C++98/03 standard
+string old_int_to_string(int v) {
+    ostringstream oss;
+    oss << v;
+    return oss.str();
+
+}
+
+string old_double_to_string(double v) {
+    ostringstream oss;
+    oss << fixed << setprecision(6) << v;
+    return oss.str();
+
+}
+
+string old_c_style_to_string(int v) {
+    char buffer[32]; // make sure buffer is suffcient
+    sprintf(buffer, "%d", v);
+    return string(buffer);
+}
+事实上，生活在草台班子里的我们不必认真太多。'><meta property="og:type" content="article"><meta property="og:url" content="https://moonlab.top/posts/2025/lanqiao-aftermatch/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-05-01T16:11:27+08:00"><meta property="article:modified_time" content="2025-05-01T16:11:27+08:00"><meta property="og:site_name" content="MoonLab"><meta name=twitter:card content="summary"><meta name=twitter:title content="2025蓝桥杯赛后总结"><meta name=twitter:description content='这次省赛，实际上我并无准备，因为我一如既往地对算法没有什么兴趣。
+竞赛一共八道题，A和B题是填空题，后六道题都是程序设计。前五题都做了，第六题暴力应该只拿了部分分，后两题就没时间写了。
+在赛场上当时看到C++编译器是2014年发布的gcc 4.7.4，用的是C++98标准。但蓝桥杯的云端是可以运行C++11以上的标准的代码的。
+本地做题环境的编译器低版本，导致许多C++函数用不了。比如 to_string()函数用不了。前两题最快速的做饭需要将数转到字符串类型，但是我只知道c++中有一个方便的 to_string() 函数，还好当时我看到赛场机子中有Pycharm，所以我就用python计算了前两道填空题。
+这个向下兼容的过程，消耗了我大量时间。
+最致命的是，有一道题我需要声明一个迭代器，但是我不知道迭代器的类型名，一般来说都是用auto自动推导的，但auto只在C++11标准以上才有，导致这道题的代码我在本地环境无法测试。明明代码是正确的，但本地的低版本编译器却认为我的代码是错误的。这种割裂感很少有。
+而现在看来这道题也依旧做对了。
+// C++98
+std::vector<int> vec;
+std::vector<int>::iterator it = vec.begin();
+// C++ 11
+auto it = vec.begin();  // 自动推导为 std::vector<int>::iterator
+与当时赛场的老师沟通，得知组委会只要求提供5.11版本的dev c++，而他们似乎只更新了代码编辑器版本，但一般来说dev c++是捆绑了一个编译器的，但不知为何内置的编译器却十分古典，感觉有点意思。
+比赛完后，我查找了在 C++98 的字符串类型转换方法：
+// for C++98/03 standard
+string old_int_to_string(int v) {
+    ostringstream oss;
+    oss << v;
+    return oss.str();
+
+}
+
+string old_double_to_string(double v) {
+    ostringstream oss;
+    oss << fixed << setprecision(6) << v;
+    return oss.str();
+
+}
+
+string old_c_style_to_string(int v) {
+    char buffer[32]; // make sure buffer is suffcient
+    sprintf(buffer, "%d", v);
+    return string(buffer);
+}
+事实上，生活在草台班子里的我们不必认真太多。'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://moonlab.top/posts/"},{"@type":"ListItem","position":2,"name":"2025蓝桥杯赛后总结","item":"https://moonlab.top/posts/2025/lanqiao-aftermatch/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"2025蓝桥杯赛后总结","name":"2025蓝桥杯赛后总结","description":"这次省赛，实际上我并无准备，因为我一如既往地对算法没有什么兴趣。\n竞赛一共八道题，A和B题是填空题，后六道题都是程序设计。前五题都做了，第六题暴力应该只拿了部分分，后两题就没时间写了。\n在赛场上当时看到C++编译器是2014年发布的gcc 4.7.4，用的是C++98标准。但蓝桥杯的云端是可以运行C++11以上的标准的代码的。\n本地做题环境的编译器低版本，导致许多C++函数用不了。比如 to_string()函数用不了。前两题最快速的做饭需要将数转到字符串类型，但是我只知道c++中有一个方便的 to_string() 函数，还好当时我看到赛场机子中有Pycharm，所以我就用python计算了前两道填空题。\n这个向下兼容的过程，消耗了我大量时间。\n最致命的是，有一道题我需要声明一个迭代器，但是我不知道迭代器的类型名，一般来说都是用auto自动推导的，但auto只在C++11标准以上才有，导致这道题的代码我在本地环境无法测试。明明代码是正确的，但本地的低版本编译器却认为我的代码是错误的。这种割裂感很少有。\n而现在看来这道题也依旧做对了。\n// C++98 std::vector\u0026lt;int\u0026gt; vec; std::vector\u0026lt;int\u0026gt;::iterator it = vec.begin(); // C++ 11 auto it = vec.begin(); // 自动推导为 std::vector\u0026lt;int\u0026gt;::iterator 与当时赛场的老师沟通，得知组委会只要求提供5.11版本的dev c++，而他们似乎只更新了代码编辑器版本，但一般来说dev c++是捆绑了一个编译器的，但不知为何内置的编译器却十分古典，感觉有点意思。\n比赛完后，我查找了在 C++98 的字符串类型转换方法：\n// for C++98/03 standard string old_int_to_string(int v) { ostringstream oss; oss \u0026lt;\u0026lt; v; return oss.str(); } string old_double_to_string(double v) { ostringstream oss; oss \u0026lt;\u0026lt; fixed \u0026lt;\u0026lt; setprecision(6) \u0026lt;\u0026lt; v; return oss.str(); } string old_c_style_to_string(int v) { char buffer[32]; // make sure buffer is suffcient sprintf(buffer, \u0026#34;%d\u0026#34;, v); return string(buffer); } 事实上，生活在草台班子里的我们不必认真太多。\n","keywords":[],"articleBody":"这次省赛，实际上我并无准备，因为我一如既往地对算法没有什么兴趣。\n竞赛一共八道题，A和B题是填空题，后六道题都是程序设计。前五题都做了，第六题暴力应该只拿了部分分，后两题就没时间写了。\n在赛场上当时看到C++编译器是2014年发布的gcc 4.7.4，用的是C++98标准。但蓝桥杯的云端是可以运行C++11以上的标准的代码的。\n本地做题环境的编译器低版本，导致许多C++函数用不了。比如 to_string()函数用不了。前两题最快速的做饭需要将数转到字符串类型，但是我只知道c++中有一个方便的 to_string() 函数，还好当时我看到赛场机子中有Pycharm，所以我就用python计算了前两道填空题。\n这个向下兼容的过程，消耗了我大量时间。\n最致命的是，有一道题我需要声明一个迭代器，但是我不知道迭代器的类型名，一般来说都是用auto自动推导的，但auto只在C++11标准以上才有，导致这道题的代码我在本地环境无法测试。明明代码是正确的，但本地的低版本编译器却认为我的代码是错误的。这种割裂感很少有。\n而现在看来这道题也依旧做对了。\n// C++98 std::vector\u003cint\u003e vec; std::vector\u003cint\u003e::iterator it = vec.begin(); // C++ 11 auto it = vec.begin(); // 自动推导为 std::vector::iterator 与当时赛场的老师沟通，得知组委会只要求提供5.11版本的dev c++，而他们似乎只更新了代码编辑器版本，但一般来说dev c++是捆绑了一个编译器的，但不知为何内置的编译器却十分古典，感觉有点意思。\n比赛完后，我查找了在 C++98 的字符串类型转换方法：\n// for C++98/03 standard string old_int_to_string(int v) { ostringstream oss; oss \u003c\u003c v; return oss.str(); } string old_double_to_string(double v) { ostringstream oss; oss \u003c\u003c fixed \u003c\u003c setprecision(6) \u003c\u003c v; return oss.str(); } string old_c_style_to_string(int v) { char buffer[32]; // make sure buffer is suffcient sprintf(buffer, \"%d\", v); return string(buffer); } 事实上，生活在草台班子里的我们不必认真太多。\n部分题解 7. 拼好数 当时留给我写第七道题的时间只有5分钟左右，大概读完了题就已经结束了。 这道题是省赛 C++ C组，Python A组，Java A组的题。\n题目 我们将含有不少于 6 个 6 的数视为一个好数。例如 666666, 162636465666 是好数，12366666 不是好数。 给定 n 个正整数 $a_i$，你可以把这些数分成若干组拼起来，每组内的数可以按任意顺序拼，但一组最多只能有 3 个数。求最多可以得到多少个好数。\n输入格式 输入的第一行包含一个正整数 n 。 第二行包含 n 个正整数 a1, a2, · · · , an ，相邻整数之间使用一个空格分隔。\n输出格式 输出一行包含一个整数表示答案，即最多可以得到的好数的数量\n【样例输入 1】 3 66 66 66 【样例输出 1】 1 【样例输入 2】 7 666666 16166 6696 666 6 6 6 【样例输出 2】 2 这个问题是分组问题：如何分组，使得包含6个6的组尽可能的多。而每个组最多能有三个数，那么最少能有1个数。\n我们可以统计每个数中6的个数：比如将 16166 6193 66 转化为 3 1 2，再进行排序，之后算出如何相加才能得到最多的6。\n分组的情况只有三种：\nsum1 = a1 sum2 = a1 + a2 sum3 = a1 + a2 + a3 我们为了得到最大的组数，使用贪心策略追求局部最优，则每次都要尽可能地先选择最少的数，且尽可能地用最大的数与最小的数组合：\n如果一个数包含6个以上的6，则单独成一组。\n此时，转换后的数组只可能由 1 2 3 4 5 这五个数字组成。\n对于 5 我们为它找 1，如果没有则找 2。同理，对于4，我们找 2，没有则找 3。\n此时未配对的数，只可能由 1 2 3 4 组成。三元组中：首先查找4 + 1 + 1，对于 4 + 2 + 1，不优于 4 + 2。\n而对于 1 2 3，3 + 2 + 1 优于 3 + 2 + 2 ，并且优于 3 + 3，因为 1 2 如果没有 3 就无法成组。\n最后只剩 2 3 的情况：\n2 + 2 + 2 3 + 2 + 2 3 + 3 #include using namespace std; int n; int count_six(int n) { string s = to_string(n); int cnt = count(s.begin(), s.end(), '6'); if(cnt \u003e 6) cnt=6; return cnt; } int main() { cin \u003e\u003e n; int a[7] = {0}; for(int i = 0;i\u003cn;i++) { int t; cin\u003e\u003et;\ta[count_six(t)] += 1; } int ans = a[6]; int idx = 1; // range 1 2 3 4 5 while(a[5]\u003e0) { if(a[idx]){ a[idx]--; a[5]--; ans++; } else if(idx \u003c 6) { idx++; } } while(a[4] \u003e 0 \u0026\u0026 a[1] \u003e 1) { a[4]--; a[1]-=2; ans++; } idx = 2; // range 2 3 4 while(a[4] \u003e 0) { if(a[idx]){ a[idx]--; a[4]--; ans++; } else if(idx \u003c 5) { idx++; } } while(a[3] \u0026\u0026 a[2] \u0026\u0026 a[1]) { --a[3]; --a[2]; --a[1]; ans++; } // 2 + 2 + 2 ans += a[2] / 3; a[2] = a[2] % 3; // 3 + 2 + 2 int possible = min(a[3], a[2] / 2); ans += possible; a[3] -= possible; a[2] -= 2 * possible; // 3 + 3 ans += a[3] / 2; a[3] = a[3] % 2; cout \u003c\u003c ans \u003c\u003c endl; return 0; } 8. 登山 题目 小蓝正在登山，山峰的高度构成 n 行 m 列的正整数矩阵，$a_(i, j)$ 表示第 i 行 第 j 列格子 (i, j) 上的山峰的高度。小蓝以一种特别的方式进行登山，如果他此刻在第 p 行第 q 列的格子 (p, q) 上，那么下一步可以选择： 走到格子 (i, q)，满足 ai,q \u003c ap,q 且 i \u003e p ； 走到格子 (i, q)，满足 ai,q \u003e ap,q 且 i \u003c p ； 走到格子 (p, j)，满足 ap, j \u003c ap,q 且 j \u003e q ； 走到格子 (p, j)，满足 ap, j \u003e ap,q 且 j \u003c q 。 小蓝想知道，如果他依次从每一个格子开始出发，按照最优策略，他最高能到达的山峰的高度的平均值是多少？\n输入格式 输入的第一行包含两个正整数 n, m ，用一个空格分隔。 接下来 n 行，每行包含 m 个正整数。其中第 i 行包含 ai,1, ai,2, · · · , ai,m ，相 邻整数之间使用一个空格分隔。\n输出格式 输出一行包含一个实数表示答案，四舍五入保留正好 6 位小数。\n题解 我们先来分析一下移动规则：\n向下移动 （i \u003e p)，需要高度更低。 向上移动 （i \u003c p)，需要高度更高。 向右移动 (j \u003e q)，需要高度更低。 向左移动 (j \u003c q)，需要高度更高。 每次移动只顺着一个行或列方向上的变化，并且是可以跳着走的。\n对于每一个格子，或者叫做起点 $(p, q)$，都要算出能到达的最高山峰高度，最后将每一个格子的结果求平均值。\n我自己尝试直接用dfs，加上记忆搜索来做，只通过了部分：\n#include using namespace std; vector\u003cvector\u003cint\u003e\u003e a; vector\u003cvector\u003cint\u003e\u003e dp; int n, m; set\u003cpair\u003cint, int\u003e\u003e used; // unordered_set require customizing hash func const NEG_INF = -1; int dfs(int p, int q) { if(dp[p][q] != -1) return dp[p][q]; if(used.find({p, q}) != used.end()) return NEG_INF; int max_h = a[p][q]; // Downward for(int i = p+1; i\u003cn; i++) { if(a[i][q] \u003c a[p][q]){ used.insert({p, q}); max_h = max(max_h, dfs(i, q)); used.erase({p, q}); } } // Upward for(int i = p-1; i\u003e=0; i--) { if(a[i][q] \u003e a[p][q]) { used.insert({p, q}); max_h = max(max_h, dfs(i, q)); used.erase({p, q}); } } // Rightward for(int j = q+1; j\u003cm; j++) { if(a[p][j] \u003c a[p][q]){ used.insert({p, q}); max_h = max(max_h, dfs(p, j)); used.erase({p, q}); } } // Leftward for(int j = q-1; j\u003e=0; j--) { if(a[p][j] \u003e a[p][q]){ used.insert({p, q}); max_h = max(max_h, dfs(p, j)); used.erase({p, q}); } } dp[p][q] = max_h; return max_h; } int main() { ios::sync_with_stdio(false); cin.tie(0); cin \u003e\u003e n \u003e\u003e m; a.assign(n, vector\u003cint\u003e(m)); dp.assign(n, vector\u003cint\u003e(m, -1)); for(int i = 0; i \u003c n; ++i) { for(int j = 0; j \u003c m; ++j) { cin \u003e\u003e a[i][j]; } } double total = 0; for(int i = 0; i \u003c n; ++i) { for(int j = 0; j \u003c m; ++j) { total += dfs(i, j); } } double average = total / (n * m); cout \u003c\u003c fixed \u003c\u003c setprecision(6) \u003c\u003c average \u003c\u003c endl; return 0; } Refs\nhttps://www.luogu.com.cn/article/xkrwf6li\nhttps://blog.csdn.net/m0_57883655/article/details/147405108\n","wordCount":"793","inLanguage":"cn","datePublished":"2025-05-01T16:11:27+08:00","dateModified":"2025-05-01T16:11:27+08:00","author":{"@type":"Person","name":"LingC"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://moonlab.top/posts/2025/lanqiao-aftermatch/"},"publisher":{"@type":"Organization","name":"MoonLab","logo":{"@type":"ImageObject","url":"https://moonlab.top/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://moonlab.top/ accesskey=h title="MoonLab (Alt + H)"><img src=/moon.svg alt aria-label=logo height=20>MoonLab</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><ul class=lang-switch><li>|</li><li><a href=https://moonlab.top/en/ title=English aria-label=English>En</a></li></ul></div></div><ul id=menu><li><a href=https://moonlab.top/archives/ title=归档><span>归档</span></a></li><li><a href=https://moonlab.top/search/ title=搜索><span>搜索</span></a></li><li><a href=https://moonlab.top/about/ title=关于><span>关于</span></a></li><li><a href=https://www.travellings.cn/go.html target=_blank title=开往><span>开往</span>&nbsp;<svg fill="none" shape-rendering="geometricPrecision" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a></li></ul></nav></header><div class=body-layout><div class=leftbar></div><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">2025蓝桥杯赛后总结</h1><div class=post-meta><span title='2025-05-01 16:11:27 +0800 +0800'>May 1, 2025</span>&nbsp;·&nbsp;LingC</div></header><div class=post-content><p>这次省赛，实际上我并无准备，因为我一如既往地对算法没有什么兴趣。</p><p>竞赛一共八道题，A和B题是填空题，后六道题都是程序设计。前五题都做了，第六题暴力应该只拿了部分分，后两题就没时间写了。</p><p>在赛场上当时看到C++编译器是2014年发布的gcc 4.7.4，用的是C++98标准。但蓝桥杯的云端是可以运行C++11以上的标准的代码的。</p><p>本地做题环境的编译器低版本，导致许多C++函数用不了。比如 to_string()函数用不了。前两题最快速的做饭需要将数转到字符串类型，但是我只知道c++中有一个方便的 to_string() 函数，还好当时我看到赛场机子中有Pycharm，所以我就用python计算了前两道填空题。</p><p><strong>这个向下兼容的过程，消耗了我大量时间。</strong></p><p>最致命的是，有一道题我需要声明一个迭代器，但是我不知道迭代器的类型名，一般来说都是用auto自动推导的，但auto只在C++11标准以上才有，导致这道题的代码我在本地环境无法测试。明明代码是正确的，但本地的低版本编译器却认为我的代码是错误的。这种割裂感很少有。</p><p>而现在看来这道题也依旧做对了。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>// C++98
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> vec;
+</span></span><span style=display:flex><span>std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;::</span>iterator it <span style=color:#f92672>=</span> vec.begin();
+</span></span><span style=display:flex><span><span style=color:#75715e>// C++ 11
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>auto</span> it <span style=color:#f92672>=</span> vec.begin();  <span style=color:#75715e>// 自动推导为 std::vector&lt;int&gt;::iterator
+</span></span></span></code></pre></div><p>与当时赛场的老师沟通，得知组委会只要求提供5.11版本的dev c++，而他们似乎只更新了代码编辑器版本，但一般来说dev c++是捆绑了一个编译器的，但不知为何内置的编译器却十分古典，感觉有点意思。</p><p>比赛完后，我查找了在 C++98 的字符串类型转换方法：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>// for C++98/03 standard
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>string <span style=color:#a6e22e>old_int_to_string</span>(<span style=color:#66d9ef>int</span> v) {
+</span></span><span style=display:flex><span>    ostringstream oss;
+</span></span><span style=display:flex><span>    oss <span style=color:#f92672>&lt;&lt;</span> v;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> oss.str();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>string <span style=color:#a6e22e>old_double_to_string</span>(<span style=color:#66d9ef>double</span> v) {
+</span></span><span style=display:flex><span>    ostringstream oss;
+</span></span><span style=display:flex><span>    oss <span style=color:#f92672>&lt;&lt;</span> fixed <span style=color:#f92672>&lt;&lt;</span> setprecision(<span style=color:#ae81ff>6</span>) <span style=color:#f92672>&lt;&lt;</span> v;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> oss.str();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>string <span style=color:#a6e22e>old_c_style_to_string</span>(<span style=color:#66d9ef>int</span> v) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>char</span> buffer[<span style=color:#ae81ff>32</span>]; <span style=color:#75715e>// make sure buffer is suffcient
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    sprintf(buffer, <span style=color:#e6db74>&#34;%d&#34;</span>, v);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> string(buffer);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>事实上，生活在草台班子里的我们不必认真太多。</p><h1 id=部分题解>部分题解<a hidden class=anchor aria-hidden=true href=#部分题解>#</a></h1><h2 id=7-拼好数>7. 拼好数<a hidden class=anchor aria-hidden=true href=#7-拼好数>#</a></h2><p>当时留给我写第七道题的时间只有5分钟左右，大概读完了题就已经结束了。
+这道题是省赛 C++ C组，Python A组，Java A组的题。</p><h4 id=题目>题目<a hidden class=anchor aria-hidden=true href=#题目>#</a></h4><p>我们将含有不少于 6 个 6 的数视为一个好数。例如 666666, 162636465666 是好数，12366666 不是好数。 </p><p>给定 n 个正整数 $a_i$，你可以把这些数分成若干组拼起来，每组内的数可以按任意顺序拼，但一组最多只能有 3 个数。求最多可以得到多少个好数。</p><h4 id=输入格式>输入格式<a hidden class=anchor aria-hidden=true href=#输入格式>#</a></h4><p>输入的第一行包含一个正整数 n 。 </p><p>第二行包含 n 个正整数 a1, a2, · · · , an ，相邻整数之间使用一个空格分隔。</p><h4 id=输出格式>输出格式<a hidden class=anchor aria-hidden=true href=#输出格式>#</a></h4><p>输出一行包含一个整数表示答案，即最多可以得到的好数的数量</p><pre tabindex=0><code>【样例输入 1】
+3
+66 66 66
+
+【样例输出 1】
+1
+
+【样例输入 2】 
+7 666666 16166 6696 666 6 6 6 
+
+【样例输出 2】 
+2
+</code></pre><p>这个问题是分组问题：如何分组，使得包含6个6的组尽可能的多。而每个组最多能有三个数，那么最少能有1个数。</p><p>我们可以统计每个数中6的个数：比如将 16166 6193 66 转化为 3 1 2，再进行排序，之后算出如何相加才能得到最多的6。</p><p>分组的情况只有三种：</p><pre tabindex=0><code>sum1 = a1
+sum2 = a1 + a2
+sum3 = a1 + a2 + a3
+</code></pre><p>我们为了得到最大的组数，使用贪心策略追求局部最优，则每次都要尽可能地先选择最少的数，且尽可能地用最大的数与最小的数组合：</p><p>如果一个数包含6个以上的6，则单独成一组。</p><p>此时，转换后的数组只可能由 1 2 3 4 5 这五个数字组成。</p><p>对于 5 我们为它找 1，如果没有则找 2。同理，对于4，我们找 2，没有则找 3。</p><p>此时未配对的数，只可能由 1 2 3 4 组成。三元组中：首先查找4 + 1 + 1，对于 4 + 2 + 1，不优于 4 + 2。</p><p>而对于 1 2 3，3 + 2 + 1 优于 3 + 2 + 2 ，<strong>并且优于 3 + 3</strong>，因为 1 2 如果没有 3 就无法成组。</p><p>最后只剩 2 3 的情况：</p><ul><li>2 + 2 + 2</li><li>3 + 2 + 2</li><li>3 + 3</li></ul><p><img loading=lazy src=20250502175714.png alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> n;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>count_six</span>(<span style=color:#66d9ef>int</span> n) {
+</span></span><span style=display:flex><span>	string s <span style=color:#f92672>=</span> to_string(n);
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> count(s.begin(), s.end(), <span style=color:#e6db74>&#39;6&#39;</span>);
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span>(cnt <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>6</span>) cnt<span style=color:#f92672>=</span><span style=color:#ae81ff>6</span>;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> cnt;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	cin <span style=color:#f92672>&gt;&gt;</span> n;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> a[<span style=color:#ae81ff>7</span>] <span style=color:#f92672>=</span> {<span style=color:#ae81ff>0</span>};
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>n;i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>int</span> t; cin<span style=color:#f92672>&gt;&gt;</span>t;	
+</span></span><span style=display:flex><span>		a[count_six(t)] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> a[<span style=color:#ae81ff>6</span>];
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> idx <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; <span style=color:#75715e>// range 1 2 3 4 5
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>while</span>(a[<span style=color:#ae81ff>5</span>]<span style=color:#f92672>&gt;</span><span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span>(a[idx]){
+</span></span><span style=display:flex><span>			a[idx]<span style=color:#f92672>--</span>; a[<span style=color:#ae81ff>5</span>]<span style=color:#f92672>--</span>;
+</span></span><span style=display:flex><span>			ans<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>		} <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(idx <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>6</span>) {
+</span></span><span style=display:flex><span>			idx<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>while</span>(a[<span style=color:#ae81ff>4</span>] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> a[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span>		a[<span style=color:#ae81ff>4</span>]<span style=color:#f92672>--</span>; a[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>-=</span><span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>		ans<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	idx <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>; <span style=color:#75715e>// range 2 3 4
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>while</span>(a[<span style=color:#ae81ff>4</span>] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span>(a[idx]){
+</span></span><span style=display:flex><span>			a[idx]<span style=color:#f92672>--</span>; a[<span style=color:#ae81ff>4</span>]<span style=color:#f92672>--</span>;
+</span></span><span style=display:flex><span>			ans<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>		} <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(idx <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>5</span>) {
+</span></span><span style=display:flex><span>			idx<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>while</span>(a[<span style=color:#ae81ff>3</span>] <span style=color:#f92672>&amp;&amp;</span> a[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>&amp;&amp;</span> a[<span style=color:#ae81ff>1</span>]) {
+</span></span><span style=display:flex><span>		<span style=color:#f92672>--</span>a[<span style=color:#ae81ff>3</span>]; <span style=color:#f92672>--</span>a[<span style=color:#ae81ff>2</span>]; <span style=color:#f92672>--</span>a[<span style=color:#ae81ff>1</span>];
+</span></span><span style=display:flex><span>		ans<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 2 + 2 + 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    ans <span style=color:#f92672>+=</span> a[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>    a[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> a[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>%</span> <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 3 + 2 + 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> possible <span style=color:#f92672>=</span> min(a[<span style=color:#ae81ff>3</span>], a[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>);
+</span></span><span style=display:flex><span>    ans <span style=color:#f92672>+=</span> possible;
+</span></span><span style=display:flex><span>    a[<span style=color:#ae81ff>3</span>] <span style=color:#f92672>-=</span> possible;
+</span></span><span style=display:flex><span>    a[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> possible;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 3 + 3
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    ans <span style=color:#f92672>+=</span> a[<span style=color:#ae81ff>3</span>] <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>    a[<span style=color:#ae81ff>3</span>] <span style=color:#f92672>=</span> a[<span style=color:#ae81ff>3</span>] <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	cout <span style=color:#f92672>&lt;&lt;</span> ans <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=8-登山>8. 登山<a hidden class=anchor aria-hidden=true href=#8-登山>#</a></h2><h4 id=题目-1>题目<a hidden class=anchor aria-hidden=true href=#题目-1>#</a></h4><p>小蓝正在登山，山峰的高度构成 n 行 m 列的正整数矩阵，$a_(i, j)$ 表示第 i 行 第 j 列格子 (i, j) 上的山峰的高度。小蓝以一种特别的方式进行登山，如果他此刻在第 p 行第 q 列的格子 (p, q) 上，那么下一步可以选择： </p><ol><li><p>走到格子 (i, q)，满足 ai,q &lt; ap,q 且 i > p ； </p></li><li><p>走到格子 (i, q)，满足 ai,q > ap,q 且 i &lt; p ； </p></li><li><p>走到格子 (p, j)，满足 ap, j &lt; ap,q 且 j > q ； </p></li><li><p>走到格子 (p, j)，满足 ap, j > ap,q 且 j &lt; q 。 </p></li></ol><p>小蓝想知道，如果他依次从每一个格子开始出发，按照最优策略，他最高能到达的山峰的高度的平均值是多少？</p><h4 id=输入格式-1>输入格式<a hidden class=anchor aria-hidden=true href=#输入格式-1>#</a></h4><p>输入的第一行包含两个正整数 n, m ，用一个空格分隔。 </p><p>接下来 n 行，每行包含 m 个正整数。其中第 i 行包含 ai,1, ai,2, · · · , ai,m ，相 邻整数之间使用一个空格分隔。</p><h4 id=输出格式-1>输出格式<a hidden class=anchor aria-hidden=true href=#输出格式-1>#</a></h4><p>输出一行包含一个实数表示答案，四舍五入保留正好 6 位小数。</p><h4 id=题解>题解<a hidden class=anchor aria-hidden=true href=#题解>#</a></h4><p>我们先来分析一下移动规则：</p><ul><li>向下移动 （i > p)，需要高度更低。</li><li>向上移动 （i &lt; p)，需要高度更高。</li><li>向右移动 (j > q)，需要高度更低。</li><li>向左移动 (j &lt; q)，需要高度更高。</li></ul><p>每次移动只顺着一个行或列方向上的变化，并且是可以跳着走的。</p><p>对于每一个格子，或者叫做起点 $(p, q)$，都要算出能到达的最高山峰高度，最后将每一个格子的结果求平均值。</p><p>我自己尝试直接用dfs，加上记忆搜索来做，只通过了部分：</p><p><img loading=lazy src=20250502060223.png alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> a;
+</span></span><span style=display:flex><span>vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> dp;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> n, m;
+</span></span><span style=display:flex><span>set<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> used; <span style=color:#75715e>// unordered_set require customizing hash func
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> NEG_INF <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>dfs</span>(<span style=color:#66d9ef>int</span> p, <span style=color:#66d9ef>int</span> q) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span>(dp[p][q] <span style=color:#f92672>!=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>return</span> dp[p][q];
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span>(used.find({p, q}) <span style=color:#f92672>!=</span> used.end()) <span style=color:#66d9ef>return</span> NEG_INF;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> max_h <span style=color:#f92672>=</span> a[p][q];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Downward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> p<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>; i<span style=color:#f92672>&lt;</span>n; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span>(a[i][q] <span style=color:#f92672>&lt;</span> a[p][q]){
+</span></span><span style=display:flex><span>			used.insert({p, q});
+</span></span><span style=display:flex><span>			max_h <span style=color:#f92672>=</span> max(max_h, dfs(i, q));
+</span></span><span style=display:flex><span>			used.erase({p, q});
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Upward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> p<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>; i<span style=color:#f92672>&gt;=</span><span style=color:#ae81ff>0</span>; i<span style=color:#f92672>--</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span>(a[i][q] <span style=color:#f92672>&gt;</span> a[p][q]) {
+</span></span><span style=display:flex><span>			used.insert({p, q});
+</span></span><span style=display:flex><span>			max_h <span style=color:#f92672>=</span> max(max_h, dfs(i, q));
+</span></span><span style=display:flex><span>			used.erase({p, q});
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Rightward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> q<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>; j<span style=color:#f92672>&lt;</span>m; j<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span>(a[p][j] <span style=color:#f92672>&lt;</span> a[p][q]){
+</span></span><span style=display:flex><span>			used.insert({p, q});
+</span></span><span style=display:flex><span>			max_h <span style=color:#f92672>=</span> max(max_h, dfs(p, j));
+</span></span><span style=display:flex><span>			used.erase({p, q});
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Leftward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> q<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>; j<span style=color:#f92672>&gt;=</span><span style=color:#ae81ff>0</span>; j<span style=color:#f92672>--</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span>(a[p][j] <span style=color:#f92672>&gt;</span> a[p][q]){
+</span></span><span style=display:flex><span>			used.insert({p, q});
+</span></span><span style=display:flex><span>			max_h <span style=color:#f92672>=</span> max(max_h, dfs(p, j));
+</span></span><span style=display:flex><span>			used.erase({p, q});
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	dp[p][q] <span style=color:#f92672>=</span> max_h;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> max_h;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	ios<span style=color:#f92672>::</span>sync_with_stdio(false);
+</span></span><span style=display:flex><span>    cin.tie(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>    cin <span style=color:#f92672>&gt;&gt;</span> n <span style=color:#f92672>&gt;&gt;</span> m;
+</span></span><span style=display:flex><span>    a.assign(n, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(m));
+</span></span><span style=display:flex><span>    dp.assign(n, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(m, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>));
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; <span style=color:#f92672>++</span>i) {
+</span></span><span style=display:flex><span>	    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> m; <span style=color:#f92672>++</span>j) {
+</span></span><span style=display:flex><span>		    cin <span style=color:#f92672>&gt;&gt;</span> a[i][j];
+</span></span><span style=display:flex><span>	    }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>double</span> total <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; <span style=color:#f92672>++</span>i) {
+</span></span><span style=display:flex><span>	    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> m; <span style=color:#f92672>++</span>j) {
+</span></span><span style=display:flex><span>		    total <span style=color:#f92672>+=</span> dfs(i, j);
+</span></span><span style=display:flex><span>	    }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>double</span> average <span style=color:#f92672>=</span> total <span style=color:#f92672>/</span> (n <span style=color:#f92672>*</span> m);
+</span></span><span style=display:flex><span>    cout <span style=color:#f92672>&lt;&lt;</span> fixed <span style=color:#f92672>&lt;&lt;</span> setprecision(<span style=color:#ae81ff>6</span>) <span style=color:#f92672>&lt;&lt;</span> average <span style=color:#f92672>&lt;&lt;</span> endl;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><p>Refs</p><p><a href=https://www.luogu.com.cn/article/xkrwf6li>https://www.luogu.com.cn/article/xkrwf6li</a></p><p><a href=https://blog.csdn.net/m0_57883655/article/details/147405108>https://blog.csdn.net/m0_57883655/article/details/147405108</a></p></div><footer class=post-footer><ul class=post-tags></ul></footer><script src=https://comment.moonlab.top/moontalk.js></script><div id=container></div><script>(new MoonTalk).init({page_key:window.location.href,server:"https:///comment.moonlab.top",element:"#container"})</script></article></main><aside class=rightbar><div class=rightbar-categories><h3>分类</h3><ul class=rightbar-categories-first-list><li><a href=https://moonlab.top/categories/programming/>Programming</a> (16)<ul class=rightbar-categories-sec-list><li><a href=/tags/embeded>Embeded</a></li><li><a href=/tags/golang>golang</a></li><li><a href=/tags/linux>Linux</a></li><li><a href=/tags/android>Android</a></li></ul></li><li><a href=https://moonlab.top/categories/reverse/>Reverse</a> (1)<ul class=rightbar-categories-sec-list><li><a href=/tags/javascript>JavaScript</a></li></ul></li><li><a href=https://moonlab.top/categories/%E5%85%B6%E4%BB%96/>其他</a> (5)<ul class=rightbar-categories-sec-list><li><a href=/tags/blog>blog</a></li></ul></li><li><a href=https://moonlab.top/categories/%E7%AE%97%E6%B3%95/>算法</a> (4)<ul class=rightbar-categories-sec-list></ul></li></ul></div></aside></div><footer class=footer><img id=mooncounter-img style="margin:0 auto;margin-bottom:6px"></img>
+<script src="//counter.moonlab.top/img?name=https://moonlab.top/"></script><span>&copy; 2025 <a href=https://moonlab.top/>MoonLab</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><a href=https://www.travellings.cn/go.html rel=noopener target=_blank><img style=height:27px alt=travelling src=https://www.travellings.cn/assets/logo.svg></a></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Blog on MoonLab</title><link>https://moonlab.top/tags/blog/</link><description>Recent content in Blog on MoonLab</description><generator>Hugo -- 0.143.1</generator><language>zh-CN</language><lastBuildDate>Tue, 19 Dec 2023 21:38:50 +0000</lastBuildDate><atom:link href="https://moonlab.top/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Hexo博客自动备份插件 云盘备份支持</title><link>https://moonlab.top/posts/2023/hexo-auto-backup/</link><pubDate>Tue, 19 Dec 2023 21:38:50 +0000</pubDate><guid>https://moonlab.top/posts/2023/hexo-auto-backup/</guid><description>本文讨论了博客数据备份方案，强调321原则：保留3个备份副本，使用2种不同储存介质，1个备份远离数据源。最初考虑使用GitHub Action进行备份，但发现其局限性。为此，开发了Hexo插件“hexo-auto-backup”，可在执行hexo deploy时自动备份重要文件到本地或云盘，支持多种云服务和协议。插件安装简单，通过npm安装。未来计划改进备份过期设置和多系统支持。详细信息可见插件的GitHub仓库。</description></item><item><title>使用Hexo</title><link>https://moonlab.top/posts/2019/hello-hexo/</link><pubDate>Sat, 25 May 2019 14:50:36 +0000</pubDate><guid>https://moonlab.top/posts/2019/hello-hexo/</guid><description>&lt;p>咸鱼不咸从今天（2019.5.25）开始使用&lt;a href="https://hexo.io">Hexo&lt;/a>啦&lt;/p>
+&lt;p>用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用&lt;/p>
+&lt;p>之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客&amp;hellip;&lt;/p>
+&lt;p>之前的 咕咕咕 事故导致博客失去了许多朋友QAQ&lt;/p>
+&lt;p>写博客的这一段时间，我也有许多的收获吧&lt;/p>
+&lt;p>咸鱼不咸的初心只是因为无聊，而现在则是想要有一个在复杂的网络中发声的立身之地&lt;/p>
+&lt;p>在茫茫海洋中，唯有这小小的避浪处能给我安心吧&lt;/p>
+&lt;p>这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333&lt;/p></description></item></channel></rss>

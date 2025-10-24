@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>其他 on MoonLab</title><link>https://moonlab.top/categories/%E5%85%B6%E4%BB%96/</link><description>Recent content in 其他 on MoonLab</description><generator>Hugo -- 0.143.1</generator><language>zh-CN</language><lastBuildDate>Tue, 19 Dec 2023 21:38:50 +0000</lastBuildDate><atom:link href="https://moonlab.top/categories/%E5%85%B6%E4%BB%96/index.xml" rel="self" type="application/rss+xml"/><item><title>Hexo博客自动备份插件 云盘备份支持</title><link>https://moonlab.top/posts/2023/hexo-auto-backup/</link><pubDate>Tue, 19 Dec 2023 21:38:50 +0000</pubDate><guid>https://moonlab.top/posts/2023/hexo-auto-backup/</guid><description>本文讨论了博客数据备份方案，强调321原则：保留3个备份副本，使用2种不同储存介质，1个备份远离数据源。最初考虑使用GitHub Action进行备份，但发现其局限性。为此，开发了Hexo插件“hexo-auto-backup”，可在执行hexo deploy时自动备份重要文件到本地或云盘，支持多种云服务和协议。插件安装简单，通过npm安装。未来计划改进备份过期设置和多系统支持。详细信息可见插件的GitHub仓库。</description></item><item><title>使用Hexo</title><link>https://moonlab.top/posts/2019/hello-hexo/</link><pubDate>Sat, 25 May 2019 14:50:36 +0000</pubDate><guid>https://moonlab.top/posts/2019/hello-hexo/</guid><description>&lt;p>咸鱼不咸从今天（2019.5.25）开始使用&lt;a href="https://hexo.io">Hexo&lt;/a>啦&lt;/p>
+&lt;p>用了一年多的 Typecho ，换了新的博客程序虽然有点不习惯，但是我觉得 Hexo 比 Typecho更加好用&lt;/p>
+&lt;p>之前在 Typecho 写的文章我并不打算搬过来，评论也是如此，所以基本上相当于重新写一个博客&amp;hellip;&lt;/p>
+&lt;p>之前的 咕咕咕 事故导致博客失去了许多朋友QAQ&lt;/p>
+&lt;p>写博客的这一段时间，我也有许多的收获吧&lt;/p>
+&lt;p>咸鱼不咸的初心只是因为无聊，而现在则是想要有一个在复杂的网络中发声的立身之地&lt;/p>
+&lt;p>在茫茫海洋中，唯有这小小的避浪处能给我安心吧&lt;/p>
+&lt;p>这也算是一个新的开始吧，以后更新博客的速度就随缘吧233333&lt;/p></description></item><item><title>Windows 好软推荐 | 这一定是良心软件</title><link>https://moonlab.top/posts/2018/windows-software-recommendation/</link><pubDate>Sat, 04 Aug 2018 21:28:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/windows-software-recommendation/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>Author Avatar
+LingC
+8 月 4 日&lt;/p>
+&lt;h1 id="00">00&lt;/h1>
+&lt;p>继上一篇电脑中常用的软件&lt;/p>
+&lt;p>我在 C 盘格式化后又遇见了一些不错的软件，这些软件反正是有 Windows 版本的，其他系统我就不知道啦~~&lt;/p>
+&lt;p>并且这篇文章我会为你找到软件的官网或资源下载地址，我会一并写在这篇文章中&lt;/p>
+&lt;h1 id="01---fances">01 - Fances&lt;/h1>
+&lt;p>这款软件就是让你的桌面更条例有序，给泥们放一张我桌面的截图吧
+TIM截图20180804195952.png
+是不是感觉很好看 o(￣▽￣)o&lt;/p>
+&lt;p>购买：https://www.stardock.com/products/fences/
+不过 steam 上也有卖 &lt;a href="https://store.steampowered.com/app/607380/Fences/?l=tchinese&amp;amp;cc;=nl">https://store.steampowered.com/app/607380/Fences/?l=tchinese&amp;cc;=nl&lt;/a>
+你说你没有钱买正版？没关系，我这里有破解版
+不过在下载之前你要答应我，自己有能力的话一定要去买正版哦 (。・∀・) ノ
+慕若曦那里就有这个破解版资源，链接：https://www.muruoxi.com/623.html&lt;/p>
+&lt;h1 id="02---flux">02 - f.lux&lt;/h1>
+&lt;p>有时候我会抱怨，电脑屏幕的亮度太高了，兼职闪瞎我的眼睛，特别是在晚上的时候，我一直找不到好的护眼软件&lt;/p>
+&lt;p>然而，这款软件除了普通的护眼功能外，还可以根据你选择的模式在不同时间段进行自动调节
+来张图&lt;/p>
+&lt;p>flux.png&lt;/p>
+&lt;p>你可以直接去官网中下载：https://justgetflux.com/&lt;/p>
+&lt;h1 id="03---uninstaller">03 - uninstaller&lt;/h1>
+&lt;p>这其实是一个小工具，你不用安装就可以启动&lt;/p>
+&lt;p>这是一款小型轻量的卸载程序，我看中它可以卸载完程序后，清理注册表里的残留，感觉挺良心的
+我查了一下才发现，我一直用的是老版本的 uninstaller，这是老板本截图，新版本比这好看很多&lt;/p>
+&lt;p>uninstallerold.png&lt;/p>
+&lt;p>老板本的 uninstaller 不需要安装，而新版本的需要安装，但是新版本的用户体验肯定比老板本好啦&lt;/p>
+&lt;p>新版本截图：&lt;/p>
+&lt;p>uninstallernow.png&lt;/p>
+&lt;p>虽然新版本安装时有一些肿瘤，推荐你安装同一公司的产品，以及订阅书籍，但是它在功能使用方面并不膨胀，我自己稍微使用了一下感觉还行
+飞去下载地址吧！：https://iobit-uninstaller.en.softonic.com/&lt;/p>
+&lt;h1 id="04---火绒">04 - 火绒&lt;/h1>
+&lt;p>这是本文唯一提到的国产软件，也是我最期待的软件&lt;/p>
+&lt;p>这是一款电脑安全软件，我相信你们的电脑一般都会装一些安全软件，比如 360，百度，腾讯的那些安全卫士&lt;/p>
+&lt;p>我在知道火绒之前一直是裸体的，直到火绒出现到我面前，我一直是不相信国内会有如此良心的安全软件&lt;/p>
+&lt;p>首先，肯定有人会问&lt;/p>
+&lt;pre>&lt;code>啊，这是什么软件，听都没有听说过，肯定没有 360 好用啦
+&lt;/code>&lt;/pre>
+&lt;p>其实火绒的防护能力并不亚于国内的安全软件，不敢说是站在顶端，但是从制作人方面就可以看出一定不是什么小公司做开发的，我用着感觉十分的不错，纯净的超乎想象，有一次我卸载国内某款软件，最后即将完成卸载时，我不耐烦的快速按了，眼角的余光看见了&lt;/p>
+&lt;pre>&lt;code>√ 安装 鲁大师
+√ 安装 …
+&lt;/code>&lt;/pre>
+&lt;p>当时其实我都忘记了还有火绒在，所以慌的一批，然后火绒就在右下角弹出 “已拦截…..”&lt;/p></description></item><item><title>typecho - http转https</title><link>https://moonlab.top/posts/2018/typecho-http-2-https/</link><pubDate>Tue, 27 Mar 2018 21:28:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/typecho-http-2-https/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>2018-03-27 21:28&lt;/p>
+&lt;p>在我从http转成https时出现一个致命问题：&lt;/p>
+&lt;p>css与js无法加载&lt;/p>
+&lt;p>报错截图：&lt;/p>
+&lt;p>![NOT]&lt;/p>
+&lt;p>主页界面：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="https://img.lcblog.cn/images/typecho/2018-03-27/1.png" alt="1" />
+&lt;/p>
+&lt;p>并且这时没有绿锁&lt;/p>
+&lt;p>&lt;img loading="lazy" src="https://img.lcblog.cn/images/typecho/2018-03-27/3.png" alt="3" />
+&lt;/p>
+&lt;hr>
+&lt;p>访问了许多网站，游览了许多资料
+在&lt;code>config.inc.php&lt;/code>中插入&lt;/p>
+&lt;pre>&lt;code>/** 开启HTTPS */
+define('__TYPECHO_SECURE__',true);&lt;/code>&lt;/pre>
+&lt;p>也没有任何卵用，我开始绝望&lt;/p>
+&lt;p>其主要问题是 网站前台资源 通过http访问，而本站是https，所以会出现问题
+且安全连接并不完全，因为有http的连接&lt;/p>
+&lt;p>就在这时，我翻到一篇文章，看到一个插件：&lt;code>TEDUriReplace&lt;/code>
+使用方法非常简单，插件截图：
+&lt;img loading="lazy" src="https://img.lcblog.cn/images/typecho/2018-03-27/2.png" alt="2" />
+&lt;/p>
+&lt;p>步骤：&lt;/p>
+&lt;p>1.将后台的网址改为https://xxx.cn&lt;/p>
+&lt;p>2.在插件的规则中写入&lt;code>&lt;a href="http://xxx.cn/=%3Ehttps://xxx.cn/">http://xxx.cn/=>https://xxx.cn/&lt;/a>&lt;/code>&lt;/p>
+&lt;p>3.刷新网页&lt;/p>
+&lt;p>就是如此简单，这款插件真的很好用
+下载链接：&lt;a href="https://s.typechodev.com/plugins/uploads/2017/12/2122242327.zip">https://s.typechodev.com/plugins/uploads/2017/12/2122242327.zip&lt;/a>&lt;/p></description></item><item><title>如何评价Android P</title><link>https://moonlab.top/posts/2018/comment-about-android-p/</link><pubDate>Wed, 21 Mar 2018 21:09:14 +0800</pubDate><guid>https://moonlab.top/posts/2018/comment-about-android-p/</guid><description>&lt;blockquote>
+&lt;p>从垃圾堆里抛出来的一篇2018的文章. &amp;ndash;2024.8.7&lt;/p>&lt;/blockquote>
+&lt;p>2018-03-21 21:09&lt;/p>
+&lt;p>[one]&lt;/p>
+&lt;p>[two]&lt;/p>
+&lt;p>2018年3月8日，Google发布了Android P的预览版
+而这次版本更新引来了很多不满，大多是对布局外观上的评价
+主要都是围绕着Material Design的问题，因为Google从Android5.x开始就遵循着Material Design
+而Material Design是Google提出的设计风格，虽然Google系列很多都遵循着MD
+但是也有一部分偏移了MD，就比如AndroidP，我感觉更偏向于扁平化&lt;/p>
+&lt;p>[Android]&lt;/p>
+&lt;p>这张图片是AndroidP的截图，感觉还可以
+另外再说一下圆角元素，AndroidP大量使用了圆角元素
+我个人感觉圆角元素的弧度只要把握好，真的不是什么大问题
+斜刘海的问题我也不想多说
+这也成为了被众人吐槽的原因之一&lt;/p>
+&lt;p>[Android Title]&lt;/p>
+&lt;p>&lt;em>Android P&lt;/em>&lt;/p>
+&lt;p>[IOS]
+&lt;em>IOS&lt;/em>
+P的通知栏已经丝毫没有MD的风格了，与IOS的通知栏比起来
+感觉更像了，偏向于扁平化，没有质感了&lt;/p>
+&lt;p>[Android Seting]&lt;/p>
+&lt;p>P的设置界面倒还不错，虽然与MD搭不上边
+色彩的搭配很有亮点&lt;/p>
+&lt;hr>
+&lt;p>总的来说，并不是特别讨厌P的更新，因为时代会变化&lt;/p>
+&lt;p>&lt;code>![hx][7]&lt;/code>&lt;/p>
+&lt;p>倒不如说很喜欢这次更新，感觉是安卓目前最好看的设计
+MD风格是给人的设计思路，而不是限制设计的锁链&lt;/p></description></item></channel></rss>

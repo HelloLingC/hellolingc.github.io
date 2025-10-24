@@ -1,0 +1,234 @@
+<!doctype html><html lang=cn dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Protobuf | MoonLab</title>
+<meta name=keywords content="golang"><meta name=description content='安装 protobuf
+假设环境下已有protoc (protocal buffers compiler)。
+对于 Go 语言，安装相应的可执行文件：
+go install google.golang.org/grpc/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+在Windows中，执行完安装命令后在C:\Users\user\go\bin路径下会有proctoc-gen-go.exe和protoc-gen-go-grpc.exe。
+安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 .proto 文件加一行以指定生成的Go包名：
+syntax = "proto3";
+package com.example.pkg
+
+option go_package = "example/gopkg"
+如果需要使用 grpc 服务，安装包：
+go get google.golang.org/grpc
+之后便可启动一个 gRPC 服务器：
+gRPC gateway
+为 gRPC 服务生成面向 RestFul API 的网关
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+syntax = "proto3";
+package com.example.pkg
+import "google/api/annotations.proto";
+
+option go_package = "example/gopkg
+
+service AuthService {
+  rpc Login(LRequest) returns (LResponse) {
+    option (google.api.http) = {
+      post: "/v1/login"
+      body: "*"
+    };
+  }
+
+message LRequest {
+  string field = 1;
+}
+
+message LResponse {
+  string field = 1;
+}
+之后便可以生成grpc gateway的代码了：'><meta name=author content="LingC"><link rel=canonical href=https://moonlab.top/posts/2025/protobuf3/><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><script>MathJax={tex:{displayMath:[["\\[","\\]"],["$$","$$"]],inlineMath:[["\\(","\\)"],["$","$"]]},loader:{load:["ui/safe"]}}</script><link crossorigin=anonymous href=/assets/css/stylesheet.1ff5a7b3bb4a96bf1747dfa25e8031167d4537d7ae4b78fac2b752886047a06e.css rel="preload stylesheet" as=style><link rel=icon href=/moon.svg type=image/svg+xml><link rel=icon type=image/png sizes=16x16 href=https://moonlab.top/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://moonlab.top/favicon-32x32.png><link rel=apple-touch-icon href=https://moonlab.top/apple-touch-icon.png><link rel=mask-icon href=https://moonlab.top/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=cn href=https://moonlab.top/posts/2025/protobuf3/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="Protobuf"><meta property="og:description" content='安装 protobuf
+假设环境下已有protoc (protocal buffers compiler)。
+对于 Go 语言，安装相应的可执行文件：
+go install google.golang.org/grpc/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+在Windows中，执行完安装命令后在C:\Users\user\go\bin路径下会有proctoc-gen-go.exe和protoc-gen-go-grpc.exe。
+安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 .proto 文件加一行以指定生成的Go包名：
+syntax = "proto3";
+package com.example.pkg
+
+option go_package = "example/gopkg"
+如果需要使用 grpc 服务，安装包：
+go get google.golang.org/grpc
+之后便可启动一个 gRPC 服务器：
+gRPC gateway
+为 gRPC 服务生成面向 RestFul API 的网关
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+syntax = "proto3";
+package com.example.pkg
+import "google/api/annotations.proto";
+
+option go_package = "example/gopkg
+
+service AuthService {
+  rpc Login(LRequest) returns (LResponse) {
+    option (google.api.http) = {
+      post: "/v1/login"
+      body: "*"
+    };
+  }
+
+message LRequest {
+  string field = 1;
+}
+
+message LResponse {
+  string field = 1;
+}
+之后便可以生成grpc gateway的代码了：'><meta property="og:type" content="article"><meta property="og:url" content="https://moonlab.top/posts/2025/protobuf3/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-24T03:33:27+08:00"><meta property="article:modified_time" content="2025-01-24T03:33:27+08:00"><meta property="og:site_name" content="MoonLab"><meta name=twitter:card content="summary"><meta name=twitter:title content="Protobuf"><meta name=twitter:description content='安装 protobuf
+假设环境下已有protoc (protocal buffers compiler)。
+对于 Go 语言，安装相应的可执行文件：
+go install google.golang.org/grpc/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+在Windows中，执行完安装命令后在C:\Users\user\go\bin路径下会有proctoc-gen-go.exe和protoc-gen-go-grpc.exe。
+安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 .proto 文件加一行以指定生成的Go包名：
+syntax = "proto3";
+package com.example.pkg
+
+option go_package = "example/gopkg"
+如果需要使用 grpc 服务，安装包：
+go get google.golang.org/grpc
+之后便可启动一个 gRPC 服务器：
+gRPC gateway
+为 gRPC 服务生成面向 RestFul API 的网关
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+syntax = "proto3";
+package com.example.pkg
+import "google/api/annotations.proto";
+
+option go_package = "example/gopkg
+
+service AuthService {
+  rpc Login(LRequest) returns (LResponse) {
+    option (google.api.http) = {
+      post: "/v1/login"
+      body: "*"
+    };
+  }
+
+message LRequest {
+  string field = 1;
+}
+
+message LResponse {
+  string field = 1;
+}
+之后便可以生成grpc gateway的代码了：'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://moonlab.top/posts/"},{"@type":"ListItem","position":2,"name":"Protobuf","item":"https://moonlab.top/posts/2025/protobuf3/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Protobuf","name":"Protobuf","description":"安装 protobuf 假设环境下已有protoc (protocal buffers compiler)。\n对于 Go 语言，安装相应的可执行文件：\ngo install google.golang.org/grpc/cmd/protoc-gen-go@latest go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest 在Windows中，执行完安装命令后在C:\\Users\\user\\go\\bin路径下会有proctoc-gen-go.exe和protoc-gen-go-grpc.exe。\n安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 .proto 文件加一行以指定生成的Go包名：\nsyntax = \u0026#34;proto3\u0026#34;; package com.example.pkg option go_package = \u0026#34;example/gopkg\u0026#34; 如果需要使用 grpc 服务，安装包：\ngo get google.golang.org/grpc 之后便可启动一个 gRPC 服务器：\ngRPC gateway 为 gRPC 服务生成面向 RestFul API 的网关\ngo install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest syntax = \u0026#34;proto3\u0026#34;; package com.example.pkg import \u0026#34;google/api/annotations.proto\u0026#34;; option go_package = \u0026#34;example/gopkg service AuthService { rpc Login(LRequest) returns (LResponse) { option (google.api.http) = { post: \u0026#34;/v1/login\u0026#34; body: \u0026#34;*\u0026#34; }; } message LRequest { string field = 1; } message LResponse { string field = 1; } 之后便可以生成grpc gateway的代码了：\n","keywords":["golang"],"articleBody":"安装 protobuf 假设环境下已有protoc (protocal buffers compiler)。\n对于 Go 语言，安装相应的可执行文件：\ngo install google.golang.org/grpc/cmd/protoc-gen-go@latest go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest 在Windows中，执行完安装命令后在C:\\Users\\user\\go\\bin路径下会有proctoc-gen-go.exe和protoc-gen-go-grpc.exe。\n安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 .proto 文件加一行以指定生成的Go包名：\nsyntax = \"proto3\"; package com.example.pkg option go_package = \"example/gopkg\" 如果需要使用 grpc 服务，安装包：\ngo get google.golang.org/grpc 之后便可启动一个 gRPC 服务器：\ngRPC gateway 为 gRPC 服务生成面向 RestFul API 的网关\ngo install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest syntax = \"proto3\"; package com.example.pkg import \"google/api/annotations.proto\"; option go_package = \"example/gopkg service AuthService { rpc Login(LRequest) returns (LResponse) { option (google.api.http) = { post: \"/v1/login\" body: \"*\" }; } message LRequest { string field = 1; } message LResponse { string field = 1; } 之后便可以生成grpc gateway的代码了：\nprotoc --go_out=. --go-grpc_out=. \\ --grpc-gateway_out=. \\ --openapiv2_out=. \\ greeter.proto 其所生成的文件含义如下：\ngreeter.pb.go: Protobuf message definitions. greeter_grpc.pb.go: gRPC service definitions. greeter.pb.gw.go: gRPC Gateway reverse-proxy code. greeter.swagger.json: OpenAPI (Swagger) documentation. gRPC 服务 package main import ( \"context\" \"fmt\" \"log\" \"net\" \"google.golang.org/grpc\" \"google.golang.org/grpc/reflection\" pb \"github.com/yourusername/yourproject/gen/go/hello\" ) type server struct { pb.UnimplementedGreeterServer } func (s *server) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloResponse, error) { return \u0026pb.HelloResponse{Message: fmt.Sprintf(\"Hello, %s!\", req.Name)}, nil } func main() { lis, err := net.Listen(\"tcp\", \":50051\") if err != nil { log.Fatalf(\"failed to listen: %v\", err) } s := grpc.NewServer() pb.RegisterGreeterServer(s, \u0026server{}) reflection.Register(s) log.Println(\"gRPC server is running on :50051\") if err := s.Serve(lis); err != nil { log.Fatalf(\"failed to serve: %v\", err) } } gRPC 网关 package main import ( \"context\" \"log\" \"net/http\" \"github.com/grpc-ecosystem/grpc-gateway/v2/runtime\" \"google.golang.org/grpc\" pb \"github.com/yourusername/yourproject/gen/go/hello\" ) func runGateway() { ctx := context.Background() ctx, cancel := context.WithCancel(ctx) defer cancel() mux := runtime.NewServeMux() opts := []grpc.DialOption{grpc.WithInsecure()} err := pb.RegisterGreeterHandlerFromEndpoint(ctx, mux, \"localhost:50051\", opts) if err != nil { log.Fatalf(\"failed to register gateway: %v\", err) } log.Println(\"gRPC Gateway is running on :8080\") if err := http.ListenAndServe(\":8080\", mux); err != nil { log.Fatalf(\"failed to serve gateway: %v\", err) } } func main() { go runGateway() // 启动 gRPC 服务 runGRPCServer() } ","wordCount":"293","inLanguage":"cn","datePublished":"2025-01-24T03:33:27+08:00","dateModified":"2025-01-24T03:33:27+08:00","author":{"@type":"Person","name":"LingC"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://moonlab.top/posts/2025/protobuf3/"},"publisher":{"@type":"Organization","name":"MoonLab","logo":{"@type":"ImageObject","url":"https://moonlab.top/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://moonlab.top/ accesskey=h title="MoonLab (Alt + H)"><img src=/moon.svg alt aria-label=logo height=20>MoonLab</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><ul class=lang-switch><li>|</li><li><a href=https://moonlab.top/en/ title=English aria-label=English>En</a></li></ul></div></div><ul id=menu><li><a href=https://moonlab.top/archives/ title=归档><span>归档</span></a></li><li><a href=https://moonlab.top/search/ title=搜索><span>搜索</span></a></li><li><a href=https://moonlab.top/about/ title=关于><span>关于</span></a></li><li><a href=https://www.travellings.cn/go.html target=_blank title=开往><span>开往</span>&nbsp;<svg fill="none" shape-rendering="geometricPrecision" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a></li></ul></nav></header><div class=body-layout><div class=leftbar></div><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Protobuf</h1><div class=post-meta><span title='2025-01-24 03:33:27 +0800 +0800'>January 24, 2025</span>&nbsp;·&nbsp;LingC</div></header><div class=post-content><h1 id=安装-protobuf>安装 protobuf<a hidden class=anchor aria-hidden=true href=#安装-protobuf>#</a></h1><p>假设环境下已有<code>protoc</code> (protocal buffers compiler)。</p><p>对于 Go 语言，安装相应的可执行文件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>go install google.golang.org/grpc/cmd/protoc-gen-go@latest
+</span></span><span style=display:flex><span>go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+</span></span></code></pre></div><p>在Windows中，执行完安装命令后在<code>C:\Users\user\go\bin</code>路径下会有<code>proctoc-gen-go.exe</code>和<code>protoc-gen-go-grpc.exe</code>。</p><p>安装完Go插件后，我们希望protoc生成Go语言的代码，需要为 <code>.proto</code> 文件加一行以指定生成的Go包名：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>syntax</span> = <span style=color:#e6db74>&#34;proto3&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>com</span>.<span style=color:#a6e22e>example</span>.<span style=color:#a6e22e>pkg</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>option</span> <span style=color:#a6e22e>go_package</span> = <span style=color:#e6db74>&#34;example/gopkg&#34;</span>
+</span></span></code></pre></div><p>如果需要使用 <code>grpc</code> 服务，安装包：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>go get google.golang.org/grpc
+</span></span></code></pre></div><p>之后便可启动一个 gRPC 服务器：</p><h1 id=grpc-gateway>gRPC gateway<a hidden class=anchor aria-hidden=true href=#grpc-gateway>#</a></h1><p>为 <code>gRPC</code> 服务生成面向 <code>RestFul API</code> 的网关</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+</span></span><span style=display:flex><span>go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>syntax</span> = <span style=color:#e6db74>&#34;proto3&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>com</span>.<span style=color:#a6e22e>example</span>.<span style=color:#a6e22e>pkg</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> <span style=color:#e6db74>&#34;google/api/annotations.proto&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>option</span> <span style=color:#a6e22e>go_package</span> = <span style=color:#e6db74>&#34;example/gopkg
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>service AuthService {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  rpc Login(LRequest) returns (LResponse) {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    option (google.api.http) = {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      post: &#34;</span><span style=color:#f92672>/</span><span style=color:#a6e22e>v1</span><span style=color:#f92672>/</span><span style=color:#a6e22e>login</span><span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      body: &#34;</span><span style=color:#f92672>*</span><span style=color:#960050;background-color:#1e0010>&#34;</span>
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>message</span> <span style=color:#a6e22e>LRequest</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>string</span> <span style=color:#a6e22e>field</span> = <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>message</span> <span style=color:#a6e22e>LResponse</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>string</span> <span style=color:#a6e22e>field</span> = <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>之后便可以生成grpc gateway的代码了：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>protoc --go_out<span style=color:#f92672>=</span>. --go-grpc_out<span style=color:#f92672>=</span>. <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --grpc-gateway_out<span style=color:#f92672>=</span>. <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --openapiv2_out<span style=color:#f92672>=</span>. <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  greeter.proto
+</span></span></code></pre></div><p>其所生成的文件含义如下：</p><ul><li>greeter.pb.go: Protobuf message definitions.</li><li>greeter_grpc.pb.go: gRPC service definitions.</li><li>greeter.pb.gw.go: gRPC Gateway reverse-proxy code.</li><li>greeter.swagger.json: OpenAPI (Swagger) documentation.</li></ul><h2 id=grpc-服务>gRPC 服务<a hidden class=anchor aria-hidden=true href=#grpc-服务>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;context&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;log&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;net&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;google.golang.org/grpc&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;google.golang.org/grpc/reflection&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>pb</span> <span style=color:#e6db74>&#34;github.com/yourusername/yourproject/gen/go/hello&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>server</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>pb</span>.<span style=color:#a6e22e>UnimplementedGreeterServer</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>server</span>) <span style=color:#a6e22e>SayHello</span>(<span style=color:#a6e22e>ctx</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Context</span>, <span style=color:#a6e22e>req</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>pb</span>.<span style=color:#a6e22e>HelloRequest</span>) (<span style=color:#f92672>*</span><span style=color:#a6e22e>pb</span>.<span style=color:#a6e22e>HelloResponse</span>, <span style=color:#66d9ef>error</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>pb</span>.<span style=color:#a6e22e>HelloResponse</span>{<span style=color:#a6e22e>Message</span>: <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;Hello, %s!&#34;</span>, <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>Name</span>)}, <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>lis</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>net</span>.<span style=color:#a6e22e>Listen</span>(<span style=color:#e6db74>&#34;tcp&#34;</span>, <span style=color:#e6db74>&#34;:50051&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;failed to listen: %v&#34;</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>s</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>grpc</span>.<span style=color:#a6e22e>NewServer</span>()
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>pb</span>.<span style=color:#a6e22e>RegisterGreeterServer</span>(<span style=color:#a6e22e>s</span>, <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>server</span>{})
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>reflection</span>.<span style=color:#a6e22e>Register</span>(<span style=color:#a6e22e>s</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;gRPC server is running on :50051&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>Serve</span>(<span style=color:#a6e22e>lis</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;failed to serve: %v&#34;</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=grpc-网关>gRPC 网关<a hidden class=anchor aria-hidden=true href=#grpc-网关>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;context&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;log&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;net/http&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/grpc-ecosystem/grpc-gateway/v2/runtime&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;google.golang.org/grpc&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>pb</span> <span style=color:#e6db74>&#34;github.com/yourusername/yourproject/gen/go/hello&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>runGateway</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ctx</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Background</span>()
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ctx</span>, <span style=color:#a6e22e>cancel</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>WithCancel</span>(<span style=color:#a6e22e>ctx</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>cancel</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>mux</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>runtime</span>.<span style=color:#a6e22e>NewServeMux</span>()
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>opts</span> <span style=color:#f92672>:=</span> []<span style=color:#a6e22e>grpc</span>.<span style=color:#a6e22e>DialOption</span>{<span style=color:#a6e22e>grpc</span>.<span style=color:#a6e22e>WithInsecure</span>()}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>pb</span>.<span style=color:#a6e22e>RegisterGreeterHandlerFromEndpoint</span>(<span style=color:#a6e22e>ctx</span>, <span style=color:#a6e22e>mux</span>, <span style=color:#e6db74>&#34;localhost:50051&#34;</span>, <span style=color:#a6e22e>opts</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;failed to register gateway: %v&#34;</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;gRPC Gateway is running on :8080&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>ListenAndServe</span>(<span style=color:#e6db74>&#34;:8080&#34;</span>, <span style=color:#a6e22e>mux</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;failed to serve gateway: %v&#34;</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>go</span> <span style=color:#a6e22e>runGateway</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 启动 gRPC 服务</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>runGRPCServer</span>()
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://moonlab.top/tags/golang/>Golang</a></li></ul></footer><script src=https://comment.moonlab.top/moontalk.js></script><div id=container></div><script>(new MoonTalk).init({page_key:window.location.href,server:"https:///comment.moonlab.top",element:"#container"})</script></article></main><aside class=rightbar><div class=rightbar-categories><h3>分类</h3><ul class=rightbar-categories-first-list><li><a href=https://moonlab.top/categories/programming/>Programming</a> (16)<ul class=rightbar-categories-sec-list><li><a href=/tags/embeded>Embeded</a></li><li><a href=/tags/golang>golang</a></li><li><a href=/tags/linux>Linux</a></li><li><a href=/tags/android>Android</a></li></ul></li><li><a href=https://moonlab.top/categories/reverse/>Reverse</a> (1)<ul class=rightbar-categories-sec-list><li><a href=/tags/javascript>JavaScript</a></li></ul></li><li><a href=https://moonlab.top/categories/%E5%85%B6%E4%BB%96/>其他</a> (5)<ul class=rightbar-categories-sec-list><li><a href=/tags/blog>blog</a></li></ul></li><li><a href=https://moonlab.top/categories/%E7%AE%97%E6%B3%95/>算法</a> (4)<ul class=rightbar-categories-sec-list></ul></li></ul></div></aside></div><footer class=footer><img id=mooncounter-img style="margin:0 auto;margin-bottom:6px"></img>
+<script src="//counter.moonlab.top/img?name=https://moonlab.top/"></script><span>&copy; 2025 <a href=https://moonlab.top/>MoonLab</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><a href=https://www.travellings.cn/go.html rel=noopener target=_blank><img style=height:27px alt=travelling src=https://www.travellings.cn/assets/logo.svg></a></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

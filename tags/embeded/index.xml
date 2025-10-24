@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Embeded on MoonLab</title><link>https://moonlab.top/tags/embeded/</link><description>Recent content in Embeded on MoonLab</description><generator>Hugo -- 0.143.1</generator><language>zh-CN</language><lastBuildDate>Sat, 06 Sep 2025 21:25:30 +0800</lastBuildDate><atom:link href="https://moonlab.top/tags/embeded/index.xml" rel="self" type="application/rss+xml"/><item><title>Keil5 编译错误 error: call to undeclared function '__enable_irq'</title><link>https://moonlab.top/posts/2025/keil-i2c-error/</link><pubDate>Sat, 06 Sep 2025 21:25:30 +0800</pubDate><guid>https://moonlab.top/posts/2025/keil-i2c-error/</guid><description>&lt;p>&lt;img loading="lazy" src="Cursor_V82vfScjj0.png" alt="" />
+&lt;/p>
+&lt;p>&lt;code>stm32f1xx_hal_i2c.c&lt;/code> 中 &lt;code>__enable_irq&lt;/code> 和 &lt;code>disable_irq&lt;/code> 函数出现了报错：&lt;/p>
+&lt;pre tabindex="0">&lt;code>error: call to undeclared function &amp;#39;__enable_irq&amp;#39;; ISO C99 and later do not support implicit of function declarations
+&lt;/code>&lt;/pre>&lt;p>在 core_cm3.h -&amp;gt; cmsis_compiler.h -&amp;gt; cmsis_armclang.h (ARM Compiler 6) 或 cmsis_armcc.h (AC5) 中对这两个方法没有定义，只有一段注释：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="Cursor_PY4yNMqFgJ.png" alt="" />
+&lt;/p>
+&lt;p>&lt;code>__enable_irq&lt;/code> 和 &lt;code>disable_irq&lt;/code> 控制的是PRIMASK寄存器值。&lt;/p>
+&lt;p>是一种 intrinsic 函数，编译器会自动识别并替换为相关的指令，它们其实是编译器的一部分，实际的定义位于Keil的 arm_compat.h 中。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * Arm Compiler 6 (armclang)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#elif defined (__ARMCC_VERSION) &amp;amp;&amp;amp; (__ARMCC_VERSION &amp;gt;= 6010050)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>  &lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;#34;cmsis_armclang.h&amp;#34;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在其中，这个头文件 &lt;code>arm_compat.h&lt;/code> 本该是不存在的：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;arm_compat.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在&lt;code>.\Drivers\CMSIS\Include&lt;/code> 中多了一个&lt;code>arm_compat.h&lt;/code>文件，这会导致覆盖编译器的头文件，所以会出现一系列错误。&lt;/p></description></item></channel></rss>
